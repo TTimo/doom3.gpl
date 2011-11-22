@@ -1,0 +1,43 @@
+
+   <appendix>
+   <title>Global Constants</title> 
+     <para>
+    <table>
+    <title>Misc. &AL; Global Constants</title>
+    <tgroup cols="4" align="left" colsep=1 rowsep=1>
+    <colspec colname=c1>
+    <colspec colname=c2>
+    <thead>
+    <row>
+       <entry>Name            </>
+       <entry>&OAL; datatype  </>
+       <entry>Description     </>        
+       <entry>Literal value   </>  
+    </row>
+    </thead>
+    <tbody>
+    <row>
+        <entry> ALenum                               </entry>
+        <entry> FALSE                                </entry>
+        <entry> boolean false                        </entry>
+        <entry> 0                                    </entry>
+    </row>
+    <row>
+        <entry> ALenum                               </entry>
+        <entry> TRUE                                 </entry>
+        <entry> boolean true                         </entry>
+        <entry> 1                                    </entry>
+    </row>
+    </tbody>
+    </tgroup>
+    </table>
+    </para>
+
+
+    <![ %RFC [
+      <note id="bk000621-01"><title>RFC</title><para>  
+        NONE, ONE, ZERO needed?
+      </para></note>
+    ]]>
+    </appendix>
+

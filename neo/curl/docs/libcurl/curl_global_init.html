@@ -1,0 +1,67 @@
+<html><head>
+<title>curl_global_init man page</title>
+<meta name="generator" content="roffit 0.5">
+<STYLE type="text/css">
+P.level0 {
+ padding-left: 2em;
+}
+
+P.level1 {
+ padding-left: 4em;
+}
+
+P.level2 {
+ padding-left: 6em;
+}
+
+span.emphasis {
+ font-style: italic;
+}
+
+span.bold {
+ font-weight: bold;
+}
+
+span.manpage {
+ font-weight: bold;
+}
+
+h2.nroffsh {
+ background-color: #e0e0e0;
+}
+
+span.nroffip {
+ font-weight: bold;
+ font-size: 120%;
+ font-family: monospace;
+}
+
+p.roffit {
+ text-align: center;
+ font-size: 80%;
+}
+</STYLE>
+</head><body>
+
+<p class="level0"><a name="NAME"></a><h2 class="nroffsh">NAME</h2>
+<p class="level0">curl_global_init - Global libcurl initialisation <a name="SYNOPSIS"></a><h2 class="nroffsh">SYNOPSIS</h2>
+<p class="level0"><span Class="bold">#include &lt;curl/curl.h&gt;</span> 
+<p class="level0"><span Class="bold">CURLcode curl_global_init(long  flags );</span> 
+<p class="level0"><a name="DESCRIPTION"></a><h2 class="nroffsh">DESCRIPTION</h2>
+<p class="level0">This function should only be called once (no matter how many threads or libcurl sessions that'll be used) by every application that uses libcurl. 
+<p class="level0">If this function hasn't been invoked when <a class="emphasis" href="./curl_easy_init.html">curl_easy_init(3)</a> is called, it will be done automatically by libcurl. 
+<p class="level0">The flags option is a bit pattern that tells libcurl exact what features to init, as described below. Set the desired bits by ORing the values together. 
+<p class="level0">You must however <span Class="bold">always</span> use the <a class="emphasis" href="./curl_global_cleanup.html">curl_global_cleanup(3)</a> function, as that cannot be called automatically for you by libcurl. 
+<p class="level0">Calling this function more than once will cause unpredictable results. 
+<p class="level0"><a name="FLAGS"></a><h2 class="nroffsh">FLAGS</h2>
+<p class="level0">
+<p class="level0"><span Class="bold">CURL_GLOBAL_ALL</span> Initialize everything possible. This sets all known bits. 
+<p class="level0"><span Class="bold">CURL_GLOBAL_SSL</span> Initialize SSL 
+<p class="level0"><span Class="bold">CURL_GLOBAL_WIN32</span> Initialize the Win32 socket libraries. 
+<p class="level0"><span Class="bold">CURL_GLOBAL_NOTHING</span> Initialise nothing extra. This sets no bit. <a name="RETURN"></a><h2 class="nroffsh">RETURN VALUE</h2>
+<p class="level0">If this function returns non-zero, something went wrong and you cannot use the other curl functions. <a name="SEE"></a><h2 class="nroffsh">SEE ALSO</h2>
+<p class="level0"><a class="manpage" href="./curl_global_cleanup.html">curl_global_cleanup (3)</a> <span Class="manpage"> </span> 
+<p class="level0">
+<p class="level0"><p class="roffit">
+ This HTML page was made with <a href="http://daniel.haxx.se/projects/roffit/">roffit</a>.
+</body></html>

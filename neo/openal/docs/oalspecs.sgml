@@ -1,0 +1,109 @@
+<!DOCTYPE Book PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.1//EN"[
+ 
+        <!-- INCLUDE or IGNORE for marked sections -->
+        <!ENTITY % Marks        system  "ent-marks.sgml"  >
+
+        <!-- keywords and other standard entities -->
+        <!ENTITY % Entities     system  "ent-names.sgml"  >
+      
+        <!-- C programs and other example entities -->
+        <!ENTITY % Examples     system  "ent-examples.sgml"  >
+    
+        <!-- Extensions as external ASCII documents -->
+        <!ENTITY % Extensions   system  "ent-extensions.sgml"  >
+      
+        %Marks; 
+        %Entities;
+        %Examples;
+        %Extensions;
+
+        <!-- book sections -->
+        <!ENTITY   CREDITS               system  "../CREDITS"  >
+        <!ENTITY   secBookInfo           system  "sec-bookinfo.sgml"  >
+        <!ENTITY   chpIntroduction       system  "chp-introduction.sgml"  >
+        <!ENTITY   chpOperation          system  "chp-operation.sgml"  >
+        <!ENTITY   chpState              system  "chp-state.sgml"  >
+        <!ENTITY   chpRendering          system  "chp-rendering.sgml"  >
+        <!ENTITY   chpBuffers            system  "chp-buffers.sgml"  >
+        <!ENTITY   chpQueueing           system  "chp-queueing.sgml"  >
+        <!ENTITY   chpMultiChannel       system  "chp-multichannel.sgml"  >
+
+        <!ENTITY   alcContext            system  "alc-context.sgml"  >
+
+        <!ENTITY   appConstants          system  "app-constants.sgml"  >
+        <!ENTITY   appExtensions         system  "app-extensions.sgml"  >
+        <!ENTITY   appExtensionProcess   system  "app-extensionprocess.sgml"  >
+        <!ENTITY   appAnnotations        system  "app-annotations.sgml"  >
+
+
+
+        <!-- misc. specifics -->
+        <!ENTITY   DocVersion   "1.0 (draft)"           >
+        <!ENTITY   DocDate      "2000/10/10"            >
+        <!ENTITY   ALVersion    "1.0"                   > 
+        <!ENTITY   ALCVersion   "1.0"                   > 
+]>
+
+
+<!-- INDEX -->
+
+<book id="index">
+
+<!-- HEADING -->
+  &secBookInfo;    
+
+<!-- INTRODUCTION -->
+  &chpIntroduction;
+
+<!-- CHAPTERS -->
+  &chpOperation;
+  &chpState;
+  &chpRendering;
+  &chpBuffers;
+  &chpQueueing;
+
+<![ %Scratch [
+  &chpMultiChannel;
+]]>
+
+  &alcContext;
+ 
+<!-- APPENDICITIS [sic] -->
+
+  &appConstants;
+  &appExtensions;
+  &appExtensionProcess;
+
+<![ %Scratch [ 
+  &appAnnotations; 
+]]>
+
+
+<![ %Revision [ 
+  <appendix>
+  <title>Main Document CVS Revision History</title>
+  <para><literallayout>  
+   CVS Document: $Id: oalspecs.sgml,v 1.15 2000/11/10 23:10:44 bk Exp $
+   CVS Revision: $Revision: 1.15 $
+
+   $Log: oalspecs.sgml,v $
+   Revision 1.15  2000/11/10 23:10:44  bk
+   Cleanup.
+
+   Revision 1.14  2000/11/04 00:11:40  bk
+   Maintenance update
+
+   Revision 1.13  2000/10/26 03:01:55  bk
+   Fixed typo for ALC entity.
+
+   Revision 1.12  2000/10/26 02:59:46  bk
+   External entities.
+
+   </literallayout><para>     
+  </appendix>
+]]>
+
+
+
+</book>
+

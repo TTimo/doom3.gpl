@@ -1,0 +1,133 @@
+#! /bin/sh
+#
+# The idea to this kind of setup info script was stolen from numerous
+# other packages, such as neon, libxml and gnome.
+#
+# $Id: curl-config.in,v 1.18 2003/12/08 10:00:21 bagder Exp $
+#
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+includedir=@includedir@
+
+usage()
+{
+    cat <<EOF
+Usage: curl-config [OPTION]
+
+Available values for OPTION include:
+
+  --ca        ca bundle install path
+  --cc        compiler
+  --cflags    pre-processor and compiler flags
+  --feature   newline separated list of enabled features
+  --help      display this help and exit
+  --libs      library linking information
+  --prefix    curl install prefix
+  --version   output version information
+  --vernum    output the version information as a number (hexadecimal)
+EOF
+
+    exit $1
+}
+
+if test $# -eq 0; then
+    usage 1
+fi
+
+while test $# -gt 0; do
+    case "$1" in
+    # this deals with options in the style
+    # --option=value and extracts the value part
+    # [not currently used]
+    -*=*) value=`echo "$1" | sed 's/[-_a-zA-Z0-9]*=//'` ;;
+    *) value= ;;
+    esac
+
+    case "$1" in
+    --ca)
+	echo @CURL_CA_BUNDLE@
+	;;
+
+    --cc)
+	echo @CC@
+	;;
+
+    --prefix)
+	echo $prefix
+	;;
+
+    --feature)
+	if test "@OPENSSL_ENABLED@" = "1"; then
+          echo "SSL"
+        fi
+	if test "@KRB4_ENABLED@" = "1"; then
+          echo "KRB4"
+        fi
+	if test "@IPV6_ENABLED@" = "1"; then
+          echo "IPv6"
+        fi
+	if test "@HAVE_LIBZ@" = "1"; then
+          echo "libz"
+        fi
+	if test "@CURL_DISABLE_HTTP@" = "1"; then
+          echo "HTTP-disabled"
+        fi
+	if test "@CURL_DISABLE_FTP@" = "1"; then
+          echo "FTP-disabled"
+        fi
+	if test "@CURL_DISABLE_GOPHER@" = "1"; then
+          echo "GOPHER-disabled"
+        fi
+	if test "@CURL_DISABLE_FILE@" = "1"; then
+          echo "FILE-disabled"
+        fi
+	if test "@CURL_DISABLE_TELNET@" = "1"; then
+          echo "TELNET-disabled"
+        fi
+	if test "@CURL_DISABLE_LDAP@" = "1"; then
+          echo "LDAP-disabled"
+        fi
+	if test "@CURL_DISABLE_DICT@" = "1"; then
+          echo "DICT-disabled"
+        fi
+	if test "@HAVE_ARES@" = "1"; then
+          echo "AsynchDNS"
+        fi
+	;;
+
+    --version)
+	echo libcurl @VERSION@
+	exit 0
+	;;
+
+    --vernum)
+	echo @VERSIONNUM@
+	exit 0
+	;;
+
+    --help)
+	usage 0
+	;;
+
+    --cflags)
+       	if test "X@includedir@" = "X/usr/include"; then
+          echo ""
+        else
+          echo "-I@includedir@"
+        fi
+       	;;
+
+    --libs)
+       	echo -L@libdir@ -lcurl @LDFLAGS@ @LIBS@
+       	;;
+
+    *)
+        echo "unknown option: $1"
+	usage
+	exit 1
+	;;
+    esac
+    shift
+done
+
+exit 0

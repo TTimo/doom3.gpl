@@ -1,0 +1,261 @@
+
+   <chapter id="multichannel">
+   <title>Handling Multichannel Data</title>
+   <para>
+     &AL; is foremost an API to control processing of spatialized sound. For that
+     reason, the internal, canonical format of data stored in buffers is mono.
+     The specification does not require the implementation to preserve the
+     original data, thus multichannel (e.g. stereo) data is usually downsampled 
+     using an algorithm of the implementor's choosing. Implementations are free
+     to defer decompression, decoding, and conversion until the latest possible
+     moment, but they are not required to do so by the specification.  
+   </para>
+   <para>
+     However, &AL; is an audio API, and consequently has to provide means to
+     pass through preprocessed multichannel data to the sound driver and 
+     hardware, which in turn will map it to the actual output channels. This 
+     processing might involve mapping from n channels in the data to m channels
+     in the output, as well as filtering to account for varying requirements
+     for a given setup. For example, headphone and speaker setups differ with
+     respect to handling of crosstalk and noise.
+   </para>
+   <para>
+     For this reason, mono buffers can not be used to store data meant for  
+     direct multichannel output. The API has to provide means by which the
+     application can signal its intention to use a given buffer in this way,
+     causing the implementation to either preserve the original data, or
+     convert it as needed for the direct output to the given speaker or
+     headphone configuration. In many cases, multichannel buffers could be 
+     used with Sources, but the specification does not endorse this at this
+     time as this might not be guaranteed for all multichannel data formats
+     &AL; will support.
+   </para>
+   <para>
+     While spatialized sound is often played once, or looping a limited number
+     of times, multichannel data is usually streaming: typically stereo or MP3
+     music, soundtracks, maybe voice data accompanying animation and cinematic
+     sequences. The queueing mechanism defined for mono buffers and spatialized 
+     Sources is thus also applied to multichannel buffers and passthrough
+     output.
+   </para>
+   <para>
+     Applications can expect &AL; implementations to support more than one
+     multichannel output at once (e.g. mixing two stereo streams, or fading
+     from one to the other for transition). For that reason we can not restrict
+     multichannel output to just one stream or buffer at a time.
+   </para>
+
+    <![ %Annote [
+      <note><title>Annotation (per-case Buffer use)</title><para>
+         The specification will likely be amended at a later time to
+         allow for the use of mono buffers with multichannel output,
+         and multichannel buffers with spatialized Sources.
+         The decision to use the same buffer API for mono 
+         and multichannel buffers was taken in anticipation of this.
+         In cases where the specification can not guarantee
+         use of a given multichannel data encoding with a 
+         spatialized source, an error can be generated at the
+         attempted use, validating the buffer's internal format
+         against the output chosen. In cases were the specification 
+         can not guarantee the implementation will defer the 
+         conversion of multichannel buffer content as needed (e.g. 
+         PCM stereo data), the application can either specify the
+         internal format, or the internal format enumeration
+         can be extended to explicitely request storage of both 
+         multichannel and mono data within the same buffer, at memory 
+         expense. 
+       </para></note>
+    ]]>
+
+
+    <section>
+    <title>Specifying Buffer Content and Internal Format</title>
+    <para>
+      The existing BufferData command does not permit the application
+      to specify an internal format. The implementation is free to
+      apply conversions, downsampling, upsampling, including 
+      interpolation and filtering, in accordance with the specification.
+    </para>
+    <para>
+      However, applications might want to use different trade-offs
+      between quality and resource expenditure. More imortantly,
+      applications might choose to use preprocessed, multichannel
+      data instead of doing runtime spatialization, e.g. for
+      recorded music, voice, and realtime streams. In this case
+      the application expects efficient passthrough of the data
+      to the hardware. 
+    </para>
+    <para>
+      To account for this requirement, an extended command to specify
+      sample data to be stored in a given buffer is introduced.
+      <funcsynopsis><funcprototype> 
+      <funcdef> &void; <function> BufferWriteData</function></funcdef>
+      <paramdef> &uint; <parameter>bufferName</parameter></paramdef>
+      <paramdef> &enum; <parameter>format</parameter></paramdef>
+      <paramdef> &void;* <parameter> data </parameter></paramdef>
+      <paramdef> &sizei; <parameter> size </parameter></paramdef>
+      <paramdef> &uint; <parameter>frequency</parameter></paramdef>
+      <paramdef> &enum; <parameter>internalFormat</parameter></paramdef>
+      </funcprototype></funcsynopsis>
+      The internal format of the Buffer can be requested by the
+      application. The implementation is not required to match 
+      the request excatly. The specification does guarantee that
+      use of a multichannel internalFormat parameter will cause
+      the implementation to treat the data as multichannel data.
+      The implementation is free to perform any remapping from
+      the number of channels used in the data to the number of
+      channels available at the output, and apply other prcessing
+      as needed.
+    </para>
+    <para>
+      Valid formats for internalFormat are FORMAT_MONO8, FORMAT_MONO16,
+      FORMAT_STEREO8, and FORMAT_STEREO16. An implementation may
+      expose other formats, see the chapter on Extensions for
+      information on determining if additional formats are supported.
+      In general, the set of valid internalFormat parameters will be
+      a subset of those available as format parameters.
+    </para>
+
+    <![ %Annote [
+      <note><title>Annotation (atomic WriteData)</title><para>
+         The internal format for a buffer can not be specified
+         by using Bufferi. The modular way to set state
+         is preferable for operations that are always, or
+         nearly legal and orthogonal, but specifying the
+         internal format affect allocation and use of a buffer,
+         and would cause too many error cases.
+       </para></note>
+    ]]>
+
+    <![ %Annote [
+      <note><title>Annotation (change buffer format on write)</title><para>
+         The API allows for changing a buffer on every write operation,
+         turning a multichannel buffer into a mono buffer and vice versa.
+         The specification does not require the implementation to handle
+         these operations efficiently, as they might require reallocation
+         of memory. The same is true for resize operations at write.
+         Applications might prefer to release buffer names that do not
+         match current requirements, and request new buffer names instead,
+         an operation which implementations are encouraged to optimize.
+       </para></note>
+    ]]>
+
+    <![ %Annote [
+      <note><title>Annotation (BufferReadData)</title><para>
+         The specification might be amended at a later time
+         with a command to retrieve the data from a buffer,
+         following use of alGetBuffer to retrieve size and 
+         internalFormat. Reading has to be queued for 
+         continuous reads from the actual mixing buffer.
+       </para></note>
+    ]]>
+    <![ %RFC [
+       <note id="rfc-bk000813-01"><title>RFC: frequency for write/read? </title><para>  
+         Do we (ever) want to provide the application control over the internal frequency?
+      </para></note>
+    ]]>
+   </section>
+
+
+   <section>
+   <title>Rendering Multichannel Buffers</title>
+   <para>
+      For a variety of reasons, Sources are not used to feed buffer
+      data into multichannel processing. Instead, a different class
+      of &AL; object is introduced to encapsulate state management
+      and resource management for multichannel output: Multichannel
+      objects.
+   </para>
+   <para>
+      Multichannel objects are referred to by name, and they
+      are managed by an API partly duplicating the Source API:
+      GenMultichannels, IsMultichannel, DeleteMultichannels, 
+      Multichanneli and GetMultichanneli. However, the
+      SourcePlay/Stop commands as well as the Queue/Unqueue
+      commands can be applied to both: these commands accept
+      mcName parameters as well as sName parameters. It is
+      left to the implementation how a Name is mapped to an
+      object, and how the implementation dinstiguishes sNames
+      from mcNames. Within a 32bit namespace, and given the
+      small number of multichannel sources to expect (more than
+      one is quite possible, but not common), the implementation
+      can exploit the fact that Names are opaque to the
+      application. 
+   </para>
+
+    <![ %Annote [
+      <note><title>Annotation (Source NONE)</title><para>
+         The literal value "0", i.e. NONE, is legal. All
+         operations on Source/Multichannel NONE are legal NOPs
+         and quietly ignored. Because of the ambiguity
+         (is NONE a Source or Multichannel) NONE will never
+         be available as an actual object, nor will operations
+         on it ever have effects.
+       </para></note>
+    ]]>
+
+    <![ %Annote [
+      <note><title>Annotation (implicit ambient)</title><para>
+         One way to feed multichannel data into the rendering is
+         using the Listener as a Source (sname==0 implies
+         Listener). This was rejected, as it
+         does not allow for multiple streams. Using multiple
+         Sources with appropriate type SOURCE_AMBIENT or 
+         SOURCE_MULTICHHANEL was rejected, as Sources
+         are by definition spatialized, and support operations
+         which are meaningless or even illegal for an output
+         that is not spatialized at all. Modifying the semantics
+         of Source spatialization by a provision that a relative
+         position of (0,0,0) would mark a Source as ambient was
+         rejected for clarity and cleanness. Updates of Source
+         position can not be expected to convert Sources from 
+         spatialized to ambient and vice versa at any time,
+         a Source State dependent semantics of position updates
+         is outright confusing, handling of sources that are
+         SOURCE_ABSOLUTE but incidentally at listener position
+         can not be different from that of SOURCE_RELATIVE with
+         a zero offset. Furthermore, multichannel data is not
+         necessarily ambient (surround can rotate, while ambient
+         attempts to prevent any perception of direction).
+         Finally, multichannel processing might require per-channel
+         gain adjustment at user request, which is a meaningless
+         concept for Sources. 
+       </para></note>
+    ]]>
+
+
+    <![ %Annote [
+      <note><title>Annotation (no direct mixing)</title><para>
+         Direct mixing into the rendering buffer, allowing the
+         application to superimpose its multichannel data
+         (or custom software mixing results) on the audio stream
+         generated by spatialization was rejected, as it suffers
+         from similar problems as BufferAppendData and loop points,
+         namely the need to operate at sample level on buffers of
+         unknown format that might not even be directly accessible.
+         The same rationale that led to the adoption of maintaining
+         a processing queue for Sources applies to multichannel data.
+       </para></note>
+    ]]>
+
+    <![ %Annote [
+      <note><title>Annotation (no combined Buffer/Passthrough)</title><para>
+         Multichannel buffers cannot serve as multichannel output
+         objects for two reasons: it would complicate the buffer
+         API with operations only applicable to a subset of buffers,
+         and it does not allow for queueing.
+       </para></note>
+    ]]>
+
+    <![ %RFC [
+       <note id="rfc-bk000813-02"><title>RFC: Per-Channel access</title><para>  
+         At a later time we might want to amend the specification to
+         gain access to a single channel within a multichannel buffer.
+         I suggest that any such operation should be restricted to the
+         ability of reading samples from just one channel into application
+         memory, which allows for writing it into a mono buffer subsequently.
+      </para></note>
+    ]]>
+   
+   </section>
+   </chapter>

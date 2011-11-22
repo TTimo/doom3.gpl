@@ -1,0 +1,59 @@
+#
+#  Adapted for djgpp2 / Watt-32 / DOS by
+#  Gisle Vanem <giva@bgnett.no>
+#
+
+DEPEND_PREREQ = config.h hugehelp.c
+
+include ../packages/DOS/common.dj
+
+ifeq ($(USE_SSL),1)
+  EX_LIBS += $(OPENSSL_ROOT)/lib/libssl.a $(OPENSSL_ROOT)/lib/libcrypt.a
+endif
+
+ifeq ($(USE_ZLIB),1)
+  EX_LIBS += $(ZLIB_ROOT)/libz.a
+endif
+
+EX_LIBS += $(WATT32_ROOT)/lib/libwatt.a
+
+PROGRAM = ../curl.exe
+SOURCES = getpass.c homedir.c hugehelp.c main.c urlglob.c writeenv.c writeout.c
+OBJECTS = $(SOURCES:.c=.o)
+
+all: config.h $(PROGRAM)
+
+$(PROGRAM): $(OBJECTS) ../lib/libcurl.a
+	$(CC) -o $@ $^ $(EX_LIBS)
+
+config.h:
+	@echo '#include "../lib/config.dj"' > $@
+
+#
+# groff 1.18+ requires "-P -c"
+#
+hugehelp.c: ../docs/MANUAL ../docs/curl.1 mkhelp.pl
+	groff -Tascii -man ../docs/curl.1 | \
+	perl -w mkhelp.pl ../docs/MANUAL ../readme > $@
+
+clean:
+	- rm -f $(OBJECTS) Makefile.bak config.h
+
+realclean vclean: clean
+	- rm -f $(PROGRAM) hugehelp.c
+
+# DO NOT DELETE THIS LINE
+getpass.o: getpass.c setup.h config.h ../lib/config.dj
+homedir.o: homedir.c setup.h config.h ../lib/config.dj
+hugehelp.o: hugehelp.c
+main.o: main.c setup.h config.h ../lib/config.dj ../include/curl/curl.h \
+  ../include/curl/types.h ../include/curl/easy.h ../include/curl/multi.h \
+  ../include/curl/mprintf.h urlglob.h writeout.h getpass.h homedir.h \
+  version.h
+urlglob.o: urlglob.c setup.h config.h ../lib/config.dj \
+  ../include/curl/curl.h ../include/curl/types.h ../include/curl/easy.h \
+  ../include/curl/multi.h ../include/curl/mprintf.h urlglob.h
+writeenv.o: writeenv.c setup.h config.h ../lib/config.dj
+writeout.o: writeout.c setup.h config.h ../lib/config.dj \
+  ../include/curl/curl.h ../include/curl/types.h ../include/curl/easy.h \
+  ../include/curl/multi.h ../include/curl/mprintf.h writeout.h

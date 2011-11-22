@@ -1,0 +1,119 @@
+                                  _   _ ____  _     
+                              ___| | | |  _ \| |    
+                             / __| | | | |_) | |    
+                            | (__| |_| |  _ <| |___ 
+                             \___|\___/|_| \_\_____|
+
+                               libcurl bindings
+
+Creative people have written bindings or interfaces for various environments
+and programming languages. Using one of these allows you to take advantage of
+curl powers from within your favourite language or system.
+
+This is a list of all known interfaces as of this writing.
+
+The bindings listed below are not part of the curl/libcurl distribution
+archives, but must be downloaded and installed separately.
+
+Ada95
+
+  Writtten by Andreas Almroth.
+  http://www.almroth.com/adacurl/index.html
+
+Basic
+
+  ScriptBasic bindings to libcurl. Writtten by Peter Verhas.
+  http://scriptbasic.com/
+
+C++
+
+  Written by Jean-Philippe Barrette-LaPierre.
+  http://www.sourceforge.net/projects/curlpp
+
+Cocoa
+
+  Written by Dan Wood.
+  http://curlhandle.sourceforge.net/
+
+D
+
+  Written by Charles Sanders and James Wavro
+  http://www.atari-soldiers.com/libcurl.html
+
+Dylan
+
+  Written by Chris Double.
+  http://dylanlibs.sourceforge.net/
+
+Euphoria
+
+  Written by Ray Smith.
+  http://rays-web.com/eulibcurl.htm
+
+Ferite
+  http://www.ferite.org/
+
+Java
+
+  Written by Daniel Stenberg.
+  http://curl.haxx.se/libcurl/java/
+
+Lua
+
+  Written by Steve Dekorte.
+  http://curl.haxx.se/libcurl/lua/
+
+Object-Pascal
+
+  Free Pascal, Delphi and Kylix binding written by Christophe Espern.
+  http://www.tekool.com/opcurl
+
+O'Caml
+
+  Written by Lars Nilsson.
+  http://sourceforge.net/projects/ocurl/
+
+Pascal
+
+  Free Pascal, Delphi and Kylix binding written by Jeffrey Pohlmeyer.
+  http://houston.quik.com/jkp/curlpas/
+
+Perl
+
+  Maintained by Cris Bailiff.
+  http://curl.haxx.se/libcurl/perl/
+
+PHP
+
+  Written by Sterling Hughes.
+  http://curl.haxx.se/libcurl/php/
+
+PostgreSQL
+
+  Written by Gian Paolo Ciceri.
+  http://gborg.postgresql.org/project/pgcurl/projdisplay.php
+
+Python
+
+  Written by Kjetil Jacobsen.
+  http://pycurl.sourceforge.net/
+
+Rexx
+
+  Written Mark Hessling. 
+  http://rexxcurl.sourceforge.net/
+
+Ruby
+
+  Written by Hirotaka Matsuyuki. 
+  http://www.d1.dion.ne.jp/~matuyuki/ruby.html
+
+Scheme
+
+  Bigloo binding written by Kirill Lisovsky.
+  http://curl.haxx.se/libcurl/scheme/
+
+Tcl
+
+  Written by Andrés García. 
+  http://personal1.iddeo.es/andresgarci/tclcurl/english/docs.html

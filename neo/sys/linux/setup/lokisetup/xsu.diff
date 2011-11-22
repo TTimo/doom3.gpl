@@ -1,0 +1,170 @@
+--- loki_setup/CHANGES	2004-11-20 07:43:42.000000000 -0600
++++ loki_setup.zinx/CHANGES	2005-03-16 16:56:46.400205504 -0600
+@@ -1,4 +1,6 @@
+ Current:
++Christopher Lais (Id Software) - Wed Mar 16 08:09:59 CST 2005
++ * Fix handling of invalid password in xsu
+ Ryan C. Gordon (icculus.org) - Sat Nov 20 08:42:16 EST 2004
+  * Minor carbon_ui tweaks and corrections to update function.
+ Ludwig Nussel - Wed Nov 10 14:21:21 PST 2004
+--- loki_setup/xsu.c	2003-07-02 14:40:39.000000000 -0500
++++ loki_setup.zinx/xsu.c	2005-03-16 16:36:17.752988272 -0600
+@@ -37,6 +37,7 @@
+ #include "xsu.h"
+ 
+ static int term = -1;
++static int term_status = 0;
+ 
+ static gint
+ exec_su_failed (gpointer user_data)
+@@ -79,22 +80,25 @@
+   if ( sig == SIGCHLD && term > 0 ) {
+     int status;
+     pid_t pid = wait(&status);
++
++    close(term); term = -1;
++    term_status = status;
++
+     if ( WIFEXITED(status) ) {
+ #ifdef DEBUG
+       fprintf(stderr,"Child %d returned\n", pid);
+ #endif
+-      gtk_exit(WEXITSTATUS(status));
++      /* This is handled at the end of xsu_process */
++      return;
+     } else if ( WIFSIGNALED(status) ) { 
+ #ifdef DEBUG
+       fprintf(stderr,"Xsu: subprocess %d has died from signal %d\n", pid, WTERMSIG(status));
+ #endif
+       gtk_exit(EXIT_ERROR);
++    } else {
++      fprintf(stderr, "Xsu: got SIGCHLD from %d for unknown reason (%08x)\n", pid, status);
++      gtk_exit(EXIT_ERROR);
+     }
+-    close(term); term = -1;
+-
+-    while (gtk_events_pending ())
+-      gtk_main_iteration ();
+-    gtk_main_quit ();
+   }
+ }
+ 
+@@ -135,22 +139,27 @@
+ 	gchar *buffer;
+ 	char *argv[6], c;
+ 	fd_set fds;
+-	struct timeval delay = { 0, 10*1000 }; /* 10 ms wait */
++	struct timeval delay;
+ 
+ #ifdef DEBUG
+     printf("void xsu_perform()\n");
+ #endif
+ 
++	gtk_widget_hide (gtk_xsu_window);
++
++	if (password == NULL)
++		return;
++
+ /* 0.2.1 *
+ 	Minor security fix. Password would remain in memory if we don't
+ 	clean the password textbox.
+ */
+-	gtk_entry_set_text(GTK_ENTRY(gtk_password_textbox),"");
+-	gtk_widget_hide (gtk_xsu_window);
+-	
+-	if (password == NULL)
+-		return;
++	password_return = g_strdup_printf ("%s\n", password);
+ 
++	/* Technically, we aren't supposed to modify this, but it should
++	   usually be OK because we're explicitly clearing it afterwards. */
++	memset (password, 0, strlen (password));
++	gtk_entry_set_text(GTK_ENTRY(gtk_password_textbox),"");
+ 
+ /* xsu 0.2.1 *
+ 	Option to set the DISPLAY environment
+@@ -177,6 +186,9 @@
+ 	argv[2] = "-c";
+ 	argv[3] = buffer;
+ 	argv[4] = NULL;
++#ifdef DEBUG
++	fprintf(stderr, "%s %s -c %s\n", su_command, username, buffer);
++#endif
+ 	term = exec_program(su_command, argv);
+ 	/* We are not a gnome-application anymore but under control of su */
+ 
+@@ -231,33 +243,65 @@
+ 	fprintf(stderr, "Got it!\n");
+ #endif
+ 
+-	/* Discard any remaining characters on stdin */
+-	for(;;) {
++	/* Slurp up any extra characters immediately after the password prompt,
++	   because su might clear the buffer after we send the password if we
++	   don't. */
++	for (;;) {
+ 		FD_ZERO(&fds);
+ 		FD_SET(term, &fds);
+-		if ( select(term+1, &fds, NULL, NULL, &delay) ) {
+-		    if ( read(term, &c, 1) <= 0 )
+-			break;
++
++		delay.tv_sec = 0;
++		delay.tv_usec = 10*1000; /* 10 ms wait */
++
++		if (select(term+1, &fds, NULL, NULL, &delay) > 0) {
++			if (read(term, &c, 1) < 0)
++				break;
+ 		} else
+ 			break;
+ 	}
+ 
+-	password_return = g_strdup_printf ("%s\n", password);
+ #ifdef DEBUG
+  	fprintf(stderr,"Sending password\n");
+ #endif
+ /* 0.2.2 *
+ 	Minor security fix, clear the password from memory
+ */  
+-	memset (password, 0, strlen (password));	
+ 	if ( write(term, password_return, strlen(password_return)) < 0 ) {
+ 	    perror("write");
+ 	}
++
+ 	memset (password_return, 0, strlen (password_return));
+ 	g_free (password_return); password_return = NULL;
+-	g_free (password); password = NULL;
+ 
+-	//gtk_main();
++	/* Eat up any output, and wait for a SIGCHLD saying su exited */
++	while (term >= 0) {
++		FD_ZERO(&fds);
++		FD_SET(term, &fds);
++
++		delay.tv_sec = 0;
++		delay.tv_usec = 10*1000; /* 10 ms wait */
++
++		if ( select(term+1, &fds, NULL, NULL, &delay) > 0 ) {
++		    read(term, &c, 1);
++#ifdef DEBUG
++		    fprintf(stderr, "read from pty: %02x\n", c);
++#endif
++		}
++
++		while (gtk_events_pending ()) 
++		  gtk_main_iteration ();
++	}
++
++	if (WIFEXITED(term_status) && WEXITSTATUS(term_status)) {
++		/* su failed, so ask for the password again */
++#ifdef DEBUG
++		fprintf(stderr, "returning control to gtk\n");
++#endif
++		gtk_widget_show (gtk_xsu_window);
++	} else {
++		/* Exit normally */
++		gtk_main_quit();
++	}
+ }
+ 
+ 

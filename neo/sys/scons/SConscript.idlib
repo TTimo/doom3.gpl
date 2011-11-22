@@ -1,0 +1,81 @@
+# -*- mode: python -*-
+# DOOM build script
+# TTimo <ttimo@idsoftware.com>
+# http://scons.sourceforge.net
+
+import scons_utils
+
+Import( 'GLOBALS' )
+Import( GLOBALS )
+
+idlib_string = ' \
+	bv/Bounds.cpp \
+	bv/Frustum.cpp \
+	bv/Sphere.cpp \
+	bv/Box.cpp \
+	geometry/DrawVert.cpp \
+	geometry/Winding2D.cpp \
+	geometry/Surface_SweptSpline.cpp \
+	geometry/Winding.cpp \
+	geometry/Surface.cpp \
+	geometry/Surface_Patch.cpp \
+	geometry/TraceModel.cpp \
+	geometry/JointTransform.cpp \
+	hashing/CRC32.cpp \
+	hashing/MD4.cpp \
+	hashing/MD5.cpp \
+	math/Angles.cpp \
+	math/Lcp.cpp \
+	math/Math.cpp \
+	math/Matrix.cpp \
+	math/Ode.cpp \
+	math/Plane.cpp \
+	math/Pluecker.cpp \
+	math/Polynomial.cpp \
+	math/Quat.cpp \
+	math/Rotation.cpp \
+	math/Simd.cpp \
+	math/Simd_Generic.cpp \
+	math/Vector.cpp \
+	BitMsg.cpp \
+	LangDict.cpp \
+	Lexer.cpp \
+	Lib.cpp \
+	containers/HashIndex.cpp \
+	Dict.cpp \
+	Str.cpp \
+	Parser.cpp \
+	MapFile.cpp \
+	CmdArgs.cpp \
+	Token.cpp \
+	Base64.cpp \
+	Timer.cpp \
+	Heap.cpp'
+
+idlib_list = scons_utils.BuildList( 'idlib', idlib_string )
+
+for i in range( len( idlib_list ) ):
+	idlib_list[ i ] = '../../' + idlib_list[ i ]
+
+local_env = g_env.Clone()
+local_env_noopt = g_env.Clone()
+
+# max allowed -O1
+flags = OPTCPPFLAGS
+try:
+	flags.remove( '-O3' )
+	flags.insert( 0, '-O1' )
+except:
+	pass
+local_env_noopt.Append( CPPFLAGS = flags )
+
+ret_list = []
+if ( local_idlibpic == 0 ):
+	for f in idlib_list:
+		ret_list += local_env.StaticObject( source = f )
+	ret_list += local_env_noopt.StaticObject( source = [ '../../idlib/bv/Frustum_gcc.cpp' ] )
+else:
+	for f in idlib_list:
+		ret_list += local_env.SharedObject( source = f )
+	ret_list += local_env_noopt.SharedObject( source = [ '../../idlib/bv/Frustum_gcc.cpp' ] )
+Return( 'ret_list' )

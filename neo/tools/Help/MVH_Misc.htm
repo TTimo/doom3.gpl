@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<title></title>
+		<meta name="GENERATOR" content="Microsoft Visual Studio.NET 7.0">
+		<meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
+	</head>
+	<body>
+		<P><FONT size="4"><STRONG><EM>Miscellaneous Controls</EM></STRONG></FONT></P>
+		<P><STRONG>Spawn Class Drop Down</STRONG></P>
+		<P>Collates the entity types by spawn class for easier navigation of ModView. 
+			Whenever a new spawn class is selected, the entity type drop down box is 
+			populated with all the entity types that have the just selected spawn class. A 
+			loaded mesh will have the spawn class of "&lt;file&gt;".</P>
+		<P><STRONG>Entity Type Drop Down</STRONG></P>
+		<P>A list of entity types with the above selected spawn class. Whenever an entity 
+			type is selected, the associated mesh is loaded and displayed. The def file is 
+			parsed and the relevant animations are added to the "Animations Available" list 
+			view box. A loaded mesh will have the entity type of it's filename within 
+			chevrons. eg. "&lt;models/md5/meshes/player.md5mesh&gt;".</P>
+		<P><STRONG>Animations Available List</STRONG></P>
+		<P>This lists the animations found in the def file. You can select one or many and 
+			move them to the current animation sequence with the "&gt;&gt;" button to the 
+			right of this list. If an animation will not go to the sequence window, then it 
+			was not found or there was some other problem with it. Loaded animations will 
+			go here as their filename, and also to the "Animations Loaded" list. These 
+			loaded animations will be remembered as associated to this spawn class/entity 
+			type combination as long as ModView is running.</P>
+		<P><STRONG>Animations Loaded List</STRONG></P>
+		<P>This is the list of animations that have been successfully loaded and can be 
+			played or stepped through using the toolbar controls. Unchecking a particular 
+			animation in the list will temporarily disable the playback of this animation 
+			in the sequence. Selecting one or more animations and pressing the delete key 
+			will remove them from the list permenantly; that is, until you re add them from 
+			the "Animations Available" list.</P>
+		<P><STRONG>Animation Frame Slider &amp; Text</STRONG></P>
+		<P>The slider displays the current frame of animation in the current sequence of 
+			animations and takes into account deleted and disabled animations. Hitting 
+			either end of the slider acts the same as pressing the stop toolbar control but 
+			steps one frame at a time in the desired direction. Hitting the slider bar 
+			either side of the button advances the animation ten frames in the desired 
+			direction. The slider button can be dragged to&nbsp;a specific frame. The text 
+			above this slider shows the exact frame number out of how many frames, and the 
+			current playing animation in brackets.</P>
+		<P><STRONG>Timescale Slider</STRONG></P>
+		<P>The slider sets the global speed of the animation playback. It defaults to 1.0 
+			and can go from the minimum of 0.02 to the maximum of 2.0 (double the playback 
+			speed).</P>
+		<P><STRONG>Light Intensity Sliders</STRONG></P>
+		<P>There are six lights surrounding the model and these sliders adjust their 
+			brightness. The range is from 0 (completely black) to 255 (bright white). The 
+			starting default is 128 (medium grey). There are no current options for 
+			multicoloured lights.</P>
+		<P>&nbsp;</P>
+	</body>
+</html>

@@ -1,0 +1,43 @@
+
+        <!ENTITY   coLoki       "Loki Software"    >
+        <!ENTITY   coCreat      "Creative Labs"         >
+        <!ENTITY   OAL          "OpenAL"                >
+        <!ENTITY   AL           "AL"                    >
+ 
+        <!ENTITY   OGL          "OpenGL"                >
+      
+        <!ENTITY   NONE         "NONE"                  >
+        <!ENTITY   TRUE         "TRUE"                  >
+        <!ENTITY   FALSE        "FALSE"                 >
+        <!ENTITY   NaN          "NaN"                   >
+        <!ENTITY   Infty        "Infinity"              >
+        <!ENTITY   type         "T "                    >
+        <!ENTITY   void         "void "                 >
+        <!ENTITY   bool         "boolean "              >
+        <!ENTITY   byte         "byte "                 >
+        <!ENTITY   ubyte        "ubyte "                >
+        <!ENTITY   short        "short "                >
+        <!ENTITY   ushort       "ushort "               >
+        <!ENTITY   int          "int "                  >
+        <!ENTITY   uint         "uint "                 >
+
+        <!ENTITY   long         "long "                 >
+        <!ENTITY   ulong        "ulong "                >
+
+        <!ENTITY   enum         "enum "                 >
+        <!ENTITY   sizei        "sizei "                >
+        <!ENTITY   bitfield     "bitfield "             >
+        <!ENTITY   float        "float "                >
+        <!ENTITY   double       "double "               >
+        <!ENTITY   clampf       "clampf "               >
+        <!ENTITY   clampd       "clampd "               >
+
+        <!-- ALC Context -->
+        <!ENTITY   device      "ALCdevice"              >
+        <!ENTITY   context     "ALCcontext"             >
+
+        <!ENTITY   Par          "Name"                  > <!-- enum as well as identifier -->
+        <!ENTITY   Sig          "Signature"             > <!-- legal types -->
+        <!ENTITY   Val          "Values"                > <!-- legal values/ranges -->
+        <!ENTITY   Def          "Default"               > <!-- default value -->
+  

@@ -1,0 +1,387 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "MaterialEditor_Resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "MaterialEditor_Resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ME_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 88
+    END
+
+    IDD_CONSOLE_FORM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 428
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 267
+    END
+
+    IDD_FIND, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 243
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 75
+    END
+
+    IDD_MATERIALEDIT_FORM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 172
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 82
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ME_ABOUTBOX DIALOGEX 0, 0, 186, 95
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,129,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,129,24,50,14
+END
+
+IDD_CONSOLE_FORM DIALOGEX 0, 0, 435, 274
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_CONSOLE_OUTPUT,7,7,421,242,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | WS_VSCROLL
+    EDITTEXT        IDC_CONSOLE_EDIT,7,250,421,17,ES_AUTOHSCROLL
+END
+
+IDD_FIND DIALOGEX 0, 0, 250, 82
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Find"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Find What:",IDC_STATIC,12,6,52,18,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_FINDTEXT,52,7,122,15,ES_AUTOHSCROLL
+    GROUPBOX        "Search",IDC_STATIC,12,30,162,42
+    CONTROL         "Current File",IDC_RADIO_SEARCHFILE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,24,42,53,10
+    CONTROL         "All Files",IDC_RADIO_SEARCHALL,"Button",
+                    BS_AUTORADIOBUTTON,24,54,39,10
+    CONTROL         "Search Name Only",IDC_CHECK_NAME_ONLY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,90,42,75,9
+    DEFPUSHBUTTON   "Find Next",ID_FIND_NEXT,193,7,50,14
+    PUSHBUTTON      "Close",IDCANCEL,193,25,50,14
+END
+
+IDD_MATERIALEDIT_FORM DIALOGEX 0, 0, 179, 89
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_MATERIALEDITOR_EDIT_TEXT,"RichEdit20A",
+                    ES_MULTILINE | ES_AUTOHSCROLL | ES_WANTRETURN | 
+                    WS_BORDER | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP,7,7,57,
+                    36
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_ME_MAINFRAME        ICON                    "res\\MaterialEditor.ico"
+IDI_ME_ON_ICON          ICON                    "res\\me_on_icon.ico"
+IDI_ME_OFF_ICON         ICON                    "res\\me_off_icon.ico"
+IDI_ME_DISABLED_ICON    ICON                    "res\\me_disabled_icon.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_ME_MAINFRAME MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "Save &Material",              ID_ME_FILE_SAVEMATERIAL
+        MENUITEM "Save &File\tCtrl-S",          ID_ME_FILE_SAVEFILE
+        MENUITEM "&Save All",                   ID_ME_FILE_SAVE
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_ME_FILE_EXIT
+    END
+    POPUP "Edit"
+    BEGIN
+        MENUITEM "Undo\tCtrl-Z",                ID_ME_EDIT_UNDO
+        MENUITEM "Redo\tCtrl-Y",                ID_ME_EDIT_REDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cut\tCtrl-x",                 ID_ME_EDIT_CUT
+        MENUITEM "Copy\tCtrl-C",                ID_ME_EDIT_COPY
+        MENUITEM "Paste\tCtrl-V",               ID_ME_EDIT_PASTE
+        MENUITEM "Delete\tDel",                 ID_ME_EDIT_DELETE
+        MENUITEM "Rename\tF2",                  ID_ME_EDIT_RENAME
+        MENUITEM SEPARATOR
+        MENUITEM "Find\tCtrl-F",                ID_ME_EDIT_FIND
+    END
+    POPUP "&Material View"
+    BEGIN
+        MENUITEM "&Include Filename",           ID_VIEW_INCLUDEFILENAME
+        , CHECKED
+    END
+    POPUP "&Preview"
+    BEGIN
+        MENUITEM "Apply Material\tCtrl-A",      ID_ME_PREVIEW_APPLYCHANGES
+        MENUITEM "Apply File",                  ID_ME_PREVIEW_APPLYFILE
+        MENUITEM "Apply All",                   ID_ME_PREVIEW_APPLYALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Reload ARB Programs\tCtrl-R", 
+                                                ID_PREVIEW_RELOADARBPROGRAMS
+        MENUITEM "Reload Images\tCtrl-I",       ID_PREVIEW_RELOADIMAGES
+    END
+END
+
+IDR_ME_MATERIALTREE_POPUP MENU 
+BEGIN
+    POPUP "Popup"
+    BEGIN
+        MENUITEM "Apply Material",              ID_POPUP_APPLYMATERIAL
+        MENUITEM "Apply File",                  ID_POPUP_APPLYFILE
+        MENUITEM "Apply All",                   ID_POPUP_APPLYALL
+        MENUITEM SEPARATOR
+        MENUITEM "Save Material",               ID_POPUP_SAVEMATERIAL
+        MENUITEM "Save File",                   ID_POPUP_SAVEFILE
+        MENUITEM "Save All",                    ID_POPUP_SAVEALL
+        MENUITEM SEPARATOR
+        MENUITEM "Cut",                         ID_POPUP_CUT
+        MENUITEM "Copy",                        ID_POPUP_COPY
+        MENUITEM "Paste",                       ID_POPUP_PASTE
+        MENUITEM "Delete",                      ID_POPUP_DELETEMATERIAL
+        MENUITEM SEPARATOR
+        MENUITEM "Add Material",                ID_POPUP_ADDMATERIAL
+        MENUITEM "Add Folder",                  ID_POPUP_ADDFOLDER
+        MENUITEM "Rename",                      ID_POPUP_RENAMEMATERIAL
+        MENUITEM SEPARATOR
+        MENUITEM "Reload File",                 ID_POPUP_RELOADFILE
+    END
+    POPUP "Popup2"
+    BEGIN
+        MENUITEM "Apply File",                  ID_POPUP_APPLYFILE
+        MENUITEM "Apply All",                   ID_POPUP_APPLYALL
+        MENUITEM SEPARATOR
+        MENUITEM "Save File",                   ID_POPUP_SAVEFILE
+        MENUITEM "Save All",                    ID_POPUP_SAVEALL
+    END
+    POPUP "Popup3"
+    BEGIN
+        MENUITEM "Apply All",                   ID_POPUP_APPLYALL
+        MENUITEM SEPARATOR
+        MENUITEM "Save All",                    ID_POPUP_SAVEALL
+    END
+END
+
+IDR_ME_STAGELIST_POPUP MENU 
+BEGIN
+    POPUP "Stage Popup"
+    BEGIN
+        MENUITEM "Rename",                      ID_STAGEPOPUP_RENAMESTAGE
+        MENUITEM "Add",                         ID_STAGEPOPUP_ADDSTAGE
+        MENUITEM "Add Bumpmap Stage",           ID_STAGEPOPUP_ADDBUMPMAP
+        MENUITEM "Add Diffuse Stage",           ID_STAGEPOPUP_ADDDIFFUSEMAP
+        MENUITEM "Add Specular Stage",          ID_STAGEPOPUP_ADDSPECULAR
+        MENUITEM SEPARATOR
+        MENUITEM "Copy",                        ID_STAGEPOPUP_COPY
+        MENUITEM "Paste",                       ID_STAGEPOPUP_PASTE
+        MENUITEM "Delete",                      ID_STAGEPOPUP_DELETESTAGE
+        MENUITEM "Delete All Stages",           ID_STAGEPOPUP_DELETEALLSTAGES
+
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_ME_MAINFRAME TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_ME_FILE_SAVEMATERIAL
+    BUTTON      ID_ME_FILE_SAVEFILE
+    BUTTON      ID_ME_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_ME_EDIT_UNDO
+    BUTTON      ID_ME_EDIT_REDO
+    SEPARATOR
+    BUTTON      ID_ME_EDIT_CUT
+    BUTTON      ID_ME_EDIT_COPY
+    BUTTON      ID_ME_EDIT_PASTE
+    BUTTON      ID_ME_EDIT_DELETE
+    BUTTON      ID_ME_EDIT_RENAME
+    BUTTON      ID_ME_EDIT_FIND
+    BUTTON      ID_ME_EDIT_FIND_NEXT
+    SEPARATOR
+    BUTTON      ID_ME_PREVIEW_APPLYCHANGES
+    BUTTON      ID_ME_PREVIEW_APPLYFILE
+    BUTTON      ID_ME_PREVIEW_APPLYALL
+    SEPARATOR
+    BUTTON      ID_PREVIEW_RELOADARBPROGRAMS
+    BUTTON      ID_PREVIEW_RELOADIMAGES
+END
+
+IDR_ME_FILETOOLBAR TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_ME_FILE_SAVEMATERIAL
+    BUTTON      ID_ME_FILE_SAVEFILE
+    BUTTON      ID_ME_FILE_SAVE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_ME_MAINFRAME        BITMAP                  "res\\MEtoolbar.bmp"
+IDB_ME_TREEBITMAP       BITMAP                  "res\\matedtree.bmp"
+IDR_ME_FILETOOLBAR      BITMAP                  "res\\MEFileToolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_ME_MAINFRAME ACCELERATORS 
+BEGIN
+    "F",            ID_ME_EDIT_FIND,        VIRTKEY, CONTROL, NOINVERT
+    VK_F3,          ID_ME_EDIT_FIND_NEXT,   VIRTKEY, NOINVERT
+    "Y",            ID_ME_EDIT_REDO,        VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_ME_EDIT_UNDO,        VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_ME_FILE_SAVEFILE,    VIRTKEY, CONTROL, NOINVERT
+    "A",            ID_ME_PREVIEW_APPLYCHANGES, VIRTKEY, CONTROL, NOINVERT
+    "R",            ID_PREVIEW_RELOADARBPROGRAMS, VIRTKEY, CONTROL, NOINVERT
+    "I",            ID_PREVIEW_RELOADIMAGES, VIRTKEY, CONTROL, NOINVERT
+    VK_F2,          ID_ME_EDIT_RENAME,      VIRTKEY, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDR_ME_MAINFRAME        "Material Editor"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_ME_FILE_EXIT         "Exit"
+    ID_ME_FILE_SAVE         "Save All\nSave All"
+    ID_VIEW_INCLUDEFILENAME "Include Filename"
+    ID_PREVIEW_RELOADARBPROGRAMS "Reload ARB Programs\nReload ARB Programs"
+    ID_ME_PREVIEW_APPLYCHANGES "Apply Material\nApply Material"
+    ID_ME_PREVIEW_APPLYALL  "Apply All\nApply All"
+    ID_ME_FILE_SAVEMATERIAL "Save Material\nSave Material"
+    ID_ME_FILE_SAVEFILE     "Save File\nSave File"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_ME_PREVIEW_APPLYFILE "Apply File\nApply File"
+    ID_PREVIEW_RELOADIMAGES "Reload Images\nReload Images"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_ME_EDIT_UNDO         "Undo\nUndo"
+    ID_ME_EDIT_REDO         "Redo\nRedo"
+    ID_ME_EDIT_CUT          "Cut\nCut"
+    ID_ME_EDIT_COPY         "Copy\nCopy"
+    ID_ME_EDIT_PASTE        "Paste\nPaste"
+    ID_ME_EDIT_DELETE       "Delete\nDelete"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_ME_EDIT_FIND         "Find\nFind"
+    ID_ME_EDIT_RENAME       "Rename\nRename"
+    ID_ME_EDIT_FIND_NEXT    "Find Next\nFind Next"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

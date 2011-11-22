@@ -1,0 +1,188 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "SoundEditor_resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "SoundEditor_resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG_SOUND DIALOGEX 0, 0, 332, 451
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW | WS_EX_CONTROLPARENT
+CAPTION "Sound Editor"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "",IDC_STATIC,7,3,318,38
+    LTEXT           "Speakers",IDC_STATIC,11,12,31,8
+    CONTROL         "Show Group Only",IDC_CHECK_GROUPONLY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,50,12,71,10
+    LTEXT           "Select Group",IDC_STATIC,171,12,42,8
+    COMBOBOX        IDC_COMBO_SPEAKERS,9,24,154,234,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_GROUPS,169,24,154,30,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Entity name:",IDC_STATIC,7,46,43,8
+    EDITTEXT        IDC_EDIT_SOUND_NAME,52,44,208,12,ES_AUTOHSCROLL
+    LTEXT           "Group name:",IDC_STATIC,8,62,42,8
+    EDITTEXT        IDC_EDIT_GROUP,51,60,210,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "x-",IDC_BTN_XDN,261,90,13,11
+    PUSHBUTTON      "x+",IDC_BTN_XUP,285,90,13,11
+    PUSHBUTTON      "y+",IDC_BTN_YUP,273,78,13,11
+    PUSHBUTTON      "y-",IDC_BTN_YDN,274,103,13,11
+    PUSHBUTTON      "z+",IDC_BTN_ZUP,303,83,13,11
+    PUSHBUTTON      "z-",IDC_BTN_ZDN,303,97,13,11
+    LTEXT           "Volume:",IDC_STATIC,18,79,26,8
+    EDITTEXT        IDC_EDIT_VOLUME,51,77,22,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "<",IDC_BTN_DOWN,76,78,9,10
+    PUSHBUTTON      ">",IDC_BTN_UP,87,78,9,10
+    LTEXT           "Min Dist:",IDC_STATIC,103,79,28,8
+    EDITTEXT        IDC_EDIT_MINDIST,134,77,30,12,ES_AUTOHSCROLL
+    LTEXT           "Max Dist:",IDC_STATIC,171,79,30,8
+    EDITTEXT        IDC_EDIT_MAXDIST,206,77,30,12,ES_AUTOHSCROLL
+    CONTROL         "Occlusion",IDC_CHECK_OCCLUSION,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,85,111,47,10
+    CONTROL         "Omnidirectional",IDC_CHECK_OMNI,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,145,111,64,10
+    LTEXT           "Lead through:",IDC_STATIC,159,96,45,8
+    EDITTEXT        IDC_EDIT_LEADTHROUGH,206,94,30,12,ES_AUTOHSCROLL
+    CONTROL         "Plain",IDC_CHECK_PLAIN,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,85,122,31,10
+    CONTROL         "Triggered",IDC_CHECKP_TRIGGERED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,145,122,46,10
+    GROUPBOX        "",IDC_STATIC,7,147,318,240
+    LTEXT           "Sound shader:",IDC_STATIC,16,156,47,8
+    EDITTEXT        IDC_EDIT_SHADER,65,154,195,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Edit...",IDC_BTN_EDIT_SOUND,267,154,50,12
+    CONTROL         "Tree1",IDC_TREE_SOUNDS,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_LINESATROOT | TVS_DISABLEDRAGDROP | 
+                    TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,15,169,301,
+                    195
+    PUSHBUTTON      "&Play",IDC_BTN_PLAYSOUND,15,368,25,14
+    CONTROL         "Play on single click",IDC_CHECK_PLAY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,47,370,76,10
+    PUSHBUTTON      "Refresh Wave Path",IDC_BTN_REFRESHWAVE,161,368,83,14
+    PUSHBUTTON      "&Refresh",IDC_BTN_REFRESH,248,368,67,14
+    GROUPBOX        "",IDC_STATIC,7,391,318,35
+    PUSHBUTTON      "Drop Speaker...",IDC_BTN_DROP,22,402,65,14
+    PUSHBUTTON      "Delete Speaker...",IDC_BTN_GROUP,96,402,65,14
+    PUSHBUTTON      "Sa&ve .MAP",IDC_BTN_SAVEMAP,170,402,65,14
+    PUSHBUTTON      "Sa&ve .MAP As...",IDC_BTN_SAVEMAPAS,244,402,65,14
+    PUSHBUTTON      "&Switch To Game",IDC_BTN_SWITCHTOGAME,7,430,66,14
+    PUSHBUTTON      "Refresh Speaker List",IDC_BTN_REFRESHSPEAKERS,78,430,79,
+                    14
+    DEFPUSHBUTTON   "Apply",IDC_BTN_APPLY_SOUND,275,430,50,14
+    LTEXT           "Wave file size: ",IDC_STATIC,19,135,49,8
+    LTEXT           "Static",IDC_STATIC_WAVESIZE,71,135,242,8
+    LTEXT           "Wait:",IDC_STATIC,28,96,18,8
+    EDITTEXT        IDC_EDIT_WAIT,50,94,30,12,ES_AUTOHSCROLL
+    LTEXT           "Random:",IDC_STATIC,89,96,30,8
+    EDITTEXT        IDC_EDIT_RANDOM,119,94,30,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Trigger",IDC_BTN_TRIGGER,271,57,37,14
+    CONTROL         "Looping",IDC_CHECK_LOOPING,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,216,111,41,10
+    CONTROL         "Unclamped",IDC_CHECK_UNCLAMPED,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,216,122,52,10
+    LTEXT           "Shakes:",IDC_STATIC,20,111,27,8
+    EDITTEXT        IDC_EDIT_SHAKES,49,109,30,12,ES_AUTOHSCROLL
+END
+
+IDD_DIALOG_SOUNDGROUP DIALOG  0, 0, 186, 180
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Select Sound Group"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,129,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,129,24,50,14
+    LISTBOX         IDC_LIST_GROUPS,7,7,116,166,LBS_SORT | LBS_MULTIPLESEL | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_DIALOG_SOUND, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 325
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 444
+        HORZGUIDE, 7
+    END
+
+    IDD_DIALOG_SOUNDGROUP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 173
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

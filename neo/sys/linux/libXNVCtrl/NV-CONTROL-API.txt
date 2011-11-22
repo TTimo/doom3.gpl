@@ -1,0 +1,385 @@
+
+    NV-CONTROL X Extension - API specificiation v 1.6
+
+
+1.  INTRODUCTION
+
+    The NV-CONTROL X extension provides a mechanism for X clients to
+    query and set configuration parameters of the NVIDIA X driver.
+    State set by the NV-CONTROL X extension is assumed to be persistent
+    only for the current server generation.
+
+    Attributes are configurable on a per X screen basis, and some
+    attributes are also configurable on a per display device basis.
+    Addtionally, some attributes can only be queried, though most can
+    be both queried and modified.  The NV-CONTROL extension provides
+    a mechanism to determine what values are valid for an attribute,
+    if an attribute is read-only, if it can be read and written, if it
+    requires a display device qualifier, and if the the attribute is
+    available on the specified X screen.
+
+    Finally, NV-CONTROL clients may also request to be notified when an
+    attribute is changed by any other NV-CONTROL client.
+
+
+
+2.  DISPLAY DEVICES
+
+    A "Display Device" refers to some piece of hardware capable of
+    displaying an image.  Display devices are separated into the three
+    general categories: analog CRTs, digital flatpanels, and TVs.
+    Note that analog flatpanels fall under the category of analog CRTs.
+
+    The NVIDIA X driver allows multiple display devices to display
+    portions of the same X screen; this is configured through the
+    TwinView feature of the NVIDIA X driver.  TwinView is described in
+    the Appendix on TwinView in the NVIDIA Linux driver text README file.
+    A consequence of TwinView is that an X screen does not necessarily
+    uniquely identify a display device.
+
+    While most attributes controlled by the NV-CONTROL X extension
+    apply to an entire X screen, some attributes can be controlled per
+    display device.  When querying and assigning such attributes, the
+    particular display device is specified via a display device mask.
+
+    A "display device mask" is an unsigned 32 bit value that identifies
+    one or more display devices: the first 8 bits each identify a CRT, the
+    next 8 bits each identify a TV, and the next 8 each identify a DFP.
+    For example, 0x1 refers to CRT-0, 0x3 refers to CRT-0 and CRT-1,
+    0x10001 refers to CRT-0 and DFP-0, etc.
+
+
+
+3.  QUERYING THE EXTENSION
+
+    NV-CONTROL clients can query for the existence of the NV-CONTROL X
+    extension with:
+
+        Bool XNVCTRLQueryExtension (Display *dpy,
+                                    int *event_basep, int *error_basep);
+
+    This function returns True if the extension exists, and returns False
+    if the extension does not.  It also returns the error and event bases.
+    The arguments are:
+
+        dpy - The connection to the X server.
+        event_basep - The returned event base.  Currently, only one
+                      extension specific event is defined.
+        error_basep - The returned error base.  Currently, no extension
+                      specific errors are defined.
+
+    The version of the NV-CONTROL extension can be queried with:
+
+        Bool XNVCTRLQueryVersion (Display *dpy, int *major, int *minor);
+
+    This function returns True if the extension exists, and returns
+    False if it does not.  It also returns the major and minor version
+    numbers of the extension.  The arguments are:
+
+        dpy - The connection to the X server.
+        major - The returned major version number of the extension.
+        minor - The returned minor version number of the extension.
+
+
+    You can determine if a particular X screen is controlled by the
+    NVIDIA X driver (and thus supports the NV-CONTROL X extension) with:
+
+        Bool XNVCTRLIsNvScreen (Display *dpy, int screen);
+
+    This function returns True if the specified screen is controlled by
+    the NVIDIA driver, and thus supports the NV-CONTROL X extension.
+    It returns False if the specified screen does not support the
+    NV-CONTROL X extension.  The arguments are:
+
+        dpy - The connection to the X server.
+        screen - the X screen to query.
+
+
+
+4.  QUERYING VALID ATTRIBUTE VALUES
+
+    NV-CONTROL clients can query the valid values for any integer
+    attribute with:
+
+        Bool XNVCTRLQueryValidAttributeValues (Display *dpy,
+                                               int screen,
+                                               unsigned int display_mask,
+                                               unsigned int attribute,
+                                               NVCTRLAttributeValidValuesRec
+                                               *values);
+
+    This function returns True if the attribute exists on the specified
+    X screen, or False if the attribute is not available on the specified
+    X screen.
+
+    The arguments are:
+
+        dpy - The connection to the X server.
+        screen - the X screen to query.
+        display_mask - for attributes that can be controlled on a per
+                       display device basis, the display_mask should
+                       uniquely identify a single display device.
+                       This argument is ignored for attributes that
+                       apply to the entire X screen.
+        attribute - the integer attribute to query
+        values - the returned NVCTRLAttributeValidValuesRec structure.
+
+    The NVCTRLAttributeValidValuesRec structure is defined as:
+
+        typedef struct _NVCTRLAttributeValidValues {
+            int type;
+            union {
+                struct {
+                    int min;
+                    int max;
+                } range;
+                struct {
+                    unsigned int ints;
+                } bits;
+            } u;
+            unsigned int permissions;
+        } NVCTRLAttributeValidValuesRec;
+
+    Where type can be one of:
+
+        #define ATTRIBUTE_TYPE_UNKNOWN   0
+        #define ATTRIBUTE_TYPE_INTEGER   1
+        #define ATTRIBUTE_TYPE_BITMASK   2
+        #define ATTRIBUTE_TYPE_BOOL      3
+        #define ATTRIBUTE_TYPE_RANGE     4
+        #define ATTRIBUTE_TYPE_INT_BITS  5
+
+    ATTRIBUTE_TYPE_INTEGER indicates that the attribute is an integer
+    value; any integer may be specified when setting this attribute.
+
+    ATTRIBUTE_TYPE_BITMASK indicates that the attribute is an integer
+    value, interpretted as a bitmask.  This is the type, for example,
+    of the NV_CTRL_CONNECTED_DISPLAYS attribute.
+
+    ATTRIBUTE_TYPE_BOOL indicates that the attribute is a boolean;
+    valid values are 1 (on/true) and 0 (off/false).
+
+    ATTRIBUTE_TYPE_RANGE indicates that the attribute can have any
+    integer value between NVCTRLAttributeValidValues.u.range.min and
+    NVCTRLAttributeValidValues.u.range.max (inclusive).
+
+    ATTRIBUTE_TYPE_INT_BITS indicates that the attribute can
+    only have certain integer values, indicated by which bits in
+    NVCTRLAttributeValidValues.u.bits.ints are on (for example: if bit
+    0 is on, then 0 is a valid value; if bit 5 is on, then 5 is a valid
+    value, etc).  This is the type, for example, of NV_CTRL_FSAA_MODE.
+
+
+    The permissions field in NVCTRLAttributeValidValuesRec is a bitmask
+    that can contain any of:
+
+        #define ATTRIBUTE_TYPE_READ      0x1
+        #define ATTRIBUTE_TYPE_WRITE     0x2
+        #define ATTRIBUTE_TYPE_DISPLAY   0x4
+
+    ATTRIBUTE_TYPE_READ indicates that the attribute is readable; in
+    general, all attributes will be readable.
+
+    ATTRIBUTE_TYPE_WRITE indicates that the attribute is writable;
+    attributes may not be writable for various reasons: they represent
+    static system information, they can only be changed by changing an
+    XF86Config option, etc.
+
+    ATTRIBUTE_TYPE_DISPLAY indicates that the attribute can be
+    controlled on a per display device basis, and thus
+    XNVCTRLQueryAttribute() and XNVCTRLSetAttribute() require that a
+    display device be specified.
+
+    The XNVCTRLQueryValidAttributeValues() function can cause the
+    following X protocol errors:
+
+        BadValue - The screen does not exist.
+        BadMatch - The NVIDIA driver is not present on that screen.
+
+
+
+5.  QUERYING ATTRIBUTE VALUES
+
+    NV-CONTROL clients can query the current value of an integer
+    attribute with:
+
+        Bool XNVCTRLQueryAttribute (Display *dpy,
+                                    int screen,
+                                    unsigned int display_mask,
+                                    unsigned int attribute,
+                                    int *value);
+
+    This function returns True if the attribute exists, and stores the
+    current attribute value in the memory pointed to by the value
+    argument.  False is returned if the attribute does not exist on the
+    specified X screen.
+
+    The arguments are:
+
+        dpy - The connection to the X server.
+        screen - the X screen to query.
+        display_mask - if the attribute requires a display device,
+                       then this indicates the display device to query;
+                       this field is ignored if the attribute is not
+                       display device specific.  You can determine
+                       if an attribute is display device specific by
+                       querying the valid values and checking for the
+                       ATTRIBUTE_TYPE_DISPLAY bit in the permissions
+                       field.
+        attribute - the attribute to query.
+        value - the returned attribute value.
+    
+    This function can cause the following X protocol errors:
+
+        BadValue - The screen does not exist.
+        BadMatch - The NVIDIA driver is not present on that screen.
+
+
+    NV-CONTROL clients can query the read-only string attributes with:
+
+        Bool XNVCTRLQueryStringAttribute (Display *dpy,
+                                          int screen,
+                                          unsigned int display_mask,
+                                          unsigned int attribute,
+                                          char **ptr);
+
+    This function returns True if the string attribute exists;
+    or it returns False if the string attribute does not exist. If
+    XNVCTRLQueryStringAttribute returns True, *ptr will point to an
+    allocated string containing the string attribute requested.  It is
+    the caller's responsibility to free the string with XFree().
+
+    The arguments are:
+
+        dpy - The connection to the X server.
+        screen - the X screen to query.
+        display_mask - if the attribute requires a display device,
+                       then this indicates the display device to query;
+                       this field is ignored if the attribute is not
+                       display device specific.
+        attribute - the string attribute to query
+        ptr - the returned allocated string
+
+    This function can cause the following X protocol errors:
+
+        BadValue - The screen does not exist.
+        BadMatch - The NVIDIA driver is not present on that screen.
+        BadAlloc - Insufficient resources to fulfill the request.
+        
+    See NVCtrl.h (distributed in the src/libXNVCtrl/ directory of
+    the nvidia-settings source package) for a list of possible string
+    attributes.
+
+
+
+6.  ASSIGNING ATTRIBUTE VALUES
+
+    An integer attribute can be assigned a value with:
+
+        void XNVCTRLSetAttribute (Display *dpy,
+                                  int screen,
+                                  unsigned int display_mask,
+                                  unsigned int attribute,
+                                  int value);
+
+    This function sets the attribute to the given value.  This function
+    does not have a return value.  Note that, because it does not
+    return a value, XNVCTRLSetAttribute() only queues the request in
+    the X command stream.  The command will not actually be sent to
+    the server until an X command that flushes the X command stream
+    (such as XFlush(), or any API command that queries a value from the
+    server) is called.
+
+    The arguments are:
+
+        dpy - The connection to the X server.
+        screen - the X screen to query.
+        display_mask - if the attribute requires a display device,
+                       then this indicates the display device to set;
+                       this field is ignored if the attribute is not
+                       display device specific.  You can determine
+                       if an attribute is display device specific by
+                       querying the valid values and checking for the
+                       ATTRIBUTE_TYPE_DISPLAY bit in the permissions
+                       field.
+        attribute - the attribute to set.
+        value - the value the attribute should be set to.
+
+    See NVCtrl.h (distributed in the src/libXNVCtrl/ directory of
+    the nvidia-settings source package) for a list of possible integer
+    attributes.
+
+    This function can cause the following X protocol errors:
+
+        BadMatch - The NVIDIA driver is not present on that screen.
+        BadValue - The screen does not exist, or an invalid value is
+                   specified, or the attribute does not exist on the
+                   specified X screen, or the attribute requires a
+                   display device and display_mask does not uniquely
+                   identify a display device.
+
+    Before calling XNVCTRLSetAttribute(), an NV-CONTROL client should
+    use XNVCTRLQueryAttribute() or XNVCTRLQueryValidAttributeValues()
+    to determine if the attribute exists on the specified X screen;
+    if the attribute does not exist and XNVCTRLSetAttribute()
+    is called for that attribute, then a BadValue X protocol error will
+    be triggered.
+
+
+
+7.  SELECTING EVENT NOTIFICATION
+
+    NV-CONTROL clients can enable NV-CONTROL events with:
+
+        Bool XNVCtrlSelectNotify (Display *dpy,
+                                  int screen,
+                                  int type,
+                                  Bool onoff);
+
+    This function returns True if the extension exists, or False if the
+    extension does not exist.  The arguments are:
+
+        dpy - The connection to the X server.
+        screen - the X screen on which to enable events.
+        type - the type of event to enable; currently, the only NV-CONTROL
+               event type is ATTRIBUTE_CHANGED_EVENT.
+        onoff - whether to enable (True) or disable (False) receiving
+                this event type.
+
+    This function can cause the following X protocol errors:
+
+        BadValue - The screen does not exist.
+        BadMatch - The NVIDIA driver is not present on that screen.
+
+    When an NV-CONTROL client changes an integer attribute value, all
+    other NV-CONTROL clients with ATTRIBUTE_CHANGED_EVENT notificaion
+    enabled will receive an XEvent where XEvent.type is equal to:
+
+        event_base + ATTRIBUTE_CHANGED_EVENT
+
+    where event_base is the event base returned by
+    XNVCTRLQueryExtension().  The XEvent can then be cast as an
+    XNVCtrlAttributeChangedEvent structure:
+
+        typedef struct {
+            int type;
+            unsigned long serial;
+            Bool send_event;  /* always FALSE, we don't allow send_events */
+            Display *display;
+            Time time;
+            int screen;
+            unsigned int display_mask;
+            unsigned int attribute;
+            int value;
+        } XNVCtrlAttributeChangedEvent;
+
+    The screen, display_mask, attribute, and value fields correspond to
+    the arguments passed to XNVCTRLSetAttribute().
+
+
+
+8. NV-CONTROL EXTENSION HISTORY
+
+    1.0 - 1.5   NVIDIA Internal development versions
+    1.6         Initial public version
+

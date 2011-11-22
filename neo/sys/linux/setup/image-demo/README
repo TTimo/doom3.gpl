@@ -1,0 +1,31 @@
+DOOM III Linux Demo
+===================
+
+Minimum system requirements:
+----------------------------
+
+GNU/Linux system,
+Pentium III, 1Ghz
+256Mb RAM
+Kernel 2.4, 2.6 is recommended
+glibc 2.2.4 and up
+
+3D card:
+  NV10 or R200 minimum hardware 
+  OpenGL hardware acceleration
+  64 MB VRAM
+
+sound card, OSS or Alsa, stereo sound and 5.1 are supported with both APIs
+Alsa version 1.0.6 or above is required
+
+Installation instructions:
+--------------------------
+
+By default, the setup will install the files to
+/usr/local/games/doom3-demo
+
+Start the demo with the command: doom3-demo
+
+For troubleshooting and help, see:
+http://zerowing.idsoftware.com/linux/
+

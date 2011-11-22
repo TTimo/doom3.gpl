@@ -1,0 +1,336 @@
+void;qgl;Accum;GLenum op, GLfloat value
+void;qgl;AlphaFunc;GLenum func, GLclampf ref
+GLboolean;qgl;AreTexturesResident;GLsizei n, const GLuint *textures, GLboolean *residences
+void;qgl;ArrayElement;GLint i
+void;qgl;Begin;GLenum mode
+void;qgl;BindTexture;GLenum target, GLuint texture
+void;qgl;Bitmap;GLsizei width, GLsizei height, GLfloat xorig, GLfloat yorig, GLfloat xmove, GLfloat ymove, const GLubyte *bitmap
+void;qgl;BlendFunc;GLenum sfactor, GLenum dfactor
+void;qgl;CallList;GLuint list
+void;qgl;CallLists;GLsizei n, GLenum type, const GLvoid *lists
+void;qgl;Clear;GLbitfield mask
+void;qgl;ClearAccum;GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha
+void;qgl;ClearColor;GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha
+void;qgl;ClearDepth;GLclampd depth
+void;qgl;ClearIndex;GLfloat c
+void;qgl;ClearStencil;GLint s
+void;qgl;ClipPlane;GLenum plane, const GLdouble *equation
+void;qgl;Color3b;GLbyte red, GLbyte green, GLbyte blue
+void;qgl;Color3bv;const GLbyte *v
+void;qgl;Color3d;GLdouble red, GLdouble green, GLdouble blue
+void;qgl;Color3dv;const GLdouble *v
+void;qgl;Color3f;GLfloat red, GLfloat green, GLfloat blue
+void;qgl;Color3fv;const GLfloat *v
+void;qgl;Color3i;GLint red, GLint green, GLint blue
+void;qgl;Color3iv;const GLint *v
+void;qgl;Color3s;GLshort red, GLshort green, GLshort blue
+void;qgl;Color3sv;const GLshort *v
+void;qgl;Color3ub;GLubyte red, GLubyte green, GLubyte blue
+void;qgl;Color3ubv;const GLubyte *v
+void;qgl;Color3ui;GLuint red, GLuint green, GLuint blue
+void;qgl;Color3uiv;const GLuint *v
+void;qgl;Color3us;GLushort red, GLushort green, GLushort blue
+void;qgl;Color3usv;const GLushort *v
+void;qgl;Color4b;GLbyte red, GLbyte green, GLbyte blue, GLbyte alpha
+void;qgl;Color4bv;const GLbyte *v
+void;qgl;Color4d;GLdouble red, GLdouble green, GLdouble blue, GLdouble alpha
+void;qgl;Color4dv;const GLdouble *v
+void;qgl;Color4f;GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha
+void;qgl;Color4fv;const GLfloat *v
+void;qgl;Color4i;GLint red, GLint green, GLint blue, GLint alpha
+void;qgl;Color4iv;const GLint *v
+void;qgl;Color4s;GLshort red, GLshort green, GLshort blue, GLshort alpha
+void;qgl;Color4sv;const GLshort *v
+void;qgl;Color4ub;GLubyte red, GLubyte green, GLubyte blue, GLubyte alpha
+void;qgl;Color4ubv;const GLubyte *v
+void;qgl;Color4ui;GLuint red, GLuint green, GLuint blue, GLuint alpha
+void;qgl;Color4uiv;const GLuint *v
+void;qgl;Color4us;GLushort red, GLushort green, GLushort blue, GLushort alpha
+void;qgl;Color4usv;const GLushort *v
+void;qgl;ColorMask;GLboolean red, GLboolean green, GLboolean blue, GLboolean alpha
+void;qgl;ColorMaterial;GLenum face, GLenum mode
+void;qgl;ColorPointer;GLint size, GLenum type, GLsizei stride, const GLvoid *pointer
+void;qgl;CopyPixels;GLint x, GLint y, GLsizei width, GLsizei height, GLenum type
+void;qgl;CopyTexImage1D;GLenum target, GLint level, GLenum internalFormat, GLint x, GLint y, GLsizei width, GLint border
+void;qgl;CopyTexImage2D;GLenum target, GLint level, GLenum internalFormat, GLint x, GLint y, GLsizei width, GLsizei height, GLint border
+void;qgl;CopyTexSubImage1D;GLenum target, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width
+void;qgl;CopyTexSubImage2D;GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height
+void;qgl;CullFace;GLenum mode
+void;qgl;DeleteLists;GLuint list, GLsizei range
+void;qgl;DeleteTextures;GLsizei n, const GLuint *textures
+void;qgl;DepthFunc;GLenum func
+void;qgl;DepthMask;GLboolean flag
+void;qgl;DepthRange;GLclampd zNear, GLclampd zFar
+void;qgl;Disable;GLenum cap
+void;qgl;DisableClientState;GLenum array
+void;qgl;DrawArrays;GLenum mode, GLint first, GLsizei count
+void;qgl;DrawBuffer;GLenum mode
+void;qgl;DrawElements;GLenum mode, GLsizei count, GLenum type, const GLvoid *indices
+void;qgl;DrawPixels;GLsizei width, GLsizei height, GLenum format, GLenum type, const GLvoid *pixels
+void;qgl;EdgeFlag;GLboolean flag
+void;qgl;EdgeFlagPointer;GLsizei stride, const GLvoid *pointer
+void;qgl;EdgeFlagv;const GLboolean *flag
+void;qgl;Enable;GLenum cap
+void;qgl;EnableClientState;GLenum array
+void;qgl;End;void
+void;qgl;EndList;void
+void;qgl;EvalCoord1d;GLdouble u
+void;qgl;EvalCoord1dv;const GLdouble *u
+void;qgl;EvalCoord1f;GLfloat u
+void;qgl;EvalCoord1fv;const GLfloat *u
+void;qgl;EvalCoord2d;GLdouble u, GLdouble v
+void;qgl;EvalCoord2dv;const GLdouble *u
+void;qgl;EvalCoord2f;GLfloat u, GLfloat v
+void;qgl;EvalCoord2fv;const GLfloat *u
+void;qgl;EvalMesh1;GLenum mode, GLint i1, GLint i2
+void;qgl;EvalMesh2;GLenum mode, GLint i1, GLint i2, GLint j1, GLint j2
+void;qgl;EvalPoint1;GLint i
+void;qgl;EvalPoint2;GLint i, GLint j
+void;qgl;FeedbackBuffer;GLsizei size, GLenum type, GLfloat *buffer
+void;qgl;Finish;void
+void;qgl;Flush;void
+void;qgl;Fogf;GLenum pname, GLfloat param
+void;qgl;Fogfv;GLenum pname, const GLfloat *params
+void;qgl;Fogi;GLenum pname, GLint param
+void;qgl;Fogiv;GLenum pname, const GLint *params
+void;qgl;FrontFace;GLenum mode
+void;qgl;Frustum;GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble zNear, GLdouble zFar
+GLuint;qgl;GenLists;GLsizei range
+void;qgl;GenTextures;GLsizei n, GLuint *textures
+void;qgl;GetBooleanv;GLenum pname, GLboolean *params
+void;qgl;GetClipPlane;GLenum plane, GLdouble *equation
+void;qgl;GetDoublev;GLenum pname, GLdouble *params
+GLenum;qgl;GetError;void
+void;qgl;GetFloatv;GLenum pname, GLfloat *params
+void;qgl;GetIntegerv;GLenum pname, GLint *params
+void;qgl;GetLightfv;GLenum light, GLenum pname, GLfloat *params
+void;qgl;GetLightiv;GLenum light, GLenum pname, GLint *params
+void;qgl;GetMapdv;GLenum target, GLenum query, GLdouble *v
+void;qgl;GetMapfv;GLenum target, GLenum query, GLfloat *v
+void;qgl;GetMapiv;GLenum target, GLenum query, GLint *v
+void;qgl;GetMaterialfv;GLenum face, GLenum pname, GLfloat *params
+void;qgl;GetMaterialiv;GLenum face, GLenum pname, GLint *params
+void;qgl;GetPixelMapfv;GLenum map, GLfloat *values
+void;qgl;GetPixelMapuiv;GLenum map, GLuint *values
+void;qgl;GetPixelMapusv;GLenum map, GLushort *values
+void;qgl;GetPointerv;GLenum pname, GLvoid* *params
+void;qgl;GetPolygonStipple;GLubyte *mask
+const GLubyte *;qgl;GetString;GLenum name
+void;qgl;GetTexEnvfv;GLenum target, GLenum pname, GLfloat *params
+void;qgl;GetTexEnviv;GLenum target, GLenum pname, GLint *params
+void;qgl;GetTexGendv;GLenum coord, GLenum pname, GLdouble *params
+void;qgl;GetTexGenfv;GLenum coord, GLenum pname, GLfloat *params
+void;qgl;GetTexGeniv;GLenum coord, GLenum pname, GLint *params
+void;qgl;GetTexImage;GLenum target, GLint level, GLenum format, GLenum type, GLvoid *pixels
+void;qgl;GetTexLevelParameterfv;GLenum target, GLint level, GLenum pname, GLfloat *params
+void;qgl;GetTexLevelParameteriv;GLenum target, GLint level, GLenum pname, GLint *params
+void;qgl;GetTexParameterfv;GLenum target, GLenum pname, GLfloat *params
+void;qgl;GetTexParameteriv;GLenum target, GLenum pname, GLint *params
+void;qgl;Hint;GLenum target, GLenum mode
+void;qgl;IndexMask;GLuint mask
+void;qgl;IndexPointer;GLenum type, GLsizei stride, const GLvoid *pointer
+void;qgl;Indexd;GLdouble c
+void;qgl;Indexdv;const GLdouble *c
+void;qgl;Indexf;GLfloat c
+void;qgl;Indexfv;const GLfloat *c
+void;qgl;Indexi;GLint c
+void;qgl;Indexiv;const GLint *c
+void;qgl;Indexs;GLshort c
+void;qgl;Indexsv;const GLshort *c
+void;qgl;Indexub;GLubyte c
+void;qgl;Indexubv;const GLubyte *c
+void;qgl;InitNames;void
+void;qgl;InterleavedArrays;GLenum format, GLsizei stride, const GLvoid *pointer
+GLboolean;qgl;IsEnabled;GLenum cap
+GLboolean;qgl;IsList;GLuint list
+GLboolean;qgl;IsTexture;GLuint texture
+void;qgl;LightModelf;GLenum pname, GLfloat param
+void;qgl;LightModelfv;GLenum pname, const GLfloat *params
+void;qgl;LightModeli;GLenum pname, GLint param
+void;qgl;LightModeliv;GLenum pname, const GLint *params
+void;qgl;Lightf;GLenum light, GLenum pname, GLfloat param
+void;qgl;Lightfv;GLenum light, GLenum pname, const GLfloat *params
+void;qgl;Lighti;GLenum light, GLenum pname, GLint param
+void;qgl;Lightiv;GLenum light, GLenum pname, const GLint *params
+void;qgl;LineStipple;GLint factor, GLushort pattern
+void;qgl;LineWidth;GLfloat width
+void;qgl;ListBase;GLuint base
+void;qgl;LoadIdentity;void
+void;qgl;LoadMatrixd;const GLdouble *m
+void;qgl;LoadMatrixf;const GLfloat *m
+void;qgl;LoadName;GLuint name
+void;qgl;LogicOp;GLenum opcode
+void;qgl;Map1d;GLenum target, GLdouble u1, GLdouble u2, GLint stride, GLint order, const GLdouble *points
+void;qgl;Map1f;GLenum target, GLfloat u1, GLfloat u2, GLint stride, GLint order, const GLfloat *points
+void;qgl;Map2d;GLenum target, GLdouble u1, GLdouble u2, GLint ustride, GLint uorder, GLdouble v1, GLdouble v2, GLint vstride, GLint vorder, const GLdouble *points
+void;qgl;Map2f;GLenum target, GLfloat u1, GLfloat u2, GLint ustride, GLint uorder, GLfloat v1, GLfloat v2, GLint vstride, GLint vorder, const GLfloat *points
+void;qgl;MapGrid1d;GLint un, GLdouble u1, GLdouble u2
+void;qgl;MapGrid1f;GLint un, GLfloat u1, GLfloat u2
+void;qgl;MapGrid2d;GLint un, GLdouble u1, GLdouble u2, GLint vn, GLdouble v1, GLdouble v2
+void;qgl;MapGrid2f;GLint un, GLfloat u1, GLfloat u2, GLint vn, GLfloat v1, GLfloat v2
+void;qgl;Materialf;GLenum face, GLenum pname, GLfloat param
+void;qgl;Materialfv;GLenum face, GLenum pname, const GLfloat *params
+void;qgl;Materiali;GLenum face, GLenum pname, GLint param
+void;qgl;Materialiv;GLenum face, GLenum pname, const GLint *params
+void;qgl;MatrixMode;GLenum mode
+void;qgl;MultMatrixd;const GLdouble *m
+void;qgl;MultMatrixf;const GLfloat *m
+void;qgl;NewList;GLuint list, GLenum mode
+void;qgl;Normal3b;GLbyte nx, GLbyte ny, GLbyte nz
+void;qgl;Normal3bv;const GLbyte *v
+void;qgl;Normal3d;GLdouble nx, GLdouble ny, GLdouble nz
+void;qgl;Normal3dv;const GLdouble *v
+void;qgl;Normal3f;GLfloat nx, GLfloat ny, GLfloat nz
+void;qgl;Normal3fv;const GLfloat *v
+void;qgl;Normal3i;GLint nx, GLint ny, GLint nz
+void;qgl;Normal3iv;const GLint *v
+void;qgl;Normal3s;GLshort nx, GLshort ny, GLshort nz
+void;qgl;Normal3sv;const GLshort *v
+void;qgl;NormalPointer;GLenum type, GLsizei stride, const GLvoid *pointer
+void;qgl;Ortho;GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble zNear, GLdouble zFar
+void;qgl;PassThrough;GLfloat token
+void;qgl;PixelMapfv;GLenum map, GLsizei mapsize, const GLfloat *values
+void;qgl;PixelMapuiv;GLenum map, GLsizei mapsize, const GLuint *values
+void;qgl;PixelMapusv;GLenum map, GLsizei mapsize, const GLushort *values
+void;qgl;PixelStoref;GLenum pname, GLfloat param
+void;qgl;PixelStorei;GLenum pname, GLint param
+void;qgl;PixelTransferf;GLenum pname, GLfloat param
+void;qgl;PixelTransferi;GLenum pname, GLint param
+void;qgl;PixelZoom;GLfloat xfactor, GLfloat yfactor
+void;qgl;PointSize;GLfloat size
+void;qgl;PolygonMode;GLenum face, GLenum mode
+void;qgl;PolygonOffset;GLfloat factor, GLfloat units
+void;qgl;PolygonStipple;const GLubyte *mask
+void;qgl;PopAttrib;void
+void;qgl;PopClientAttrib;void
+void;qgl;PopMatrix;void
+void;qgl;PopName;void
+void;qgl;PrioritizeTextures;GLsizei n, const GLuint *textures, const GLclampf *priorities
+void;qgl;PushAttrib;GLbitfield mask
+void;qgl;PushClientAttrib;GLbitfield mask
+void;qgl;PushMatrix;void
+void;qgl;PushName;GLuint name
+void;qgl;RasterPos2d;GLdouble x, GLdouble y
+void;qgl;RasterPos2dv;const GLdouble *v
+void;qgl;RasterPos2f;GLfloat x, GLfloat y
+void;qgl;RasterPos2fv;const GLfloat *v
+void;qgl;RasterPos2i;GLint x, GLint y
+void;qgl;RasterPos2iv;const GLint *v
+void;qgl;RasterPos2s;GLshort x, GLshort y
+void;qgl;RasterPos2sv;const GLshort *v
+void;qgl;RasterPos3d;GLdouble x, GLdouble y, GLdouble z
+void;qgl;RasterPos3dv;const GLdouble *v
+void;qgl;RasterPos3f;GLfloat x, GLfloat y, GLfloat z
+void;qgl;RasterPos3fv;const GLfloat *v
+void;qgl;RasterPos3i;GLint x, GLint y, GLint z
+void;qgl;RasterPos3iv;const GLint *v
+void;qgl;RasterPos3s;GLshort x, GLshort y, GLshort z
+void;qgl;RasterPos3sv;const GLshort *v
+void;qgl;RasterPos4d;GLdouble x, GLdouble y, GLdouble z, GLdouble w
+void;qgl;RasterPos4dv;const GLdouble *v
+void;qgl;RasterPos4f;GLfloat x, GLfloat y, GLfloat z, GLfloat w
+void;qgl;RasterPos4fv;const GLfloat *v
+void;qgl;RasterPos4i;GLint x, GLint y, GLint z, GLint w
+void;qgl;RasterPos4iv;const GLint *v
+void;qgl;RasterPos4s;GLshort x, GLshort y, GLshort z, GLshort w
+void;qgl;RasterPos4sv;const GLshort *v
+void;qgl;ReadBuffer;GLenum mode
+void;qgl;ReadPixels;GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid *pixels
+void;qgl;Rectd;GLdouble x1, GLdouble y1, GLdouble x2, GLdouble y2
+void;qgl;Rectdv;const GLdouble *v1, const GLdouble *v2
+void;qgl;Rectf;GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2
+void;qgl;Rectfv;const GLfloat *v1, const GLfloat *v2
+void;qgl;Recti;GLint x1, GLint y1, GLint x2, GLint y2
+void;qgl;Rectiv;const GLint *v1, const GLint *v2
+void;qgl;Rects;GLshort x1, GLshort y1, GLshort x2, GLshort y2
+void;qgl;Rectsv;const GLshort *v1, const GLshort *v2
+GLint;qgl;RenderMode;GLenum mode
+void;qgl;Rotated;GLdouble angle, GLdouble x, GLdouble y, GLdouble z
+void;qgl;Rotatef;GLfloat angle, GLfloat x, GLfloat y, GLfloat z
+void;qgl;Scaled;GLdouble x, GLdouble y, GLdouble z
+void;qgl;Scalef;GLfloat x, GLfloat y, GLfloat z
+void;qgl;Scissor;GLint x, GLint y, GLsizei width, GLsizei height
+void;qgl;SelectBuffer;GLsizei size, GLuint *buffer
+void;qgl;ShadeModel;GLenum mode
+void;qgl;StencilFunc;GLenum func, GLint ref, GLuint mask
+void;qgl;StencilMask;GLuint mask
+void;qgl;StencilOp;GLenum fail, GLenum zfail, GLenum zpass
+void;qgl;TexCoord1d;GLdouble s
+void;qgl;TexCoord1dv;const GLdouble *v
+void;qgl;TexCoord1f;GLfloat s
+void;qgl;TexCoord1fv;const GLfloat *v
+void;qgl;TexCoord1i;GLint s
+void;qgl;TexCoord1iv;const GLint *v
+void;qgl;TexCoord1s;GLshort s
+void;qgl;TexCoord1sv;const GLshort *v
+void;qgl;TexCoord2d;GLdouble s, GLdouble t
+void;qgl;TexCoord2dv;const GLdouble *v
+void;qgl;TexCoord2f;GLfloat s, GLfloat t
+void;qgl;TexCoord2fv;const GLfloat *v
+void;qgl;TexCoord2i;GLint s, GLint t
+void;qgl;TexCoord2iv;const GLint *v
+void;qgl;TexCoord2s;GLshort s, GLshort t
+void;qgl;TexCoord2sv;const GLshort *v
+void;qgl;TexCoord3d;GLdouble s, GLdouble t, GLdouble r
+void;qgl;TexCoord3dv;const GLdouble *v
+void;qgl;TexCoord3f;GLfloat s, GLfloat t, GLfloat r
+void;qgl;TexCoord3fv;const GLfloat *v
+void;qgl;TexCoord3i;GLint s, GLint t, GLint r
+void;qgl;TexCoord3iv;const GLint *v
+void;qgl;TexCoord3s;GLshort s, GLshort t, GLshort r
+void;qgl;TexCoord3sv;const GLshort *v
+void;qgl;TexCoord4d;GLdouble s, GLdouble t, GLdouble r, GLdouble q
+void;qgl;TexCoord4dv;const GLdouble *v
+void;qgl;TexCoord4f;GLfloat s, GLfloat t, GLfloat r, GLfloat q
+void;qgl;TexCoord4fv;const GLfloat *v
+void;qgl;TexCoord4i;GLint s, GLint t, GLint r, GLint q
+void;qgl;TexCoord4iv;const GLint *v
+void;qgl;TexCoord4s;GLshort s, GLshort t, GLshort r, GLshort q
+void;qgl;TexCoord4sv;const GLshort *v
+void;qgl;TexCoordPointer;GLint size, GLenum type, GLsizei stride, const GLvoid *pointer
+void;qgl;TexEnvf;GLenum target, GLenum pname, GLfloat param
+void;qgl;TexEnvfv;GLenum target, GLenum pname, const GLfloat *params
+void;qgl;TexEnvi;GLenum target, GLenum pname, GLint param
+void;qgl;TexEnviv;GLenum target, GLenum pname, const GLint *params
+void;qgl;TexGend;GLenum coord, GLenum pname, GLdouble param
+void;qgl;TexGendv;GLenum coord, GLenum pname, const GLdouble *params
+void;qgl;TexGenf;GLenum coord, GLenum pname, GLfloat param
+void;qgl;TexGenfv;GLenum coord, GLenum pname, const GLfloat *params
+void;qgl;TexGeni;GLenum coord, GLenum pname, GLint param
+void;qgl;TexGeniv;GLenum coord, GLenum pname, const GLint *params
+void;qgl;TexImage1D;GLenum target, GLint level, GLint internalformat, GLsizei width, GLint border, GLenum format, GLenum type, const GLvoid *pixels
+void;qgl;TexImage2D;GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const GLvoid *pixels
+void;qgl;TexParameterf;GLenum target, GLenum pname, GLfloat param
+void;qgl;TexParameterfv;GLenum target, GLenum pname, const GLfloat *params
+void;qgl;TexParameteri;GLenum target, GLenum pname, GLint param
+void;qgl;TexParameteriv;GLenum target, GLenum pname, const GLint *params
+void;qgl;TexSubImage1D;GLenum target, GLint level, GLint xoffset, GLsizei width, GLenum format, GLenum type, const GLvoid *pixels
+void;qgl;TexSubImage2D;GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum type, const GLvoid *pixels
+void;qgl;Translated;GLdouble x, GLdouble y, GLdouble z
+void;qgl;Translatef;GLfloat x, GLfloat y, GLfloat z
+void;qgl;Vertex2d;GLdouble x, GLdouble y
+void;qgl;Vertex2dv;const GLdouble *v
+void;qgl;Vertex2f;GLfloat x, GLfloat y
+void;qgl;Vertex2fv;const GLfloat *v
+void;qgl;Vertex2i;GLint x, GLint y
+void;qgl;Vertex2iv;const GLint *v
+void;qgl;Vertex2s;GLshort x, GLshort y
+void;qgl;Vertex2sv;const GLshort *v
+void;qgl;Vertex3d;GLdouble x, GLdouble y, GLdouble z
+void;qgl;Vertex3dv;const GLdouble *v
+void;qgl;Vertex3f;GLfloat x, GLfloat y, GLfloat z
+void;qgl;Vertex3fv;const GLfloat *v
+void;qgl;Vertex3i;GLint x, GLint y, GLint z
+void;qgl;Vertex3iv;const GLint *v
+void;qgl;Vertex3s;GLshort x, GLshort y, GLshort z
+void;qgl;Vertex3sv;const GLshort *v
+void;qgl;Vertex4d;GLdouble x, GLdouble y, GLdouble z, GLdouble w
+void;qgl;Vertex4dv;const GLdouble *v
+void;qgl;Vertex4f;GLfloat x, GLfloat y, GLfloat z, GLfloat w
+void;qgl;Vertex4fv;const GLfloat *v
+void;qgl;Vertex4i;GLint x, GLint y, GLint z, GLint w
+void;qgl;Vertex4iv;const GLint *v
+void;qgl;Vertex4s;GLshort x, GLshort y, GLshort z, GLshort w
+void;qgl;Vertex4sv;const GLshort *v
+void;qgl;VertexPointer;GLint size, GLenum type, GLsizei stride, const GLvoid *pointer
+void;qgl;Viewport;GLint x, GLint y, GLsizei width, GLsizei height

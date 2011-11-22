@@ -1,0 +1,45 @@
+# Server-side
+<reply>
+<data>
+data
+    to
+      see
+that FTP
+works
+  so does it?
+</data>
+</reply>
+
+# Client-side
+<client>
+<server>
+ftp
+</server>
+ <name>
+FTP RETR PORT with CWD
+ </name>
+ <command>
+ftp://%HOSTIP:%FTPPORT/a/path/103 -P -
+</command>
+</test>
+
+# Verify data after the test has been "shot"
+<verify>
+<strip>
+^PORT .*
+^EPRT.*
+^LPRT.*
+</strip>
+<protocol>
+USER anonymous
+PASS curl_by_daniel@haxx.se
+PWD
+CWD a
+CWD path
+PORT 127,0,0,1,246,33
+TYPE I
+SIZE 103
+RETR 103
+QUIT
+</protocol>
+</verify>

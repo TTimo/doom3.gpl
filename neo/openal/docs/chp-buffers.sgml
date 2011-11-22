@@ -1,0 +1,691 @@
+
+
+  <chapter id="buffers">
+     <title>Buffers</title>
+  <para>
+     A Buffer encapsulates &AL; state related to storing sample data. The 
+     application can request and
+     release Buffer objects, and fill them with data. Data can be supplied
+     compressed and encoded as long as the format is supported. 
+     Buffers can, internally, contain waveform data as uncompressed or 
+     compressed samples.
+  </para>
+  <para> 
+     Unlike Sources and Listener, Buffer Objects can be shared among AL contexts.
+     Buffers are referenced by Sources.
+     A single Buffer can be referred to by multiple Sources. This separation allows
+     drivers and hardware to optimize storage and processing where applicable. 
+  </para>
+  <para>
+     The simplest supported format for buffer data is PCM.
+  </para>   
+
+
+
+    <![ %Annote [
+      <note id="ann-bk000721-01"><title>Annotation/ Compressed Buffers</title><para>
+        Compressed formats are in no way guaranteed by the implementation 
+         to remain compressed. The driver might have to uncompres in memory
+         at once, if no hardware-assisted or incremental decoding is possible.
+         In many cases an implementation has to decompress the buffer,
+         converting the uncompressed data to a canonical internal format, 
+         and resample it into the format native to the current context.
+      </para></note>
+    ]]>
+
+    <![ %RFC [
+      <note id="rfc-bk000721-18"><title>RFC: Compressed Buffers</title><para>  
+         MikeV suggests: an application can query the amount of memory buffer 
+         is consuming. He suggests using GetBufferi(AL_SIZE, ... ). This seems
+         a bad idea as (a) the application is not meant to micromanage
+         driver-internal memory, (b) the memory requirements known to the
+         application might differ from the actual, (c) there are OS
+         mechanisms to query free memory, (d) AL_SIZE is now ambiguous as
+         it announces app-side memory as allocated vs. driver side memory
+         as used by the driver. For clarity AL_INTERNAL_SIZE (analog to
+         internal format enums) might be a better choice.
+      </para></note>
+    ]]>
+
+    <![ %Scratch [
+     <para>
+     Buffers can be non-streaming (default) or streaming. Non-streaming
+     buffers are used to store looping and non-looping (single-shot) sound 
+     data. Streaming buffers have to be used to cache streaming 
+     media that the application can not keep in memory for technical
+     reasons: e.g. data delivered in real time over network. Streaming buffers
+     can also be used to partially store sound samples that the application
+     coder consider too large to keep in memory at once.
+     </para>
+    ]]>
+  
+    
+
+
+   <sect1>
+   <title>Buffer States</title>
+   <para> 
+       At this time, Buffer states are defined for purposes of discussion.
+       The states described in this section are not exposed through the API
+       (can not be queried, or be set directly), and the state description
+       used in the implementation might differ from this.
+    </para>
+    <para>
+       A Buffer is considered to be in one of the following States, with respect
+       to all Sources: 
+       <itemizedlist>
+       <listitem>
+       <para>
+         UNUSED: the Buffer is not included in any queue
+                 for any Source. In particular, the
+                 Buffer is neither pending nor current
+                 for any Source. The Buffer name can be
+                 deleted at this time.
+       </para>
+       </listitem>
+
+       <listitem> 
+       <para>
+         PROCESSED: the Buffer is listed in the queue of
+                 at least one Source, but is neither pending
+                 nor current for any Source. The Buffer can
+                 be deleted as soon as it has been unqueued
+                 for all Sources it is queued with.
+       </para>
+       </listitem>
+       <listitem>
+       <para>
+         PENDING: there is at least one Source for which the
+                  Buffer has been queued, for which the Buffer
+                  data has not yet been dereferenced. The Buffer 
+                  can only be unqueued for those Sources that
+                  have dereferenced the data in the Buffer
+                  in its entirety, and cannot be deleted or
+                  changed.
+       </para>
+       </listitem>
+       </itemizedlist>
+       The Buffer state is dependent on the state of all Sources
+       that is has been queued for.  
+       A single queue occurrence of a Buffer propagates the
+       Buffer state (over all Sources) from UNUSED to PROCESSED
+       or higher. Sources that are STOPPED or INITIAL still have 
+       queue entries that cause Buffers to be PROCESSED. 
+   </para>
+   <para>
+       A single queue entry
+       with a single Source for which the Buffer is not yet
+       PROCESSED propagates the buffer's queueing state to 
+       PENDING.
+   </para>
+   <para>
+       Buffers that are PROCESSED for a given Source can be 
+       unqueued from that Source's queue. Buffers that have
+       been unqueued from all Sources are UNUSED.
+       Buffers that are UNUSED can be deleted, or changed by 
+       BufferData commands.
+  </para>
+
+    <![ %Annote [
+      <note><title>Annotation (No CURRENT State)</title><para>
+         For buffer queueing, it is not relevant whether
+         the Buffer data is currently dereferenced by any
+         Source or not. It is therefore not necessary to
+         distinguish a CURRENT state (being referenced as 
+         current buffer by a single PLAYING or PAUSED Source).
+       </para></note>
+    ]]>
+
+    <![ %Annote [
+      <note><title>Annotation (State Query and Shared Buffers)</title><para>
+         A buffer that is unused by one Source might be used
+         by another. The Unqueue operation is determined by
+         the number of queue entries already processed by the 
+         given Source.
+         However, the application has to check whether the
+         Buffer is still in use by other Sources. For now,
+         applications have to maintain their own lists of
+         buffer consumer (source) lists. If necessary, an
+         explicit call to determine current buffer state
+         with respect to all Sources might be added in
+         future revisions. 
+      </para></note>
+    ]]>
+    <![ %RFC [
+      <note id="rfc-bk000927-02"><title>RFC: IsBufferProcessed? </title><para>  
+        Instead of exposing the internal state, a simple boolean query
+        whether a buffer can be deleted or refilled can be used.
+      </para></note>
+    ]]>
+
+  <![ %RFC [
+  <note id="rfc-bk000731-04"><title>RFC: BufferData on QUEUED</title><para>   
+     The error on using BufferData in QUEUED buffers is introduced 
+     because the implementation might not be able to guarantee when 
+     the Buffer is dereferenced. Applications have to account for the 
+     possibility that the Buffer is dereferenced at the latest possible 
+     moment, e.g. when it becomes CURRENT. As it is easier to relax
+     this restricition at a later time (no effect on backwards
+     compatibility) than doing the reverse, we are conserative here.
+   </para></note>
+  ]]>
+
+   <![ %RFC [
+   <note id="rfc-bk000731-05"><title>RFC: Buffer State Query</title><para>  
+     Buffer State could be queried using alBuffer(), but it can't be
+     set. Prohibiting deferred deletion of buffers would make such a
+     state query desirable.
+   </para></note>
+   ]]>
+   </sect1>
+
+
+   <sect1>
+   <title>Managing Buffer Names</title>
+   <para> 
+     &AL; provides calls to obtain Buffer names, to request 
+     deletion of a Buffer object associated with a valid Buffer name, 
+     and to validate a Buffer name. Calls to control Buffer attributes
+     are also provided.
+    </para>
+
+    <sect2>
+    <title>Requesting Buffers Names</title>
+    <para>
+     The application requests a number of Buffers using GenBuffers.
+      <funcsynopsis><funcprototype> 
+      <funcdef>  void <function> GenBuffers </function></funcdef>
+      <paramdef> &sizei; <parameter> n </parameter></paramdef>
+      <paramdef> &uint;* <parameter> bufferNames </parameter></paramdef>
+      </funcprototype></funcsynopsis>
+    </para>
+
+    <![ %RFC [
+       <note id="rfc-bk000803-02"><title>RFC: Buffer Name 0</title><para>  
+        NONE or 0 is a reserved buffer name. What properties does
+        this buffer have? Does it have content? If there is no content,
+        what is its duration? 0? 1 microsecond? Should we use this buffer
+        to schedule a limited duration "silence"?     
+      </para></note>
+    ]]>
+   </sect2>
+
+   <sect2>
+   <title>Releasing Buffer Names</title>
+   <para>
+     The application requests deletion of a number of Buffers
+     by calling DeleteBuffers. 
+   </para>
+   <para>
+     Once deleted, Names are no longer valid for use with AL
+     function calls. Any such use will cause an INVALID_NAME 
+     error. The implementation is free to defer actual
+     release of resources. 
+      <funcsynopsis><funcprototype> 
+      <funcdef> &void; <function> DeleteBuffers </function></funcdef>
+      <paramdef> &sizei; <parameter> n </parameter></paramdef>
+      <paramdef> &uint;* <parameter> bufferNames </parameter></paramdef>
+      </funcprototype></funcsynopsis>
+     IsBuffer(bname) can be used to verify deletion of a buffer.
+     Deleting bufferName 0 is a legal NOP in both scalar and
+     vector forms of the command. The same is true for unused
+     buffer names, e.g. such as not allocated yet, or as 
+     released already.
+   </para>
+
+    <![ %RFC [
+       <note id="rfc-bk000803-01"><title>RFC: Force Deletion</title><para>  
+          If a buffer name is deleted, we could replace all occurences
+          in queues with bname 0. This is the GL behavior for deleting
+          the texture currently bound.
+      </para></note>
+    ]]>
+   <![ %RFC [
+   <note id="rfc-bk000731-07"><title>RFC: Relasing used Buffers</title><para>  
+      If a Buffer is USED or QUEUED, it cannot be deleted, and the operation 
+      should fail. We have three possible responses: throw an error, deferr
+      deletion, or force deletion by replacing every use
+      of the buffer in question with bname zero.
+      Throwing an error requires that we lock, verify that all specified
+      buffers can be deleted, then perform deletion, then unlock. If there
+      is one buffer that can not be deleted we have to throw an error and
+      make the entire operation a NOP.
+      Deferred deletion has its own set of problems (see other RFC).
+      Forcing deletion makes the mistake obvious to the application
+      for current buffers (sound artifacts) but still doesn't expose
+      errors for queued buffers. It also requires complete consumer
+      book-keeping for each buffer. GL uses this approach for textures
+      at little expense because it only has one current texture.
+      </para></note>
+    ]]>
+
+   <![ %RFC [
+   <note id="rfc-bk000731-06"><title>RFC: Deferred Buffer Release</title><para>  
+     Buffer deletion could be performed as a deferred operation. 
+     In this case actual deletion would be deferred until a Buffer is
+     unused, i.e. not QUEUED or CURRENT anymore. The specification 
+     would not guarantee that they are deleted as soon as possible.
+
+     However, such a deferred execution would be muddying the borders
+     between immediate and deferred execution in general (as we
+     might want to add scheduling and deferred commands at a later time).
+     Introduced as the default it makes impossible for the application
+     to force deletion or errors. Errors caused by improper use of
+     &AL; will be triggered at some distance from the original mistaken
+     command. Debugging such conditions is usually expensive. This approach
+     also does not take into account sharing of buffers among contexts.
+
+     It might be possible to introduce this behavior as a Hint()
+     in case that it is not desirable to explicitely introduce
+     deferred commands.
+      </para></note>
+    ]]>
+
+    <![ %RFC [
+       <note id="rfc-bk000927-03"><title>RFC: sourceName 0 </title><para>  
+         Is there a useful application for this? Do we mark that this 
+         is reserved?
+      </para></note>
+    ]]>
+   </sect2>
+
+   <sect2>
+   <title>Validating a Buffer Name</title>
+   <para>
+     The application can verify whether a buffer Name is valid
+     using the IsBuffer query.
+      <funcsynopsis><funcprototype> 
+      <funcdef> &bool; <function> IsBuffer </function></funcdef>
+      <paramdef> &uint; <parameter> bufferName</parameter></paramdef>
+      </funcprototype></funcsynopsis>
+    </para>
+    </sect2>
+    </sect1>
+
+
+    <sect1>
+    <title>Manipulating Buffer Attributes</title>
+
+    <sect2>  
+    <title>Buffer Attributes</title>
+    <para>
+        This section lists the attributes that can be set, or
+        queried, per Buffer. Note that some of these attributes
+        can not be set using the Buffer commands, but are set
+        using commands like BufferData.
+    </para> 
+    <para>
+      Querying the attributes of a Buffer with a buffer name that
+      is not valid throws an INVALID_OPERATION. Passing in an
+      attribute name that is invalid throws an INVALID_VALUE error.
+   </para>
+
+    <para>
+    <table>
+    <title>Buffer FREQUENCY Attribute</title>
+    <tgroup cols="4" align="left" colsep=1 rowsep=1>
+    <thead>
+    <row>
+       <entry>&Par;</>
+       <entry>&Sig;</>
+       <entry>&Val</>
+       <entry>&Def;</>        
+    </row>
+    </thead>
+    <tbody>
+    <row>
+       <entry> FREQUENCY </>
+       <entry> float </>
+       <entry> none </>
+       <entry> (0, any]</>        
+    </row>
+    </tbody>
+    </tgroup>
+    </table>
+       Description: Frequency, specified in samples per second, 
+       i.e. units of Hertz [Hz].
+       Query by GetBuffer. The frequency state of a buffer is set by 
+       BufferData calls. 
+    </para>
+
+    <![ %Annote [
+      <note><title>Annotation (No Frequency enumeration)</title><para>
+         As the implementation has to support conversion from
+         one frequency to another to implement pitch, it is
+         feasible to offer support for arbitrary sample
+         frequencies, instead of restricting the application
+         to an enumeration of supported sample frequencies. 
+         Another reason not to limit frequency to an enumerated
+         set is that future hardware might support variable
+         frequencies as well (it might be preferable to choose 
+         the sampling frequency according to the PSD of the 
+         signal then).
+      </para><para> 
+         However, it is desirable to avoid conversions due
+         to differences between the sample frequency used in
+         the original data, the frequency supported during the
+         mixing, and the frequency expected by the output device.
+      </para></note>
+    ]]>
+
+
+    <![ %Annote [
+      <note><title>Annotation (Implied Frequency)</title><para>
+         To account for the possibility of future AL implementations 
+         supporting encoding formats for the application might 
+         not want, or be able, to retrieve the actual frequency 
+         from the encoded sample, the specification will be
+         amended to guarantee the following behavior: If a nonzero
+         frequency is specified, it will force a conversion from 
+         the actual to the requested frequency. If the application 
+         specifies a 0 frequency, AL will use the actual frequency.
+         If there is no frequency information implied by the format
+         or contained in the encoded data, specifying a 0 frequency
+         will yield INVALID_VALUE. It is recommended that applications
+         use NONE instead of the literal value. 
+      </para></note>
+    ]]>
+
+    <![ %RFC [
+       <note id="rfc-bk000806-01"><title>RFC: BITS not needed </title><para>  
+      This is not a setter. As a state query it doesn't provide useful
+      information about the internal canonical format (which could be
+      queried independent of the buffer).
+    </para></note>
+    <para>
+    <table>
+    <title>Buffer BITS Attribute</title>
+    <tgroup cols="4" align="left" colsep=1 rowsep=1>
+    <thead>
+    <row>
+       <entry>&Par;</>
+       <entry>&Sig;</>
+       <entry>&Val</>
+       <entry>&Def;</>        
+    </row>
+    </thead>
+    <tbody>
+    <row>
+       <entry>BITS</>
+       <entry>ui</>
+       <entry>8,16</>
+       <entry>0</>
+    </row>
+    </tbody>
+    </tgroup>
+    </table>
+      Description: 
+       Bits per sample. This is a query-only attribute. The
+       default value for an (empty) buffer is zero.
+    </para>  
+    ]]>
+  
+
+    <![ %Annote [
+      <note><title>Annotation (No Format query)</title><para>
+         As of this time there is no query for FORMAT, or format
+         related state information. Query of the channels or
+         bits of a given buffer make little sense if the query
+         the internal (canonical, not buffer specific) format.
+         Query of the original sample data format makes little
+         sense unless the implementation is obliged to preserve
+         the original data.
+       </para></note>
+    ]]>
+
+    <![ %RFC [
+       <note id="rfc-bk000806-02"><title>RFC: CHANNELS needed?</title><para>  
+         No setter. Does this indicate the channels in the original data, 
+         or those in the (canonical) format internally used? Redundant to
+         querying the buffer type. Should be enums as speaker configurations
+         might have to be destribed by two integers: 5.1. 
+      </para></note>
+ 	<para>
+          <table>
+	    <title>Buffer CHANNELS Attribute</title>
+	    <tgroup cols="4" align="left" colsep="1" rowsep="1">
+	      <thead>
+		<row>
+		  <entry>&Par;</>
+		  <entry>&Sig;</>
+		  <entry>&Val;</>
+		  <entry>&Def;</>
+		</row>
+	      </thead>
+	      <tbody>
+		<row>
+		  <entry>CHANNELS</>
+		  <entry>ui</>
+		  <entry>RFC: enums or N/A?</>
+		  <entry>0</>
+		</row>
+	      </tbody>
+	    </tgroup>
+	  </table>
+          Description: Channels that buffer stores. Query only
+          attribute. This is almost
+          always 1, as applications using spatialized sound always
+          downsample to mono. This depends on the purpose of the
+          buffer: buffers used for spatialization have to provide
+          single-channel data. The default value for an (empty)
+          buffer is zero.
+	</para>
+    ]]>
+
+	<para>
+          <table>
+	    <title>Buffer SIZE Attribute</title>
+	    <tgroup cols="4" align="left" colsep="1" rowsep="1">
+	      <thead>
+		<row>
+		  <entry>&Par;</>
+		  <entry>&Sig;</>
+		  <entry>&Val;</>
+		  <entry>&Def;</>
+		</row>
+	      </thead>
+	      <tbody>
+		<row>
+		  <entry>SIZE</>
+		  <entry> &sizei; </>
+		  <entry> [0, MAX_UINT]</>
+		  <entry> 0 </>
+		</row>
+	      </tbody>
+	    </tgroup>
+	  </table>
+          Description: Size in bytes of the buffer data. Query through
+          GetBuffer, can be set only using BufferData calls. 
+          Setting a SIZE of 0 is a legal NOP. The number of bytes does 
+          not necessarily equal the number of samples (e.g. for compressed data).
+	</para>
+ 
+
+    <![ %RFC [
+      <note id="rfc-bk000724-15"><title>RFC: buffer overflow/underflow</title><para>  
+         If a SIZE is specified for a buffer and an attempt is made to
+         write less or more data to the buffer, is this an error? Do we
+         have SubData updates? Is trying to write data to a zero size buffer
+         an error? Which error? 
+      </para></note>
+    ]]>
+
+    <![ %RFC [
+      <note id="rfc-bk000619-16"><title>RFC: query for samples/duration?</title><para>  
+         Do we need a query for samples (which does not equal memory size)?
+         Do we prefer a duration query? As integral, for precision? Which, 
+         combined with frequency, has to guarantee accurate sample number?
+      </para></note>
+    ]]>
+
+
+    <![ %RFC [
+      <note id="rfc-bk000724-01"><title>RFC: memory budgeting</title><para>  
+        SIZE comment said:  Useful for memory budgeting with compressed data.
+        Sounds bogus: the application can only announce how many bytes
+        of data it intends to provide, it might not be able to estimate 
+        the uncompressed, decoded size in the internal format chosen by
+        the implementation w/o decompressing, decoding, and querying for
+        the internal format. Micromanaging memory is usually a bad idea.
+        Using SIZE to configure a buffer might ge a mistake. Using the
+        same enum to query the actual size internally (which might
+        consists of two or more buffer areas and cached decoding state)
+        will be confusing.
+      </para></note>
+    ]]>
+
+    <![ %RFC [
+      <note id="rfc-bk000724-02"><title>RFC: buffer initial state</title><para>  
+       MikeV added:
+       "The default attribute values for a Buffer are nonsensical insofar
+       as a Buffer is incomplete without data having been
+       specified."
+      This seems wrong. An AL object will always be complete and valid,
+      albeit useless. A Buffer in its default state might not produce
+      any useful outout, but it can be specified and used. 
+      </para></note>
+    ]]>
+    </sect2>
+ 
+
+    <sect2>
+    <title>Querying Buffer Attributes</title>
+    <para>
+      Buffer state is maintained inside the &AL; implementation and can be
+      queried in full. The valid values for paramName are identical to the 
+      ones for Buffer*.
+      <funcsynopsis><funcprototype> 
+      <funcdef> void <function> GetBuffer{n}{sifd}{v} </function></funcdef>
+      <paramdef> &uint; <parameter>bufferName</parameter></paramdef>
+      <paramdef> &enum; <parameter> paramName </parameter></paramdef>
+      <paramdef> &type;* <parameter> values </parameter></paramdef>
+      </funcprototype></funcsynopsis>
+    </para>
+    </sect2>
+
+    <sect2>
+    <title>Specifying Buffer Content</title>
+    <para>
+      A special case of Buffer state is the actual sound sample data stored
+      in asociation with the Buffer. Applications can specify sample data using 
+      BufferData.
+      <funcsynopsis><funcprototype> 
+      <funcdef> &void; <function> BufferData </function></funcdef>
+      <paramdef> &uint; <parameter>bufferName</parameter></paramdef>
+      <paramdef> &enum; <parameter>format</parameter></paramdef>
+      <paramdef> &void;* <parameter> data </parameter></paramdef>
+      <paramdef> &sizei; <parameter> size </parameter></paramdef>
+      <paramdef> &sizei; <parameter>frequency</parameter></paramdef>
+      </funcprototype></funcsynopsis>
+      The data specified is copied to an internal software, or if possible, 
+      hardware buffer. The implementation is free to apply decompression,
+      conversion, resampling, and filtering as needed. The internal format
+      of the Buffer is not exposed to the application, and not
+      accessible. Valid formats are FORMAT_MONO8, FORMAT_MONO16,
+      FORMAT_STEREO8, and FORMAT_STEREO16. An implementation may
+      expose other formats, see the chapter on Extensions for
+      information on determining if additional formats are supported.
+    </para>
+
+    <para>
+      Applications should always check for an error condition after attempting 
+      to specify buffer data in case an implementation has to generate an
+      OUT_OF_MEMORY or conversion related INVALID_VALUE error. The application
+      is free to reuse the memory specified by the data pointer once the
+      call to BufferData returns. The implementation has to dereference,
+      e.g. copy, the data during BufferData execution.
+    </para>
+  
+    <![ %RFC [
+      <note id="rfc-bk000724-04"><title>RFC: format enums</title><para>  
+          With the possible exception of sample frequency, all
+          details of a sample (mono/stero, bit resolution, channels,
+          encoding,compression) should be specified in a format parameter.
+          In other words, I opt for an enumeration of formats. GL has a
+          quite large number of those w/o suffering damage. Allowing
+          parameters the way we do increases error cases and/or
+          conversion load. The space is combinatorial to begin with,
+          but an enumeration of valid formats seems better to impose
+          restrictions. Using enums helps dealing with formats
+          opaque to the application (compressed data with compressed
+          header) where sample size and sampling frequency might not
+          be available. 
+
+          There is the related issue of internal formats. A buffer used
+          for spatialization will have to convert to mono. A buffer used
+          to pass through to the output hardware will have to
+          remap an n-channel format to an m-channel format (or let the
+          hardware do it) including crosstalk handling depending on
+          the output device (headphones vs. speaker). To prevent that
+          every buffer has to do both AL needs to know the purpose of a
+          buffer when dereferencing the data.
+      </para></note>
+    ]]>
+
+     <![ %RFC [
+      <note id="rfc-bk0000507-17"><title>RFC: Frequency woes</title><para>  
+        Frequency as a uint rises precision issues.
+        Frequency might not be known for compressed data, we might need 
+        a (yuck) wildcard frequency specifier?
+        We have a redundancy: frequency per context (mixing quality
+        desired), frequency internally used by the implementation when
+        storing the buffers, frequency provided in the data. We need
+        to specify the latter in some cases and can't in others. Format
+        enum or frequency enum again.
+      </para></note>
+     ]]>
+
+
+
+     <![ %RFC [
+      <note id="rfc-bk000504-01"><title>RFC: data mover mess</title><para>  
+         API to copy data from output buffer to a buffer?
+         BufferWriteData to supersede BufferData, BufferReadData
+         as later extensions for buffer readback for those who want it?
+         Reading the output stream reverses the problems we have
+         with appendData: the application provides a memory buffer
+         into which AL copies as much data as available/as fits. 
+      </para></note>
+      ]]>
+
+
+
+    <![ %RFC [
+      <note id="rfc-bk000724-11"><title>RFC: expose internal format</title><para>  
+        Implementations are free to use whatever internal data format is best 
+        suited for their hardware/software implementation, leaving the actual 
+        sample format and structure opaque to the application. Should applications
+        be able to influence this? Through context creation? Per Buffer?
+        Do we use Lowest Common Denominator or highest possible quality as a
+        default?
+      </para></note>
+    ]]>
+
+    <![ %RFC [
+      <note id="rfc-bk000724-12"><title>RFC: memory management with compressed data</title><para>  
+         If we allow for mixing from compressed data (perfectly reasonable
+         for hardware) then it seems even more unlikely the application could
+         estimate memory usage.
+        If a compressed format is supported by AL, do we require support for mixing from
+       compressed data? I daresay not - some formats might not allow for
+        cheap incremental decompression.
+      </para></note>
+    ]]>
+
+    <![ %RFC [
+      <note id="rfc-bk000724-21"><title>RFC: conversion and sample retrieval</title><para>  
+          To retrieve a sample, the size has to be queried first for allocating a
+          properly sized memory segment as destination. This is dependent on the
+          format. Conversion can be implemented as creating a buffer, and then
+          requesting the data in a different format. Is this desirable? Even if
+          we restrict reading from buffers to the same format they were written
+          to, conversion from the internal format might be inevitable. Querying 
+          and setting the internal format however might be desirable for certain
+          purposes. 
+      </para></note>
+    ]]>
+
+   </sect2>
+   </sect1>
+   </chapter>
+

@@ -1,0 +1,297 @@
+
+   <appendix>
+   <title>Miscellaneous Annotations</title>
+
+   <section id="reverb-objects">
+   <title>Reverberation Objects?</title>
+   <para>
+     In a generalization of the I3DL2 Extension for
+     listener specific reverberation effects, it might
+     be best to implement Reverb Objects. A Reverb Object
+     is one example of a parametrized filter. Each
+     such object encapsulates a set of attributes (the
+     filter parameters). Sources and Listener alike
+     have an attribute that allows the application coder
+     to choose a reverb object for application either
+     at the origin of the sound, or at the position of
+     the listener. Initial implementation would only
+     support one Reverb Object per Context, applied at
+     the listener position.
+    </para>
+    <para>
+      The I3DL2 Environment is a filter that alters the 
+      way the user experiences the virtual world. As 
+      filters require DSP operations it is limited by hardware
+      processing capabilities.
+    </para>
+    <para>
+      The I3DL2 Environment models the surroundings of the 
+      listener by simplifying the presumed acoustic properties
+      of those surroundings into a small set of parameters.
+      It allows to reproduce the effects of sound reflections 
+      and reverberation caused by walls and obstacles, and
+      the muffling effects of obstacles inside environments 
+      or partitions between environments.
+    </para>
+    <para>
+      Environment properties: 
+      Early reflections level and delay. 
+      Late reverberation level and delay, low- and high-frequency decay time. 
+      Reverberation diffusion, density and spectrum. 
+    </para>
+    <para>
+      Source properties: 
+      Direct path intensity and spectrum. 
+      Reverberation intensity and spectrum.
+    </para>            
+   </section>
+
+   <section id="al-objects-filters">
+      <title>On Filters</title>
+      <para>
+        RFC/bk000502: Filters as the general concept of modifiers?
+        Environment as a special case filter? 
+        Can we break down EAX environments into ReverbFilters where we
+        parametrize late reflections, and ReflectFilters, which fake
+        early reflections? Do we need this separation if we have
+        calculated or distinct echo effect reflections instead of
+        stocastic ones? Does it make sense to superimpose a general
+        reverb kicking in after a delay t, with reflections (random
+        or not) or should reverb only kick in after reflections are
+        discarded?
+      </para>
+      <para>
+        RFC/bk000502: old text.
+        (Environment) Properties: 
+        Geometry - geometry is specified using an immediate mode API which is 
+        similar to OpenGL. Support for scene lists are also provided on a basis 
+        similar to OpenGL's display lists. 
+        Materials - specify the absorptive and reflective qualities of a piece 
+        of geometry. &AL; should provide a facility for accessing preset 
+        materials, and storing and retrieving new materials at runtime. 
+      </para>
+      <para>
+        RFC/nn: Atmospheric/ambient properties? 
+        REF/nn: A3D 2.0 IA3dMaterial 
+      </para>
+ 
+      <section id="al-objects-filters-atmospheric">
+      <title>Atmospheric Filter</title>
+      <para>
+        The atmospheric filter the effects of media with constant density,
+        on propagating sound waves. The effect of the atmospheric filter
+        is distance dependent. Atmospheric effects can be parameterized
+        by specifying attenuation per unit distance, the scale for the
+        unit distance, for one of a minimum of two frequency ranges
+        (low frequency and high frequency roll-off).
+      </para>
+      <para>
+        RFC/bk000502: do we specify the atmospheric filter per-source?
+        The effect is clearly dominated by the most dense medium, but
+        we have little chance simulating crossings between different
+        media this way. Distance attenuation in media clearly depends
+        on source and listener being embedded in the same medium,
+        without any obstruction along the LOS.
+      </para>
+      </section>
+
+      <section id="al-objects-filters-listenerreverb">
+      <title>Listener Reverb</title>
+      <para>
+        Listener Reverb is a parameterized filter that modifies the sound at
+        listener position to emulate effects of the surroundings, namely 
+        effects of late reflections. Without simulating sound propagation
+        this reverb accounts for the averaged outcome of different arrangements
+        of reflecting/absorbing surfaces around the listener. 
+      </para>
+      </section>
+
+      <section id="al-objects-filters-sourcereverb">
+      <title>Source Reverb</title>
+      <para>
+        There is currently no support for reverb at the source position.
+      </para>
+      </section>
+
+      <section id="al-objects-filters-reflection">
+      <title>Reflection Filter</title>
+      <para>
+        First order reflection (and, if support, O(n) reflection for small n)
+        can choose to simulate the effects of different materials by 
+        parametrizing reflection filters.
+        There is currently no support for reflections.
+      </para>
+      </section>
+
+      <section id="al-objects-filters-transmission">
+      <title>Transmission Filter</title>
+      <para>
+        Sound propagation along the LOS can pass through obstructions
+        specified as convex polygons. The effects of lossy transmission
+        can be approximated by applying a once-off filtering. Like
+        atmospheric filters, this can be a frequency-dependent roll-off,
+        unlike atmospheric filters this does not take distance into
+        account. Transmission filters can be used to emulate losses
+        on crossing separating surfaces between different media (water/air
+        borders).
+        There is currently no support for transmissions.
+      </para>
+      </section>
+    </section>
+    
+    <section>
+    <title>Parameterization over Time</title>
+    <para>
+       Fading and cross-fading. There are three ways to handle any kind
+       of gain control as a function of time:
+       <itemizedlist>
+       <listitem>
+       <para>
+         manipulate gain per frame/sufficiently often
+       </para>
+       </listitem>
+       <listitem>
+       <para>
+         parameterize, i.e. specify a target gain, 
+          a duration over which to interpolate, and an interpolation function
+       </para>
+       </listitem>
+       <listitem>
+       <para>
+         provide an buffer that indicates amplitude, stretched over
+         a duration/by a frequency
+       </para>
+       </listitem>
+      The last mechanism also works for early reflections and echos,
+      and any other temporal filtering. The first and second approach 
+      also work for attributes like Pitch.
+    </para>
+    </section>
+
+
+   <section>
+   <title>On Geometry</title>
+     <para>
+        Both the A3D API and implementation as well as EAX related utilities
+        like EAGLE seem to indicate that any effort to handle scene geoemtry
+        at API level will inevitably duplicate modules found in common game 
+        engines for purposes of collision detection, path planning, AI
+        support, visibility and sound propagation culling.
+      </para>
+      <para>
+        In other words, any such effort will inevitably lead to competing
+        subsystems and multiple use of processing and memory resources to
+        implement the same functionality. While it makes sense to provide
+        templates, examples, and even utilities like EAGLE and SDK's to
+        developers, it makes no sense to integrate any such functionality
+        with the API.
+      </para>
+      <para>
+        The geometry based processing inevitably leads to a scene graph
+        API, with all the resulting problems. On closer examination it
+        seems that the specification and storage of source and listener
+        positions is a red herring.
+      </para>
+      <para>
+        Second and higher order reflections seem to be irrelevant.
+      </para>
+      <para>
+        Reflection can be faked by stochastic means, but an actual
+        presence/immersion effect will require smooth transitions
+        depending on the continuous change of distance between
+        sources, listener, and dominant reflectors.
+      </para>
+      <para>
+        Dominant reflectors are presumed to be 1st order,
+        with material properties that incur little or no loss
+        (or even provide amplification), and significant
+        surface area.
+      </para>
+      <para>
+        Transmission loss through dense media is equivalent to
+        the distance attenuation model.
+      </para>
+      <para>
+        Refraction/reflection loss at border surfaces separating
+        media....
+      </para>
+      <para>
+        No explicit geometry to check whether there is any indirect
+        (1st order reflection, multiple reflections) path between
+        source and listener - the application is usually better
+        equipped to handle this (portal states, PHS). The benefit
+        of forcing the AL implementation to check for obstruction
+        (object inersecting LOS) is questionable at best - LOS
+        checking is also better done by the main application.
+        In essence, the application might even handle the 1st
+        order reflections IFF we provide the means to generate
+        early reflection instead of rolling dice, and if we
+        make it cheap to enable a path between a source and
+        the listener complete with a material. Come to think of
+        it: the implementation guarantees n paths with m filters
+        one of which is transmission or reflection, one is
+        distance attenuation, one is source reverb, one is
+        listener reverb....
+      </para>
+   </section>
+  
+   <section>
+   <title>No ALU</title>
+      <note id="bk000019-01"><title>RFC</title><para>
+         ALU, like GLU, is a problem: linkage dependencies, multiple drivers
+         sharing one ALU etc. It would be best to not clutter the specification
+         with ALU/ALUT. Any support code/template repository/SDK can be 
+         maintained as a separate open source project.
+      </para></note>
+     <para>
+       ALU provides operations that do not affect driver or hardware state.
+       These can be resampling/conversion methods or other sample data
+       processing, or utilities for (optimized) filter generation. ALU
+       does not provide I/O operations.  At this time,
+       ALU is not specified and not implemented.
+     </para>
+     <para>
+       RFC/bk000502: GLU is becoming a bit of a problem right now, with
+       most applications avoiding it as they load GL DLL's explicitely,
+       but do not trust the ABI specification enough to link against GLU,
+       and not bothering to load it. A vendor-neutral open source ALU
+       works for me, but we can not accept link time dependencies to AL.
+       ALU (like GLU) is meant for minimal convenience, in small
+       building blocks, it is not meant as an SDK. 
+     </para>   
+     <para>
+       RFC/bk000502: old text.
+       ALU is the AL Utility library, and provide functions for performing audio 
+       conversion, preset material properties, and a compatability layer for 
+       legacy stereo format audio. This includes support for panning and per 
+       channel volume control.
+     </para> 
+     <para>
+       RFC/nn: Er, what else does the world of 2D sound usually need? 
+     </para>
+   </section>
+ 
+
+   <section>
+   <title>No ALUT</title>
+     <para>
+      Application coders frequently request additional support for sound
+      handling to the extent of sophisticated SDKs. It is expected that
+      SDK vendors will provide such products on top of AL. ALUT (in analogy
+      to GLUT) would constitute an "official" SDK if desired. At this time,
+      ALUT is not specified and not implemented, and not intended to be part
+      of &AL; proper.
+     </para>
+     <para>
+      ALUT is a utility toolkit for &AL;. It sits on top of ALC.
+      It provides convenience functions for accessing files, for playing sounds, 
+      and an API for accessing CDROM functionality.      
+     </para>
+   </section>
+
+<!-- Driver DDK section
+http://www.microsoft.com/directx/
+http://www.microsoft.com/DDK/DDKdocs/win98ddk/ds-ddk_8eas.htm
+ -->
+
+   </appendix>

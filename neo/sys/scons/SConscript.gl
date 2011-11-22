@@ -1,0 +1,101 @@
+# -*- mode: python -*-
+# DOOM build script
+# TTimo <ttimo@idsoftware.com>
+# http://scons.sourceforge.net
+
+# various GL-related code:
+# GL logging functions (used on all platforms)
+# GLimp code (Linux only)
+#   The C code is generated using M4 macros from a description of the GL API
+#   on win32, the logging functions are generated ones and kept in the source
+#   on other platforms, scons generates on the fly at build time
+
+import time
+Import('GLOBALS')
+Import(GLOBALS)
+
+# NOTE: make sure the .api files are in LF line endings, CRLF isn't working so well
+def build_logfuncs(env, target, source):
+	import os, sys
+	# search for the module - source repository might make things harder
+	gllog_path = 'sys/gllog'
+	if ( not os.path.exists( gllog_path + '/logfunc.py' ) ):
+		gllog_path = '/var/local/Doom/neo/sys/gllog'
+	sys.path.append( gllog_path )
+	from logfunc import do_logfunc
+	f_out = open('%s' % target[0], 'w')
+	f_out.write('// generated file, do not modify!\n')
+	f_out.write('// ' + time.asctime() + '\n')
+	f_out.write('// see SConscript.gl and sys/gllog/\n\n')
+
+	f_in = open( gllog_path + '/gl.api', 'r')
+	do_logfunc(f_in, f_out)
+	f_in.close()
+	
+	f_out.write('\n#ifdef __linux__\n\n')
+	f_in = open( gllog_path + '/glX.api', 'r')
+	do_logfunc(f_in, f_out)
+	f_in.close()
+	f_out.write('\n#endif\n\n')
+	
+	f_out.write('\n#ifdef WIN32\n\n')
+	f_in = open( gllog_path + '/wgl.api', 'r')
+	do_logfunc(f_in, f_out)
+	f_in.close()
+	f_out.write('\n#endif\n\n')
+	
+	f_out.close()
+	
+	print 'Generated %s' % target[0]
+
+gl_env = g_env.Clone()
+gl_env.Append( CPPPATH = '#' )
+gl_env.Append( CPPFLAGS = '-DGLIMP' )
+
+if ( local_dedicated == 1 ):
+	gl_env.Append( CPPFLAGS = '-DID_DEDICATED' )
+
+# general M4 builder setup
+# files we are going to generate from their M4 counterparts
+
+m4_list = (
+	'../gllog/gl_extensions.cpp',
+	'../linux/glimp_dlopen.cpp',
+	'../linux/glimp_logging.cpp',
+	'../linux/glimp_stub.cpp',
+	'../linux/glimp_local.h' )
+
+for i_m4 in m4_list:
+	gl_env.M4( i_m4, i_m4 + '.m4' )
+	gl_env.Depends( i_m4, '../gllog/gl_def.m4' )
+
+# enable if you need to generate again
+# FIXME: conflicts when several environements are used. move that to seperate script
+#enforce = gl_env.M4( '#sys/linux/qgl_enforce.h', '../linux/qgl_enforce.h.m4' )
+#gl_env.Depends( enforce, '../gllog/gl_def.m4' )
+
+# logging functions, python generated ( that's beyond my m4-fu )
+
+gl_env.Depends( '../linux/glimp_logging.cpp', '../linux/glimp_logfuncs.cpp' )
+
+logfuncs = gl_env.Command( '../linux/glimp_logfuncs.cpp', '../gllog/logfunc.py', build_logfuncs )
+gl_env.Depends( logfuncs, '../gllog/gl_def.m4' )
+
+sources = []
+sources.append( '../gllog/gl_extensions.cpp' )
+
+if ( local_dedicated == 1 ):
+	sources.append( '../linux/glimp_stub.cpp' )
+else:
+	sources.append( '../linux/glimp_dlopen.cpp' )
+	sources.append( '../linux/glimp_logging.cpp' )
+
+#if ( DEDICATED != '0' ):
+#	sources.append( '../linux/glimp_stub.cpp' )
+#
+#if ( GL_HARDLINK == '0' ):
+#	sources.append( '../linux/glimp_dlopen.cpp' )
+#	sources.append( '../linux/glimp_logging.cpp' )
+
+lib = gl_env.StaticLibrary( 'glimp', sources )
+#gl_env.Install( '../..', lib )

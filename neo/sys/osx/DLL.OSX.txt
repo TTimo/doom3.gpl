@@ -1,0 +1,34 @@
+short:
+
+dlopen/dlclose, then dlopen a dynamic library again won't go through C++ static initialization again
+
+long:
+
+first dlopen:
+set a break in idTypeInfo constructor ( class typeinfo is static )
+nothing happens on dlopen, statics are initialized when resolving symbols ( as they need to be before any C++ code runs )
+#0  0x900429ac in kill ()
+#1  0x1ee95074 in idClass::ProcessEventArgPtr(idEventDef const*, int*) () at /Users/timo/SVN/Doom/neo/framework/CmdSystem.h:130
+#2  0x1ee94ff4 in idClass::ProcessEventArgPtr(idEventDef const*, int*) () at /Users/timo/SVN/Doom/neo/framework/CmdSystem.h:130
+#3  0x1f138d30 in __static_initialization_and_destruction_0(int, int) (__initialize_p=521892804, __priority=520821908) at /Users/timo/SVN/Doom/neo/game/Actor.cpp:339
+#4  0x1f138d94 in _GLOBAL__I__ZN11idAnimStateC2Ev () at /Users/timo/SVN/Doom/neo/game/Actor.cpp:106
+#5  0x8fe17728 in __dyld_call_module_initializers_for_library ()
+#6  0x8fe174a0 in __dyld_call_module_initializers ()
+#7  0x8fe11704 in __dyld_link_in_need_modules ()
+#8  0x8fe14f50 in __dyld__dyld_NSLookupSymbolInImage ()
+#9  0x900f81f0 in dlsymIntern ()
+#10 0x900f8b1c in dlsym ()
+#11 0x001e71c8 in Sys_DLL_GetProcAddress(int, char const*) (handle=392873136, sym=0x3a0b20 "GetGameAPI") at /Users/timo/SVN/Doom/neo/sys/posix/posix_main.cpp:376
+#12 0x0008c968 in idCommonLocal::LoadGameDLL() (this=0x78a85c) at /Users/timo/SVN/Doom/neo/framework/Common.cpp:2589
+
+then do reloadEngine, the DLL will be dlclose, then dlopen again
+this time no initialization happens ( even though there is another dlsym call, and a call to GetGameAPI )
+things in that case pretty much behave like the monolithic build does
+
+searched online and found a bunch of people complaining about this problem here and there, but no obvious fix around
+http://lists.apple.com/archives/darwin-development/2003/Sep/msg00109.html
+
+from the dlopen man page and various things online, I think that on top of dlclose, one should also remove
+the library from the address space to force a fresh start
+
+maybe using NSModule ( man 3 NSModule ) would fix those issues?

@@ -1,0 +1,67 @@
+<html><head>
+<title>curl_getdate man page</title>
+<meta name="generator" content="roffit 0.5">
+<STYLE type="text/css">
+P.level0 {
+ padding-left: 2em;
+}
+
+P.level1 {
+ padding-left: 4em;
+}
+
+P.level2 {
+ padding-left: 6em;
+}
+
+span.emphasis {
+ font-style: italic;
+}
+
+span.bold {
+ font-weight: bold;
+}
+
+span.manpage {
+ font-weight: bold;
+}
+
+h2.nroffsh {
+ background-color: #e0e0e0;
+}
+
+span.nroffip {
+ font-weight: bold;
+ font-size: 120%;
+ font-family: monospace;
+}
+
+p.roffit {
+ text-align: center;
+ font-size: 80%;
+}
+</STYLE>
+</head><body>
+
+<p class="level0"><a name="NAME"></a><h2 class="nroffsh">NAME</h2>
+<p class="level0">curl_getdate - Convert an date in a ASCII string to number of seconds since January 1, 1970 <a name="SYNOPSIS"></a><h2 class="nroffsh">SYNOPSIS</h2>
+<p class="level0"><span Class="bold">#include &lt;curl/curl.h&gt;</span> 
+<p class="level0"><span Class="bold">time_t curl_getdate(char * datestring , time_t *now );</span> 
+<p class="level0"><a name="DESCRIPTION"></a><h2 class="nroffsh">DESCRIPTION</h2>
+<p class="level0">This function returns the number of seconds since January 1st 1970, for the date and time that the <span Class="emphasis">datestring</span> parameter specifies. The  <span Class="emphasis">now</span> parameter is there and should hold the current time to allow the datestring to specify relative dates/times. Read further in the date string parser section below. <a name="PARSING"></a><h2 class="nroffsh">PARSING DATES AND TIMES</h2>
+<p class="level0">A "date" is a string, possibly empty, containing many items separated by whitespace.  The whitespace may be omitted when no ambiguity arises.  The empty string means the beginning of today (i.e., midnight).  Order of the items is immaterial.  A date string may contain many flavors of items: 
+<p class="level0"><span Class="bold">calendar date items</span> This can be specified in a number of different ways. Including 1970-09-17, 70-9-17, 70-09-17, 9/17/72, 24 September 1972, 24 Sept 72, 24 Sep 72, Sep 24, 1972, 24-sep-72, 24sep72. The year can also be omitted, for example: 9/17 or "sep 17". 
+<p class="level0"><span Class="bold">time of the day items</span> This string specifies the time on a given day. Syntax supported includes: 18:19:0, 18:19, 6:19pm, 18:19-0500 (for specifying the time zone as well). 
+<p class="level0"><span Class="bold">time zone items</span> Specifies international time zone. There are a few acronyms supported, but in general you should instead use the specific realtive time compared to UTC. Supported formats include: -1200, MST, +0100. 
+<p class="level0"><span Class="bold">day of the week items</span> Specifies a day of the week. If this is mentioned alone it means that day of the week in the future. 
+<p class="level0">Days of the week may be spelled out in full: `Sunday', `Monday', etc or they may be abbreviated to their first three letters, optionally followed by a period.  The special abbreviations `Tues' for `Tuesday', `Wednes' for `Wednesday' and `Thur' or `Thurs' for `Thursday' are also allowed. 
+<p class="level0">A number may precede a day of the week item to move forward supplementary weeks.  It is best used in expression like `third monday'.  In this context, `last DAY' or `next DAY' is also acceptable; they move one week before or after the day that DAY by itself would represent. 
+<p class="level0"><span Class="bold">relative items</span> A relative item adjusts a date (or the current date if none) forward or backward. Example syntax includes: "1 year", "1 year ago", "2 days", "4 weeks". 
+<p class="level0">The string `tomorrow' is worth one day in the future (equivalent to `day'), the string `yesterday' is worth one day in the past (equivalent to `day ago'). 
+<p class="level0"><span Class="bold">pure numbers</span> If the decimal number is of the form YYYYMMDD and no other calendar date item appears before it in the date string, then YYYY is read as the year, MM as the month number and DD as the day of the month, for the specified calendar date. <a name="RETURN"></a><h2 class="nroffsh">RETURN VALUE</h2>
+<p class="level0">This function returns zero when it fails to parse the date string. Otherwise it returns the number of seconds as described. <a name="AUTHORS"></a><h2 class="nroffsh">AUTHORS</h2>
+<p class="level0">Originally written by Steven M. Bellovin &lt;smb@research.att.com&gt; while at the University of North Carolina at Chapel Hill.  Later tweaked by a couple of people on Usenet.  Completely overhauled by Rich $alz &lt;rsalz@bbn.com&gt; and Jim Berets &lt;jberets@bbn.com&gt; in August, 1990. 
+<p class="level0">It has been modified extensively since imported to curl. <a name="SEE"></a><h2 class="nroffsh">SEE ALSO</h2>
+<p class="level0"><span Class="manpage">GNU date(1)</span> <p class="roffit">
+ This HTML page was made with <a href="http://daniel.haxx.se/projects/roffit/">roffit</a>.
+</body></html>

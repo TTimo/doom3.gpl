@@ -1,0 +1,736 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "guied_resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "guied_resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_GUIED_MAIN MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_GUIED_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_GUIED_FILE_OPEN
+        MENUITEM "&Close",                      ID_GUIED_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "&Save\tCtrl+S",               ID_GUIED_FILE_SAVE
+        MENUITEM "Save &As...",                 ID_GUIED_FILE_SAVEAS
+        MENUITEM SEPARATOR
+        POPUP "So&urce Control"
+        BEGIN
+            MENUITEM "&Get Latest Version",         ID_GUIED_SOURCECONTROL_GETLATESTVERSION
+
+            MENUITEM "Check &Out",                  ID_GUIED_SOURCECONTROL_CHECKOUT
+
+            MENUITEM "Check &In",                   ID_GUIED_SOURCECONTROL_CHECKIN
+
+            MENUITEM "&Undo Checkout",              ID_GUIED_SOURCECONTROL_UNDOCHECKOUT
+
+        END
+        MENUITEM "MRU1",                        ID_GUIED_FILE_MRU
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_GUIED_FILE_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z",               ID_GUIED_EDIT_UNDO
+        MENUITEM "&Redo\tCtrl+Y",               ID_GUIED_EDIT_REDO
+        MENUITEM SEPARATOR
+        MENUITEM "&Copy\tCtrl+C",               ID_GUIED_EDIT_COPY, GRAYED
+        MENUITEM "&Paste\tCtrl+V",              ID_GUIED_EDIT_PASTE, GRAYED
+        MENUITEM "&Delete\tDel",                ID_GUIED_EDIT_DELETE
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "Zoom &In\tCtrl++",            ID_GUIED_VIEW_ZOOMIN
+        MENUITEM "Zoom &Out\tCtrl+-",           ID_GUIED_VIEW_ZOOMOUT
+        MENUITEM SEPARATOR
+        POPUP "&Hide/Show"
+        BEGIN
+            MENUITEM "&Hide Selected\tH",           ID_GUIED_VIEW_HIDESELECTED
+
+            MENUITEM "&Unhide Selected\tU",         ID_GUIED_VIEW_UNHIDESELECTED
+
+            MENUITEM "&Show Hidden\tShift+H",       ID_GUIED_VIEW_SHOWHIDDEN
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Show &Grid\tCtrl+""",         ID_GUIED_VIEW_SHOWGRID
+        MENUITEM "S&nap To Grid\tShift+Ctrl+""", ID_GUIED_VIEW_SNAPTOGRID
+        MENUITEM SEPARATOR
+        MENUITEM "Show &Status Bar",            ID_GUIED_VIEW_STATUSBAR
+        MENUITEM SEPARATOR
+        MENUITEM "O&ptions...",                 ID_GUIED_VIEW_OPTIONS
+    END
+    POPUP "&Item"
+    BEGIN
+        POPUP "&New"
+        BEGIN
+            MENUITEM "&windowDef",                  ID_GUIED_ITEM_NEWWINDOWDEF
+
+            MENUITEM "&editDef",                    ID_GUIED_ITEM_NEWEDITDEF
+            MENUITEM "&htmlDef",                    ID_GUIED_ITEM_NEWHTMLDEF
+            MENUITEM "&choiceDef",                  5114
+            MENUITEM "&sliderDef",                  0
+            MENUITEM "&bindDef",                    5115
+            MENUITEM "&listDef",                    5116
+            MENUITEM "&renderDef",                  5118
+        END
+        MENUITEM SEPARATOR
+        POPUP "&Arrange"
+        BEGIN
+            MENUITEM "Bring to &Front\tCtrl+Shift+]", 
+                                                    ID_GUIED_ITEM_ARRANGEBRINGTOFRONT
+
+            MENUITEM "Bring F&orward\tCtrl+]",      ID_GUIED_ITEM_ARRANGEBRINGFORWARD
+
+            MENUITEM "Send to &Back\tCtrl+Shift+[", ID_GUIED_ITEM_ARRANGESENDTOBACK
+
+            MENUITEM "Send B&ackward\tCtrl+[",      ID_GUIED_ITEM_ARRANGESENDBACKWARD
+
+            MENUITEM SEPARATOR
+            MENUITEM "&Make Child",                 5093
+        END
+        POPUP "A&lign"
+        BEGIN
+            MENUITEM "&Lefts\tCtrl+Left Arrow",     ID_GUIED_ITEM_ALIGNLEFTS
+            MENUITEM "&Centers",                    ID_GUIED_ITEM_ALIGNCENTERS
+
+            MENUITEM "&Rights\tCtrl+Right Arrow",   ID_GUIED_ITEM_ALIGNRIGHTS
+
+            MENUITEM SEPARATOR
+            MENUITEM "&Tops\tCtrl+Up Arrow",        ID_GUIED_ITEM_ALIGNTOPS
+            MENUITEM "&Middles",                    ID_GUIED_ITEM_ALIGNMIDDLES
+
+            MENUITEM "&Bottoms\tCtrl+Down Arrow",   ID_GUIED_ITEM_ALIGNBOTTOMS
+
+        END
+        POPUP "&Make Same Size"
+        BEGIN
+            MENUITEM "&Width",                      ID_GUIED_ITEM_MAKESAMESIZEWIDTH
+
+            MENUITEM "&Height",                     ID_GUIED_ITEM_MAKESAMESIZEHEIGHT
+
+            MENUITEM "&Both",                       ID_GUIED_ITEM_MAKESAMESIZEBOTH
+
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Scripts...\tCtrl+Enter",     5090
+        MENUITEM "&Properties...\tAlt+Enter",   ID_GUIED_ITEM_PROPERTIES
+    END
+    POPUP "&Tools"
+    BEGIN
+        MENUITEM "&Viewer\tCtrl+t",             ID_GUIED_TOOLS_VIEWER
+        MENUITEM "Reload &Materials\tCtrl+m",   ID_GUIED_TOOLS_RELOADMATERIALS
+
+    END
+    POPUP "&Window"
+    BEGIN
+        MENUITEM "&Cascade",                    ID_GUIED_WINDOW_CASCADE
+        MENUITEM "&Tile",                       ID_GUIED_WINDOW_TILE
+        MENUITEM "Close &All",                  ID_GUIED_WINDOW_CLOSEALL
+        , GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "Show &Navigator",             ID_GUIED_WINDOW_SHOWNAVIGATOR
+
+        MENUITEM "Show &Transformer",           ID_GUIED_WINDOW_SHOWTRANSFORMER
+
+        MENUITEM "Show &Properties",            ID_GUIED_WINDOW_SHOWPROPERTIES
+
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About",                      ID_GUIED_HELP_ABOUT
+    END
+END
+
+IDR_GUIED_ITEM_POPUP MENU 
+BEGIN
+    POPUP "NULL"
+    BEGIN
+        POPUP "&New"
+        BEGIN
+            MENUITEM "&windowDef",                  ID_GUIED_ITEM_NEWWINDOWDEF
+
+            MENUITEM "&editDef",                    ID_GUIED_ITEM_NEWEDITDEF
+            MENUITEM "&htmlDef",                    5112
+            MENUITEM "&choiceDef",                  ID_GUIED_ITEM_NEWCHOICEDEF
+
+            MENUITEM "&sliderDef",                  ID_GUIED_ITEM_NEWSLIDERDEF
+
+            MENUITEM "&bindDef",                    ID_GUIED_ITEM_NEWBINDDEF
+            MENUITEM "&listDef",                    ID_GUIED_ITEM_NEWLISTDEF
+            MENUITEM "&renderDef",                  ID_GUIED_ITEM_NEWRENDERDEF
+
+        END
+        MENUITEM SEPARATOR
+        POPUP "&Arrange"
+        BEGIN
+            MENUITEM "Bring to &Front\tCtrl+Shift+]", 
+                                                    ID_GUIED_ITEM_ARRANGEBRINGTOFRONT
+
+            MENUITEM "Bring F&orward\tCtrl+]",      ID_GUIED_ITEM_ARRANGEBRINGFORWARD
+
+            MENUITEM "Send to &Back\tCtrl+Shift+[", ID_GUIED_ITEM_ARRANGESENDTOBACK
+
+            MENUITEM "Send B&ackward\tCtrl+[",      ID_GUIED_ITEM_ARRANGESENDBACKWARD
+
+            MENUITEM SEPARATOR
+            MENUITEM "&Make Child",                 ID_GUIED_ITEM_ARRANGEMAKECHILD
+
+        END
+        POPUP "A&lign"
+        BEGIN
+            MENUITEM "&Lefts\tCtrl+Left Arrow",     ID_GUIED_ITEM_ALIGNLEFTS
+            MENUITEM "&Centers",                    ID_GUIED_ITEM_ALIGNCENTERS
+
+            MENUITEM "&Rights\tCtrl+Right Arrow",   ID_GUIED_ITEM_ALIGNRIGHTS
+
+            MENUITEM SEPARATOR
+            MENUITEM "&Tops\tCtrl+Up Arrow",        ID_GUIED_ITEM_ALIGNTOPS
+            MENUITEM "&Middles",                    ID_GUIED_ITEM_ALIGNMIDDLES
+
+            MENUITEM "&Bottoms\tCtrl+Down Arrow",   ID_GUIED_ITEM_ALIGNBOTTOMS
+
+        END
+        POPUP "&Make Same Size"
+        BEGIN
+            MENUITEM "&Width",                      ID_GUIED_ITEM_MAKESAMESIZEWIDTH
+
+            MENUITEM "&Height",                     ID_GUIED_ITEM_MAKESAMESIZEHEIGHT
+
+            MENUITEM "&Both",                       ID_GUIED_ITEM_MAKESAMESIZEBOTH
+
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Scripts...\tCtrl+Enter",     ID_GUIED_ITEM_SCRIPTS
+        MENUITEM "&Properties...\tAlt+Enter",   ID_GUIED_ITEM_PROPERTIES
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_GUIED_ABOUT DIALOGEX 0, 0, 222, 71
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | 
+    WS_CAPTION | WS_SYSMENU
+CAPTION "About GUI Editor"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "GUI Editor",IDC_STATIC,35,7,62,8
+    LTEXT           "Version 0.15",IDC_STATIC,35,17,41,8
+    LTEXT           "Original version by Raven",IDC_STATIC,35,
+                    28,134,8
+    DEFPUSHBUTTON   "OK",IDOK,165,50,50,14
+    ICON            IDI_GUIED,IDC_STATIC,7,7,20,20
+END
+
+IDD_GUIED_OPTIONS_GRID DIALOGEX 0, 0, 221, 119
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_NOFAILCREATE | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Color:",IDC_STATIC,147,41,46,8
+    CONTROL         "Button1",IDC_GUIED_GRIDCOLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,145,51,50,14
+    GROUPBOX        "Spacing",IDC_STATIC,7,41,128,53
+    LTEXT           "&Width:",IDC_STATIC,15,57,27,8
+    LTEXT           "&Height:",IDC_STATIC,15,74,29,8
+    EDITTEXT        IDC_GUIED_SPACINGWIDTH,44,54,38,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    EDITTEXT        IDC_GUIED_SPACINGHEIGHT,44,73,38,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    CONTROL         "&Show Grid",IDC_GUIED_GRIDVISIBLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,106,10
+    CONTROL         "S&nap To Grid",IDC_GUIED_GRIDSNAP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,21,106,10
+END
+
+IDD_GUIED_ITEMPROPS_GENERAL DIALOGEX 0, 0, 243, 217
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "&Name:",IDC_STATIC,7,7,22,8
+    EDITTEXT        IDC_GUIED_ITEMNAME,7,17,107,13,ES_AUTOHSCROLL | WS_GROUP
+    CONTROL         "&Visible",IDC_GUIED_ITEMVISIBLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,21,55,41,10
+    CONTROL         "No &Events",IDC_GUIED_ITEMNOEVENTS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,21,70,49,10
+    CONTROL         "No &Time",IDC_GUIED_ITEMNOTIME,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,92,55,41,10
+    CONTROL         "No &Clip",IDC_GUIED_ITEMNOCLIP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,92,69,38,10
+    GROUPBOX        "States",IDC_STATIC,7,39,229,53
+    CONTROL         "No C&ursor",IDC_GUIED_ITEMNOCURSOR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,157,55,48,10
+    LTEXT           "T&ype:",IDC_STATIC,126,7,20,8
+    EDITTEXT        IDC_GUIED_TYPE,125,17,107,13,ES_AUTOHSCROLL | 
+                    ES_READONLY | WS_GROUP | NOT WS_TABSTOP
+END
+
+IDD_GUIED_OPTIONS_GENERAL DIALOGEX 0, 0, 230, 137
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "Button1",IDC_GUIED_SELECTIONCOLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,7,17,50,14
+    LTEXT           "&Selection Color:",IDC_STATIC,7,7,51,8
+    CONTROL         "&Ignore Desktop Select",IDC_GUIED_IGNOREDESKTOP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,41,147,10
+END
+
+IDD_GUIED_ITEMKEY DIALOGEX 0, 0, 266, 49
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | 
+    WS_CAPTION | WS_SYSMENU
+CAPTION "Modify Item Key"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "&Key:",IDC_STATIC,7,10,16,8
+    EDITTEXT        IDC_GUIED_ITEMKEY,29,7,169,14,ES_AUTOHSCROLL
+    LTEXT           "&Value:",IDC_STATIC,7,31,21,8
+    EDITTEXT        IDC_GUIED_ITEMVALUE,29,28,170,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,209,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,209,24,50,14
+END
+
+IDD_GUIED_ALPHA DIALOGEX 0, 0, 160, 17
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_GUIED_ALPHA,129,2,28,12,ES_AUTOHSCROLL | NOT 
+                    WS_BORDER,WS_EX_STATICEDGE
+    CONTROL         "Custom1",IDC_GUIED_ALPHASLIDER,"GUIED_ALPHASLIDER",
+                    WS_TABSTOP,2,2,125,13
+END
+
+IDD_GUIED_SCRIPTS DIALOGEX 0, 0, 448, 215
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU | 
+    WS_THICKFRAME
+CAPTION "Item Scripts"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_GUIED_SCRIPT,"RichEdit20A",ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN | 
+                    WS_BORDER | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP,7,7,434,
+                    201
+END
+
+IDD_GUIED_ITEMPROPS_KEYS DIALOGEX 0, 0, 240, 212
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_GUIED_ITEMKEYS,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | 
+                    WS_BORDER | WS_TABSTOP,7,25,226,180
+    PUSHBUTTON      "&Add",IDC_GUIED_ADDKEY,103,7,40,14
+    PUSHBUTTON      "&Edit",IDC_GUIED_EDITKEY,148,7,40,14
+    PUSHBUTTON      "&Delete",IDC_GUIED_DELETEKEY,193,7,40,14
+END
+
+IDD_GUIED_ITEM_VARIABLES DIALOGEX 0, 0, 240, 209
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Item Variables"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_GUIED_ITEMVARIABLES,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | 
+                    WS_BORDER | WS_TABSTOP,7,7,181,193
+    PUSHBUTTON      "&Add",IDC_GUIED_ADDVARIABLE,193,7,40,14
+    PUSHBUTTON      "&Edit",IDC_GUIED_EDITVARIABLE,193,26,40,14
+    PUSHBUTTON      "&Delete",IDC_GUIED_DELETEVARIABLE,193,45,40,14
+    PUSHBUTTON      "OK",IDOK,193,163,40,14
+END
+
+IDD_GUIED_ITEMPROPS_TEXT DIALOGEX 0, 0, 238, 217
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "&Text:",IDC_GUIED_USETEXT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,7,33,10
+    EDITTEXT        IDC_GUIED_ITEMTEXT,7,19,224,32,ES_AUTOHSCROLL
+    LTEXT           "&Font:",IDC_GUIED_STATIC_FONT,8,58,18,8
+    COMBOBOX        IDC_GUIED_ITEMTEXTFONT,7,69,105,71,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Scale:",IDC_GUIED_STATIC_SCALE,126,58,20,8
+    EDITTEXT        IDC_GUIED_ITEMTEXTSCALE,124,69,38,12,ES_AUTOHSCROLL
+    CONTROL         "",IDC_GUIED_ITEMTEXTSCALE_SPIN,"msctls_updown32",
+                    UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,155,69,11,
+                    14
+    LTEXT           "&Color:",IDC_GUIED_STATIC_COLOR,180,58,20,8
+    CONTROL         "Button1",IDC_GUIED_ITEMFORECOLOR,"Button",BS_OWNERDRAW | 
+                    WS_GROUP | WS_TABSTOP,178,69,32,14
+    CONTROL         "Button1",IDC_GUIED_ITEMFORECOLORALPHA,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,211,69,19,14
+    LTEXT           "&Alignment:",IDC_GUIED_STATIC_ALIGNMENT,8,98,35,8
+    COMBOBOX        IDC_GUIED_ITEMTEXTALIGN,47,95,58,71,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&X:",IDC_GUIED_STATIC_X,113,98,8,8
+    EDITTEXT        IDC_GUIED_ITEMTEXTALIGNX,121,95,45,12,ES_AUTOHSCROLL
+    LTEXT           "&Y:",IDC_GUIED_STATIC_Y,178,98,8,8
+    EDITTEXT        IDC_GUIED_ITEMTEXTALIGNY,186,95,45,12,ES_AUTOHSCROLL
+    CONTROL         "&No Wrap",IDC_GUIED_ITEMTEXTNOWRAP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,121,44,10
+END
+
+IDD_GUIED_ITEMPROPS_IMAGE DIALOGEX 0, 0, 243, 233
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Background",IDC_STATIC,7,7,229,93
+    CONTROL         "&Backcolor:",IDC_GUIED_USEBACKCOLOR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,22,49,10
+    CONTROL         "Button1",IDC_GUIED_ITEMBACKCOLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,68,20,32,14
+    CONTROL         "Button1",IDC_GUIED_ITEMBACKCOLORALPHA,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,100,20,19,14
+    CONTROL         "&Material:",IDC_GUIED_USEMATERIAL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,44,44,10
+    EDITTEXT        IDC_GUIED_ITEMBACKGROUND,77,42,152,14,ES_AUTOHSCROLL
+    LTEXT           "&X Scale:",IDC_GUIED_XSCALE_STATIC,78,62,26,8
+    EDITTEXT        IDC_GUIED_ITEMMATSCALEX,105,60,42,13,ES_AUTOHSCROLL
+    LTEXT           "&Y Scale:",IDC_GUIED_YSCALE_STATIC,160,62,26,8
+    EDITTEXT        IDC_GUIED_ITEMMATSCALEY,187,60,42,13,ES_AUTOHSCROLL
+    CONTROL         "&Disable Cache",IDC_GUIED_ITEMVARIABLEBACKGROUND,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,77,79,61,10
+    GROUPBOX        "Border",IDC_STATIC,7,105,229,78
+    LTEXT           "&Size:",IDC_STATIC,19,119,16,8
+    EDITTEXT        IDC_GUIED_ITEMBORDERSIZE,38,118,39,13,ES_AUTOHSCROLL
+    CONTROL         "&Color:",IDC_GUIED_USEBORDERCOLOR,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,19,143,35,10
+    CONTROL         "Button1",IDC_GUIED_ITEMBORDERCOLOR,"Button",
+                    BS_OWNERDRAW | WS_GROUP | WS_TABSTOP,68,140,32,14
+    CONTROL         "Button1",IDC_GUIED_ITEMBORDERCOLORALPHA,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,100,140,19,14
+    CONTROL         "&Material",IDC_GUIED_USEBORDERMATERIAL,"Button",
+                    BS_AUTORADIOBUTTON,19,163,41,10
+    EDITTEXT        IDC_GUIED_ITEMBORDERMATERIAL,77,161,151,14,
+                    ES_AUTOHSCROLL
+    GROUPBOX        "General",IDC_STATIC,7,189,229,37
+    LTEXT           "Ma&tcolor:",IDC_GUIED_ITEMMATCOLORSTATIC,19,205,31,8
+    CONTROL         "Button1",IDC_GUIED_ITEMMATCOLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,55,202,32,14
+    CONTROL         "Button1",IDC_GUIED_ITEMMATCOLORALPHA,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,87,202,19,14
+END
+
+IDD_GUIED_TRANSFORMER DIALOGEX 0, 0, 124, 32
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "X:",IDC_STATIC,6,3,8,8
+    EDITTEXT        IDC_GUIED_ITEMRECTX,14,2,43,12,ES_AUTOHSCROLL | NOT 
+                    WS_BORDER,WS_EX_STATICEDGE
+    LTEXT           "Y:",IDC_STATIC,6,19,8,8
+    EDITTEXT        IDC_GUIED_ITEMRECTY,14,17,43,12,ES_AUTOHSCROLL | NOT 
+                    WS_BORDER,WS_EX_STATICEDGE
+    LTEXT           "W:",IDC_STATIC,64,3,10,8
+    EDITTEXT        IDC_GUIED_ITEMRECTW,73,2,43,12,ES_AUTOHSCROLL | NOT 
+                    WS_BORDER,WS_EX_STATICEDGE
+    LTEXT           "H:",IDC_STATIC,65,19,8,8
+    EDITTEXT        IDC_GUIED_ITEMRECTH,73,17,43,12,ES_AUTOHSCROLL | NOT 
+                    WS_BORDER,WS_EX_STATICEDGE
+END
+
+IDD_GUIED_CHECKIN DIALOGEX 0, 0, 250, 137
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | 
+    WS_CAPTION | WS_SYSMENU
+CAPTION "Check In"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Filename:",IDC_STATIC,7,7,33,8
+    EDITTEXT        IDC_GUIED_FILENAME,7,16,236,14,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    LTEXT           "&Comment:",IDC_STATIC,7,37,33,8
+    EDITTEXT        IDC_GUIED_COMMENT,7,46,236,60,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | ES_WANTRETURN
+    DEFPUSHBUTTON   "OK",IDOK,129,116,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,193,116,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_GUIED_ABOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 215
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 64
+    END
+
+    IDD_GUIED_OPTIONS_GRID, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 214
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 112
+    END
+
+    IDD_GUIED_ITEMPROPS_GENERAL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 236
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 210
+    END
+
+    IDD_GUIED_OPTIONS_GENERAL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 223
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 130
+    END
+
+    IDD_GUIED_ITEMKEY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 259
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 42
+    END
+
+    IDD_GUIED_ALPHA, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 157
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 15
+    END
+
+    IDD_GUIED_SCRIPTS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 441
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 208
+    END
+
+    IDD_GUIED_ITEMPROPS_KEYS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 233
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 205
+    END
+
+    IDD_GUIED_ITEM_VARIABLES, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 233
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_GUIED_ITEMPROPS_TEXT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 231
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 210
+    END
+
+    IDD_GUIED_ITEMPROPS_IMAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 236
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 226
+    END
+
+    IDD_GUIED_TRANSFORMER, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 120
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 29
+    END
+
+    IDD_GUIED_CHECKIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 243
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 130
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_GUIED_ACCELERATORS ACCELERATORS 
+BEGIN
+    "C",            ID_GUIED_EDIT_COPY,     VIRTKEY, CONTROL, NOINVERT
+    VK_DELETE,      ID_GUIED_EDIT_DELETE,   VIRTKEY, NOINVERT
+    "V",            ID_GUIED_EDIT_PASTE,    VIRTKEY, CONTROL, NOINVERT
+    "Y",            ID_GUIED_EDIT_REDO,     VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_GUIED_EDIT_UNDO,     VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_GUIED_FILE_NEW,      VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_GUIED_FILE_OPEN,     VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_GUIED_FILE_SAVE,     VIRTKEY, CONTROL, NOINVERT
+    VK_DOWN,        ID_GUIED_ITEM_ALIGNBOTTOMS, VIRTKEY, CONTROL, NOINVERT
+    VK_LEFT,        ID_GUIED_ITEM_ALIGNLEFTS, VIRTKEY, CONTROL, NOINVERT
+    VK_RIGHT,       ID_GUIED_ITEM_ALIGNRIGHTS, VIRTKEY, CONTROL, NOINVERT
+    VK_UP,          ID_GUIED_ITEM_ALIGNTOPS, VIRTKEY, CONTROL, NOINVERT
+    VK_OEM_6,       ID_GUIED_ITEM_ARRANGEBRINGFORWARD, VIRTKEY, CONTROL, 
+                                                    NOINVERT
+    VK_OEM_6,       ID_GUIED_ITEM_ARRANGEBRINGTOFRONT, VIRTKEY, SHIFT, 
+                                                    CONTROL, NOINVERT
+    VK_OEM_4,       ID_GUIED_ITEM_ARRANGESENDBACKWARD, VIRTKEY, CONTROL, 
+                                                    NOINVERT
+    VK_OEM_4,       ID_GUIED_ITEM_ARRANGESENDTOBACK, VIRTKEY, SHIFT, CONTROL, 
+                                                    NOINVERT
+    VK_RETURN,      ID_GUIED_ITEM_PROPERTIES, VIRTKEY, ALT, NOINVERT
+    VK_RETURN,      ID_GUIED_ITEM_SCRIPTS,  VIRTKEY, CONTROL, NOINVERT
+    "T",            ID_GUIED_TOOLS_VIEWER,  VIRTKEY, CONTROL, NOINVERT
+    "H",            ID_GUIED_VIEW_HIDESELECTED, VIRTKEY, NOINVERT
+    VK_OEM_7,       ID_GUIED_VIEW_SHOWGRID, VIRTKEY, CONTROL, NOINVERT
+    "H",            ID_GUIED_VIEW_SHOWHIDDEN, VIRTKEY, SHIFT, NOINVERT
+    VK_OEM_7,       ID_GUIED_VIEW_SNAPTOGRID, VIRTKEY, SHIFT, CONTROL, 
+                                                    NOINVERT
+    "U",            ID_GUIED_VIEW_UNHIDESELECTED, VIRTKEY, NOINVERT
+    VK_OEM_PLUS,    ID_GUIED_VIEW_ZOOMIN,   VIRTKEY, CONTROL, NOINVERT
+    VK_OEM_MINUS,   ID_GUIED_VIEW_ZOOMOUT,  VIRTKEY, CONTROL, NOINVERT
+    "M",            ID_GUIED_TOOLS_RELOADMATERIALS, VIRTKEY, CONTROL, 
+                                                    NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_GUIED_NAV_VISIBLE   ICON                    "res\\guied_nav_visible.ico"
+IDI_GUIED_NAV_SCRIPTS   ICON                    "res\\guied_scripts.ico"
+IDI_GUIED               ICON                    "res\\guied.ico"
+IDI_GUIED_NAV_VISIBLEDISABLED ICON                    "res\\guied_nav_visibledisabled.ico"
+IDI_GUIED_NAV_SCRIPTSHI ICON                    "res\\guied_scripts_white.ico"
+IDI_GUIED_NAV_COLLAPSE  ICON                    "res\\guied_collapse.ico"
+IDI_GUIED_NAV_EXPAND    ICON                    "res\\guied_expand.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_GUIED_ITEMPROPS_TEXT DLGINIT
+BEGIN
+    IDC_GUIED_ITEMTEXTFONT, 0x403, 10, 0
+0x643c, 0x6665, 0x7561, 0x746c, 0x003e, 
+    IDC_GUIED_ITEMTEXTFONT, 0x403, 7, 0
+0x7473, 0x6f72, 0x6767, "\000" 
+    IDC_GUIED_ITEMTEXTFONT, 0x403, 6, 0
+0x6863, 0x6961, 0x006e, 
+    IDC_GUIED_ITEMTEXTALIGN, 0x403, 5, 0
+0x654c, 0x7466, "\000" 
+    IDC_GUIED_ITEMTEXTALIGN, 0x403, 7, 0
+0x6543, 0x746e, 0x7265, "\000" 
+    IDC_GUIED_ITEMTEXTALIGN, 0x403, 6, 0
+0x6952, 0x6867, 0x0074, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_GUIED_VIEWERTOOLBAR TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_GUIED_VIEWER_PLAY
+    BUTTON      ID_GUIED_VIEWER_PAUSE
+    BUTTON      ID_GUIED_VIEWER_START
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_GUIED_VIEWERTOOLBAR BITMAP                  "res\\guied_viewer_toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_GUIED_HAND          CURSOR                  "res\\guied_hand.cur"
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

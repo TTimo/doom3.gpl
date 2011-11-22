@@ -1,0 +1,192 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "PDAEditor_resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "PDAEditor_resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG_PDA_EDITOR DIALOGEX 0, 0, 396, 238
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "PDA Editor"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "PDAs:",IDC_STATIC,7,7,20,8
+    LISTBOX         IDC_LIST_PDAS,7,20,92,189,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Full Name:",IDC_STATIC,110,23,34,8
+    EDITTEXT        IDC_EDIT_FULLNAME,162,20,79,14,ES_AUTOHSCROLL
+    LTEXT           "Short Name:",IDC_STATIC,110,40,41,8
+    EDITTEXT        IDC_EDIT_SHORTNAME,162,37,79,14,ES_AUTOHSCROLL
+    LTEXT           "Title:",IDC_STATIC,109,58,17,8
+    EDITTEXT        IDC_EDIT_TITLE,162,54,79,14,ES_AUTOHSCROLL
+    LTEXT           "Post (Location):",IDC_STATIC,110,74,52,8
+    EDITTEXT        IDC_EDIT_POST,162,71,79,14,ES_AUTOHSCROLL
+    LTEXT           "Security Level:",IDC_STATIC,110,91,48,8
+    EDITTEXT        IDC_EDIT_SECURITY,162,88,79,14,ES_AUTOHSCROLL
+    LTEXT           "ID Number:",IDC_STATIC,110,108,41,8
+    EDITTEXT        IDC_EDIT_IDNUM,162,105,51,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Rand",IDC_BUTTON_RANDOMID,216,105,25,14
+    GROUPBOX        "Email",IDC_STATIC,254,20,133,99
+    LISTBOX         IDC_LIST_EMAIL,261,32,117,65,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Add...",IDC_BUTTON_EMAIL_ADD,262,98,38,14
+    PUSHBUTTON      "Edit...",IDC_BUTTON_EMAIL_EDIT,302,98,38,14
+    PUSHBUTTON      "Delete...",IDC_BUTTON_EMAIL_DELETE,342,98,38,14
+    GROUPBOX        "Audio Logs",IDC_STATIC,110,128,132,81
+    LISTBOX         IDC_LIST_AUDIO,117,140,117,49,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Add...",IDC_BUTTON_AUDIO_ADD,118,190,38,14
+    PUSHBUTTON      "Edit...",IDC_BUTTON_AUDIO_EDIT,157,190,38,14
+    PUSHBUTTON      "Delete...",IDC_BUTTON_AUDIO_DELETE,196,190,38,14
+    GROUPBOX        "Videos",IDC_STATIC,254,128,134,81
+    LISTBOX         IDC_LIST_VIDEO,262,140,117,49,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Add...",IDC_BUTTON_VIDEO_ADD,262,190,38,14
+    PUSHBUTTON      "Edit...",IDC_BUTTON_VIDEO_EDIT,302,190,38,14
+    PUSHBUTTON      "Delete...",IDC_BUTTON_VIDEO_DELETE,342,190,38,14
+    PUSHBUTTON      "Save",IDC_BUTTON_SAVE,284,217,50,14
+    PUSHBUTTON      "Close",IDCANCEL,338,217,50,14
+    RTEXT           "This mostly works.  You can't delete anything, or edit audio logs/videos",
+                    IDC_STATIC,146,7,242,8
+    PUSHBUTTON      "Add",IDC_BUTTON_PDA_ADD,7,209,26,14
+    PUSHBUTTON      "Del",IDC_BUTTON_PDA_DEL,37,209,25,14
+END
+
+IDD_DIALOG_PDA_EDIT_EMAIL DIALOGEX 0, 0, 262, 186
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "EMail Editor"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "To:",IDC_STATIC,7,10,12,8
+    EDITTEXT        IDC_EDIT_TO,43,7,212,14,ES_AUTOHSCROLL
+    LTEXT           "From:",IDC_STATIC,7,25,20,8
+    EDITTEXT        IDC_EDIT_FROM,43,22,212,14,ES_AUTOHSCROLL
+    LTEXT           "Date:",IDC_STATIC,7,40,19,8
+    EDITTEXT        IDC_EDIT_DATE,43,37,212,14,ES_AUTOHSCROLL
+    LTEXT           "Subject:",IDC_STATIC,7,55,28,8
+    EDITTEXT        IDC_EDIT_SUBJECT,43,52,212,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_BODY,7,70,248,91,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_WANTRETURN | WS_VSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,154,165,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,205,165,50,14
+END
+
+IDD_DIALOG_PDA_ADD DIALOGEX 0, 0, 186, 70
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "New PDA"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "New PDA Name:",IDC_STATIC,7,15,53,8
+    EDITTEXT        IDC_EDIT1,66,12,113,14,ES_AUTOHSCROLL
+    LTEXT           "(mapname_lastname)",IDC_STATIC,66,32,70,8
+    DEFPUSHBUTTON   "OK",IDOK,41,49,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,97,49,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_DIALOG_PDA_EDITOR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 388
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 231
+    END
+
+    IDD_DIALOG_PDA_EDIT_EMAIL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 255
+        VERTGUIDE, 43
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 179
+        HORZGUIDE, 14
+        HORZGUIDE, 29
+        HORZGUIDE, 44
+        HORZGUIDE, 59
+    END
+
+    IDD_DIALOG_PDA_ADD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        VERTGUIDE, 66
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 63
+        HORZGUIDE, 19
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

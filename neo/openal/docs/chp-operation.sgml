@@ -1,0 +1,977 @@
+
+    <chapter id="oal-operation">
+    <title>&OAL; Operation</title>
+
+     <sect1>
+     <title>&OAL; Fundamentals</title>
+     <para>
+       &OAL; (henceforth, the "&AL;") is concerned only with rendering audio 
+       into an output buffer,
+       and primarily meant for spatialized audio.
+       There is no support for reading audio input from buffers at this
+       time, and no support for MIDI and other components usually
+       associated with audio hardware. Programmers must relay on other
+       mechanisms to obtain audio (e.g. voice) input or generate music.
+     </para>
+     <para>
+       The &AL; has three fundamental primitives or objects -- Buffers, Sources, 
+       and a single Listener. Each object can be changed independently,
+       the setting of one object does not affect the setting of others.
+       The application can also set modes that affect processing. Modes
+       are set, objects specified, and other &AL; operations performed
+       by sending commands in the form of function or procedure calls. 
+     </para><para>
+       Sources store locations, directions, and other attributes of an object in 3D
+       space and have a buffer associated with them for playback.  There are
+       normally far more sources defined than buffers. When the program wants to play
+       a sound, it controls execution through a source object. Sources are
+       processed independently from each other.
+    </para><para>
+       Buffers store compressed or un-compressed audio data.  It is common to
+       initialize a large set of buffers when the program first starts (or at
+       non-critical times during execution -- between levels in a game, for instance).
+       Buffers are referred to by Sources. Data (audio sample data) is associated
+       with buffers. 
+     </para><para>
+       There is only one listener (per audio context).  The listener attributes are
+       similar to source attributes, but are used to represent where the user is
+       hearing the audio from.  The influence of all the sources from the
+       perspective of the listener is mixed and played for the user.
+    </para>
+  
+    <![ %RFC [
+       <note id="rfc-bk000926-03"><title>RFC: Data Binding</title><para>  
+         Have to specifiy when pointer arguments are dereferenced.
+      </para></note>
+    ]]>
+     <sect2>
+     <title>Primitive Types</title>
+     <para>
+        As &AL; is meant to allow for seamless integration with &OGL; code
+        if needed, the &AL; primitive (scalar) data types mimic the
+        &OGL; data types. Guaranteed minimum sizes are stated for &OGL;
+        data types (see table 2.2 of the &OGL; 1.2 Specification), but 
+        the actual choice of C datatype is left to the implementation. 
+        All implementations on a given binary architecture, however, must 
+        use a common definition of these datatypes. 
+     </para>
+
+     <![ %RFC [
+      <note><title>RFC/000507:</title><para>
+         ALlong/ALulong are omitted from the Linux OpenGL Base ABI,
+         and the GL specification. Do we want to go ahead on this,
+         or trail GL? Do we include non-i386 architectures to list
+         sizes explicitely. I.e. do we make the ABI part of our
+         mandate?
+       </para></note>
+     ]]>
+
+    <para>
+     Note that this table uses explicit AL prefixes for clarity,
+     while they might be omitted from the rest of the document
+     for brevity. GCC equivalents are given for IA32, i.e. a
+     portable and widely available compiler on the most common
+     target architecture. 
+    <table>
+    <title>&AL; Primitive Data Types</title>
+    <tgroup cols="4" align="left" colsep=1 rowsep=1>
+    <colspec colname=c1>
+    <colspec colname=c2>
+    <thead>
+    <row>
+       <entry>AL Type</>
+       <entry>Description</>        
+       <entry>GL Type</>  
+       <entry>GCC IA32</entry>
+    </row>
+    </thead>
+    <tbody>
+    <row>
+        <entry> ALboolean                            </entry>
+        <entry> 8-bit boolean                        </entry>
+        <entry> GLboolean                            </entry>
+        <entry> unsigned char                        </entry>
+    </row>
+    <row>
+        <entry> ALbyte                               </entry>
+        <entry> signed 8-bit 2's-complement integer  </entry>
+        <entry> GLbyte                               </entry>
+        <entry> signed char                          </entry>
+    </row>
+    <row >
+        <entry> ALubyte                              </entry>
+        <entry> unsigned 8-bit integer               </entry>
+        <entry> GLubyte                              </entry>
+        <entry> unsigned char                        </entry>
+    </row>
+    <row>
+        <entry> ALshort                              </entry>
+        <entry> signed 16-bit 2's-complement integer </entry>
+        <entry> GLshort                              </entry>
+        <entry> short                                </entry>
+    </row
+    <row>
+        <entry> ALushort                             </entry>
+        <entry> unsigned 16-bit integer              </entry>
+        <entry> GLushort                             </entry>
+        <entry> unsigned short                       </entry>
+    </row>
+    <row>
+        <entry> ALint                                </entry>
+        <entry> signed 32-bit 2's-complement integer </entry>
+        <entry> GLint                                </entry>
+        <entry> int                                  </entry>
+    </row>
+    <row>
+        <entry> ALuint                               </entry>
+        <entry> unsigned 32-bit integer              </entry>
+        <entry> GLuint                               </entry>
+        <entry> unsigned int                         </entry>
+    </row>
+  <![ %RFC [
+    <row>
+        <entry> ALlong                               </entry>
+        <entry> signed 64-bit 2's-complement integer </entry>
+        <entry> n/a                                  </entry>
+        <entry> long long                            </entry>
+    </row>
+    <row>
+        <entry> ALulong                              </entry>
+        <entry> unsigned 64-bit integer              </entry>
+        <entry> n/a                                  </entry>
+        <entry> unsigned long long                   </entry>
+    </row>
+  ]]>
+    <row>
+        <entry> ALsizei                              </entry>
+        <entry> non-negative 32-bit binary integer size </entry>
+        <entry> GLsizei                              </entry>
+        <entry> int                                  </entry>
+    </row>
+    <row>
+        <entry> ALenum                               </entry>
+        <entry> enumerated 32-bit value              </entry>
+        <entry> GLenum                               </entry>
+        <entry> unsigned int                         </entry>
+    </row>
+    <row>
+        <entry> ALbitfield                           </entry>
+        <entry> 32 bit bitfield                      </entry>
+        <entry> GLbitfield                           </entry>
+        <entry> unsigned int                         </entry>
+    </row>
+    <row>
+        <entry> ALfloat                              </entry>
+        <entry> 32-bit IEEE754 floating-point        </entry>
+        <entry> GLfloat                              </entry>
+        <entry> float                                </entry>
+    </row>
+    <row>
+        <entry> ALclampf                             </entry>
+        <entry> Same as ALfloat, but in range [0, 1] </entry>
+        <entry> GLclampf                             </entry>
+        <entry> float                                </entry>
+    </row>
+    <row>
+        <entry> ALdouble                             </entry>
+        <entry> 64-bit IEEE754 floating-point        </entry>
+        <entry> GLdouble                             </entry>
+        <entry> double                               </entry>
+    </row>
+    <row>
+        <entry> ALclampd                             </entry>
+        <entry> Same as ALdouble, but in range [0, 1] </entry>
+        <entry> GLclampd                             </entry>
+        <entry> double                               </entry>
+    </row>
+    </tbody>
+    </tgroup>
+    </table>
+    </para>
+
+
+      
+    <![ %Annote [
+       <note><title>Annotation on Type Sizes</title><para>
+         It would be desirable to guarantee the bit size of &AL; data
+         types, but this might affect the mapping to &OGL; types
+         for which the &OGL; specification only guarantees a minimum 
+         size.
+       </para></note>
+       <note><title>Annotation on 64bit integral</title><para>
+         It would be desirable to define ulong and long, but again
+         we defer to &OGL; in this decision.
+       </para></note>
+       <note><title>Annotation on Enumeration</title><para>
+         &enum; is not a C or C++ enumeration, but implemented as
+         C preprocesor defines. This makes it easier to handle
+         extensions to the &AL; namespace, in particular in
+         dealing with delays in distributing updated reference 
+         headers.
+       </para></note>
+    ]]>
+    </sect2>
+    <sect2>
+     <title>Floating-Point Computation</title>
+     <para>
+       Any representable floating-point value is legal as input
+       to a &AL; command that requires floating point data.
+       The result of providing a value that is not a floating
+       point number to such a command is unspecified, but must not
+       lead to &AL; interruption or termination. In IEEE arithmetic,
+       for example, providing a negative zero or a denormalized
+       number to a GL command yields predictable results, while
+       providing an NaN or infinity yields unspecified results.
+     </para><para>
+       Some calculations require division. In such cases (including
+       implied divisions required by vector normalizations), a
+       division by zero produces an unspecified result but must
+       not lead to GL interruption or termination.
+     </para>
+    </sect2>
+    </sect1>
+     
+    <sect1>
+     <title>AL State</title>
+     <para>
+       The &AL; maintains considerable state. This documents enumerates
+       each state variable and describes how each variable can be
+       changed. For purposes of discussion, state variables are
+       categorized somewhat arbitrarily by their function. For example,
+       although we describe operations that the &AL; performs on the
+       implied output buffer, the outbut buffer is not part of the
+       &AL; state. Certain states of &AL; objects (e.g. buffer states
+       with respect to queueing) are introduced for discussion purposes, 
+       but not exposed through the API.
+     </para>
+    </sect1>
+
+    <sect1>
+     <title>AL Command Syntax</title>
+     <para>
+        &AL; commands are functions or procedures. Various groups of
+        commands perform the same operation but differ in how
+        arguments are supplied to them. To conveniently accomodate 
+        this variation, we adopt the &OGL; nnotation for describing
+        commands and their arguments. 
+     </para>
+
+     <![ %Annote [
+      <note><title>Annotation (Not all types supported yet)</title><para>
+          At this time &AL; does not support the full flexibility that
+          &OGL; offers. Certain entry points are supported only for
+          some data types. In general, &AL; tends to use less entry
+          points, using setter commands that use the same tokens
+          as the matching query commands.  
+       </para></note>
+    ]]>
+
+    </sect1>
+
+     <sect1>
+     <title>Basic AL Operation</title>
+     <para>
+       &AL; can be used for a variety of audio playback tasks, and is an
+       excellent complement to &OGL; for real-time rendering.  A programmer who is
+       familiar with &OGL; will immediately notice the similarities between the
+       two APIs in that they describe their 3D environments using similar methods.
+     </para>
+    <para>
+       For an &OGL;/&AL; program, most of the audio programming will be in two
+       places in the code: initialization of the program, and the rendering loop. 
+       An &OGL;/&AL; program will typically contain a section where the graphics and 
+       audio systems are initialized, although it may be spread into multiple functions.
+       For OpenAL, initialization normally consists of creating a context, creating
+       the initial set of buffers, loading the buffers with sample data, creating 
+       sources, attaching buffers to sources, setting locations and directions for 
+       the listener and sources, and setting the initial values for state global 
+       to &AL;.
+    </para>
+
+  <example>
+      <title>Initialization Example</title>
+     <para>
+          &sample.c;
+     </para>
+   <programlisting>    
+  </programlisting>
+       </example>
+
+    <![ %Example [   
+      <example>
+      <title>Initialization Example</title>
+      <programlisting>
+      &ExInitAL.c;
+       </programlisting>
+       </example>
+    ]]>
+
+   <para>
+      The audio update within
+      the rendering loop normally consists of telling &AL; the current locations
+      of the sources and listener, updating the environment settings, and managing
+      buffers.
+   </para>
+
+    <![ %Example [
+      <example>
+      <title>Processing Loop</title>
+      <programlisting>
+// PlaceCamera -- places OpenGL camera and updates OpenAL listener position and source state
+void 3DEnvironemnt:PlaceCamera()
+{
+   // update OpenGL camera position
+   glMatrixMode(GL_PROJECTION);
+   glLoadIdentity();
+   glFrustum(-0.1333, 0.1333, -0.1, 0.1, 0.2, 50.0);
+
+   gluLookAt(listenerPos[0], listenerPos[1], listenerPos[2],
+      (listenerPos[0] + sin(listenerAngle)), listenerPos[1], (listenerPos[2] - cos(listenerAngle)),
+      0.0, 1.0, 0.0);
+
+   // OpenAL stuff...
+   // place listener at camera
+   alListener3f(AL_POSITION, listenerPos[0], listenerPos[1], listenerPos[2]);
+   float directionvect[6];
+   directionvect[0] = (float) sin(listenerAngle);
+   directionvect[1] = 0;
+   directionvect[2] = (float) cos(listenerAngle);
+   directionvect[3] = 0;
+   directionvect[4] = 1;
+   directionvect[5] = 0;
+   alListenerfv(AL_ORIENTATION, directionvect);
+
+   // play phasor if in range, else stop playback
+   if (range() < 9)
+   {
+      alSourcePlay(source[1]);
+   } else
+   {
+      alSourceStop(source[1]);
+   }
+}       
+       </programlisting>
+       </example>
+    ]]>
+
+   </sect1>
+
+     <sect1 id="errors">
+     <title>AL Errors</title>
+     <para>
+       The AL detects only a subset of those conditions that could be
+       considered errors. This is because in many cases error checking
+       would adversely impact the performance of an error-free program.
+       The command
+      <funcsynopsis><funcprototype> 
+      <funcdef> &enum; <function> GetError </function></funcdef>
+      <void>
+      </funcprototype></funcsynopsis>
+      is used to obtain error information. Each detectable error is
+      assigned a numeric code. When an error is detected by AL, 
+      a flag is set and the error code is recorded. Further errors,
+      if they occur, do not affect this recorded code. When GetError
+      is called, the code is returned and the flag is cleared, so that
+      a further error will again record its code. If a call to GetError
+      returns NO_ERROR then there has been no detectable error since
+      the last call to GetError (or since the AL was initialized).
+     </para>
+   
+    <![ %RFC [
+       <note id="rfc-bk000926-04"><title>RFC: GL distributed error </title><para>  
+      To allow for distributed implementations there may be several
+      flag/code pairs. In this case, after a call to GetError returns a
+      value other than NO_ERROR each subsequent call returns the 
+      non-NO_ERROR code of another distinct flag-code pair (in 
+      unspecified order), until all NO_ERROR codes have been returned. 
+      When there are no more non-NO_ERROR codes, all flags be reset.
+      The initial state of all flags is cleared and the initial value
+      of all codes is NO_ERROR.
+     </para></note>
+     <note><title>Annotation (Looping GetError)</title><para>
+       &AL; applications are advised to loop calls of GetError to
+       make sure that all flags are reset. Only the first error
+       occurence for each flag/code pair is recorded, subsequent
+       errors are ignored. The result of a repeated GetError call
+       is not a stack trace or LIFO sequence. All error handling
+       is context specific.
+
+      </para></note>
+    ]]>
+    
+
+    <![ %Annote [
+      <note><title>Annotation (Only First Error)</title><para>
+       Like &OGL; &AL; will ignore subsequent errors once an
+       error conditation has been encountered.
+      </para></note>
+    ]]>
+
+    <para>
+      Error codes can be mapped to strings. The GetString function
+      returns a pointer to a constant (literal) string that is 
+      identical to the identifier used for the enumeration value,
+      as defined in the specification. 
+    </para>
+
+    <![ %Annote [
+      <note><title>Annotation/ Verbose Error String</title><para>
+        There is no need to maintain a separate GetErrorString
+        function (inspired by the proposed gluGetErrorStrings) 
+        as the existing GetString entry point can be used.
+      </para></note>
+    ]]> 
+   
+
+    <para>
+    <table>
+    <title>Error Conditions</title>
+    <tgroup cols="2" align="left" colsep=1 rowsep=1>
+    <colspec colname=c1>
+    <colspec colname=c2>
+    <thead>
+    <row>
+       <entry>Name</>
+       <entry>Description</>        
+    </row>
+    </thead>
+    <tbody>
+    <row>
+       <entry>NO_ERROR</>
+       <entry>"No Error" token.</>  
+    </row>
+    <row>
+       <entry>INVALID_NAME</>
+       <entry>Invalid Name parameter.</>  
+    </row>
+    <row>
+       <entry>INVALID_ENUM</>
+       <entry>Invalid parameter.</> 
+    </row>
+    <row>
+       <entry>INVALID_VALUE</>
+       <entry>Invalid enum parameter value.</>  
+    </row>
+    <row>
+       <entry>INVALID_OPERATION</>
+       <entry>Illegal call.</>  
+    </row>
+    <row>
+       <entry>OUT_OF_MEMORY</>
+       <entry>Unable to allocate memory.</>  
+    </row>
+    </tbody>
+    </tgroup>
+    </table>
+      The table summarizes the AL errors. Currently, when an error flag
+      is set, results of AL operations are undefined only if OUT_OF_MEMORY
+      has occured. In other cases, the command generating the error is
+      ignored so that it has no effect on AL state or output buffer
+      contents. If the error generating command returns a value,
+      it returns zero. If the generating command modifies values
+      through a pointer argument, no change is made to these values.
+      These error semantics apply only to AL errors, not to system errors
+      such as memory access errors.
+    </para>
+    <para>
+       Several error generation conditions are implicit in the description
+       of the various AL commands. First, if a command that requires
+       an enumerated value is passed a value that is not one of those
+       specified as allowable for that command, the error INVALID_ENUM
+       results. This is the case even if the argument is a pointer to
+       a symbolic constant if that value is not allowable for the given 
+       command.
+       This will occur whether the value is allowable for other functions,
+       or an invalid integer value.
+    </para>
+    <para>
+       Integer parameters that are used as names for &AL; objects
+       such as Buffers and Sources are checked for validity. If an invalid
+       name parameter is specified in an &AL; command, an
+       INVALID_NAME error will be generated, and the command is ignored.
+    </para>
+    <para>
+       If a negative integer is provided where an argument of type
+       &sizei; is specified, the error INVALID_VALUE results. The same
+       error will result from attempts to set integral and floating
+       point values for attributes exceeding the legal range for
+       these. The specification does not guarantee that the implementation 
+       emits INVALID_VALUE if a &NaN; or &Infty; value is 
+       passed in for a &float; or &double; argument (as the specification 
+       does not enforce possibly expensive testing of floating point
+       values).
+    </para>
+
+   <para>
+      Commands can be invalid. For example, certain commands might not be
+      applicable to a given object. There are also illegal combinations
+      of tokens and values as arguments to a command.  &AL; responds to any 
+      such illegal command with an INVALID_OPERATION error.  
+    </para>
+
+     <![ %Scratch [
+       <para>
+         No longer true except for extensions. To be avoided
+         in general:    &AL; has
+         mutually exclusive commands operating on similar objects.
+         One example is treating a streaming buffer as a 
+         non-streaming buffer, another is appending data to a 
+         non-streaming buffer. 
+       </para>
+    ]]>
+
+    <para>
+       If memory is exhausted as a side effect of the execution of an
+       AL command, either on system level or by exhausting the allocated
+       resources at AL's internal disposal, the error OUT_OF_MEMORY
+       may be generated. This can also happen independent of recent
+       commands if &AL; has to request memory for an internal task
+       and fails to allocate the required memory from the operating
+       system.
+    </para>
+    <para>
+       Otherwise errors are generated only for conditions that are 
+       explicitely described in this specification.
+    </para>
+
+   
+    <![ %RFC [
+       <note id="rfc-bk000807-01"><title>RFC: INVALID_SIZE?</title><para>  
+           Specific error case in which the size argument is
+           negative, or mismatches internal conditions for a getter?
+      </para></note>
+    ]]>
+
+
+    <![ %RFC [
+       <note id="rfc-bk000802-03"><title>RFC: INVALID_POINTER?</title><para>  
+         GL seemingly does not specify a response to NULL pointer
+         destinations, and does not assign an error case. INVALID_VALUE
+         could be used, also we could introduce a separate INVALID_POINTER.
+         Is there a good reason not to catch these cases? 
+      </para></note>
+    ]]>
+   
+  
+    </sect1>
+
+
+
+    <sect1 id="control">
+    <title>Controlling AL Execution</title>
+   <para>
+     The application can temporarily disable certain AL capabilities 
+     on a per Context basis. This allows the driver implementation 
+     to optimize for certain subsets of operations.
+      Enabling and disabling capabilities is handled using a function
+      pair. 
+      <funcsynopsis><funcprototype> 
+      <funcdef> &void; <function> Enable </function></funcdef>
+      <paramdef> &enum; <parameter> target </parameter></paramdef>      
+      </funcprototype></funcsynopsis>
+     <funcsynopsis><funcprototype> 
+      <funcdef> &void; <function> Disable </function></funcdef>
+      <paramdef> &enum; <parameter> target </parameter></paramdef>      
+      </funcprototype></funcsynopsis>
+     The application can also query whether a given capability is
+     currently enabled or not.
+      <funcsynopsis><funcprototype> 
+      <funcdef> &bool; <function> IsEnabled </function></funcdef>
+      <paramdef> &enum; <parameter> target </parameter></paramdef>      
+      </funcprototype></funcsynopsis>
+     If the token used to specify target is not legal,
+     an  INVALID_ENUM error will be generated.
+   </para>
+   <para>
+     At this time, this mechanism is not used. There are no valid
+     targets.
+    </para>
+    <![ %Annote [
+      <note><title>Annotation (Enable/Disable)</title><para>
+          Currently, &AL; is controlled exploiting existing
+          commands. For example, to disable sound output but
+          not processing, the Listener can be muted setting
+          GAIN to zero. Selecting NONE as the distance model
+          disables distance attenuation. Setting DOPPLER_FACTOR
+          to zero disables the Doppler Effect. A redundant
+          mechanism to accomplish the same is not needed.
+       </para></note>
+    ]]>
+ 
+    </sect1>
+
+    <sect1 id="objects">
+    <title>Object Paradigm</title>
+    <para>
+     &AL; is an object-oriented API, but it does not expose classes, structs,
+     or other explicit data structures to the application. 
+    </para>
+
+
+    <sect2 id="object-overview-categories">
+     <title>Object Categories</title>
+    <para>
+     &AL; has three primary categories of Objects: 
+     <itemizedlist>
+       <listitem>
+       <para>
+          one unique Listener per Context
+       </para>
+       </listitem>
+       <listitem> 
+       <para>
+          multiple Buffers shared among Contexts
+       </para>
+       </listitem>
+       <listitem> 
+       <para>
+          multiple Sources, each local to a Context
+       </para>
+       </listitem> 
+     </itemizedlist>
+     In the following, "{Object}" will stand for either Source, 
+     Listener, or Buffer.    
+    </para>
+    </sect2>
+
+    <sect2 id="object-overview-dynamic">
+     <title>Static vs. Dynamic Objects</title>
+    <para>
+     The vast majority of &AL; objects are dynamic, and will be created
+     on application demand. There are also &AL; objects that do not have 
+     to be created, and can not be created, on application demand. 
+     Currently, the Listener is the only such static object in &AL;. 
+
+    </para>
+    </sect2>
+
+    <sect2>
+     <title>Object Names</title>
+    <para>
+     Dynamic Objects are manipulated using an integer, which in 
+     analogy to &OGL; is referred to as the object's "name". These 
+     are of type unsigned integer (uint). Names can be valid
+     beyond the lifetime of the context they were requested
+     if the objects in question can be shared among contexts.
+     No guarantees or assumptions are 
+     made in the specification about the precise values or their distribution
+     over the lifetime of the application. As objects might be shared,
+     Names are guaranteed to be 
+     unique within a class of &AL; objects, but no guarantees are made
+     across different classes of objects. Objects that are unique 
+     (singletons), like the Listener, do not require and do not have 
+     an integer "name".
+    </para>
+    </sect2>
+
+
+    <sect2>
+    <title>Requesting Object Names</title>
+    <para>
+     &AL; provides calls to obtain Object Names. The application requests 
+     a number of Objects of a given category using Gen{Object}s.
+     If the number n of Objects requested is negative,
+     an INVALID_VALUE error will caused. The actual values of the
+     Names returned are implementation dependent. No guarantees on 
+     range or value are made. Unlike &OGL; &OAL does not offer alternative 
+     means to define (bind) a Name.
+    </para>
+    <para>
+     Allocation of Object Names does not imply immediate allocation of
+     resources or creation of Objects: the implementation is free to 
+     defer this until a given Object is actually used in mutator calls. 
+     The Names are written at the memory location specified by the caller.
+      <funcsynopsis><funcprototype> 
+      <funcdef> void <function> Gen{Object}s </function></funcdef>
+      <paramdef> &sizei; <parameter> n </parameter></paramdef>
+      <paramdef> &uint;* <parameter> objectNames </parameter></paramdef>
+      </funcprototype></funcsynopsis>
+    </para>
+    <para>
+      Requesting zero names is a legal NOP. Requesting a negative
+      number of names causes an INVALID_VALUE error. 
+      &AL; will respond with an OUT_OF_MEMORY if the application 
+      requests too many objects. The specification does not guarantee
+      that the &AL; implementation will allocate all resources
+      needed for the actual objects at the time the names are
+      reserved. In many cases (Buffers) this could only be
+      implemented by worst case estimation. Allocation of names
+      does not guarantee that all the named objects can actually
+      be used.
+    </para>
+
+
+    <![ %Scratch [
+    <note><para>
+      We do not re-use Names under any circumstance. Do we require
+      implementations throwing OUT_OF_MERMORY errors on allocation of
+      Names? No - we don't even specify buffer sizes. Ambiguity - could
+      an implementation throw OOM because of no names, or OOM because
+      of a (worst case) estimate of object sizes? Do we need OUT_OF_NAMES?   
+    </para></note>
+    ]]>
+
+
+    <![ %Scratch [
+     <warning><para>
+       The current headers include a sizei return parameter:
+        "Returns the number of ids actually allocated."
+       This violates the "failed commands are NOPs" design
+       and introduces ambiguity in error handling, and has
+       thus been changed breaking backwards compatibility.
+     </para></warning>
+     ]]>
+
+    <![ %Annote [
+      <note><title>Annotation (No application selected Names)</title><para>
+           Unlike GL, applications are not free to choose Names; all
+           Names have to be requested. Aside from possible benefits for
+           the implementation, and avoidance of errors in projects
+           that have many modules using the AL implementation (a problem
+           encountered in GL, when the two generation mechanisms are
+           mixed), this also leaves open the door to feed different
+           kinds of objects by Name through the same API entry points. 
+       </para></note>
+    ]]>
+ 
+    <![ %Annote [
+      <note><title>Annotate (Negative/zero sizei)</title><para>
+         The specification does not guarantee that sizei is an
+         unsigned integer, but legal values have to be non-negative.
+         However, requesting zero names is a legal NOP. 
+      </para></note>
+    ]]>
+
+     <![ %RFC [
+     <note id=rfc-bk000626-02><title>RFC: Resource Release Hint</title><para>
+      Do we need a hint that resource release has to be done on DeleteXXX,
+       instead of leaving this housekeeping to &AL;?
+     </para></note>
+     <note id=rfc-bk000626-03><title>RFC: Zero Name</title><para>
+      Do we reserve the name "0"? &OGL; provides an alternative mechanism
+      which lets the application pick texture names, which we discarded
+      because it is prone to create error conditions when mixing both 
+      approaches. As all our names are generated using GenXXXX, there
+      is no real need to treat "0" special.
+     </para></note>
+     ]]>
+
+   </sect2>
+
+
+   <sect2>
+   <title>Releasing Object Names</title>
+   <para>
+     &AL; provides calls to the application to release Object Names
+     using Delete{Object}s, implicitly requesting deletion of the 
+     Objects associated with the Names released. If the number n of Objects named 
+     is negative, an INVALID_VALUE error will be caused.
+     If one or more of the specified Names is not valid, an INVALID_NAME 
+     error will be caused. Implementation behavior following any error 
+     is undefined. 
+   </para>
+   <para>
+     Once deleted (even if an error occured on deletion), the Names are 
+     no longer valid for use with any &AL; function calls including
+     calls to Delete{Objects}s. Any such use will cause an INVALID_NAME 
+     error. 
+   </para>
+   <para>
+     The &AL; implementation is free to defer actual release of 
+     resources. Ideally, resources should be released as soon as
+     possible, but no guarantees are made.
+      <funcsynopsis><funcprototype> 
+      <funcdef>&void;<function>Delete{Object}s</function></funcdef>
+      <paramdef>&sizei;<parameter>n</parameter></paramdef>
+      <paramdef>&uint;*<parameter>objectNames</parameter></paramdef>
+      </funcprototype></funcsynopsis>
+    </para>
+   
+    <![ %Annote [
+      <note><title>Annotation</title><para>
+      GenXXX and DeleteXXX can not reasonably be expected to be used 
+      for controlling driver-side resource management from the
+      application. A driver might never release a Source once allocated
+      during the lifetime of the application.   
+    </para></note>
+    ]]>
+
+    <![ %RFC [
+       <note id="rfc-bk000724-18"><title>RFC: Deletion Errors</title><para>  
+          chasan@acm.org:  
+          What happens if an active source (or its associated buffer) is deleted? 
+          The source should be stopped? Or the delete operation is invalid?
+      </para></note>
+    ]]>
+
+   </sect2>
+
+
+   <sect2>
+   <title>Validating an Object Name</title>
+   <para>
+     &AL; provides calls to validate the Name of an Object.
+     The application can verify whether an Object Name is valid
+     using the Is{Object} query. There is no vector (array)
+     version of this function as it defeats the purpose of
+     unambiguous (in)valdiation. Returns &TRUE; if id is a
+     valid Object Name, and &FALSE; otherwise. Object Names are 
+     valid between request (Gen{Object}s) and release (Delete{Object}s).
+     Is{Object} does not distinguish between invalid and deleted Names. 
+      <funcsynopsis><funcprototype> 
+      <funcdef>&bool;<function>Is{Object}</function></funcdef>
+      <paramdef>&uint;<parameter>objectName</parameter></paramdef>
+      </funcprototype></funcsynopsis>
+    </para>
+    <![ %RFC [
+    <note><title>RFC/bk000504:</title><para>
+      If zero is a valid name, this function will have to accept
+      it without an actyual object (or only an internal dummy)
+      being associated with it. I recommend that implementations
+      never return "0" as an object name.
+    </para></note>
+    ]]>
+   </sect2>
+
+
+   <sect2>
+   <title>Setting Object Attributes</title>
+   <para>
+     For &AL; Objects, calls to control their attributes are provided.
+     These depend on the actual properties of a given Object
+     Category. The precise API is discussed for each category,
+     below. Each &AL; command affecting the state of
+     a named Object is usually of the form 
+      <funcsynopsis><funcprototype> 
+      <funcdef> void <function> {Object}{n}{sifd}{v} </function></funcdef>
+      <paramdef> &uint; <parameter> objectName </parameter></paramdef>
+      <paramdef> &enum; <parameter> paramName </parameter></paramdef>
+      <paramdef> &type; <parameter> values </parameter></paramdef>
+      </funcprototype></funcsynopsis>
+     In the case of unnamed (unique) Objects, the (integer) objectName 
+     is omitted, as it is implied by the {Object} part of function name:
+      <funcsynopsis><funcprototype> 
+      <funcdef> void <function> {Object}{n}{sifd}{v} </function></funcdef>
+      <paramdef> &enum; <parameter> paramName </parameter></paramdef>
+      <paramdef> &type; <parameter> values </parameter></paramdef>
+      </funcprototype></funcsynopsis>
+     For example, the Listener3d command would not require an (integer)
+     objectName argument.
+   </para>
+   <para>
+      The objectName specifies the &AL; object affected by this call.
+      Use of an invalid Name will cause an INVALID_NAME error. 
+   </para>
+   <para> 
+      The Object's Attribute to be affected has to be named
+      as paramName. &AL; parameters applicable to one category
+      of Objects are not necessarily legal for another catetgory 
+      of &AL; Objects. Specification of a parameter illegal for
+      a given object will cause an INVALID_OPERATION error.  
+    </para>
+    <para>
+      Not all possible values for a type will be legal for a 
+      given objectName and parameterName. Use of an illegal value 
+      or a NULL value pointer will cause an INVALID_VALUE error.
+    </para>
+    <para>
+      Any command that causes an error is a NOP.
+    </para>
+   </sect2>
+
+   <sect2>
+   <title>Querying Object Attributes</title>
+   <para>
+     For named and for unique &AL; Objects, calls to query their
+     current attributes are provided.
+     These depend on the actual properties of a given Object
+     Category. The performance of such queries is implementation
+     dependent, no performance guarantees are made. The valid values for the 
+     parameter paramName are identical to the ones legal for the complementing
+     attribute setting function.
+      <funcsynopsis><funcprototype> 
+      <funcdef> void <function> Get{Object}{n}{sifd}{v} </function></funcdef>
+      <paramdef> &uint; <parameter> objectName </parameter></paramdef>
+      <paramdef> &enum; <parameter> paramName </parameter></paramdef>
+      <paramdef> &type;* <parameter> destination </parameter></paramdef>
+      </funcprototype></funcsynopsis>
+     For unnamed unique Objects, the objectName is omitted as it is 
+     implied by the function name:
+      <funcsynopsis><funcprototype> 
+      <funcdef> void <function> Get{Object}{n}{sifd}{v} </function></funcdef>
+      <paramdef> &enum; <parameter> paramName </parameter></paramdef>
+      <paramdef> &type;* <parameter> destination </parameter></paramdef>
+      </funcprototype></funcsynopsis>
+    </para>
+    <para>
+     The precise API is discussed for each category separately, below.
+     Unlike their matching mutators, Query functions for non-scalar 
+     properties (vectors etc.) are only available in array form.
+   </para>
+   <para>
+     Use of an invalid Name will cause an INVALID_NAME error. 
+     Specification of an illegal parameter type (token) will cause 
+     an INVALID_ENUM error.  A call with a destination
+     NULL pointer will be quietly ignored. The &AL; state will not 
+     be affected by errors. In case of errors, destination memory 
+     will not be changed.
+    </para>
+   </sect2>
+
+
+   <sect2>
+    <title>Object Attributes</title>
+
+    <para>
+      Attributes affecting the processing of sounds can be set for various
+      &AL; Object categories, or might change as an effect of &AL; calls.
+      The vast majority of these Object properties are specific to the
+      &AL; Object category, in question, but some are applicable to two
+      or more categories, and are listed separately.
+    </para>
+    <para>
+      The general form in which this document describes parameters is
+    <table>
+    <title>{Object} Parameters</title>
+    <tgroup cols="4" align="left" colsep=1 rowsep=1>
+    <colspec colname=c1>
+    <colspec colname=c2>
+    <colspec colname=c3>
+    <colspec colname=c4>
+    <thead>
+    <row>
+       <entry>&Par;</>
+       <entry>&Sig;</>
+       <entry>&Val</>
+       <entry>&Def;</>        
+    </row>
+    </thead>
+    <tbody>
+    <row>
+       <entry>paramName</>
+       <entry>T</>
+       <entry> range or set </>
+       <entry> scalar or n-tuple </>        
+    </row>
+    </tbody>
+    </tgroup>
+    </table>
+    Description:
+        The description specifies additional restrictions and details.
+        paramName is given as the &AL; enum defined as its name.
+        T can be a list of legal signatures, usually the array form
+        as well as the flat (unfolded) form.
+    </para>
+
+
+    <![ %RFC [
+     <note id="rfc-bk000626-04"><title>RFC: Initial (Default) State</title><para>
+      The default state of objects will have to be specified here.
+      There will be no commands that allow the application to set
+      other defaults.
+     </para></note>
+     ]]>
+    </sect2>
+    </sect1>
+    </chapter>
+

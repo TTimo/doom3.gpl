@@ -1,0 +1,378 @@
+2001-02-06  Bernd Kreimeier  <bk@lokigames.com>
+
+	* chp-rendering.sgml: added annotation about CONE calculation.
+	* chp-state.sgml: added more annotation on log vs. linear GAIN.
+
+2001-01-09  Bernd Kreimeier  <bk@lokigames.com>
+
+	* chp-state.sgml: ungrep of scratched DISTANCE_SCALE.
+
+2001-01-08  Bernd Kreimeier  <bk@lokigames.com>
+
+	* chp-rendering.sgml: amended MAX_DISTANCE.
+	* chp-state.sgml: culling clarification.
+	Note: MAX_DISTANCE (and consequently the current
+	Inverse Clamped Distance Model) do not fit the API.
+	The clamping of the distance (instead of clamping
+	to the effective gain at the max. distance) will
+	potentially break other distance-dependend calculations
+	further down in the processing chain.
+	TODO: revisit Inverse Clamped Distance Model. _DS3D extension?
+
+2001-01-05  Bernd Kreimeier  <bk@lokigames.com>
+
+	* chp-rendering.sgml: SOURCE_RELATIVE specification.
+
+	* chp-state.sgml: clarified distance attentuation calculation
+	a bit, and added back in the linear version as an annotation.
+	Note: watch this, it's tied into the GAIN_LINEAR issue.
+	TODO: added dist calculation requirements.
+
+2001-01-04  Bernd Kreimeier  <bk@lokigames.com>
+
+	* chp-operation.sgml: INVALID_ENUM for getters and enable,
+	not INVALID_OPERATION. Later: Delete{Object}s accepts zero. 
+
+2000-12-04  Bernd Kreimeier  <bk@lokigames.com>
+
+	* Makefile: added HTML ZIP targets ("update" for website). 
+
+2000-11-10  Bernd Kreimeier  <bk@lokigames.com>
+
+	* WWW: reworked the OpenAL web site as in CVS. This
+	includes emptying HTML files with obsolete whitepaper
+	and specification content not even linked from the
+	official pages, and reworking the official pages to
+	remove redundancy, and generally point to the snapshots.
+	Also created snapshots page (along with cronjob and
+	automated update installed by Rafael).
+
+	* Makefile: added ZIP file generation to update target. 
+
+	* index.html: edited for snapshots/ page on www.openal.org.
+	As it is next to impossible to reproduce the Official OpenAL
+	Look w/o lots of tap dancing, I use the style from the
+	DocBook HTML rendering instead.
+
+2000-11-06  Bernd Kreimeier  <bk@lokigames.com>
+
+	* Makefile (full): full rendering target added.
+	* ent-marks-full.sgml: created.
+
+2000-10-27  Bernd Kreimeier  <bk@lokigames.com>
+
+	* Makefile: rendering targets for cronjob driven update. 
+
+2000-10-26  Bernd Kreimeier  <bk@lokigames.com>
+
+	* alc-context.sgml: annotation on release of hardware resources.
+	Removed version query enry point, added size-safe GetIntegerv
+	and GetString, removed GetErrorString, added integer and string
+	query tokens, added device enumeration query. Added more annotation.
+
+	* chp-rendering.sgml: remark on release of hardware resources.
+
+	* alc-context.sgml: had INVALID_DEVICE also marked by RFC.
+	Removed the "device parameter should be NULL" leftovers.
+	Added Query functions. Removed redundant device parameters
+	to avoid GLX-style redundancy and resulting BadMatch errors.
+	
+
+2000-10-25  Bernd Kreimeier  <bk@lokigames.com>
+
+	* oalspecs.sgml: include extension list entity (below).
+	* ent-extensions.sgml: created.
+	Note: during several unsuccessful attempts to convince
+	DocBook and the DocBook toolchain to handle CDATA external
+	entities properly for <literallayout> and <programlisting>,
+	I also had to recover accidentally deleted files.
+
+2000-10-24  Bernd Kreimeier  <bk@lokigames.com>
+
+	* alc-context.sgml: shared object section. Mike Kelly request
+	as RFC. ALC Error section placeholder. ALC attribute section
+	as placeholder. Process/Suspend added plus annotation, Update
+	removed. More typo fixes. Added extension query. Removed old
+	RFC's. No UNDERFLOW error. No CHANNELS attribute, MIXAHEAD
+	redundant. Removed alcUpdate( PROCESS | SUSPEND ) RFC.
+	
+
+2000-10-23  Bernd Kreimeier  <bk@lokigames.com>
+
+	* alc-context.sgml: entities for ALCdevice and ALCcontext.
+	Fixed typos reported by CarloV on non-pointer handles.
+
+	* chp-rendering.sgml: infinite LOOPING attribute.
+
+2000-10-20  Bernd Kreimeier  <bk@lokigames.com>
+
+	* ent-examples.sgml: experimenting with external sample.c 
+	files as CDATA entities, to no avail. 
+	* oalspecs.sgml: example entities.
+
+2000-10-16  Bernd Kreimeier  <bk@lokigames.com>
+
+	* chp-rendering.sgml: moved in buffer queueing.
+	Scratched PLAY_COUNT. Fixed SourceStart{v} residue.
+
+	* chp-queueing.sgml: proof-reading, contents then moved out.
+
+2000-10-13  Bernd Kreimeier  <bk@lokigames.com>
+
+	* chp-queueing.sgml: changed according to discussion.
+	Removed some, but not all redundant annotation, and removed
+	remainders of old attribute based approach. Added annotation
+	on repetition by multiple calls. Changed signatures.
+
+2000-10-11  Bernd Kreimeier  <bk@lokigames.com>
+
+	* chp-state.sgml: removed GAIN_LINAR based equations.
+	* chp-rendering.sgml: removed GAIN_LINAR.
+	* ext-gainlinear.sgml: collected GAIN_LINEAR related sections.
+	Note: choosing to use GAIN_LINEAR_LOKI for now. The duplication
+	of tokens complicates specification and implementation, and
+	requires further discussion.
+
+	* ent-marks.sgml: added Revision mark.
+
+	* oalspecs.sgml: added per-file revision history (appendix).
+	Note: we might wind up never rendering these, I can't see
+	a consistent way to do this.
+
+	* ChangeLog: moved in revision history from oalspecs.sgml.
+	Note: see the very first entry in this document for the
+	revision history that predates this ChangeLog.
+	TODO: include ChangeLog in RFC/Revision rendering.
+
+	* chp-introduction.sgml: removed CVS based revision history.
+	Added a %Revision marked section (we now have these per-file).
+
+2000-10-10  Bernd Kreimeier  <bk@lokigames.com>
+
+	* oalspecs.sgml: reworked for new distributed document.
+
+	* app-annotations.sgml: created from original doc.
+	* app-extensionprocess.sgml: created from original doc.
+	* app-extensions.sgml: created from original doc.
+	* app-constants.sgml: created from original doc.
+	
+	* alc-context.sgml: created from original doc.
+	Note: this breaks the scheme a bit, as this is technically
+	a chapter, but if ALC turns into a multi-chapter 
+	documentation at some point down the road it will have
+	to be a separate document anyway.
+	
+	* chp-multichannel.sgml: created from original doc.
+	* chp-queueing.sgml: created from original doc.
+	* chp-buffers.sgml: created from original doc.
+	* chp-rendering.sgml: created from original doc.
+	* chp-state.sgml: created from original doc.
+	* chp-operation.sgml: created from original doc.
+	* chp-introduction.sgml: created from original doc.
+	* sec-bookinfo.sgml:  created from original doc.
+	
+	* ent-names.sgml: created from original doc.
+	* ent-marks.sgml: got it working.
+	Note: this will be a temporary file (created from the Makefile),
+	not sure whether it should be in CVS at all.
+	
+	* ChangeLog: created.
+
+2000--1999  Bernd Kreimeier  <bk@lokigames.com>
+	
+	* oalspecs.sgml: moved out CVS Revision History (below).
+
+	The AL Specification was originally maintained as an HTML
+	document, and subsequently as a single SGML file. With the
+	split into several files, it is no longer possible or
+	desirable to maintain a single revision history. As we 
+	have a manually maintained revhistory within the DocBook
+	source, I decided to move the old revision history into
+	the ChangeLog.
+
+	Revision 1.11  2000/10/11 18:44:46  bk
+        More JMJ typo corrections. IA-SID I3DL2 section rephrased. Moved
+        marked section toggles in ent-marks.sgml file so that these can
+        be generated or modified from the Makefile. Split document up into
+        several separate files using external entities. Created external
+        ChangeLog. From now on, revision history and changes will be
+        maintained in the ChangeLog as it is scattered over files.
+
+        Revision 1.10  2000/09/27 22:57:02  bk
+        Commit w/o subdoc (doesn't work).
+
+        Revision 1.9  2000/09/27 22:54:36  bk
+        Typos from MKV and JMJ. Fixed Inverse Square Law. Scratched
+        ProgagationSpeed. Described distance models in full. Changed
+        to INVERSE_DISTANCE (both models use ROF). Added GH text (parts)
+        as annotation to "View" sections, added Basic AL Operation text
+        he sent (some changes, removed redundant section), marked source
+        as Example sections. Changed Terminology annotation. Added TBA
+        on Fundamentals. RFC'ed distributed error section from GL and
+        annotation. Added TBA on Floating Point Computation. Added AL
+        State TBA. Added AL entity as opposed to OAL. Added Command Syntax
+        TBA (minimal) plus annotation. More fixes from JMJ. No NaN
+        check comment. Rephrased invalid commmands. Disclaimer on
+        Enable/Disable being unused. Query with NULL destination
+        clarified. Example values for simple query. TBA on data
+        conversions. Cleaned out Time query/scaling, added RFC,
+        marked DURATION/REMAINDER as Scratch. Euclidean. No Transforms
+        now annotation. Promoted RFC on Source( BUFER, NONE ) to spec
+        text. Scratch'ed Streaming Buffer remarks. Removed IMPLIED.
+        Scratch'ed Buffer Traversal and a whole shebang of queueing
+        annotation to go with it. ALC cleanup, RFC on multiple
+        current contexts. Skipped Buffer Queueing section for now.
+        SUBDOC NO in DocBook declaration. Validation pass for CVS.
+
+        Revision 1.8  2000/09/20 01:21:33  bk
+        Fixes from Ian Ollman: fixed wrong title on Buffer Attributes
+        section. Annotation on No application selected Names. Fixes
+        from JMJ: typos and mistakes on I3DL2. Renamed LOOP_COUNT to
+        PLAY_COUNT and clarified counting as requested. DOPPLER_FACTOR,
+        DOPPLER_VELOCITY, Doppler Effect section rewritten according to
+        announced changes. Removed DistanceFactor, added scale invariance.
+        Scratch-marked Multichannel sketch. Added BufferWriteData as Loki
+        extension. Removed obsolete RFC on depercating BUFFER. Rewrote
+        Buffer queueing state section and renamed BUFFERS_USED to
+        BUFFERS_PROCESSED following discussion with John Kraft, to remove
+        ambiguity. Rewrote BUFFERS_PROCESSED description. Added
+        MAX_DISTANCE plus MUTE annotation. Added No Culling section.
+        Edited DISTANCE_MODEL section. Distance Model Source Attributes
+        added. Rolloff quantization annotation added. Evaluation order
+        on attenuation/gain. Marked Scratch the current IASIG section
+        per JMJ's request, added Source Environment Attribute section
+        as TBA. Removed and moved RFC's (AppendData, GenStreaming).
+        Clarified directional attenuation. Clarified CONE_OUTER_GAIN
+        as scaling factor. Added a Programmers and Implementors View.
+
+        Revision 1.7  2000/08/15 02:47:03  bk
+        Fixed RFC markup error needed for Full version.
+ 
+        Revision 1.6  2000/08/15 02:20:49  bk
+        Clarified BUFFER_USED vs. buffer state. Started section on
+        handling multichannel output. Moved out GenStreamingBuffer
+        in annotation on BufferAppendData extension. Added BufferWriteData
+        with internalFormat parameter and discussion on mono vs.
+        multichannel buffers. Added Multichannel objects (kept short in
+        case we demote to extension or replace). Some annotation.
+        Tried GGI docbook2texi in attempt to end those rogue linux/doc
+        activities, to no avail. Removed messy scratchpad section.
+        Removed outdated example listing. Turned remaining scratch
+        annotation into appendix. Created minimal Makefile (cleanup).
+
+        Revision 1.5  2000/08/08 02:56:05  bk
+        alcGetCurrentContext. Attempt to formulate Design Objectives as
+        a guideline. RFC's on INITIAL state, ACTIVE misnomer. RFC on
+        INVALID_POINTER. Lots of scratch stuff (fallout from buffer
+        queueing discussions). Annotations on various buffer queue
+        rejects and related issues. Added Scaling and Timing sections
+        and related calls. Added CONE_OUTER_GAIN. Added Doppler sections.
+        Rewrote and shuffle globale state, simple query, string query.
+        Moved Extensions sections in Appendix. Added annotation and
+        RFC's regarding distance/gain model. No more ILLGEAL - finally
+        checked the specs and Mesa 3.3 to be sure. Picked OPERATION at
+        the same time, also specs conformat (no comment...). Removed
+        JMJ as responsible author (all blame shall be mine). Fixed
+        Play(), INITIAL vs. STOPPED. Edited related RFC's, stripped
+        obsolete commentary. Rewrote State/State Transition section.
+        Fixes on SGML. CHANNELS and BITS moved in RFC's. Moved and
+        rewrote RFC on Duration/Remainder queries into Time section.
+        Stripped BYTE_LOKI of all but the essentials. Added placeholders
+        for Callback and AppendData in same (backwards compatibility)
+        section. Lots of Buffer Queueing.
+ 
+        Revision 1.4  2000/07/25 17:19:17  bk
+        Changed ILLEGAL_OPERATION to ILLEGAL_COMMAND consistently. Added
+        excerpts from mailinglist to scratch section. Added Appendix on
+        Extension Process. Typos. RFC on EXTENSIONS changed to Annotation.
+        SGML validation and error fixes (not done on cvs1.3, sorry).
+
+        Revision 1.3  2000/07/24 21:18:53  bk
+        Reordered manual revision history to be CVS compliant. Diff against
+        Rev. 1.4/bk000626 as it was not checked in CVS. Created scratch
+        section for removed RFC 's. Checked edits on Extension section and
+        removal of related RFC/bk000506. Converted removed RFC/bk000504
+        on IsExtensionPresent in Annotation. Rewrote Mike's annotations
+        on source types and distance attentuation clamping as RFC's and
+        added some removed RFC sections back. Rewrote annotation added by
+        MikeV on compressed buffers, split of RFC on AL_SIZE query.
+        Re-added RFC's an buffer attribute defaults, edited annotation
+        on GetEnumValue return. RFC's on factory methods for streaming
+        buffers, memory budgeting, initial object state. Re-inserted and
+        extended RFC on format enum issue. Re-inserted the global
+        setter/getter in scratch section. Implementation requirement
+        section. Resurrected CONE_OUTSIDE_GAIN as RFC. BITS bitching,
+        annotation to explain why not enumerating frequencies. Got a grip
+        and recognized BITS and CHANNELS as query-only. More on frequency
+        in BufferData. Into CVS before current discussions are added.
+
+        Revision 1.2  2000/07/19 15:16:58  briareos
+        Enable/Disable return void, not enum.
+
+        Revision 1.1  2000/06/29 00:27:24  briareos
+        Initial draft of OpenAL specs.
+
+       
+        1.4/briareos : not in CVS
+        Finished editing related to my comments, with Joe's
+        feedback, in preparation for use by Creative and eventual
+        public dissemination later this week.
+ 
+        1.4/bk000626 : not in CVS
+        Started using id attribute on RFC note elements, to ensure unique
+        identifiers. Added Annote level. Added oal15-jm/overview.html 
+        changes. Added oal15-jm/object-state.html (mostly). Removed
+        Filtering/Spatialization distinction and merged attribute table.
+        Moved Filter chapter to annotation. Moved Geometry to annotation,
+        rewrote annotation with my latest conclusions on A3D/EAGLE like
+        approach. Stripped out ALU and ALUT, added annotation on reasons.
+        Added some text to introduction chapter. Moved ALC chapter to end 
+        of specification. Followed John Hall advice to enable section
+        numbers in print stylesheet. Rewrote section on GetError. Created
+        I3DL2 extension appendix. Reworked all tables for better
+        formatting with separated descriptions. Took out a bunch of 
+        outdated RFC's. Rewrote Query and String Query section. Added
+        Scratch sections. Added ARB/Ack section. Didn't get RFC comments
+        from MikeV. Fixed permission to copy.
+    
+        1.4/bk000508 : not in CVS.
+        Added RFC to Device section. Made nested RFC around entire
+        device section to make sure. Added trailing blanks to data type
+        entities as a cheap workaround to the HTML backend problem in
+        FuncSynopsis. Added RFC from BYTE_LOKI discussion on mailinglist.
+
+        1.4/bk000507 : not in CVS.
+        Added altypes.h info on scalar types, copied Linux OpenGL Base 
+        ABI layout. Also added some missing enums. Checked alc.h header, 
+        added UpdateContext and RFC's. Changed alc*Context signatures to 
+        include ALCdevice handle. Checked al.h header, fixed outdated 
+        BufferData/BufferAppendData signatures, added RFC's. Added comments
+        on differing return types. This pretty much concludes the inventory.
+    
+        1.4/bk000506 : not in CVS.
+        The HTML in CVS was completely mangled between the 1.2 and 1.3
+        revisions. Also, redundant al and AL_ prefixes were added, and
+        the document was restructured. I tried SaveAs ASCII and
+        whitespace insensitive compare, and finally did the compare
+        manually (no guarantees). The text sections that looked
+        relevant have been added in RFC's with the bk000506 tag.
+        Also added a revision history and CVS tags for future CVS based
+        revision control (post-E3).
+       
+        1.4/bk000505 : not in CVS.
+        SGML version. Merges AL specification and API reference as
+        of GDC (v1.2) with each other. Adds ALC placeholder.
+        Addition of several RFCs based on recent discussions.
+ 
+        1.3/cvogelsa : only in CVS.   
+        api-reference.html    CVS v1.14
+        specification.html    CVS v1.3
+     
+        1.2/briareos : 8 March 2000, released at GDC.
+        api-reference.html    CVS v1.13
+        specification.html    CVS v1.2
+
+        x.xx/nn : early specifications. 
+        Neither the early working papers by Terry Sikes, Sean L. Palmer 
+        and others nor the first versions of the &OAL; specification
+        as compiled at Loki were archived and versioned in a coherent way.

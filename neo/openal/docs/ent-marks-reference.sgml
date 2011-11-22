@@ -1,0 +1,12 @@
+
+
+        <!-- Reference Target --->
+        <!ENTITY % Level1       "INCLUDE"               > <!-- Reference     -->
+        <!ENTITY % Level2       "INCLUDE"               > <!-- Specification -->
+        <!ENTITY % RFC          "IGNORE"                > <!-- Specification Draft -->
+        <!ENTITY % Annote       "IGNORE"                > <!-- Annotation -->
+        <!ENTITY % Ext1         "INCLUDE"               > <!-- ARB EXTensions -->
+        <!ENTITY % Ext2         "INCLUDE"               > <!-- Vendor EXTensions (if applicable) -->
+        <!ENTITY % Example      "IGNORE"                > <!-- Example Code Vendor EXTensions -->
+        <!ENTITY % Revision     "IGNORE"                > <!-- CVS Revision History Tags (per-file) -->
+        <!ENTITY % Scratch      "IGNORE"                > <!-- Internal working notes/tmeporary -->

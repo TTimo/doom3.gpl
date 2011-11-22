@@ -1,0 +1,754 @@
+
+   <appendix>
+   <title>Extensions</title>
+    <para>
+       Extensions are a way to provide for future expansion of the &AL; API. 
+       Typically, extensions are specified and proposed by a vendor, and
+       can be treated as vendor neutral if no intellectual property
+       restrictions apply. Extensions can also be specified as, or
+       promoted to be, ARB extensions, which is usually the final step
+       before adding a tried and true extension to the core API. ARB
+       extensions, once specified, have mandatory presence for
+       backwards compatibility. The handling of vendors-specific or
+       multi-vendor extensions is left to the implementation. The IA-SIG
+       I3DL2 Extension is an example of multi-vender extensions to 
+       the current &AL; core API. 
+     </para>
+
+    <sect1>
+    <title>Extension Query</title>
+     <para>
+       To use an extension, the application will have to obtain function addresses 
+       and enumeration values. Before an extension can be used, the application will 
+       have to verify 
+       the presence of an extension using IsExtensionPresent(). The application 
+       can then retrieve the address (function pointer) of an extension entry 
+       point using GetProcAddress. Extensions and entry points can be 
+       Context-specific, and the application can not count on an Extension being available
+       based on the mere return of an entry point. The application also
+       has to maintain pointers on a per-Context basis.
+
+        <funcsynopsis>
+	  <funcprototype>
+	    <funcdef> &bool; <function>IsExtensionPresent</function></funcdef>
+	    <paramdef> const &ubyte; * <parameter>extName</parameter></paramdef>
+	  </funcprototype>
+	</funcsynopsis>
+
+      Returns TRUE if the given extension is supported for the current
+      context, FALSE otherwise.
+      </para>
+
+      <![ %Annote [
+      <note id="ann-bk000721-22"><title>Annotation (IsExtensionPresent)</title><para>
+        This function is inspired by the GLU addition, but placed in
+        the core API as we intend to avoid a separate ALU. This function 
+        avoids potential string overflow and string parsing issues (strstr)
+        raised by GetString( EXTENSIONS ).
+       </para></note>
+      ]]>
+
+
+     <![ %Annote [
+      <note><title>Annotation/ EXTENSIONS</title><para>
+         GetString( EXTENSIONS ) is supported as well, as it allows for
+         easy archiving and priting of the list of supported extensions.
+       </para></note>
+     ]]>
+     </sect1>
+
+     <sect1>
+     <title>Retrieving Function Entry Addresses</title>
+      <para>
+       <funcsynopsis><funcprototype> 
+       <funcdef> &void;* <function>GetProcAddress</function></funcdef>
+       <paramdef> const &ubyte; * <parameter>funcName</parameter></paramdef>      
+       </funcprototype></funcsynopsis> 
+       Returns NULL if no entry point with the name funcName can be found.
+       Implementations are free to return NULL if an entry point is present,
+       but not applicable for the current context. However the specification 
+       does not guarantee this behavior. 
+    </para>
+    <para>
+       Applications can use GetProcAddress to obtain core API entry points,
+       not just extensions. This is the recommended way to dynamically load
+       and unload &AL; DLL's as sound drivers.
+    </para>
+
+     <![ %RFC [
+      <note><title>RFC/bk000504:</title><para>  
+       Original spec required all addresses are Context independent. 
+       This matches the Linux &OGL; ABI specification, but imposes
+       additional implementation constraints. For now, the specification
+       does not guarantee this.
+     </para></note>
+     ]]>
+    </sect1>
+
+
+    <sect1>
+    <title>Retrieving Enumeration Values</title>
+    <para>
+       To obtain enumeration values for extensions, the application has 
+       to use GetEnumValue of an extension token. Enumeration values are
+       defined within the &AL; namespace and allocated according to
+       specification of the core API and the extensions, thus they are
+       context-independent.
+       <funcsynopsis><funcprototype> 
+       <funcdef> &uint; <function> GetEnumValue </function></funcdef>
+       <paramdef> const &ubyte;<parameter> enumName </parameter></paramdef>      
+       </funcprototype></funcsynopsis> 
+       Returns 0 if the enumeration can not be found. The presence of an
+       enum value does not guarantee the applicability of an extension
+       to the current context. A non-zero return indicates merely that
+       the implementation is aware of the existence of this extension.
+       Implementations should not attempt to return 0 to indicate that
+       the extensions is not supported for the current context. 
+     </para> 
+
+     <![ %Annote [
+      <note><title>Annotation/ enums with value zero</title><para>
+          The literal value 0 is guaranteed for a number of AL
+          enums, such as  FALSE, NONE, ZERO. As with GL applications
+          might employ sloppy use of this identity. It also means
+          that enums with zero value can not be queried through
+          GetEnumValue, a minor flaw given the constraints of
+          ABI backward compatibility. The recommended value to
+          compare GetEnumValue results with is NONE.
+      </para></note>
+    ]]>
+    </sect1>
+
+   <sect1>
+   <title>Naming Conventions</title>
+   <para>
+      Extensions are required to use a postfix that separates the
+      extension namespace from the core API's namespace.
+      For example, an ARB-approved extension would use
+      "_ARB" with tokens (ALenum), and "ARB" with commands (function
+      names). A vendor specific extension uses a vendor-chosen
+      postfix, e.g. Loki Extensions use "_LOKI" and "LOKI",
+      respectively.
+   </para>
+   </sect1>
+
+    <sect1>
+    <title>ARB Extensions</title>
+   <para>
+      There are no ARB Extensions defined yet, as the ARB has
+      yet to be installed.
+   </para>
+   </sect1>
+
+  
+   <![ %Ext1 [
+   <sect1>
+   <title>Other Extension</title> 
+   <para>
+      For the time being this section
+      will list externally proposed extensions, namely 
+      the extension based on the IASIG Level 2 guideline.
+   </para>
+
+
+
+   <sect2>
+ 
+   <title>IA-SIG I3DL2 Extension</title> 
+   
+   <para>
+      The IA-SIG I3DL2 guideline defines a set of parameters to control
+      the reverberation characteristics of the environment the listener
+      is located in, as well as filtering or muffling effects applied to
+      individual Sources (useful for simulating the effects of obstacles
+      and partitions). These features are supported by a vendor neutral
+      extension to  &AL; (TBA).
+      The 
+      <ulink 
+       url="http://www.iasig.org/wg/3dwg/3dwg.htm"
+       type="http">IA-SIG 3D Level 2 rendering guideline</ulink>
+      provides related information. 
+   </para>
+
+   <![ %Scratch [
+   <![ %RFC [
+     <note id="rfc-bk000626-07"><title>RFC: Global Attributes</title><para>  
+     Do we need global setters for these:
+     DIRECT_IASIG/DIRECT_HIGH_FREQUENCY_IASIG? 
+     ROOM_IASIG/ROOM_HIGH_FREQUENCY_IASIG?
+    </para></note> 
+   ]]>
+                
+
+    <sect3>
+    <title>Listener Environment Attributes</title>
+    <para>
+    
+
+
+    <table>
+    <title>ENV_ROOM Attribute</title>
+    <tgroup cols="4" align="left" colsep=1 rowsep=1>
+    <thead>
+    <row>
+       <entry>&Par;</>
+       <entry>&Sig;</>
+       <entry>&Val</>
+       <entry>&Def;</>        
+    </row>
+    </thead>
+    <tbody>
+    <row>
+       <entry>ENV_ROOM_EXT</>
+       <entry>f</>
+       <entry>[0.0, 1.0]</>
+       <entry> 1.0f</>        
+    </row>
+    </tbody>
+    </tgroup>
+    </table>
+       Description: ???
+    </para>
+
+
+    <para>
+    <table>
+    <title>ENV_ROOM_HIGH_FREQUENCY Attribute</title>
+    <tgroup cols="4" align="left" colsep=1 rowsep=1>
+    <thead>
+    <row>
+       <entry>&Par;</>
+       <entry>&Sig;</>
+       <entry>&Val</>
+       <entry>&Def;</>        
+    </row>
+    </thead>
+    <tbody>
+    <row>
+       <entry>ENV_ROOM_HIGH_FREQUENCY_EXT</>
+       <entry>f</>
+       <entry>[0.0, 1.0]</>
+       <entry> 0.1f ???</>        
+    </row>
+    </tbody>
+    </tgroup>
+    </table>
+        Description: ???
+    </para>   
+    
+
+    <para>
+    <table>
+    <title>ENV_DECAY_TIME Attribute</title>
+    <tgroup cols="4" align="left" colsep=1 rowsep=1>
+    <thead>
+    <row>
+       <entry>&Par;</>
+       <entry>&Sig;</>
+       <entry>&Val</>
+       <entry>&Def;</>        
+    </row>
+    </thead>
+    <tbody>
+    <row>
+       <entry>ENV_DECAY_TIME_EXT</>
+       <entry>f</>
+       <entry>[0.1, 20.0]</>
+       <entry> 1.0f</>        
+    </row>
+    </tbody>
+    </tgroup>
+    </table>
+        Description: ???
+        What's up with the defaults? Not a normalized range
+        and a global Scale to set?
+    </para>   
+  
+
+    <para>
+    <table>
+    <title>NV_DECAY_HIGH_FREQUENCY_RATIO Attribute</title>
+    <tgroup cols="4" align="left" colsep=1 rowsep=1>
+    <thead>
+    <row>
+       <entry>&Par;</>
+       <entry>&Sig;</>
+       <entry>&Val</>
+       <entry>&Def;</>        
+    </row>
+    </thead>
+    <tbody>
+    <row>
+       <entry>ENV_DECAY_HIGH_FREQUENCY_RATIO_EXT</>
+       <entry>f</>
+       <entry>[0.1, 2.0]</>
+       <entry> 0.5f</>        
+    </row>
+    </tbody>
+    </tgroup>
+    </table>
+        Description: ???
+        What's up with the defaults? Not a normalized range
+        and a global Scale to set?
+    </para>
+
+
+    <para>
+    <table>
+    <title>ENV_REFLECTIONS Attribute</title>
+    <tgroup cols="4" align="left" colsep=1 rowsep=1>
+    <thead>
+    <row>
+       <entry>&Par;</>
+       <entry>&Sig;</>
+       <entry>&Val</>
+       <entry>&Def;</>        
+    </row>
+    </thead>
+    <tbody>
+    <row>
+       <entry>ENV_REFLECTIONS_EXT</>
+       <entry>f</>
+       <entry>[0.1, 3.0]</>
+       <entry> 1.0f</>        
+    </row>
+    </tbody>
+    </tgroup>
+    </table>
+        Description: ???
+        What's up with the defaults? Not a normalized range
+        and a global Scale to set?
+    </para>
+
+
+    <para>
+    <table>
+    <title>ENV_REFLECTIONS_DELAY Attribute</title>
+    <tgroup cols="4" align="left" colsep=1 rowsep=1>
+    <thead>
+    <row>
+       <entry>&Par;</>
+       <entry>&Sig;</>
+       <entry>&Val</>
+       <entry>&Def;</>        
+    </row>
+    </thead>
+    <tbody>
+    <row>
+       <entry>ENV_REFLECTIONS_DELAY_EXT</>
+       <entry>f</>
+       <entry>[0.0, 0.3]</>
+       <entry> 0.02f</>        
+    </row>
+    </tbody>
+    </tgroup>
+    </table>
+        Description: ???
+        What's up with the defaults? Not a normalized range
+        and a global Scale to set?
+    </para>
+
+
+    <para>
+    <table>
+    <title>ENV_REVERB Attribute</title>
+    <tgroup cols="4" align="left" colsep=1 rowsep=1>
+    <thead>
+    <row>
+       <entry>&Par;</>
+       <entry>&Sig;</>
+       <entry>&Val</>
+       <entry>&Def;</>        
+    </row>
+    </thead>
+    <tbody>
+    <row>
+       <entry>ENV_REVERB_EXT</>
+       <entry>f</>
+       <entry>[0.0, 10.0]</>
+       <entry> 1.0f</>        
+    </row>
+    </tbody>
+    </tgroup>
+    </table>
+        Description: ???
+        What's up with the defaults? Not a normalized range
+        and a global Scale to set?
+    </para>
+
+
+    <para>
+    <table>
+    <title>ENV_REVERB_DELAY Attribute</title>
+    <tgroup cols="4" align="left" colsep=1 rowsep=1>
+    <thead>
+    <row>
+       <entry>&Par;</>
+       <entry>&Sig;</>
+       <entry>&Val</>
+       <entry>&Def;</>        
+    </row>
+    </thead>
+    <tbody>
+    <row>
+       <entry>ENV_REVERB_DELAY_EXT</>
+       <entry>f</>
+       <entry>[0.0, 0.1]</>
+       <entry> 0.04f</>        
+    </row>
+    </tbody>
+    </tgroup>
+    </table>
+        Description: ???
+        What's up with the defaults? Not a normalized range
+        and a global Scale to set?
+    </para>
+
+
+    <para>
+    <table>
+    <title>ENV_DIFFUSION Attribute</title>
+    <tgroup cols="4" align="left" colsep=1 rowsep=1>
+    <thead>
+    <row>
+       <entry>&Par;</>
+       <entry>&Sig;</>
+       <entry>&Val</>
+       <entry>&Def;</>        
+    </row>
+    </thead>
+    <tbody>
+    <row>
+       <entry>ENV_DIFFUSION_EXT</>
+       <entry>f</>
+       <entry>[0.0, 100.0]</>
+       <entry> 100.0f</>        
+    </row>
+    </tbody>
+    </tgroup>
+    </table>
+        Description: ???
+        What's up with the defaults? Not a normalized range
+        and a global Scale to set?
+    </para>
+
+ 
+    <para>
+    <table>
+    <title>ENV_DENSITY Attribute</title>
+    <tgroup cols="4" align="left" colsep=1 rowsep=1>
+    <thead>
+    <row>
+       <entry>&Par;</>
+       <entry>&Sig;</>
+       <entry>&Val</>
+       <entry>&Def;</>        
+    </row>
+    </thead>
+    <tbody>
+     <row>
+       <entry>ENV_DENSITY_EXT</>
+       <entry>f</>
+       <entry>[0.0, 100.0]</>
+       <entry> 100.0f</>        
+    </row>
+    </tbody>
+    </tgroup>
+    </table>
+        Description: ???
+        What's up with the defaults? Not a normalized range
+        and a global Scale to set?
+    </para>
+
+
+    <para>
+    <table>
+    <title>ENV_HIGH_FREQUENCY_REFERENCE Attribute</title>
+    <tgroup cols="4" align="left" colsep=1 rowsep=1>
+    <thead>
+    <row>
+       <entry>&Par;</>
+       <entry>&Sig;</>
+       <entry>&Val</>
+       <entry>&Def;</>        
+    </row>
+    </thead>
+    <tbody>
+    <row>
+       <entry>ENV_HIGH_FREQUENCY_REFERENCE_EXT</>
+       <entry>f</>
+       <entry>[20.0, 20000.0]</>
+       <entry>5000.0</>        
+    </row>
+    </tbody>
+    </tgroup>
+    </table>
+        Description: ???
+        What's up with the defaults? Not a normalized range
+        and a global Scale to set?
+    </para>
+    </sect3>
+    <sect3>
+    <title>Source Environment Attributes</title>
+    <para>
+          TBA.
+    </para>
+    </sect3>
+     ]]>  
+    </sect2>
+   </sect1>
+   ]]> <!-- Environment -->
+   
+
+
+   <![ %Ext2 [
+  
+   <sect1>
+   <title>Compatibility Extensions</title> 
+   <para>
+     The extensions described have at one point been in use for
+     experimental purposes, proof of concept, or short term needs.
+     They are preserved for backwards compatibility. Use is not
+     recommended, avialability not guaranteed. Most of these will
+     be officially dropped by the time API revision 2.0 is released.
+   </para>
+
+
+  <sect2>
+   <title>Loki Buffer InternalFormat Extension</title> 
+   <para>
+     &AL; currently does not provide a separate processing
+     chain for multichannel data. To handle stereo samples,
+     the following alternative entry point to BufferData
+     has been defined.
+      <funcsynopsis><funcprototype> 
+      <funcdef> &void; <function> BufferWriteData</function></funcdef>
+      <paramdef> &uint; <parameter>bufferName</parameter></paramdef>
+      <paramdef> &enum; <parameter>format</parameter></paramdef>
+      <paramdef> &void;* <parameter> data </parameter></paramdef>
+      <paramdef> &sizei; <parameter> size </parameter></paramdef>
+      <paramdef> &uint; <parameter>frequency</parameter></paramdef>
+      <paramdef> &enum; <parameter>internalFormat</parameter></paramdef>
+      </funcprototype></funcsynopsis>
+      Valid formats for internalFormat are FORMAT_MONO8, FORMAT_MONO16,
+      FORMAT_STEREO8, and FORMAT_STEREO16.
+   </para>
+   </sect2>
+
+   <sect2>
+   <title>Loki BufferAppendData Extension</title> 
+   <para>
+      Experimental implementation to append data to an existing
+      buffer. Obsoleted by Buffer Queueing. TBA.
+   </para>
+   <![ %Annote [
+      <note><title>Annotation (GenStreamingBuffers):</title><para>
+        It is possible that a consistent implementation of this
+        extension will require distinguishing streaming from
+        regular buffers at creation time, instead of making
+        this distinction implied by the use of BufferData vs.
+        BufferAppendData.
+       </para></note>
+    ]]>
+ 
+     <![ %RFC [
+      <note id="rfc-bk0000507-09"><title>RFC: alBufferAppendData</title><para>  
+        Specify data to be filled into a streaming buffer.
+        This takes the current position at the time of the
+        call, and returns the number of samples written.
+         ALsizei ALAPIENTRY alBufferAppendData( ALuint   buffer,
+                                                ALenum   format,
+                                                ALvoid*  data,
+                                                ALsizei  size,
+                                                ALuint  freq );
+
+
+
+      </para></note>
+     ]]>
+
+      <![ %RFC [
+      <note id="rfc-briareaos0006XX-01"><title>RFC: GenStreamingBuffers</title><para>  
+            Currently there is a function call on the Linux side,
+            alGenStreamingBuffers(), which generates a Buffer intended
+            for streaming. The intent of this function was the provide
+            a clear creation point for streaming buffers, rather than
+            the previous behaviour of a Buffer "magically" becoming
+            streaming Buffer the first time BufferAppendData() was
+            called on it. However, it's hard to believe this anomaly
+            in the API can be any better. What about
+            DelStreamingBuffers()? IsStreamingBuffer()?
+      </para><para>
+         The design problem here is that we handle qualitatively different
+         objects using the same API. Streaming and non-streaming buffers
+         are fundamentally different. If we create an API that makes it
+         easy to mistake one for the other, or worse, if we decide to
+         quietly convert one type of object into another in some cases,
+         we create a plethora of error cases for the implementation and
+         the app coder to catch. Separating the Factory methods for the
+         objects allows us to omit an specialization API that will
+         accidentally be called more than once, and saves us handling
+         different stages of "initialization state". AL should not have
+         any notion of "partially initialized" or "incomplete" objects:
+         misery and despair lie down that road. If necessary the entire
+         API should be duplicated (after all, nobody handles 1D, 2D, and
+         3D textures using the same GL API hooks), but as the AL
+         implementation has the ability to distinguish streaming and
+         non-streamin buffers internally there might not be a need. 
+         Unless a concrete alternative is proposed to resolve the "anomaly"
+         it will be the preferred method to avoid an API that is 
+         leaner at the expense of being more error-prone.
+      </para></note>
+     ]]>
+  </sect2>
+
+
+
+
+   <sect2>
+   <title>Loki Decoding Callback Extension</title> 
+   <para>
+      Experimental implementation to allow the application to
+      specify a decoding callback for compression formats
+      and codecs not supported by &AL;. This is supposed to
+      be used if full uncompression by the application is prohibited
+      by memory footprint, but streaming (by queueing) is not
+      desired as the compressed data can be kept in memory
+      in its entirety.
+   </para>
+   <para>
+      If mixing can be done from the compressed data directly, 
+      several sources can use the sample without having to
+      be synchronized. For compression formats not supported 
+      by AL, however, partial decompression has to be done by 
+      the application. This extension allows for the implementation 
+      to "pull" data, using apllication provided decompression
+      code.
+   </para>
+   <para>
+      The use of this callback by the &AL;
+      implementation makes sense only if late decompression
+      (incremerntal, on demand, as needed for mixing) is done, 
+      as full early compression (ahead-of-time) inside the 
+      implementation would exact a similar memory footprint. 
+   </para>
+   <para>
+      TBA.
+   </para>
+   <para>
+      This extension forces execution of third party code
+      during (possibly threaded) driver operation, and
+      might also require state management with global
+      variables for decoder state, which raises issues
+      of thread safety and use for multiple buffers. This
+      extension should be obsolete as soon as &AL;
+      supports a reasonable set of state of the art
+      compression and encoding schemes.
+   </para>
+   </sect2>
+
+
+
+
+   <sect2>
+   <title>Loki Infinite Loop Extension</title> 
+   <para>
+      To support infinite looping, a boolean LOOP was introduced. 
+      With the introduction of buffer queueing and the request for
+      support for a limited number of repetitions, this mechanism
+      was redundant. This extension is not supported for 
+      buffer queue operations, attempts to use it will cause
+      an ILLEGAL_OPERATION error. For backwards compatibility 
+      it is supported as the equivalent to 
+       <literallayout>
+           Source( sName, PLAY_COUNT, MAX_INTEGER ) 
+       </literallayout>
+      For the query LOOP==TRUE, the comparison 
+      PLAY_COUNT!=MAX_INTEGER has to be executed on
+      the queue, not the current value which is decremented
+      for a PLAYING Source.
+    <table>
+    <title>Source LOOP_LOKI Attribute</title>
+    <tgroup cols="4" align="left" colsep=1 rowsep=1>
+    <colspec colname=c1>
+    <colspec colname=c2>
+    <colspec colname=c3>
+    <colspec colname=c4>
+    <spanspec spanname=hspan namest=c1 nameend=c4 align=left>
+    <thead>
+    <row>
+       <entry>&Par;</>
+       <entry>&Sig;</>
+       <entry>&Val</>
+       <entry>&Def;</>        
+    </row>
+    </thead>
+    <tbody>
+    <row>
+       <entry>LOOP_LOKI</>
+       <entry>b</>
+       <entry> &TRUE; &FALSE;</>
+       <entry> &FALSE; </>        
+    </row>
+    </tbody>
+    </tgroup>
+    </table>
+     Description:
+        &TRUE; indicates that the Source will perform an inifinite
+        loop over the content of the current Buffer it refers to. 
+    </para>
+   </sect2>
+   
+
+
+   <sect2>
+   <title>Loki Byte Offset Extension</title> 
+   <para>
+      The following has been obsoleted by explicit Source State query.
+      hack.
+   </para>
+
+   <para>
+    <table>
+    <title>Buffer BYTE Offset attribute</title>
+    <tgroup cols="4" align="left" colsep=1 rowsep=1>
+    <thead>
+    <row>
+       <entry>&Par;</>
+       <entry>&Sig;</>
+       <entry>&Val</>
+       <entry>&Def;</>        
+    </row>
+    </thead>
+    <tbody>
+    <row>
+       <entry>BYTE_LOKI</>
+       <entry>ui</>
+       <entry> n/a </>
+       <entry> n/a </>        
+    </row>
+    </tbody>
+    </tgroup>
+    </table>
+        Current byte for the buffer bound to the source interpreted
+        as an offset from the beginning of the buffer.
+    </para>
+
+    </sect2>
+    </sect1>
+   ]]> 
+
+
+  <![ %Ext2 [ 
+   <sect1>
+   <title>Loop Point Extension</title>
+   <para>
+
+      In external file now.
+
+    </para>
+   </sect1>
+   ]]>
+
+   </appendix>
+

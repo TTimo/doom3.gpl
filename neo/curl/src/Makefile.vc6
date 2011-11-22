@@ -1,0 +1,124 @@
+########################################################
+## Makefile for building curl.exe with MSVC6
+## Use: nmake -f makefile.vc6 [release | debug] [CFG=release-ssl]
+##      (default is release)
+## "nmake -f makefile.vc6 CFG=release-ssl" statically links OpenSSL
+## into curl.exe producing a standalone SSL-enabled executable.
+##
+## Comments to: Troy Engel <tengel@sonic.net>
+## Updated by: Craig Davison <cd@securityfocus.com>
+## release-ssl added by Miklos Nemeth <mnemeth@kfkisystems.com>
+## winmm.lib added by Miklos Nemeth <mnemeth@kfkisystems.com> to support
+## timeGetTime() in timeval.c
+
+PROGRAM_NAME = curl.exe
+
+########################################################
+## Nothing more to do below this line!
+
+## Release
+CCR = cl.exe /MD /O2 /D "NDEBUG"
+LINKR = link.exe /incremental:no /libpath:"../lib"
+RCR = rc.exe /dCURLDEBUG=0
+
+## Debug
+CCD = cl.exe /MDd /Gm /ZI /Od /D "_DEBUG" /GZ
+LINKD = link.exe /incremental:yes /debug /libpath:"../lib"
+RCD = rc.exe /dCURLDEBUG=1
+
+!IFNDEF ZLIB_PATH
+ZLIB_PATH  = ../../zlib-1.1.4
+!ENDIF
+
+CFLAGS = /I "../lib" /I "../include" /I "$(ZLIB_PATH)" /nologo /W3 /GX /D "WIN32" /D "_CONSOLE" /D "_MBCS" /YX /FD /c
+LFLAGS = /nologo /libpath:"$(ZLIB_PATH)" /out:$(PROGRAM_NAME) /subsystem:console /machine:I386
+RESFLAGS = /i "../include"
+LINKLIBS = wsock32.lib libcurl.lib winmm.lib zlib.lib
+LINKLIBS_DEBUG = wsock32.lib libcurld.lib winmm.lib zlib.lib
+
+RELEASE_OBJS= \
+	hugehelpr.obj \
+	writeoutr.obj \
+	urlglobr.obj \
+	getpassr.obj \
+	homedirr.obj \
+	mainr.obj \
+	curlr.res
+
+DEBUG_OBJS= \
+	hugehelpd.obj \
+	writeoutd.obj \
+	urlglobd.obj \
+	getpassd.obj \
+	homedird.obj \
+	maind.obj \
+	curld.res
+	
+######################
+# release-ssl
+ 
+!IF "$(CFG)" == "release-ssl"
+!IFNDEF OPENSSL_PATH
+OPENSSL_PATH   = ../../openssl-0.9.7a
+!ENDIF
+LFLAGSSSL = /LIBPATH:"$(OPENSSL_PATH)/out32"
+SSLLIBS   = libeay32.lib ssleay32.lib gdi32.lib 
+CFLAGS = $(CFLAGS) -DUSE_SSLEAY
+LINKLIBS  = $(LINKLIBS) $(SSLLIBS)
+LINKLIBS_DEBUG  = $(LINKLIBS_DEBUG) $(SSLLIBS)
+LFLAGS = $(LFLAGS) $(LFLAGSSSL)
+!ENDIF
+
+all : release
+
+release: $(RELEASE_OBJS)
+	$(LINKR) $(LFLAGS) $(LINKLIBS) $(RELEASE_OBJS)
+
+debug: $(DEBUG_OBJS)
+	$(LINKD) $(LFLAGS) $(LINKLIBS_DEBUG) $(DEBUG_OBJS)
+
+## Release
+hugehelpr.obj: hugehelp.c
+	$(CCR) $(CFLAGS) /Zm200 /Fo"$@" hugehelp.c
+writeoutr.obj: writeout.c
+	$(CCR) $(CFLAGS) /Fo"$@" writeout.c
+urlglobr.obj: urlglob.c
+	$(CCR) $(CFLAGS) /Fo"$@" urlglob.c
+getpassr.obj: getpass.c
+	$(CCR) $(CFLAGS) /Fo"$@" getpass.c
+homedirr.obj: homedir.c
+	$(CCR) $(CFLAGS) /Fo"$@" homedir.c
+mainr.obj: main.c
+	$(CCR) $(CFLAGS) /Fo"$@" main.c
+curlr.res : curl.rc
+	$(RCR) $(RESFLAGS) /Fo"$@" curl.rc
+
+## Debug
+hugehelpd.obj: hugehelp.c
+	$(CCD) $(CFLAGS) /Zm200 /Fo"$@" hugehelp.c
+writeoutd.obj: writeout.c
+	$(CCD) $(CFLAGS) /Fo"$@" writeout.c
+urlglobd.obj: urlglob.c
+	$(CCD) $(CFLAGS) /Fo"$@" urlglob.c
+getpassd.obj: getpass.c
+	$(CCD) $(CFLAGS) /Fo"$@" getpass.c
+homedird.obj: homedir.c
+	$(CCD) $(CFLAGS) /Fo"$@" homedir.c
+maind.obj: main.c
+	$(CCD) $(CFLAGS) /Fo"$@" main.c
+curld.res : curl.rc
+	$(RCD) $(RESFLAGS) /Fo"$@" curl.rc
+
+clean:
+	-@erase $(RELEASE_OBJS)
+	-@erase $(DEBUG_OBJS)
+	-@erase vc60.idb
+	-@erase vc60.pdb
+	-@erase vc60.pch
+	-@erase vc70.idb
+	-@erase vc70.pch
+	-@erase curl.ilk
+	-@erase curl.pdb
+
+distrib: clean
+	-@erase $(PROGRAM_NAME)

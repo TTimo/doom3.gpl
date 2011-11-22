@@ -1,0 +1,2544 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="CM">
+      <UniqueIdentifier>{0b350a6a-58d3-441e-bdcf-1115ff7edc1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework">
+      <UniqueIdentifier>{f5d345cb-9f26-4da2-9ef1-335e871dcce5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Async">
+      <UniqueIdentifier>{78d0b2e7-608c-46f4-8945-a3fbf061ccae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{19b363f5-76a7-4256-b7f0-7a6ec012d09d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\JPeg-6">
+      <UniqueIdentifier>{7fdc46b4-13a1-46c2-9be6-af8a85990431}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{2b6b512d-2388-41b9-8880-402e156ec20b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound\vorbissrc">
+      <UniqueIdentifier>{63e32bc7-65cb-4ee2-8b8f-2d546502dbf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound\vorbissrc\books">
+      <UniqueIdentifier>{40269b4b-9ecd-432f-a25a-a802a60ad93d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound\vorbissrc\modes">
+      <UniqueIdentifier>{ce6b537e-d981-4a37-9907-5460db169903}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound\vorbis">
+      <UniqueIdentifier>{cae44ca7-f71e-479d-b9a2-f7a9b8676924}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound\oggsrc">
+      <UniqueIdentifier>{4bd5585c-21a4-4c0b-a27c-d41a167f5f43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound\ogg">
+      <UniqueIdentifier>{9a23ae4a-a963-4984-a90b-6902bf5665c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sys">
+      <UniqueIdentifier>{8672dd57-2df1-454a-be5e-1ea2d6647cef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sys\RC">
+      <UniqueIdentifier>{c4397186-0c42-4057-82b4-17dea14c173f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sys\RC\res">
+      <UniqueIdentifier>{900f9550-2a58-4b22-82a9-298f01f6ac51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools">
+      <UniqueIdentifier>{af0039d7-487e-4e9c-859d-c7b4c194b985}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools\AF">
+      <UniqueIdentifier>{de4b7a7a-3038-4cac-a5d1-95b015b026ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools\ComAfx">
+      <UniqueIdentifier>{1041a97c-8f17-4731-a48e-a94cf40753fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools\Common">
+      <UniqueIdentifier>{082fe765-698a-408b-ae96-04db4f62a5dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools\Common\PropTree">
+      <UniqueIdentifier>{e51aaa76-0800-450c-9cf5-63484392d7a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools\Compilers">
+      <UniqueIdentifier>{83ad091e-339c-4f64-ad0d-e0776c4fe142}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools\Compilers\AAS">
+      <UniqueIdentifier>{07d88fa0-f779-44b7-87b1-2c0d8214aa3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools\Compilers\DMap">
+      <UniqueIdentifier>{6984ce76-c3bf-4003-97cf-64b50f951fe8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools\Compilers\RenderBump">
+      <UniqueIdentifier>{4533a5c7-30f7-4306-9a19-f4a7d8e453b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools\Compilers\RoqVQ">
+      <UniqueIdentifier>{c53bab3f-79ce-44fe-916e-04c51a7d93a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools\Debugger">
+      <UniqueIdentifier>{bdc52484-8a48-4b82-b396-9228f0304808}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools\Decl">
+      <UniqueIdentifier>{6b6929e6-0646-465b-9c53-e0b8535bf175}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools\GuiEd">
+      <UniqueIdentifier>{33958bbe-2c45-4c6c-bf13-2bdea604a1f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools\Sound">
+      <UniqueIdentifier>{44a955ea-0e6e-4cd1-aeb0-5e355aabe9bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools\MaterialEditor">
+      <UniqueIdentifier>{e245eb22-9902-436d-b292-1bd362aee648}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools\Particle">
+      <UniqueIdentifier>{527cec37-a4ca-4466-9d91-f925361a7aea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools\PDA">
+      <UniqueIdentifier>{06cc72d4-f944-4821-8693-667ae16daaee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools\Radiant">
+      <UniqueIdentifier>{60417518-1848-4aa4-87d8-b8d81c6c1ac4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools\Script">
+      <UniqueIdentifier>{1116e2f3-d474-4b47-b913-d95b022f80b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Ui">
+      <UniqueIdentifier>{b3166d25-0562-49da-bc8d-961006fe1785}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cm\CollisionModel.h">
+      <Filter>CM</Filter>
+    </ClInclude>
+    <ClInclude Include="cm\CollisionModel_local.h">
+      <Filter>CM</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\BuildDefines.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\BuildVersion.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\CmdSystem.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\Common.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\Compressor.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\Console.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\CVarSystem.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\DeclAF.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\DeclEntityDef.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\DeclFX.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\DeclManager.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\DeclParticle.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\DeclPDA.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\DeclSkin.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\DeclTable.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\DemoChecksum.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\DemoFile.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\EditField.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\EventLoop.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\File.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\FileSystem.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\KeyInput.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\Licensee.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\Session.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\Session_local.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\Unzip.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\UsercmdGen.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\async\AsyncClient.h">
+      <Filter>Framework\Async</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\async\AsyncNetwork.h">
+      <Filter>Framework\Async</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\async\AsyncServer.h">
+      <Filter>Framework\Async</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\async\MsgChannel.h">
+      <Filter>Framework\Async</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\async\NetworkSystem.h">
+      <Filter>Framework\Async</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\async\ServerScan.h">
+      <Filter>Framework\Async</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\Cinematic.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\glext.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\GuiModel.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\Image.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\Interaction.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\Material.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\MegaTexture.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\Model.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\Model_ase.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\Model_local.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\Model_lwo.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\Model_ma.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\Model_md3.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\ModelDecal.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\ModelManager.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\ModelOverlay.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\qgl.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\qgl_linked.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\RenderSystem.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\RenderWorld.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\RenderWorld_local.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\simplex.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\tr_local.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\VertexCache.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\wglext.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\jpeg-6\jchuff.h">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\jpeg-6\jconfig.h">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\jpeg-6\jdct.h">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\jpeg-6\jdhuff.h">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\jpeg-6\jerror.h">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\jpeg-6\jinclude.h">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\jpeg-6\jmemsys.h">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\jpeg-6\jmorecfg.h">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\jpeg-6\jpegint.h">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\jpeg-6\jpeglib.h">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\jpeg-6\jversion.h">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\snd_local.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\sound.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\backends.h">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\bitrate.h">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\codebook.h">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\codec_internal.h">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\envelope.h">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\highlevel.h">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\lookup.h">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\lookup_data.h">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\lpc.h">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\lsp.h">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\masking.h">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\mdct.h">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\misc.h">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\os.h">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\psy.h">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\registry.h">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\scales.h">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\smallft.h">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\window.h">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\books\floor\floor_books.h">
+      <Filter>Sound\vorbissrc\books</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\books\coupled\res_books_stereo.h">
+      <Filter>Sound\vorbissrc\books</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\books\uncoupled\res_books_uncoupled.h">
+      <Filter>Sound\vorbissrc\books</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\modes\floor_all.h">
+      <Filter>Sound\vorbissrc\modes</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\modes\psych_11.h">
+      <Filter>Sound\vorbissrc\modes</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\modes\psych_16.h">
+      <Filter>Sound\vorbissrc\modes</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\modes\psych_44.h">
+      <Filter>Sound\vorbissrc\modes</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\modes\psych_8.h">
+      <Filter>Sound\vorbissrc\modes</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\modes\residue_16.h">
+      <Filter>Sound\vorbissrc\modes</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\modes\residue_44.h">
+      <Filter>Sound\vorbissrc\modes</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\modes\residue_44u.h">
+      <Filter>Sound\vorbissrc\modes</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\modes\residue_8.h">
+      <Filter>Sound\vorbissrc\modes</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\modes\setup_11.h">
+      <Filter>Sound\vorbissrc\modes</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\modes\setup_16.h">
+      <Filter>Sound\vorbissrc\modes</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\modes\setup_22.h">
+      <Filter>Sound\vorbissrc\modes</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\modes\setup_32.h">
+      <Filter>Sound\vorbissrc\modes</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\modes\setup_44.h">
+      <Filter>Sound\vorbissrc\modes</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\modes\setup_44u.h">
+      <Filter>Sound\vorbissrc\modes</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\modes\setup_8.h">
+      <Filter>Sound\vorbissrc\modes</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbissrc\modes\setup_X.h">
+      <Filter>Sound\vorbissrc\modes</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbis\codec.h">
+      <Filter>Sound\vorbis</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbis\vorbisenc.h">
+      <Filter>Sound\vorbis</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\vorbis\vorbisfile.h">
+      <Filter>Sound\vorbis</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\ogg\ogg.h">
+      <Filter>Sound\ogg</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\OggVorbis\ogg\os_types.h">
+      <Filter>Sound\ogg</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\sys_local.h">
+      <Filter>Sys</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\sys_public.h">
+      <Filter>Sys</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\win32\win_local.h">
+      <Filter>Sys</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\win32\rc\AFEditor_resource.h">
+      <Filter>Sys\RC</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\win32\rc\Common_resource.h">
+      <Filter>Sys\RC</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\win32\rc\CreateResourceIDs.h">
+      <Filter>Sys\RC</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\win32\rc\Debugger_resource.h">
+      <Filter>Sys\RC</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\win32\rc\DeclEditor_resource.h">
+      <Filter>Sys\RC</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\win32\rc\doom_resource.h">
+      <Filter>Sys\RC</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\win32\rc\GuiEd_resource.h">
+      <Filter>Sys\RC</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\win32\rc\MaterialEditor_Resource.h">
+      <Filter>Sys\RC</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\win32\rc\ParticleEditor_resource.h">
+      <Filter>Sys\RC</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\win32\rc\PDAEditor_resource.h">
+      <Filter>Sys\RC</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\win32\rc\PropTree_resource.h">
+      <Filter>Sys\RC</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\win32\rc\Radiant_resource.h">
+      <Filter>Sys\RC</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\win32\rc\ScriptEditor_resource.h">
+      <Filter>Sys\RC</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\win32\rc\SoundEditor_resource.h">
+      <Filter>Sys\RC</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\compilers\compiler_public.h">
+      <Filter>Tools\Compilers</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\compilers\aas\AASBuild_local.h">
+      <Filter>Tools\Compilers\AAS</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\compilers\aas\AASCluster.h">
+      <Filter>Tools\Compilers\AAS</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\compilers\aas\AASFile.h">
+      <Filter>Tools\Compilers\AAS</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\compilers\aas\AASFile_local.h">
+      <Filter>Tools\Compilers\AAS</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\compilers\aas\AASFileManager.h">
+      <Filter>Tools\Compilers\AAS</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\compilers\aas\AASReach.h">
+      <Filter>Tools\Compilers\AAS</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\compilers\aas\Brush.h">
+      <Filter>Tools\Compilers\AAS</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\compilers\aas\BrushBSP.h">
+      <Filter>Tools\Compilers\AAS</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\compilers\dmap\dmap.h">
+      <Filter>Tools\Compilers\DMap</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\compilers\roqvq\codec.h">
+      <Filter>Tools\Compilers\RoqVQ</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\compilers\roqvq\gdefs.h">
+      <Filter>Tools\Compilers\RoqVQ</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\compilers\roqvq\quaddefs.h">
+      <Filter>Tools\Compilers\RoqVQ</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\compilers\roqvq\roq.h">
+      <Filter>Tools\Compilers\RoqVQ</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\compilers\roqvq\roqParam.h">
+      <Filter>Tools\Compilers\RoqVQ</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\BindWindow.h">
+      <Filter>Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\ChoiceWindow.h">
+      <Filter>Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\DeviceContext.h">
+      <Filter>Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\EditWindow.h">
+      <Filter>Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\FieldWindow.h">
+      <Filter>Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\GameBearShootWindow.h">
+      <Filter>Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\GameBustOutWindow.h">
+      <Filter>Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\GameSSDWindow.h">
+      <Filter>Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\GuiScript.h">
+      <Filter>Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\ListGUI.h">
+      <Filter>Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\ListGUILocal.h">
+      <Filter>Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\ListWindow.h">
+      <Filter>Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\MarkerWindow.h">
+      <Filter>Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\Rectangle.h">
+      <Filter>Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\RegExp.h">
+      <Filter>Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\RenderWindow.h">
+      <Filter>Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\SimpleWindow.h">
+      <Filter>Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\SliderWindow.h">
+      <Filter>Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\UserInterface.h">
+      <Filter>Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\UserInterfaceLocal.h">
+      <Filter>Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\Window.h">
+      <Filter>Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\Winvar.h">
+      <Filter>Ui</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="cm\CollisionModel_contacts.cpp">
+      <Filter>CM</Filter>
+    </ClCompile>
+    <ClCompile Include="cm\CollisionModel_contents.cpp">
+      <Filter>CM</Filter>
+    </ClCompile>
+    <ClCompile Include="cm\CollisionModel_debug.cpp">
+      <Filter>CM</Filter>
+    </ClCompile>
+    <ClCompile Include="cm\CollisionModel_files.cpp">
+      <Filter>CM</Filter>
+    </ClCompile>
+    <ClCompile Include="cm\CollisionModel_load.cpp">
+      <Filter>CM</Filter>
+    </ClCompile>
+    <ClCompile Include="cm\CollisionModel_rotate.cpp">
+      <Filter>CM</Filter>
+    </ClCompile>
+    <ClCompile Include="cm\CollisionModel_trace.cpp">
+      <Filter>CM</Filter>
+    </ClCompile>
+    <ClCompile Include="cm\CollisionModel_translate.cpp">
+      <Filter>CM</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\CmdSystem.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\Common.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\Compressor.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\Console.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\CVarSystem.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\DeclAF.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\DeclEntityDef.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\DeclFX.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\DeclManager.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\DeclParticle.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\DeclPDA.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\DeclSkin.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\DeclTable.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\DemoFile.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\EditField.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\EventLoop.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\File.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\FileSystem.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\KeyInput.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\Session.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\Session_menu.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\Unzip.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\UsercmdGen.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\async\AsyncClient.cpp">
+      <Filter>Framework\Async</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\async\AsyncNetwork.cpp">
+      <Filter>Framework\Async</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\async\AsyncServer.cpp">
+      <Filter>Framework\Async</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\async\MsgChannel.cpp">
+      <Filter>Framework\Async</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\async\NetworkSystem.cpp">
+      <Filter>Framework\Async</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\async\ServerScan.cpp">
+      <Filter>Framework\Async</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\Cinematic.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\draw_arb.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\draw_arb2.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\draw_common.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\draw_nv10.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\draw_nv20.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\draw_r200.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\GuiModel.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\Image_files.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\Image_init.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\Image_load.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\Image_process.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\Image_program.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\Interaction.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\Material.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\MegaTexture.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\Model.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\Model_ase.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\Model_beam.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\Model_liquid.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\Model_lwo.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\Model_ma.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\Model_md3.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\Model_md5.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\Model_prt.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\Model_sprite.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\ModelDecal.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\ModelManager.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\ModelOverlay.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\RenderEntity.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\RenderSystem.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\RenderSystem_init.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\RenderWorld.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\RenderWorld_demo.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\RenderWorld_load.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\RenderWorld_portals.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\tr_backend.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\tr_deform.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\tr_font.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\tr_guisurf.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\tr_light.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\tr_lightrun.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\tr_main.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\tr_orderIndexes.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\tr_polytope.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\tr_render.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\tr_rendertools.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\tr_shadowbounds.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\tr_stencilshadow.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\tr_subview.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\tr_trace.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\tr_trisurf.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\tr_turboshadow.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\VertexCache.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jcapimin.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jccoefct.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jccolor.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jcdctmgr.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jchuff.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jcinit.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jcmainct.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jcmarker.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jcmaster.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jcomapi.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jcparam.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jcphuff.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jcprepct.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jcsample.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jdapimin.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jdapistd.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jdatadst.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jdatasrc.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jdcoefct.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jdcolor.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jddctmgr.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jdhuff.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jdinput.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jdmainct.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jdmarker.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jdmaster.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jdmerge.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jdphuff.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jdpostct.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jdsample.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jdtrans.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jerror.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jfdctflt.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jfdctfst.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jfdctint.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jidctflt.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jidctfst.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jidctint.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jidctred.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jmemmgr.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jmemnobs.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jquant1.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jquant2.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\jpeg-6\jutils.c">
+      <Filter>Renderer\JPeg-6</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\snd_cache.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\snd_decoder.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\snd_efxfile.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\snd_emitter.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\snd_shader.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\snd_system.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\snd_wavefile.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\snd_world.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\OggVorbis\vorbissrc\analysis.c">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\OggVorbis\vorbissrc\barkmel.c">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\OggVorbis\vorbissrc\bitrate.c">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\OggVorbis\vorbissrc\block.c">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\OggVorbis\vorbissrc\codebook.c">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\OggVorbis\vorbissrc\envelope.c">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\OggVorbis\vorbissrc\floor0.c">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\OggVorbis\vorbissrc\floor1.c">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\OggVorbis\vorbissrc\info.c">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\OggVorbis\vorbissrc\lookup.c">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\OggVorbis\vorbissrc\lpc.c">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\OggVorbis\vorbissrc\lsp.c">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\OggVorbis\vorbissrc\mapping0.c">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\OggVorbis\vorbissrc\mdct.c">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\OggVorbis\vorbissrc\psy.c">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\OggVorbis\vorbissrc\registry.c">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\OggVorbis\vorbissrc\res0.c">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\OggVorbis\vorbissrc\sharedbook.c">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\OggVorbis\vorbissrc\smallft.c">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\OggVorbis\vorbissrc\synthesis.c">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\OggVorbis\vorbissrc\vorbisenc.c">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\OggVorbis\vorbissrc\vorbisfile.c">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\OggVorbis\vorbissrc\windowvb.c">
+      <Filter>Sound\vorbissrc</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\OggVorbis\oggsrc\bitwise.c">
+      <Filter>Sound\oggsrc</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\OggVorbis\oggsrc\framing.c">
+      <Filter>Sound\oggsrc</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\sys_local.cpp">
+      <Filter>Sys</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\win32\win_cpu.cpp">
+      <Filter>Sys</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\win32\win_glimp.cpp">
+      <Filter>Sys</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\win32\win_input.cpp">
+      <Filter>Sys</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\win32\win_main.cpp">
+      <Filter>Sys</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\win32\win_net.cpp">
+      <Filter>Sys</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\win32\win_qgl.cpp">
+      <Filter>Sys</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\win32\win_shared.cpp">
+      <Filter>Sys</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\win32\win_snd.cpp">
+      <Filter>Sys</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\win32\win_syscon.cpp">
+      <Filter>Sys</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\win32\win_taskkeyhook.cpp">
+      <Filter>Sys</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\win32\win_wndproc.cpp">
+      <Filter>Sys</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\win32\rc\CreateResourceIDs.cpp">
+      <Filter>Sys\RC</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\af\DialogAF.cpp">
+      <Filter>Tools\AF</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\af\DialogAFBody.cpp">
+      <Filter>Tools\AF</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\af\DialogAFConstraint.cpp">
+      <Filter>Tools\AF</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\af\DialogAFConstraintBallAndSocket.cpp">
+      <Filter>Tools\AF</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\af\DialogAFConstraintFixed.cpp">
+      <Filter>Tools\AF</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\af\DialogAFConstraintHinge.cpp">
+      <Filter>Tools\AF</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\af\DialogAFConstraintSlider.cpp">
+      <Filter>Tools\AF</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\af\DialogAFConstraintSpring.cpp">
+      <Filter>Tools\AF</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\af\DialogAFConstraintUniversal.cpp">
+      <Filter>Tools\AF</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\af\DialogAFName.cpp">
+      <Filter>Tools\AF</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\af\DialogAFProperties.cpp">
+      <Filter>Tools\AF</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\af\DialogAFView.cpp">
+      <Filter>Tools\AF</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\comafx\CDIB.cpp">
+      <Filter>Tools\ComAfx</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\comafx\CPathTreeCtrl.cpp">
+      <Filter>Tools\ComAfx</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\comafx\CSyntaxRichEditCtrl.cpp">
+      <Filter>Tools\ComAfx</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\comafx\DialogColorPicker.cpp">
+      <Filter>Tools\ComAfx</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\comafx\DialogGoToLine.cpp">
+      <Filter>Tools\ComAfx</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\comafx\DialogName.cpp">
+      <Filter>Tools\ComAfx</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\comafx\StdAfx.cpp">
+      <Filter>Tools\ComAfx</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\comafx\VectorCtl.cpp">
+      <Filter>Tools\ComAfx</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\common\AlphaPopup.cpp">
+      <Filter>Tools\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\common\ColorButton.cpp">
+      <Filter>Tools\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\common\MaskEdit.cpp">
+      <Filter>Tools\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\common\OpenFileDialog.cpp">
+      <Filter>Tools\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\common\PropertyGrid.cpp">
+      <Filter>Tools\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\common\RegistryOptions.cpp">
+      <Filter>Tools\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\common\RollupPanel.cpp">
+      <Filter>Tools\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\common\SpinButton.cpp">
+      <Filter>Tools\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\common\PropTree\PropTree.cpp">
+      <Filter>Tools\Common\PropTree</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\common\PropTree\PropTreeInfo.cpp">
+      <Filter>Tools\Common\PropTree</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\common\PropTree\PropTreeItem.cpp">
+      <Filter>Tools\Common\PropTree</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\common\PropTree\PropTreeItemButton.cpp">
+      <Filter>Tools\Common\PropTree</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\common\PropTree\PropTreeItemCheck.cpp">
+      <Filter>Tools\Common\PropTree</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\common\PropTree\PropTreeItemColor.cpp">
+      <Filter>Tools\Common\PropTree</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\common\PropTree\PropTreeItemCombo.cpp">
+      <Filter>Tools\Common\PropTree</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\common\PropTree\PropTreeItemEdit.cpp">
+      <Filter>Tools\Common\PropTree</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\common\PropTree\PropTreeItemEditButton.cpp">
+      <Filter>Tools\Common\PropTree</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\common\PropTree\PropTreeItemFileEdit.cpp">
+      <Filter>Tools\Common\PropTree</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\common\PropTree\PropTreeItemStatic.cpp">
+      <Filter>Tools\Common\PropTree</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\common\PropTree\PropTreeList.cpp">
+      <Filter>Tools\Common\PropTree</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\common\PropTree\PropTreeView.cpp">
+      <Filter>Tools\Common\PropTree</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\aas\AASBuild.cpp">
+      <Filter>Tools\Compilers\AAS</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\aas\AASBuild_file.cpp">
+      <Filter>Tools\Compilers\AAS</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\aas\AASBuild_gravity.cpp">
+      <Filter>Tools\Compilers\AAS</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\aas\AASBuild_ledge.cpp">
+      <Filter>Tools\Compilers\AAS</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\aas\AASBuild_merge.cpp">
+      <Filter>Tools\Compilers\AAS</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\aas\AASCluster.cpp">
+      <Filter>Tools\Compilers\AAS</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\aas\AASFile.cpp">
+      <Filter>Tools\Compilers\AAS</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\aas\AASFile_optimize.cpp">
+      <Filter>Tools\Compilers\AAS</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\aas\AASFile_sample.cpp">
+      <Filter>Tools\Compilers\AAS</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\aas\AASFileManager.cpp">
+      <Filter>Tools\Compilers\AAS</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\aas\AASReach.cpp">
+      <Filter>Tools\Compilers\AAS</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\aas\Brush.cpp">
+      <Filter>Tools\Compilers\AAS</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\aas\BrushBSP.cpp">
+      <Filter>Tools\Compilers\AAS</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\dmap\dmap.cpp">
+      <Filter>Tools\Compilers\DMap</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\dmap\facebsp.cpp">
+      <Filter>Tools\Compilers\DMap</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\dmap\gldraw.cpp">
+      <Filter>Tools\Compilers\DMap</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\dmap\glfile.cpp">
+      <Filter>Tools\Compilers\DMap</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\dmap\leakfile.cpp">
+      <Filter>Tools\Compilers\DMap</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\dmap\map.cpp">
+      <Filter>Tools\Compilers\DMap</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\dmap\optimize.cpp">
+      <Filter>Tools\Compilers\DMap</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\dmap\optimize_gcc.cpp">
+      <Filter>Tools\Compilers\DMap</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\dmap\output.cpp">
+      <Filter>Tools\Compilers\DMap</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\dmap\portals.cpp">
+      <Filter>Tools\Compilers\DMap</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\dmap\shadowopt3.cpp">
+      <Filter>Tools\Compilers\DMap</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\dmap\tritjunction.cpp">
+      <Filter>Tools\Compilers\DMap</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\dmap\tritools.cpp">
+      <Filter>Tools\Compilers\DMap</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\dmap\ubrush.cpp">
+      <Filter>Tools\Compilers\DMap</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\dmap\usurface.cpp">
+      <Filter>Tools\Compilers\DMap</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\renderbump\renderbump.cpp">
+      <Filter>Tools\Compilers\RenderBump</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\roqvq\codec.cpp">
+      <Filter>Tools\Compilers\RoqVQ</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\roqvq\NSBitmapImageRep.cpp">
+      <Filter>Tools\Compilers\RoqVQ</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\roqvq\roq.cpp">
+      <Filter>Tools\Compilers\RoqVQ</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\compilers\roqvq\roqParam.cpp">
+      <Filter>Tools\Compilers\RoqVQ</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\debugger\debugger.cpp">
+      <Filter>Tools\Debugger</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\debugger\DebuggerApp.cpp">
+      <Filter>Tools\Debugger</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\debugger\DebuggerBreakpoint.cpp">
+      <Filter>Tools\Debugger</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\debugger\DebuggerClient.cpp">
+      <Filter>Tools\Debugger</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\debugger\DebuggerFindDlg.cpp">
+      <Filter>Tools\Debugger</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\debugger\DebuggerQuickWatchDlg.cpp">
+      <Filter>Tools\Debugger</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\debugger\DebuggerScript.cpp">
+      <Filter>Tools\Debugger</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\debugger\DebuggerServer.cpp">
+      <Filter>Tools\Debugger</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\debugger\DebuggerWindow.cpp">
+      <Filter>Tools\Debugger</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\decl\DialogDeclBrowser.cpp">
+      <Filter>Tools\Decl</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\decl\DialogDeclEditor.cpp">
+      <Filter>Tools\Decl</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\decl\DialogDeclNew.cpp">
+      <Filter>Tools\Decl</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GEApp.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GECheckInDlg.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GEDeleteModifier.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GEHideModifier.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GEInsertModifier.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GEItemPropsDlg.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GEItemScriptsDlg.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GEKeyValueModifier.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GEModifier.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GEModifierGroup.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GEModifierStack.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GEMoveModifier.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GENavigator.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GEOptions.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GEOptionsDlg.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GEProperties.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GEPropertyPage.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GESelectionMgr.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GESizeModifier.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GEStateModifier.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GEStatusBar.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GETransformer.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GEViewer.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GEWindowWrapper.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GEWorkspace.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GEWorkspaceFile.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\GEZOrderModifier.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\guied\guied.cpp">
+      <Filter>Tools\GuiEd</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\sound\DialogSound.cpp">
+      <Filter>Tools\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\sound\DialogSoundGroup.cpp">
+      <Filter>Tools\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\materialeditor\ConsoleView.cpp">
+      <Filter>Tools\MaterialEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\materialeditor\FindDialog.cpp">
+      <Filter>Tools\MaterialEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\materialeditor\MaterialDef.cpp">
+      <Filter>Tools\MaterialEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\materialeditor\MaterialDoc.cpp">
+      <Filter>Tools\MaterialEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\materialeditor\MaterialDocManager.cpp">
+      <Filter>Tools\MaterialEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\materialeditor\MaterialEditor.cpp">
+      <Filter>Tools\MaterialEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\materialeditor\MaterialEditView.cpp">
+      <Filter>Tools\MaterialEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\materialeditor\MaterialModifier.cpp">
+      <Filter>Tools\MaterialEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\materialeditor\MaterialPreviewPropView.cpp">
+      <Filter>Tools\MaterialEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\materialeditor\MaterialPreviewView.cpp">
+      <Filter>Tools\MaterialEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\materialeditor\MaterialPropTreeView.cpp">
+      <Filter>Tools\MaterialEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\materialeditor\MaterialTreeView.cpp">
+      <Filter>Tools\MaterialEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\materialeditor\MaterialView.cpp">
+      <Filter>Tools\MaterialEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\materialeditor\MEMainFrame.cpp">
+      <Filter>Tools\MaterialEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\materialeditor\MEOptions.cpp">
+      <Filter>Tools\MaterialEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\materialeditor\StageView.cpp">
+      <Filter>Tools\MaterialEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\materialeditor\ToggleListView.cpp">
+      <Filter>Tools\MaterialEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\particle\DialogParticleEditor.cpp">
+      <Filter>Tools\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\pda\DialogPDAEditor.cpp">
+      <Filter>Tools\PDA</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\autocaulk.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\CameraTargetDlg.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\CamWnd.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\CapDialog.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\cmdlib.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\CommandsDlg.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\CommentsDlg.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\ConsoleDlg.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\CSG.CPP">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\CurveDlg.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\DialogInfo.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\DialogTextures.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\DialogThick.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\DlgCamera.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\DlgEvent.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\DRAG.CPP">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\ECLASS.CPP">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\EditorBrush.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\EditorBrushPrimit.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\EditorEntity.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\EditorMap.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\EditViewDlg.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\EntityDlg.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\EntityListDlg.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\EntKeyFindReplace.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\FindTextureDlg.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\GetString.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\GLWidget.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\InspectorDialog.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\LightDlg.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\MainFrm.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\MapInfo.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\MediaPreviewDlg.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\MRU.CPP">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\NewProjDlg.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\NewTexWnd.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\PARSE.CPP">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\PatchDensityDlg.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\PatchDialog.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\PMESH.CPP">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\PointFile.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\PrefsDlg.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\PreviewDlg.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\PropertyList.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\QE3.CPP">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\Radiant.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\RotateDlg.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\ScaleDialog.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\SELECT.CPP">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\splines.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\SurfaceDlg.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\TabsDlg.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\TearoffContainerWindow.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\TextureBar.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\Undo.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\VERTSEL.CPP">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\WaitDlg.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\WaveOpen.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\WIN_DLG.CPP">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\WIN_QE3.CPP">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\XYWnd.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\Z.CPP">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\ZClip.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\radiant\ZWnd.cpp">
+      <Filter>Tools\Radiant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\script\DialogScriptEditor.cpp">
+      <Filter>Tools\Script</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\BindWindow.cpp">
+      <Filter>Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\ChoiceWindow.cpp">
+      <Filter>Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\DeviceContext.cpp">
+      <Filter>Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\EditWindow.cpp">
+      <Filter>Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\FieldWindow.cpp">
+      <Filter>Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\GameBearShootWindow.cpp">
+      <Filter>Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\GameBustOutWindow.cpp">
+      <Filter>Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\GameSSDWindow.cpp">
+      <Filter>Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\GuiScript.cpp">
+      <Filter>Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\ListGUI.cpp">
+      <Filter>Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\ListWindow.cpp">
+      <Filter>Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\MarkerWindow.cpp">
+      <Filter>Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\RegExp.cpp">
+      <Filter>Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\RenderWindow.cpp">
+      <Filter>Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\SimpleWindow.cpp">
+      <Filter>Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\SliderWindow.cpp">
+      <Filter>Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\UserInterface.cpp">
+      <Filter>Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\Window.cpp">
+      <Filter>Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\Winvar.cpp">
+      <Filter>Ui</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="openal\idal.py">
+      <Filter>Sound</Filter>
+    </None>
+    <None Include="sound\OggVorbis\vorbissrc\lookups.pl">
+      <Filter>Sound\vorbissrc</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\BEVEL.BMP">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\BITMAP2.BMP">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\BMP00001.BMP">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\bmp00002.bmp">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\bmp00003.bmp">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\bmp00004.bmp">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\bmp00005.bmp">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\BMP0002.BMP">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\cchsb.bmp">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\ccrgb.bmp">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\dbg_back.bmp">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\dbg_breakpoint.ico">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\dbg_current.ico">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\dbg_currentline.ico">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\dbg_empty.ico">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\dbg_open.bmp">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\dbg_toolbar.bmp">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\DEFTEX.WAL">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\doom.ico">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\ENDCAP.BMP">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\fpoint.cur">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\fxed_link.ico">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\fxed_toolbar.bmp">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\fxeditor.ico">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\GetString.htm">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\guied.ico">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\guied_collapse.ico">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\guied_expand.ico">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\guied_hand.cur">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\guied_nav_visible.ico">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\guied_nav_visibledisabled.ico">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\guied_scripts.ico">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\guied_scripts_white.ico">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\guied_viewer_toolbar.bmp">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\IBEVEL.BMP">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\icon2.ico">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\IENDCAP.BMP">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\logo_sm3dfx.bmp">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\matedtree.bmp">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\MaterialEditor.ico">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\me_disabled_icon.ico">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\me_enabled.ico">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\me_off_icon.ico">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\me_on_icon.ico">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\MEFileToolbar.bmp">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\MEtoolbar.bmp">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\PropTree.rc2">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\Q.BMP">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\qe3.ico">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\Radiant.ico">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\RADIANT3.GIF">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\RadiantDoc.ico">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\shaderbar.bmp">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\shaderdoc.ico">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\shaderframe.ico">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\spliter.cur">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\Toolbar.bmp">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\TOOLBAR1.BMP">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\TOOLBAR2.BMP">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\VIEWDEFA.BMP">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="sys\win32\rc\res\VIEWOPPO.BMP">
+      <Filter>Sys\RC\res</Filter>
+    </None>
+    <None Include="tools\comafx\riched20.tlh">
+      <Filter>Tools\ComAfx</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="sys\win32\rc\AFEditor.rc">
+      <Filter>Sys\RC</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="sys\win32\rc\Common.rc">
+      <Filter>Sys\RC</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="sys\win32\rc\Debugger.rc">
+      <Filter>Sys\RC</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="sys\win32\rc\DeclEditor.rc">
+      <Filter>Sys\RC</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="sys\win32\rc\doom.rc">
+      <Filter>Sys\RC</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="sys\win32\rc\GuiEd.rc">
+      <Filter>Sys\RC</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="sys\win32\rc\MaterialEditor.rc">
+      <Filter>Sys\RC</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="sys\win32\rc\ParticleEditor.rc">
+      <Filter>Sys\RC</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="sys\win32\rc\PDAEditor.rc">
+      <Filter>Sys\RC</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="sys\win32\rc\PropTree.rc">
+      <Filter>Sys\RC</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="sys\win32\rc\Radiant.rc">
+      <Filter>Sys\RC</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="sys\win32\rc\ScriptEditor.rc">
+      <Filter>Sys\RC</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="sys\win32\rc\SoundEditor.rc">
+      <Filter>Sys\RC</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuildStep Include="tools\edit_public.h">
+      <Filter>Tools</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\af\DialogAF.h">
+      <Filter>Tools\AF</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\af\DialogAFBody.h">
+      <Filter>Tools\AF</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\af\DialogAFConstraint.h">
+      <Filter>Tools\AF</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\af\DialogAFConstraintBallAndSocket.h">
+      <Filter>Tools\AF</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\af\DialogAFConstraintFixed.h">
+      <Filter>Tools\AF</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\af\DialogAFConstraintHinge.h">
+      <Filter>Tools\AF</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\af\DialogAFConstraintSlider.h">
+      <Filter>Tools\AF</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\af\DialogAFConstraintSpring.h">
+      <Filter>Tools\AF</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\af\DialogAFConstraintUniversal.h">
+      <Filter>Tools\AF</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\af\DialogAFName.h">
+      <Filter>Tools\AF</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\af\DialogAFProperties.h">
+      <Filter>Tools\AF</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\af\DialogAFView.h">
+      <Filter>Tools\AF</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\comafx\CDIB.h">
+      <Filter>Tools\ComAfx</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\comafx\CPathTreeCtrl.h">
+      <Filter>Tools\ComAfx</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\comafx\CSyntaxRichEditCtrl.h">
+      <Filter>Tools\ComAfx</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\comafx\DialogColorPicker.h">
+      <Filter>Tools\ComAfx</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\comafx\DialogGoToLine.h">
+      <Filter>Tools\ComAfx</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\comafx\DialogName.h">
+      <Filter>Tools\ComAfx</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\comafx\StdAfx.h">
+      <Filter>Tools\ComAfx</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\comafx\VectorCtl.h">
+      <Filter>Tools\ComAfx</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\common\ColorButton.h">
+      <Filter>Tools\Common</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\common\DialogHelpers.h">
+      <Filter>Tools\Common</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\common\MaskEdit.h">
+      <Filter>Tools\Common</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\common\OpenFileDialog.h">
+      <Filter>Tools\Common</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\common\PropertyGrid.h">
+      <Filter>Tools\Common</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\common\RegistryOptions.h">
+      <Filter>Tools\Common</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\common\RollupPanel.h">
+      <Filter>Tools\Common</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\common\SpinButton.h">
+      <Filter>Tools\Common</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\common\PropTree\PropTree.h">
+      <Filter>Tools\Common\PropTree</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\common\PropTree\PropTreeInfo.h">
+      <Filter>Tools\Common\PropTree</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\common\PropTree\PropTreeItem.h">
+      <Filter>Tools\Common\PropTree</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\common\PropTree\PropTreeItemButton.h">
+      <Filter>Tools\Common\PropTree</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\common\PropTree\PropTreeItemCheck.h">
+      <Filter>Tools\Common\PropTree</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\common\PropTree\PropTreeItemColor.h">
+      <Filter>Tools\Common\PropTree</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\common\PropTree\PropTreeItemCombo.h">
+      <Filter>Tools\Common\PropTree</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\common\PropTree\PropTreeItemEdit.h">
+      <Filter>Tools\Common\PropTree</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\common\PropTree\PropTreeItemEditButton.h">
+      <Filter>Tools\Common\PropTree</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\common\PropTree\PropTreeItemFileEdit.h">
+      <Filter>Tools\Common\PropTree</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\common\PropTree\PropTreeItemStatic.h">
+      <Filter>Tools\Common\PropTree</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\common\PropTree\PropTreeList.h">
+      <Filter>Tools\Common\PropTree</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\common\PropTree\PropTreeView.h">
+      <Filter>Tools\Common\PropTree</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\debugger\DebuggerApp.h">
+      <Filter>Tools\Debugger</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\debugger\DebuggerBreakpoint.h">
+      <Filter>Tools\Debugger</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\debugger\DebuggerClient.h">
+      <Filter>Tools\Debugger</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\debugger\DebuggerFindDlg.h">
+      <Filter>Tools\Debugger</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\debugger\DebuggerMessages.h">
+      <Filter>Tools\Debugger</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\debugger\DebuggerQuickWatchDlg.h">
+      <Filter>Tools\Debugger</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\debugger\DebuggerScript.h">
+      <Filter>Tools\Debugger</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\debugger\DebuggerServer.h">
+      <Filter>Tools\Debugger</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\debugger\DebuggerWindow.h">
+      <Filter>Tools\Debugger</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\decl\DialogDeclBrowser.h">
+      <Filter>Tools\Decl</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\decl\DialogDeclEditor.h">
+      <Filter>Tools\Decl</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\decl\DialogDeclNew.h">
+      <Filter>Tools\Decl</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\guied\GEApp.h">
+      <Filter>Tools\GuiEd</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\guied\GEDeleteModifier.h">
+      <Filter>Tools\GuiEd</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\guied\GEHideModifier.h">
+      <Filter>Tools\GuiEd</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\guied\GEInsertModifier.h">
+      <Filter>Tools\GuiEd</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\guied\GEItemPropsDlg.h">
+      <Filter>Tools\GuiEd</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\guied\GEItemScriptsDlg.h">
+      <Filter>Tools\GuiEd</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\guied\GEKeyValueModifier.h">
+      <Filter>Tools\GuiEd</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\guied\GEModifier.h">
+      <Filter>Tools\GuiEd</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\guied\GEModifierGroup.h">
+      <Filter>Tools\GuiEd</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\guied\GEModifierStack.h">
+      <Filter>Tools\GuiEd</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\guied\GEMoveModifier.h">
+      <Filter>Tools\GuiEd</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\guied\GENavigator.h">
+      <Filter>Tools\GuiEd</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\guied\GEOptions.h">
+      <Filter>Tools\GuiEd</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\guied\GEOptionsDlg.h">
+      <Filter>Tools\GuiEd</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\guied\GEProperties.h">
+      <Filter>Tools\GuiEd</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\guied\GEPropertyPage.h">
+      <Filter>Tools\GuiEd</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\guied\GESelectionMgr.h">
+      <Filter>Tools\GuiEd</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\guied\GESizeModifier.h">
+      <Filter>Tools\GuiEd</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\guied\GEStateModifier.h">
+      <Filter>Tools\GuiEd</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\guied\GEStatusBar.h">
+      <Filter>Tools\GuiEd</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\guied\GETransformer.h">
+      <Filter>Tools\GuiEd</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\guied\GEViewer.h">
+      <Filter>Tools\GuiEd</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\guied\GEWindowWrapper.h">
+      <Filter>Tools\GuiEd</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\guied\GEWorkspace.h">
+      <Filter>Tools\GuiEd</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\guied\GEZOrderModifier.h">
+      <Filter>Tools\GuiEd</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\sound\DialogSound.h">
+      <Filter>Tools\Sound</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\sound\DialogSoundGroup.h">
+      <Filter>Tools\Sound</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\materialeditor\ConsoleView.h">
+      <Filter>Tools\MaterialEditor</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\materialeditor\FindDialog.h">
+      <Filter>Tools\MaterialEditor</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\materialeditor\MaterialDef.h">
+      <Filter>Tools\MaterialEditor</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\materialeditor\MaterialDoc.h">
+      <Filter>Tools\MaterialEditor</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\materialeditor\MaterialDocManager.h">
+      <Filter>Tools\MaterialEditor</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\materialeditor\MaterialEditor.h">
+      <Filter>Tools\MaterialEditor</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\materialeditor\MaterialEditView.h">
+      <Filter>Tools\MaterialEditor</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\materialeditor\MaterialModifier.h">
+      <Filter>Tools\MaterialEditor</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\materialeditor\MaterialPreviewPropView.h">
+      <Filter>Tools\MaterialEditor</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\materialeditor\MaterialPreviewView.h">
+      <Filter>Tools\MaterialEditor</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\materialeditor\MaterialPropTreeView.h">
+      <Filter>Tools\MaterialEditor</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\materialeditor\MaterialTreeView.h">
+      <Filter>Tools\MaterialEditor</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\materialeditor\MaterialView.h">
+      <Filter>Tools\MaterialEditor</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\materialeditor\MEMainFrame.h">
+      <Filter>Tools\MaterialEditor</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\materialeditor\MEOptions.h">
+      <Filter>Tools\MaterialEditor</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\materialeditor\StageView.h">
+      <Filter>Tools\MaterialEditor</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\materialeditor\ToggleListView.h">
+      <Filter>Tools\MaterialEditor</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\particle\DialogParticleEditor.h">
+      <Filter>Tools\Particle</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\pda\DialogPDAEditor.h">
+      <Filter>Tools\PDA</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\autocaulk.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\CameraTargetDlg.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\CamWnd.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\CapDialog.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\cmdlib.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\CommandsDlg.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\CommentsDlg.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\ConsoleDlg.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\CurveDlg.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\DialogInfo.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\DialogTextures.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\DialogThick.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\DlgCamera.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\DlgEvent.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\EditorBrush.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\EditorEntity.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\EditorMap.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\EditViewDlg.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\EntityDlg.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\EntityListDlg.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\EntKeyFindReplace.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\FindTextureDlg.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\GetString.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\GLWidget.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\InspectorDialog.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\LightDlg.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\MainFrm.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\MapInfo.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\MediaPreviewDlg.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\MRU.H">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\NewProjDlg.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\NewTexWnd.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\PARSE.H">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\PatchDensityDlg.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\PatchDialog.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\PMESH.H">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\PrefsDlg.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\PreviewDlg.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\PropertyList.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\QE3.H">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\QEDEFS.H">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\QERTYPES.H">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\Radiant.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\RotateDlg.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\ScaleDialog.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\SELECT.H">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\splines.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\SurfaceDlg.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\TabsDlg.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\TearoffContainerWindow.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\TextureBar.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\Textures.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\Undo.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\WaitDlg.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\WaveOpen.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\XYWnd.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\Z.H">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\ZClip.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\radiant\ZWnd.h">
+      <Filter>Tools\Radiant</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="tools\script\DialogScriptEditor.h">
+      <Filter>Tools\Script</Filter>
+    </CustomBuildStep>
+  </ItemGroup>
+</Project>

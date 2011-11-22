@@ -1,0 +1,324 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "ParticleEditor_resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "ParticleEditor_resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG_PARTICLE_EDITOR DIALOGEX 0, 0, 312, 505
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CONTROLPARENT
+CAPTION "Particle Editor"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_COMBO_PARTICLES,35,5,149,200,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "New...",IDC_BUTTON_NEW,187,5,59,13
+    PUSHBUTTON      "Save",IDC_BUTTON_SAVE_PARTICLE,250,5,59,13
+    EDITTEXT        IDC_EDIT_DEPTHHACK,185,21,40,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Save as...",IDC_BUTTON_SAVE_PARTICLE_AS,250,21,59,13
+    PUSHBUTTON      "+",IDC_BUTTON_ADDSTAGE,16,42,10,9
+    PUSHBUTTON      "-",IDC_BUTTON_REMOVESTAGE,29,42,10,9
+    PUSHBUTTON      "H",IDC_BUTTON_HIDESTAGE,42,42,10,9
+    PUSHBUTTON      "S",IDC_BUTTON_SHOWSTAGE,55,42,10,9
+    LISTBOX         IDC_LIST_STAGES,15,53,78,111,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_MATERIAL,120,50,164,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_BUTTON_BROWSEMATERIAL,285,50,14,12
+    EDITTEXT        IDC_EDIT_ANIMFRAMES,158,67,31,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_ANIMRATE,236,67,31,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_COLOR,141,82,101,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_BUTTON_BROWSECOLOR,244,82,14,12
+    EDITTEXT        IDC_EDIT_FADECOLOR,141,99,101,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_BUTTON_BROWSEFADECOLOR,244,99,14,12
+    EDITTEXT        IDC_EDIT_FADEIN,141,116,39,12,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SLIDER_FADEIN,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,184,116,112,12
+    EDITTEXT        IDC_EDIT_FADEOUT,141,130,40,12,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SLIDER_FADEOUT,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,184,130,112,12
+    EDITTEXT        IDC_EDIT_BUNCHING,141,159,40,12,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SLIDER_BUNCHING,"msctls_trackbar32",TBS_AUTOTICKS | 
+                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,184,158,112,13
+    EDITTEXT        IDC_EDIT_COUNT,43,172,40,12,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SLIDER_COUNT,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,88,173,209,12
+    EDITTEXT        IDC_EDIT_TIME,43,187,40,12,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SLIDER_TIME,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,88,187,209,12
+    EDITTEXT        IDC_EDIT_CYCLES,43,201,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_TIMEOFFSET,139,201,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_DEADTIME,225,201,40,12,ES_AUTOHSCROLL
+    CONTROL         "World Gravity",IDC_CHECK_WORLDGRAVITY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,221,58,10
+    EDITTEXT        IDC_EDIT_GRAVITY,68,220,40,12,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SLIDER_GRAVITY,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,111,220,185,12
+    CONTROL         "Rect",IDC_RADIO_RECT,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,14,246,31,10
+    CONTROL         "Cylinder",IDC_RADIO_CYLINDER,"Button",
+                    BS_AUTORADIOBUTTON,14,257,42,10
+    CONTROL         "Sphere",IDC_RADIO_SPHERE,"Button",BS_AUTORADIOBUTTON,14,
+                    268,39,10
+    EDITTEXT        IDC_EDIT_OFFSET,11,291,47,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_XSIZE,83,242,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_YSIZE,83,257,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_ZSIZE,83,272,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_RINGOFFSET,83,288,40,12,ES_AUTOHSCROLL
+    CONTROL         "Cone",IDC_RADIO_CONE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,137,244,33,10
+    CONTROL         "Outward",IDC_RADIO_OUTWARD,"Button",BS_AUTORADIOBUTTON,
+                    137,255,44,10
+    EDITTEXT        IDC_EDIT_DIRECTIONPARM,137,280,40,12,ES_AUTOHSCROLL
+    CONTROL         "View",IDC_RADIO_VIEW,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,202,244,31,10
+    CONTROL         "Aimed",IDC_RADIO_AIMED,"Button",BS_AUTORADIOBUTTON,202,
+                    255,35,10
+    CONTROL         "X",IDC_RADIO_X,"Button",BS_AUTORADIOBUTTON,202,266,20,
+                    10
+    CONTROL         "Y",IDC_RADIO_Y,"Button",BS_AUTORADIOBUTTON,202,277,20,
+                    10
+    CONTROL         "Z",IDC_RADIO_Z,"Button",BS_AUTORADIOBUTTON,202,288,20,
+                    10
+    EDITTEXT        IDC_EDIT_ORIENTATIONPARM1,249,272,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_ORIENTATIONPARM2,249,288,40,12,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SLIDER_SPEEDFROM,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,31,325,106,12
+    EDITTEXT        IDC_EDIT_SPEEDFROM,35,337,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SPEEDTO,92,337,40,12,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SLIDER_SPEEDTO,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,31,349,106,12
+    CONTROL         "",IDC_SLIDER_ROTATIONFROM,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,165,325,106,12
+    EDITTEXT        IDC_EDIT_ROTATIONFROM,169,337,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_ROTATIONTO,226,337,40,12,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SLIDER_ROTATIONTO,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,165,349,106,12
+    CONTROL         "",IDC_SLIDER_SIZEFROM,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,31,366,106,12
+    EDITTEXT        IDC_EDIT_SIZEFROM,35,379,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SIZETO,92,379,40,12,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SLIDER_SIZETO,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,31,391,106,12
+    CONTROL         "",IDC_SLIDER_ASPECTFROM,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,165,366,106,12
+    EDITTEXT        IDC_EDIT_ASPECTFROM,169,378,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_ASPECTTO,226,378,40,12,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SLIDER_ASPECTTO,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,165,391,106,12
+    COMBOBOX        IDC_COMBO_CUSTOMPATH,57,424,75,110,CBS_DROPDOWN | 
+                    WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "Apply",IDC_BUTTON_UPDATE,253,422,50,14
+    CONTROL         "Edit Mode",IDC_CHECK_EDITPARTICLEMODE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,98,459,47,10
+    PUSHBUTTON      "Save .MAP",IDC_BUTTON_SAVE_PARTICLEENTITIES,257,480,47,
+                    13
+    LTEXT           "Particle",IDC_STATIC,8,7,27,8
+    LTEXT           "Depth hack",IDC_STATIC,146,23,37,8
+    LTEXT           "Material",IDC_STATIC,119,41,26,8
+    GROUPBOX        "Stages",IDC_STATIC,3,32,305,412
+    LTEXT           "Count",IDC_STATIC,20,174,20,8
+    LTEXT           "Time",IDC_STATIC,24,189,16,8
+    LTEXT           "Time offset",IDC_STATIC,99,203,37,8
+    LTEXT           "Bunching",IDC_STATIC,109,160,30,8
+    LTEXT           "Dead time",IDC_STATIC,189,203,33,8
+    GROUPBOX        "Distribution",IDC_STATIC,7,235,120,87
+    LTEXT           "XSize",IDC_STATIC,62,245,18,8
+    LTEXT           "YSize",IDC_STATIC,63,259,18,8
+    LTEXT           "ZSize",IDC_STATIC,63,274,18,8
+    LTEXT           "Ring",IDC_STATIC,64,290,15,8
+    GROUPBOX        "Direction / Orientation",IDC_STATIC,132,235,165,87
+    LTEXT           "Static",IDC_STATIC_DIRPARM,140,270,52,8
+    LTEXT           "Custom Path",IDC_STATIC,11,426,42,8
+    LTEXT           "Speed",IDC_STATIC,11,339,21,8
+    LTEXT           "to",IDC_STATIC,80,339,8,8
+    LTEXT           "Rotation",IDC_STATIC,139,339,28,8
+    LTEXT           "to",IDC_STATIC,213,339,8,8
+    LTEXT           "Size",IDC_STATIC,11,381,14,8
+    LTEXT           "to",IDC_STATIC,80,381,8,8
+    LTEXT           "Aspect",IDC_STATIC,140,380,23,8
+    LTEXT           "to",IDC_STATIC,213,380,8,8
+    LTEXT           "Color",IDC_STATIC,122,84,18,8
+    RTEXT           "Fade Color",IDC_STATIC,104,101,36,8
+    LTEXT           "Fade in %",IDC_STATIC,107,118,34,8
+    LTEXT           "Fade out %",IDC_STATIC,101,132,39,8
+    LTEXT           "Anim Frames",IDC_STATIC,113,70,42,8
+    LTEXT           "Anim Rate",IDC_STATIC,196,70,34,8
+    LTEXT           "Offset",IDC_STATIC,13,281,22,8
+    GROUPBOX        "DOOM Stuff",IDC_STATIC,5,448,84,48,WS_TABSTOP
+    LTEXT           "Trails",IDC_STATIC,227,274,18,8
+    LTEXT           "Time",IDC_STATIC,228,289,16,8
+    LTEXT           "In file: ",IDC_STATIC_INFILE,10,23,119,8
+    LTEXT           "Cycles",IDC_STATIC,18,203,22,8
+    PUSHBUTTON      "T",IDC_BUTTON_TESTMODEL,12,462,11,12
+    PUSHBUTTON      "I",IDC_BUTTON_IMPACT,28,462,11,12
+    PUSHBUTTON      "M",IDC_BUTTON_MUZZLE,43,462,11,12
+    PUSHBUTTON      "F",IDC_BUTTON_FLIGHT,58,462,11,12
+    PUSHBUTTON      "S",IDC_BUTTON_SELECTED,73,462,11,12
+    PUSHBUTTON      "Switch to DOOM",IDC_BUTTON_DOOM,12,480,63,12
+    PUSHBUTTON      "x-",IDC_BUTTON_XDN,152,467,13,11
+    PUSHBUTTON      "x+",IDC_BUTTON_XUP,177,467,13,11
+    PUSHBUTTON      "y+",IDC_BUTTON_YUP,165,455,13,11
+    PUSHBUTTON      "y-",IDC_BUTTON_YDN,165,480,13,11
+    PUSHBUTTON      "z+",IDC_BUTTON_ZUP,194,461,13,11
+    PUSHBUTTON      "z-",IDC_BUTTON_ZDN,194,475,13,11
+    PUSHBUTTON      "Drop",IDC_BUTTON_DROPEMITTER,98,470,44,12
+    GROUPBOX        "Entity Editing",IDC_STATIC,92,448,216,48,WS_TABSTOP
+    CONTROL         "Vector",IDC_BUTTON_VECTOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,213,462,35,27
+    EDITTEXT        IDC_EDIT_CUSTOMPARMS,159,424,73,12,ES_AUTOHSCROLL
+    LTEXT           "Parms",IDC_STATIC,137,426,20,8
+    EDITTEXT        IDC_EDIT_FADEFRACTION,141,144,40,12,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SLIDER_FADEFRACTION,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,184,144,112,12
+    LTEXT           "Fade Frac",IDC_STATIC,104,146,33,8
+    EDITTEXT        IDC_EDIT_BOUNDSEXPANSION,75,406,40,12,ES_AUTOHSCROLL
+    LTEXT           "Bounds Expansion",IDC_STATIC,11,407,59,8
+    LTEXT           "Desc:",IDC_STATIC,138,405,19,8
+    LTEXT           "Desc:",IDC_STATIC_DESC,163,405,69,16
+    EDITTEXT        IDC_EDIT_INITIALANGLE,182,305,40,12,ES_AUTOHSCROLL
+    LTEXT           "Initial Angle:",IDC_STATIC,137,307,41,8
+    CONTROL         "Random Distribution",IDC_CHECK_RANDOMDISTRIBUTION,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,307,91,10
+    PUSHBUTTON      "...",IDC_BUTTON_BROWSECOLOR_ENTITY,283,459,14,12
+    LTEXT           "Color",IDC_STATIC,262,461,16,8
+    CONTROL         "Entity Color",IDC_CHECK_ENTITYCOLOR,"Button",
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,263,85,40,25
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_DIALOG_PARTICLE_EDITOR DLGINIT
+BEGIN
+    IDC_COMBO_CUSTOMPATH, 0x403, 9, 0
+0x7453, 0x6e61, 0x6164, 0x6472, "\000" 
+    IDC_COMBO_CUSTOMPATH, 0x403, 6, 0
+0x6548, 0x696c, 0x0078, 
+    IDC_COMBO_CUSTOMPATH, 0x403, 6, 0
+0x6c46, 0x6569, 0x0073, 
+    IDC_COMBO_CUSTOMPATH, 0x403, 10, 0
+0x7053, 0x6568, 0x6972, 0x6163, 0x006c, 
+    IDC_COMBO_CUSTOMPATH, 0x403, 5, 0
+0x7244, 0x7069, "\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_DIALOG_PARTICLE_EDITOR, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 501
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDC_BUTTON_UPDATE       "apply any typed in changes to the current system ( this does not save it )"
+    IDC_BUTTON_SAVE_PARTICLE "save the current particle system"
+    IDC_COMBO_PARTICLES     "select a particle system to edit"
+    IDC_BUTTON_NEW          "create a new particle system"
+    IDC_BUTTON_ADDSTAGE     "add a new generic stage"
+    IDC_BUTTON_REMOVESTAGE  "remove the selected stage"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_BUTTON_HIDESTAGE    "hide the selected stage"
+    IDC_BUTTON_SAVE_PARTICLE_AS "save the current particle as a new particle"
+    IDC_BUTTON_SAVE_ONENTITY 
+                            "save the current particle uniquely on the selected entity"
+    IDC_BUTTON_SHOWSTAGE    "show the selected stage"
+    IDC_BUTTON_SAVE_PARTICLEENTITIES 
+                            "save the current map with any updated particle emitter entities"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_BUTTON_TESTMODEL    "show the selected particle as a testmodel"
+    IDC_BUTTON_IMPACT       "show the selected particle on projectile impact"
+    IDC_BUTTON_MUZZLE       "show the selected particle as muzzle smoke"
+    IDC_BUTTON_FLIGHT       "show the selected particle as projectile flight smoke"
+    IDC_BUTTON_SELECTED     "show the selected particle on the selected entity"
+    IDC_BUTTON_DOOM         "force focus to DOOM"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

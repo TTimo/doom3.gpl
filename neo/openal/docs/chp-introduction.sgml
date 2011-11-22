@@ -1,0 +1,304 @@
+
+  <chapter id="introduction">
+    <title>Introduction</title> 
+
+    <![ %Revision [ 
+       <para><literallayout>  
+       CVS Document: $Id: chp-introduction.sgml,v 1.3 2000/11/10 21:23:52 bk Exp $
+       CVS Revision: $Revision: 1.3 $
+
+       $Log: chp-introduction.sgml,v $
+       Revision 1.3  2000/11/10 21:23:52  bk
+       Use ../CREDITS for list of contributors.
+
+       Revision 1.2  2000/10/26 02:58:55  bk
+       Cleanup (typos).
+
+       Revision 1.1  2000/10/11 18:44:46  bk
+       Document split into separate files. Minor fixes.
+       </literallayout><para>   
+     ]]>
+
+    <section>
+    <title>Formatting and Conventions</title>
+    <para>
+     This API Specification and Reference uses a style that is a blend of the 
+     OpenGL v1.2 specification and the OpenGL Programming Guide, 2nd ed. 
+     Conventions: 'T' is used to designate a type for those functions which 
+     exist in multiple signatures for different types. 'Object' is used
+     to designate a target Object for those functions which exist in multiple
+     versions for different Object categories. The 'al' and 'AL_' prefix
+     is omitted throughout the document.
+    </para>
+
+    <![ %Annote [
+      <note><title>Annotation (Terminology)</title><para>
+         "State" refers to state within the context of the &OAL; 
+         state machine description of the &OAL; implementation.
+         "Objects" refer to &OAL; primitives.
+         "Attribute" refers to attributes of &OAL; Objects.
+         Attributes of a &OAL; Objects are one part of the
+         &OAL; state. Some attributes are not specific to
+         single objects, but apply to the entire context.
+         "Parameter" is used for function arguments that might
+         or might not be attributes, in particular for
+         command arguments that are not stored as state.
+         The use of "Property" is to be avoided. 
+      </para></note>
+    ]]>
+
+  <para>
+    <revhistory>
+
+    <revision>
+    <revnumber> 1.8/1.7./1.6/1.5 </revnumber>
+    <date> September-August 2000 </date>
+    <authorinitials> bk </authorinitials>
+    <revremark> Final Draft for Public Review </revremark>  
+    </revision>
+
+    <revision>
+    <revnumber> 1.4 </revnumber>
+    <date> June 2000 </date>
+    <authorinitials> bk </authorinitials>
+    <revremark> First Draft for Public Review </revremark>  
+    </revision>
+
+    <revision>
+    <revnumber> 1.2 </revnumber>
+    <date> March 2000 </date>
+    <authorinitials> mkv </authorinitials>
+    <revremark> Draft released for GDC </revremark>  
+    </revision>  
+    </revhistory>
+  </para>   
+     <![ %Scratch [
+      <note id="todo"><title>TODO</title><para>
+        <literallayout>
+             - work thru past changes
+             - add GH section
+             - add rewrite of GH section
+
+             - add section on rfc/ann id's
+             - add section on procedure
+             - add proper id's to rfc/ann/sections etc.           
+
+        </literallayout>
+      </para></note>
+    ]]>
+
+    </section>
+
+    <section>
+    <title>What is the &OAL; Audio System?</title>
+    <para>
+    &OAL; (for "Open Audio Library") is a software interface to audio hardware.
+    The interface consists of a number of functions that allow a programmer
+    to specify the objects and operations in producing high-quality audio
+    output, specifically multichannel output of 3D arrangements of sound
+    sources around a listener.
+    </para>
+    <para>
+    The &OAL; API is designed to be cross-platform and easy to use. 
+    It resembles the &OGL; API in coding style and conventions.  &OAL; uses a 
+    syntax resembling that of &OGL; where applicable. 
+    </para>
+    <para>
+    &OAL; is foremost a means to generate audio in a simulated three-dimensional 
+    space. Consequently, legacy audio concepts such as panning and left/right 
+    channels are not directly supported. &OAL; does include extensions compatible 
+    with the IA-SIG 3D Level 1 and Level 2 rendering guidelines to handle 
+    sound-source directivity and distance-related attenuation and Doppler effects, 
+    as well as environmental effects such as reflection, obstruction, transmission, 
+    reverberation.
+    </para>
+
+    <para>
+    Like &OGL;, the &OAL; core API has no notion of an explicit rendering context,
+    and operates on an implied current &OAL; Context. Unlike the &OGL; 
+    specification the &OAL; specification includes both the core API (the 
+    actual &OAL; API) and the operating system bindings 
+    of the ALC API (the "Audio Library Context"). Unlike &OGL;'s GLX, WGL
+    and other OS-specific bindings, the ALC API is portable across platforms
+    as well.
+    </para>
+    </section>
+
+    <section>
+    <title>Programmer's View of &OAL;</title>
+    <para>
+    To the programmer, &OAL; is a set of commands that allow the
+    specification of sound sources and a listener in three
+    dimensions, combined with commands that control how these
+    sound sources are rendered into the output buffer. The
+    effect of &OAL; commands is not guaranteed to be immediate,
+    as there are latencies depending on the implementation,
+    but ideally such latency should not be noticeable to the
+    user.
+    </para>
+    <para>
+    A typical program that uses &OAL; begins with calls to 
+    open a sound device which is used to process output and
+    play it on attached hardware (e.g. speakers or headphones).
+    Then, calls are made to allocate an AL context and
+    associate it with the device. Once an AL context is
+    allocated, the programmer is free to issue AL commands.
+    Some calls are used to render Sources (point and directional
+    Sources, looping or not), while others affect the rendering
+    of these Sources including how they are attenuated by
+    distance and relative orientation.
+    </para>
+
+    <![ %Annote [
+      <note><title>Annotation (&OAL; and &OGL; use)</title><para>
+       Often, &OAL; will be used to render a 3D audio environment 
+       matched by a 3D visual scenery. For this purpose, &OAL; is 
+       meant to be a seamlessly integrating complement to &OGL;.
+       &OAL; state can be updated in sync with the &OGL; or video
+       updates (synchronized), or in timesteps independent of the 
+       graphics framerate. Audio rendering loops usually update 
+       the current locations of the sources and the listener, updates 
+       global settings, and manages buffers.
+       </para></note>
+    ]]>
+    </section>
+
+
+    <section>
+    <title>Implementor's View of &OAL;</title>
+    <para>
+    To the implementor, &OAL; is a set of commands that affect
+    the operation of CPU and sound hardware. If the hardware
+    consists only of an addressable output buffer, then &OAL; must
+    be implemented almost entirely on the host CPU. In some cases
+    audio hardware provides DSP-based and other acceleration in
+    various degress. The &OAL; implementors task is to provide
+    the CPU software interface while dividing the work for each
+    AL command between the CPU and the audio hardware. This 
+    division should be tailored to the available audio hardware
+    to obtain optimum performance in carrying out AL calls.
+    </para>
+    <para>
+    &OAL; maintains a considerable amount of state information.
+    This state controls how the Sources are rendered into the
+    output buffer. Some of this state is directly available to
+    the user: he or she can make calls to obtain its value.
+    Some of it, however, is visible only by the effect it has
+    on what is rendered. One of the main goals of this
+    specification is to make &OAL; state information explicit,
+    to eludicate how it changes, and to indicate what its
+    effects are.
+    </para>
+
+    <![ %Annote [
+      <note><title>Annotation (Native audio APIs)</title><para>
+         Implementors can choose to implement &OAL; on top
+         of an existing native audio API.
+       </para></note>
+    ]]>
+
+    </section>
+
+
+    <section>
+    <title>Our View</title>
+    <para>
+    We view &OAL; as a state machine that controls a multichannel
+    processing system to synthesize a digital stream, passing sample 
+    data through a chain of parametrized digital audio signal
+    processing operations. This model should engender a specification 
+    that satisfies the  needs of both programmers and implementors. 
+    It does not, however, necessarily 
+    provide a model for implementation. Any conformant implementation
+    must produce results conforming to those produced by the specified
+    methods, but there may be ways to carry out a particular computation
+    that are more efficient than the one specified.
+    </para>
+
+    </section>
+
+
+    <section>
+    <title>Requirements, Conformance and Extensions</title>
+    <para>
+       The specification has to guarantee a minimum number of resources.
+       However, implementations are encouraged to compete on performance,
+       available resources, and output quality.
+    </para>
+
+    <![ %RFC [
+      <note id="rfc-bk000724-06"><title>RFC: suggested requirements</title><para>  
+         These have been taken from earlier specs drafts, suggested by
+         Creative:
+           A minimum of sixteen (16) Sources per Context should always be available.
+           The number and size of Buffers available is limited only by the amount 
+           of memory available and/or accessible by the implementation.
+         The specification could also list requirements by the implementation:
+           A minimum storage space of half a megabyte (512kB) should always be available.
+      </para></note>
+    ]]>
+
+    <![ %RFC [
+       <note id="rfc-briareos000724-01"><title>RFC: no requirements</title><para>  
+       I3DL1-like requirements might be so arbitrary that they are useless.
+       The dangers here are cap bits, and a subtle aliasing of source and
+       hardware buffers. AL implementations should implement as much quality
+       and performance as possible for any given number of sources/
+       Application request resources when creating a context and can use Hints 
+       to indicate desired trade-offs.
+      </para></note>
+    ]]>
+
+
+    <para>
+       There will be an &OAL; set of conformance tests available along
+       with the open source sample implementation. Vendors and individuals
+       are encouraged to specify and implement extensions to &OAL; in
+       the same way &OGL; is extensible. Successful extensions will
+       become part of the core specification as necessary and desirable.
+       &OAL; implementations have to guarantee backwards compatibility
+       and ABI compatibility for minor revisions.
+    </para>
+    <para>
+       The current sample implementation and documentation for &OAL; can be 
+       obtained from 
+       <ulink 
+       url="http://wwww.openal.org/"
+       type="http">openal.org</ulink>. 
+       &OAL; is also available from the the 
+       <ulink url="http://cvs.lokigames.com/cgi-bin/cvsweb.cgi/openal/" type="http">
+       &OAL; CVS repository</ulink>. For more information on how to get
+       &OAL; from CVS also see <ulink url="http://cvs.lokigames.com/" type="http">
+       &coLoki; CVS</ulink>.
+    </para>
+    </section>
+
+
+
+    <section>
+    <title>Architecture Review and Acknowledgements</title> 
+    <para>
+      Like &OGL;, &OAL; is meant to evolve through a joined effort of
+      implementators and application programmers meeting in regular
+      sessions of an Architecture Review Board (ARB). As of this time
+      the ARB has not yet been set up. Currently, the two companies
+      committed to implementing &OAL; drivers have appointed two
+      contacts responsible for preparing the specification draft.
+    </para>
+    <para>
+     Consequently &OAL; is a cooperative effort, one in a sequence of 
+     earlier attempts to create a cross-platform audio API. The current 
+     authors/editors have assembled this draft of the specification, 
+     but many have, directly and indirectly, contributed to the content 
+     of the actual document. The following list (in all likelihood
+     incomplete) gives in alphabetical order participants in the discussion 
+     and contributors to the specification processs and related efforts:
+    
+     &CREDITS;
+
+
+    </para>
+    </section>
+    </chapter> <!-- Overview -->
+
+ 

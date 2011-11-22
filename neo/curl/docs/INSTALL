@@ -1,0 +1,551 @@
+                                  _   _ ____  _     
+                              ___| | | |  _ \| |    
+                             / __| | | | |_) | |    
+                            | (__| |_| |  _ <| |___ 
+                             \___|\___/|_| \_\_____|
+
+                                How To Compile
+
+Installing Binary Packages
+==========================
+
+   Lots of people download binary distributions of curl and libcurl. This
+   document does not describe how to install curl or libcurl using such a
+   binary package. This document describes how to compile, build and install
+   curl and libcurl from source code.
+
+UNIX
+====
+
+   A normal unix installation is made in three or four steps (after you've
+   unpacked the source archive):
+
+        ./configure
+        make
+        make test (optional)
+        make install
+
+   You probably need to be root when doing the last command.
+
+   If you have checked out the sources from the CVS repository, read the
+   CVS-INFO on how to proceed.
+
+   Get a full listing of all available configure options by invoking it like:
+
+        ./configure --help
+
+   If you want to install curl in a different file hierarchy than /usr/local,
+   you need to specify that already when running configure:
+
+        ./configure --prefix=/path/to/curl/tree
+
+   If you happen to have write permission in that directory, you can do 'make
+   install' without being root. An example of this would be to make a local
+   install in your own home directory:
+
+        ./configure --prefix=$HOME
+        make
+        make install
+
+   The configure script always tries to find a working SSL library unless
+   explicitly told not to. If you have OpenSSL installed in the default search
+   path for your compiler/linker, you don't need to do anything special. If
+   you have OpenSSL installed in /usr/local/ssl, you can run configure like:
+
+	./configure --with-ssl
+
+   If you have OpenSSL installed somewhere else (for example, /opt/OpenSSL,)
+   you can run configure like this:
+
+	./configure --with-ssl=/opt/OpenSSL
+
+   If you insist on forcing a build without SSL support, even though you may
+   have OpenSSL installed in your system, you can run configure like this:
+
+        ./configure --without-ssl
+
+   If you have OpenSSL installed, but with the libraries in one place and the
+   header files somewhere else, you have to set the LDFLAGS and CPPFLAGS
+   environment variables prior to running configure.  Something like this
+   should work:
+
+     (with the Bourne shell and its clones):
+
+       CPPFLAGS="-I/path/to/ssl/include" LDFLAGS="-L/path/to/ssl/lib" \
+           ./configure
+
+     (with csh, tcsh and their clones):
+     
+       env CPPFLAGS="-I/path/to/ssl/include" LDFLAGS="-L/path/to/ssl/lib" \
+       ./configure
+
+   If your SSL library was compiled with rsaref (usually for use in the United
+   States), you may also need to set:
+
+     LIBS=-lRSAglue -lrsaref
+     (as suggested by Doug Kaufman)
+
+   MORE OPTIONS
+
+     To force configure to use the standard cc compiler if both cc and gcc are
+     present, run configure like
+
+       CC=cc ./configure
+         or
+       env Cc=cc ./configure
+
+     To force a static library compile, disable the shared library creation
+     by running configure like:
+
+       ./configure --disable-shared
+
+     To tell the configure script to skip searching for thread-safe functions,
+     add an option like:
+
+       ./configure --disable-thread
+
+     To build curl with kerberos4 support enabled, curl requires the krb4 libs
+     and headers installed. You can then use a set of options to tell
+     configure where those are:
+
+          --with-krb4-includes[=DIR]   Specify location of kerberos4 headers
+          --with-krb4-libs[=DIR]       Specify location of kerberos4 libs
+          --with-krb4[=DIR]            where to look for Kerberos4
+
+     In most cases, /usr/athena is the install prefix and then it works with
+
+       ./configure --with-krb4=/usr/athena
+
+     If you're a curl developer and use gcc, you might want to enable more
+     debug options with the --enable-debug option.
+
+Win32
+=====
+ 
+   Without SSL:
+
+      MingW32 (GCC-2.95) style
+      ------------------------
+        Run the 'mingw32.bat' file to get the proper environment variables
+        set, then run 'make mingw32' in the root dir.
+
+        If you have any problems linking libraries or finding header files, be
+        sure to verify that the provided "Makefile.m32" files use the proper
+        paths, and adjust as necessary.
+
+      Cygwin style
+      ------------
+        Almost identical to the unix installation. Run the configure script in
+        the curl root with 'sh configure'. Make sure you have the sh
+        executable in /bin/ or you'll see the configure fail towards the end.
+
+        Run 'make'
+
+      Microsoft command line style
+      ----------------------------
+        Run the 'vcvars32.bat' file to get the proper environment variables
+        set, then run 'nmake vc' in the root dir.
+
+        The vcvars32.bat file is part of the Microsoft development
+        environment.
+
+      IDE-style
+      -------------------------
+        If you use VC++, Borland or similar compilers. Include all lib source
+        files in a static lib "project" (all .c and .h files that is).
+        (you should name it libcurl or similar)
+
+        Make the sources in the src/ drawer be a "win32 console application"
+        project. Name it curl.
+
+        With VC++, add 'ws2_32.lib' to the link libs when you build curl!
+        Borland seems to do that itself magically. Of course you have to make
+        sure it links with the libcurl too!
+
+        For VC++ 6, there's an included Makefile.vc6 that should be possible
+        to use out-of-the-box.
+
+        Microsoft note: add /Zm200 to the compiler options to increase the
+        compiler's memory allocation limit, as the hugehelp.c won't compile
+        due to "too long puts string".
+
+
+   With SSL:
+
+      MingW32 (GCC-2.95) style
+      ------------------------
+        Run the 'mingw32.bat' file to get the proper environment variables
+        set, then run 'make mingw32-ssl' in the root dir.
+
+        If you have any problems linking libraries or finding header files, be
+        sure to look at the provided "Makefile.m32" files for the proper
+        paths, and adjust as necessary.
+
+      Cygwin style
+      ------------
+        Haven't done, nor got any reports on how to do. It should although be
+        identical to the unix setup for the same purpose. See above.
+
+      Microsoft command line style
+      ----------------------------
+
+        Please read the OpenSSL documentation on how to compile and install
+        the OpenSSL libraries.  The build process of OpenSSL generates the
+        libeay32.dll and ssleay32.dll files in the out32dll subdirectory in
+        the OpenSSL home directory.  OpenSSL static libraries (libeay32.lib,
+        ssleay32.lib, RSAglue.lib) are created in the out32 subdirectory.
+
+        Run the 'vcvars32.bat' file to get a proper environment. The
+        vcvars32.bat file is part of the Microsoft development environment and
+        you may find it in 'C:\Program Files\Microsoft Visual Studio\vc98\bin'
+        provided that you installed Visual C/C++ 6 in the default directory.
+
+        Before running nmake define the OPENSSL_PATH environment variable with
+        the root/base directory of OpenSSL, for example:
+
+          set OPENSSL_PATH=c:\openssl-0.9.7a
+
+        lib/Makefile.vc6 depends on zlib (http://www.gzip.org/zlib/) as well.
+        Please read the zlib documentation on how to compile zlib.  Define the
+        ZLIB_PATH environment variable to the location of zlib.h and zlib.lib,
+        for example:
+
+          set ZLIB_PATH=c:\zlib-1.1.4
+
+        Then run 'nmake vc-ssl' or 'nmake vc-ssl-dll' in curl's root
+        directory.  'nmake vc-ssl' will create a libcurl static and dynamic
+        libraries in the lib subdirectory, as well as a statically linked
+        version of curl.exe in the src subdirectory.  This statically linked
+        version is a standalone executable not requiring any DLL at
+        runtime. This make method requires that you have the static OpenSSL
+        libraries available in OpenSSL's out32 subdirectory.
+	'nmake vc-ssl-dll' creates the libcurl dynamic library and
+	links curl.exe against libcurl and OpenSSL dynamically.
+	This executable requires libcurl.dll and the OpenSSL DLLs
+	at runtime.
+
+      Microsoft / Borland style
+      -------------------------
+        If you have OpenSSL, and want curl to take advantage of it, edit your
+        project properties to use the SSL include path, link with the SSL libs
+        and define the USE_SSLEAY symbol.
+
+      Using Borland C++ compiler version 5.5.1 (available as free download
+      from Borland's site)
+      ---------------------------------------------------------------------
+      
+        compile openssl
+      
+        Make sure you include the paths to curl/include and openssl/inc32 in
+        your bcc32.cnf file
+      
+
+        eg : -I"c:\Bcc55\include;c:\path_curl\include;c:\path_openssl\inc32"
+        
+        Check to make sure that all of the sources listed in lib/Makefile.b32
+        are present in the /path_to_curl/lib directory. (Check the src
+        directory for missing ones.)
+        
+        Make sure the environment variable "BCCDIR" is set to the install
+        location for the compiler eg : c:\Borland\BCC55
+        
+        command line:
+        make -f /path_to_curl/lib/Makefile-ssl.b32
+        
+        compile simplessl.c with appropriate links
+        
+        c:\curl\docs\examples\> bcc32 -L c:\path_to_curl\lib\libcurl.lib
+                                      -L c:\borland\bcc55\lib\psdk\ws2_32.lib
+                                      -L c:\openssl\out32\libeay32.lib
+                                      -L c:\openssl\out32\ssleay32.lib
+                                      simplessl.c
+
+   Disabling Specific Protocols:
+
+      The configure utility, unfortunately, is not available for the Windows
+      environment, therefore, you cannot use the various disable-protocol
+      options of the configure utility on this platform.
+
+      However, you can use the following defines to disable specific
+      protocols:
+
+      HTTP_ONLY             disables all protocols except HTTP
+      CURL_DISABLE_FTP      disables FTP
+      CURL_DISABLE_LDAP     disables LDAP
+      CURL_DISABLE_TELNET   disables TELNET
+      CURL_DISABLE_DICT     disables DICT
+      CURL_DISABLE_FILE     disables FILE
+      CURL_DISABLE_GOPHER   disables GOPHER
+
+      If you want to set any of these defines you have the following
+      possibilities:
+
+      - Modify lib/setup.h
+      - Modify lib/Makefile.vc6
+      - Add defines to Project/Settings/C/C++/General/Preprocessor Definitions
+        in the curllib.dsw/curllib.dsp Visual C++ 6 IDE project.
+
+IBM OS/2
+========
+
+   Building under OS/2 is not much different from building under unix.
+   You need:
+
+      - emx 0.9d
+      - GNU make
+      - GNU patch
+      - ksh
+      - GNU bison
+      - GNU file utilities
+      - GNU sed
+      - autoconf 2.13
+
+   If you want to build with OpenSSL or OpenLDAP support, you'll need to
+   download those libraries, too. Dirk Ohme has done some work to port SSL
+   libraries under OS/2, but it looks like he doesn't care about emx.  You'll
+   find his patches on: http://come.to/Dirk_Ohme
+
+   If during the linking you get an error about _errno being an undefined
+   symbol referenced from the text segment, you need to add -D__ST_MT_ERRNO__
+   in your definitions.
+
+   If everything seems to work fine but there's no curl.exe, you need to add
+   -Zexe to your linker flags.
+
+   If you're getting huge binaries, probably your makefiles have the -g in
+   CFLAGS.
+
+VMS
+===
+   (The VMS section is in whole contributed by the friendly Nico Baggus)
+
+   Curl seems to work with FTP & HTTP other protocols are not tested.  (the
+   perl http/ftp testing server supplied as testing too cannot work on VMS
+   because vms has no concept of fork(). [ I tried to give it a whack, but
+   thats of no use.
+
+   SSL stuff has not been ported.
+
+   Telnet has about the same issues as for Win32. When the changes for Win32
+   are clear maybe they'll work for VMS too. The basic problem is that select
+   ONLY works for sockets.
+
+   Marked instances of fopen/[f]stat that might become a problem, especially
+   for non stream files. In this regard, the files opened for writing will be
+   created stream/lf and will thus be safe. Just keep in mind that non-binary
+   read/wring from/to files will have a records size limit of 32767 bytes
+   imposed.
+
+   Stat to get the size of the files is again only safe for stream files &
+   fixed record files without implied CC.
+
+   -- My guess is that only allowing access to stream files is the quickest
+   way to get around the most issues. Therefore all files need to to be
+   checked to be sure they will be stream/lf before processing them.  This is
+   the easiest way out, I know. The reason for this is that code that needs to
+   report the filesize will become a pain in the ass otherwise.
+
+   Exit status.... Well we needed something done here,
+
+   VMS has a structured exist status:
+   | 3  |       2    |     1       |  0|
+   |1098|765432109876|5432109876543|210|
+   +----+------------+-------------+---+
+   |Ctrl|  Facility  | Error code  |sev|
+   +----+------------+-------------+---+
+
+   With the Ctrl-bits an application can tell if part or the whole message has
+   allready been printed from the program, DCL doesn't need to print it again.
+
+   Facility - basicaly the program ID. A code assigned to the program
+   the name can be fetched from external or internal message libraries
+   Errorcode - the errodes assigned by the application
+   Sev. - severity: Even = error, off = non error
+		0 = Warning
+		1 = Success
+		2 = Error
+		3 = Information
+		4 = Fatal 
+		<5-7> reserved.
+
+   This all presents itself with:
+   %<FACILITY>-<SeV>-<Errorname>, <Error message>
+
+   See also the src/curlmsg.msg file, it has the source for the messages In
+   src/main.c a section is devoted to message status values, the globalvalues
+   create symbols with certain values, referenced from a compiled message
+   file. Have all exit function use a exit status derived from a translation
+   table with the compiled message codes.
+
+   This was all compiled with:
+
+	Compaq C V6.2-003 on OpenVMS Alpha V7.1-1H2
+
+   So far for porting notes as of:
+   13-jul-2001
+   N. Baggus
+
+QNX
+===
+   (This section was graciously brought to us by David Bentham)
+
+   As QNX is targetted for resource constrained environments, the QNX headers
+   set conservative limits. This includes the FD_SETSIZE macro, set by default
+   to 32. Socket descriptors returned within the CURL library may exceed this,
+   resulting in memory faults/SIGSEGV crashes when passed into select(..)
+   calls using fd_set macros.
+
+   A good all-round solution to this is to override the default when building
+   libcurl, by overriding CFLAGS during configure, example
+   #  configure CFLAGS='-DFD_SETSIZE=64 -g -O2'
+
+CROSS COMPILE
+=============
+
+   (This section was graciously brought to us by Jim Duey, 23-oct-2001)
+
+   Download and unpack the cURL package.  Version should be 7.9.1 or later.
+
+   'cd' to the new directory. (ie. curl-7.9.1-pre4)
+
+   Set environment variables to point to the cross-compile toolchain and call
+   configure with any options you need.  Be sure and specify the '--host' and
+   '--build' parameters at configuration time.  The following script is an
+   example of cross-compiling for the IBM 405GP PowerPC processor using the
+   toolchain from MonteVista for Hardhat Linux.
+
+   (begin script)
+
+   #! /bin/sh
+
+   export PATH=$PATH:/opt/hardhat/devkit/ppc/405/bin
+   export CPPFLAGS="-I/opt/hardhat/devkit/ppc/405/target/usr/include"
+   export AR=ppc_405-ar
+   export AS=ppc_405-as
+   export LD=ppc_405-ld
+   export RANLIB=ppc_405-ranlib
+   export CC=ppc_405-gcc
+   export NM=ppc_405-nm
+
+   configure --target=powerpc-hardhat-linux \
+	--host=powerpc-hardhat-linux \
+	--build=i586-pc-linux-gnu \
+	--prefix=/opt/hardhat/devkit/ppc/405/target/usr/local \
+	--exec-prefix=/usr/local
+
+   (end script)
+
+   The '--prefix' parameter specifies where cURL will be installed.  If
+   'configure' completes successfully, do 'make' and 'make install' as usual.
+
+RISC OS
+=======
+   The library can be cross-compiled using gccsdk as follows:
+
+        CC=riscos-gcc AR=riscos-ar RANLIB='riscos-ar -s' ./configure \
+             --host=arm-riscos-aof --without-random --disable-shared
+        make
+
+   where riscos-gcc and riscos-ar are links to the gccsdk tools.
+   You can then link your program with curl/lib/.libs/libcurl.a
+
+
+AmigaOS
+=======
+   (This section was graciously brought to us by Diego Casorran)
+
+   To build cURL/libcurl on AmigaOS just type 'make amiga' ...
+
+   What you need is:    (not tested with others versions)
+
+        GeekGadgets / gcc 2.95.3 (http://www.geekgadgets.org/)
+
+        AmiTCP SDK v4.3 (http://www.aminet.net/comm/tcp/AmiTCP-SDK-4.3.lha)
+
+        Native Developer Kit (http://www.amiga.com/3.9/download/NDK3.9.lha)
+
+   As no ixemul.library is required you will be able to build it for
+   WarpOS/PowerPC (not tested by me), as well a MorphOS version should be
+   possible with no problems.
+
+   To enable SSL support, you need a OpenSSL native version (without ixemul),
+   you can find a precompiled package at http://amiga.sourceforge.net/OpenSSL/
+
+
+PORTS
+=====
+   This is a probably incomplete list of known hardware and operating systems
+   that curl has been compiled for. If you know a system curl compiles and
+   runs on, that isn't listed, please let us know!
+
+        - Alpha DEC OSF 4
+        - Alpha Digital UNIX v3.2
+        - Alpha FreeBSD 4.1, 4.5
+        - Alpha Linux 2.2, 2.4
+        - Alpha NetBSD 1.5.2
+        - Alpha OpenBSD 3.0
+        - Alpha OpenVMS V7.1-1H2
+        - Alpha Tru64 v5.0 5.1
+        - HP-PA HP-UX 9.X 10.X 11.X
+        - HP-PA Linux
+        - HP3000 MPE/iX
+        - MIPS IRIX 6.2, 6.5
+        - MIPS Linux
+        - Pocket PC/Win CE 3.0
+        - Power AIX 3.2.5, 4.2, 4.3.1, 4.3.2, 5.1
+        - PowerPC Darwin 1.0
+        - PowerPC Linux
+        - PowerPC Mac OS 9
+        - PowerPC Mac OS X
+        - SINIX-Z v5
+        - Sparc Linux
+        - Sparc Solaris 2.4, 2.5, 2.5.1, 2.6, 7, 8
+        - Sparc SunOS 4.1.X
+        - StrongARM (and other ARM) RISC OS 3.1, 4.02
+        - StrongARM Linux 2.4
+        - StrongARM NetBSD 1.4.1
+        - Ultrix 4.3a
+        - i386 BeOS
+        - i386 DOS
+        - i386 FreeBSD
+        - i386 HURD
+        - i386 Linux 1.3, 2.0, 2.2, 2.3, 2.4
+        - i386 NetBSD
+        - i386 Novell NetWare
+        - i386 OS/2
+        - i386 OpenBSD
+        - i386 SCO unix
+        - i386 Solaris 2.7
+        - i386 Windows 95, 98, ME, NT, 2000
+        - i386 QNX 6
+        - i486 ncr-sysv4.3.03 (NCR MP-RAS)
+        - ia64 Linux 2.3.99
+        - m68k AmigaOS 3
+        - m68k Linux
+        - m68k OpenBSD
+        - m88k dg-dgux5.4R3.00
+        - s390 Linux 
+        - XScale/PXA250 Linux 2.4
+
+OpenSSL
+=======
+
+   You'll find OpenSSL information at:
+
+      http://www.openssl.org
+
+
+MingW32/Cygwin
+==============
+
+   You'll find MingW32 and Cygwin information at:
+
+      http://www.mingw.org
+
+OpenLDAP
+========
+
+   You'll find OpenLDAP information at:
+
+      http://www.openldap.org
+

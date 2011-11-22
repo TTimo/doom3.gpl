@@ -1,0 +1,158 @@
+ The file format of the test suite is a very simple and extendable format. All
+data for a single test case resides in a single ASCII file. Labels mark the
+beginning and the end of all sections. Each label must be written in its own
+line and is resembling XML/HTML.
+
+ Each file is split up in three main sections: reply, client and verify. The
+reply section is used for the server to know what to send as a reply for the
+requests curl sends, the client section defines how the client should behave
+while the verify section defines how to verify that the data stored after a
+command has been run ended up correctly.
+
+ Each main section has a number of available subsections that can be
+specified, that will be checked/used if specified. This document includes all
+the subsections currently supported.
+
+<reply>
+<data [nocheck=1]>
+data to sent to the client on its request and later verified that it arrived
+safely. Set the nocheck=1 to prevent the test script to verify the arrival
+of this data.
+
+If the data contains 'swsclose' *anywhere* within the start and end tag, and
+this is a HTTP test, then the connection will be closed by the server after
+this response is sent. If not, the connection will be kept persistant.
+</data>
+<dataNUM>
+Send back this contents instead of the <data> one. The num is set by:
+A) The test number in the request line is >10000 and this is the remainder
+of [test case number]%10000.
+B) The request was HTTP and included digest details, which adds 1000 to NUM
+C) If a HTTP request is NTLM type-1, it adds 1001 to num
+D) If a HTTP request is NTLM type-3, it adds 1002 to num
+</dateNUM>
+<datacheck [nonewline=yes]>
+if the data is sent but this is what should be checked afterwards. If
+'nonewline' is set, we will cut off the trailing newline of this given data
+before comparing with the one actually received by the client
+</datacheck>
+<size>
+number to return on a ftp SIZE command (set to -1 to make this command fail)
+</size>
+<mdtm>
+what to send back if the client sends a (FTP) MDTM command, set to -1 to
+have it return that the file doesn't exist
+</mdtm>
+<cmd>
+special purpose server-command to control its behavior *before* the
+reply is sent
+</cmd>
+<postcmd>
+special purpose server-command to control its behavior *after* the
+reply is sent
+</postcmd>
+</reply>
+
+<client>
+
+<server>
+protocols as in 'http' 'ftp' etc. Give only one per line. Used for test cases
+500+ (at this point) to specify which servers the test case requires. In the
+future all test cases should use this. Makes us independent of the test
+case number.
+</server>
+
+<features>
+A list of features that must be present in the client/library for this test
+to be able to run. Features testable here are:
+SSL
+netrc_debug
+large_file
+</features>
+
+<killserver>
+Using the same syntax as in <server> but when mentioned here these servers
+are explicitly KILLED when this test case is completed. Only use this if there
+is no other alternatives. Using this of course requires subsequent tests to
+restart servers.
+</killserver>
+
+<tool>
+Name of tool to use instead of "curl". This tool must be built and exist
+in the libtest/ directory.
+</tool>
+
+<name>
+test case description
+</name>
+
+<setenv>
+variable1=contents1
+variable2=contents2
+
+Set the given environment variables to the specified value before the actual
+command is run, they are clear again after the command has been run.
+</setenv>
+
+<command [option=no-output]>
+command line to run, there's a bunch of %variables that get replaced
+accordingly.
+
+Note that the URL that gets passed to the server actually controls what data
+that is returned. The last slash in the URL must be followed by a number. That
+number (N) will be used by the test-server to load test case N and return the
+data that is defined within the <reply><data></data></reply> section.
+
+If a CONNECT is used to the server (to emulate HTTPS etc over proxy), the port
+number given in the CONNECT request will be used to identify which test that
+is being run, if the proxy host name is said to start with 'test'.
+
+Set 'option=no-output' to prevent the test script to slap on the --output
+argument that directs the output to a file. The --output is also not added if
+the client/stdout section is used.
+
+Available substitute variables include:
+%HOSTIP    - IP address of the host running this test
+%HOSTPORT  - Port number of the HTTP server
+%HTTPSPORT - Port number of the HTTPS server
+%FTPPORT   - Port number of the FTP server
+%FTPSPORT  - Port number of the FTPS server
+%SRCDIR    - Full path to the source dir
+%PWD       - Current directory
+</command>
+
+<file name="log/filename">
+this creates the named file with this content before the test case is run
+which is useful if the test case needs a file to act on.
+</file>
+
+<stdin>
+Pass this given data on stdin to the tool.
+</stdin>
+
+</client>
+
+<verify>
+<errorcode>
+numerical error code curl is supposed to return
+</errorcode>
+<strip>
+One regex per line that is removed from the protocol dumps before the
+comparison is made. This is very useful to remove dependencies on dynamicly
+changing protocol data such as port numbers or user-agent strings.
+</strip>
+<protocol [nonewline=yes]>
+the protocol dump curl should transmit, if 'nonewline' is set, we will cut
+off the trailing newline of this given data before comparing with the one
+actually sent by the client
+</protocol>
+<stdout>
+This verfies that this data was passed to stdout.
+</stdout>
+<file name="log/filename">
+the file's contents must be identical to this
+</file>
+<upload>
+the contents of the upload data curl should have sent
+</upload>
+</verify>

@@ -1,0 +1,114 @@
+.\" You can view this file with:
+.\" nroff -man [file]
+.\" $Id: curl_easy_getinfo.3,v 1.10 2004/02/27 15:34:06 bagder Exp $
+.\"
+.TH curl_easy_getinfo 3 "20 Aug 2003" "libcurl 7.10.8" "libcurl Manual"
+.SH NAME
+curl_easy_getinfo - extract information from a curl handle
+.SH SYNOPSIS
+.B #include <curl/curl.h>
+
+.B "CURLcode curl_easy_getinfo(CURL *curl, CURLINFO info, ... );"
+
+.SH DESCRIPTION
+Request internal information from the curl session with this function.  The
+third argument
+.B MUST
+be a pointer to a long, a pointer to a char * or a pointer to a double (as
+this documentation describes further down).  The data pointed-to will be
+filled in accordingly and can be relied upon only if the function returns
+CURLE_OK.  This function is intended to get used *AFTER* a performed transfer,
+all results from this function are undefined until the transfer is completed.
+.SH AVAILABLE INFORMATION
+These are informations that can be extracted:
+.IP CURLINFO_EFFECTIVE_URL
+Pass a pointer to a 'char *' to receive the last used effective URL.
+.IP CURLINFO_RESPONSE_CODE
+Pass a pointer to a long to receive the last received HTTP or FTP code. This
+option was known as CURLINFO_HTTP_CODE in libcurl 7.10.7 and earlier.
+.IP CURLINFO_FILETIME
+Pass a pointer to a long to receive the remote time of the retrieved
+document. If you get -1, it can be because of many reasons (unknown, the
+server hides it or the server doesn't support the command that tells document
+time etc) and the time of the document is unknown. Note that you must tell the
+server to collect this information before the transfer is made, by using the
+CURLOPT_FILETIME option to \fIcurl_easy_setopt(3)\fP. (Added in 7.5)
+.IP CURLINFO_TOTAL_TIME
+Pass a pointer to a double to receive the total transaction time in seconds
+for the previous transfer. This time does not include the connect time, so if
+you want the complete operation time, you should add the
+CURLINFO_CONNECT_TIME.
+.IP CURLINFO_NAMELOOKUP_TIME
+Pass a pointer to a double to receive the time, in seconds, it took from the
+start until the name resolving was completed.
+.IP CURLINFO_CONNECT_TIME
+Pass a pointer to a double to receive the time, in seconds, it took from the
+start until the connect to the remote host (or proxy) was completed.
+.IP CURLINFO_PRETRANSFER_TIME
+Pass a pointer to a double to receive the time, in seconds, it took from the
+start until the file transfer is just about to begin. This includes all
+pre-transfer commands and negotiations that are specific to the particular
+protocol(s) involved.
+.IP CURLINFO_STARTTRANSFER_TIME
+Pass a pointer to a double to receive the time, in seconds, it took from the
+start until the first byte is just about to be transfered. This includes
+CURLINFO_PRETRANSFER_TIME and also the time the server needs to calculate
+the result.
+.IP CURLINFO_REDIRECT_TIME
+Pass a pointer to a double to receive the total time, in seconds, it took for
+all redirection steps include name lookup, connect, pretransfer and transfer
+before final transaction was started. CURLINFO_REDIRECT_TIME contains the
+complete execution time for multiple redirections.  (Added in 7.9.7)
+.IP CURLINFO_REDIRECT_COUNT
+Pass a pointer to a long to receive the total number of redirections that were
+actually followed.  (Added in 7.9.7)
+.IP CURLINFO_SIZE_UPLOAD
+Pass a pointer to a double to receive the total amount of bytes that were
+uploaded.
+.IP CURLINFO_SIZE_DOWNLOAD
+Pass a pointer to a double to receive the total amount of bytes that were
+downloaded. The amount is only for the latest transfer and will be reset again
+for each new transfer.
+.IP CURLINFO_SPEED_DOWNLOAD
+Pass a pointer to a double to receive the average download speed that curl
+measured for the complete download.
+.IP CURLINFO_SPEED_UPLOAD
+Pass a pointer to a double to receive the average upload speed that curl
+measured for the complete upload.
+.IP CURLINFO_HEADER_SIZE
+Pass a pointer to a long to receive the total size of all the headers
+received.
+.IP CURLINFO_REQUEST_SIZE
+Pass a pointer to a long to receive the total size of the issued
+requests. This is so far only for HTTP requests. Note that this may be more
+than one request if FOLLOWLOCATION is true.
+.IP CURLINFO_SSL_VERIFYRESULT
+Pass a pointer to a long to receive the result of the certification
+verification that was requested (using the CURLOPT_SSL_VERIFYPEER option to
+\fIcurl_easy_setopt(3)\fP).
+.IP CURLINFO_CONTENT_LENGTH_DOWNLOAD
+Pass a pointer to a double to receive the content-length of the download. This
+is the value read from the Content-Length: field.
+.IP CURLINFO_CONTENT_LENGTH_UPLOAD
+Pass a pointer to a double to receive the specified size of the upload.
+.IP CURLINFO_CONTENT_TYPE
+Pass a pointer to a 'char *' to receive the content-type of the downloaded
+object. This is the value read from the Content-Type: field. If you get NULL,
+it means that the server didn't send a valid Content-Type header or that the
+protocol used doesn't support this.
+.IP CURLINFO_PRIVATE
+Pass a pointer to a 'char *' to receive the pointer to the private data
+associated with the curl handle (set with the CURLOPT_PRIVATE option to
+\fIcurl_easy_setopt(3)\fP). (Added in 7.10.3)
+.IP CURLINFO_HTTPAUTH_AVAIL
+Pass a pointer to a long to receive a bitmask indicating the authentication
+method(s) available. The meaning of the bits is explained in the
+CURLOPT_HTTPAUTH option for \fIcurl_easy_setopt(3)\fP.  (Added in 7.10.8)
+.IP CURLINFO_PROXYAUTH_AVAIL
+Pass a pointer to a long to receive a bitmask indicating the authentication
+method(s) available for your proxy athentication.  (Added in 7.10.8)
+.SH RETURN VALUE
+If the operation was successful, CURLE_OK is returned. Otherwise an
+appropriate error code will be returned.
+.SH "SEE ALSO"
+.BR curl_easy_setopt "(3)"

@@ -1,0 +1,13 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=Tools.chm
+Contents file=Tools.hhc
+Default topic=default.htm
+Display compile progress=No
+Index file=Tools.hhk
+Language=0x409 English (United States)
+Title=Quake 4 Tools Help File
+
+
+[INFOTYPES]
+

@@ -1,0 +1,111 @@
+# -*- mode: python -*-
+# DOOM build script
+# TTimo <ttimo@idsoftware.com>
+# http://scons.sourceforge.net
+
+import sys, os
+import scons_utils
+
+Import( 'GLOBALS' )
+Import( GLOBALS )
+
+game_string = ' \
+	AF.cpp \
+	AFEntity.cpp \
+	Actor.cpp \
+	Camera.cpp \
+	Entity.cpp \
+	BrittleFracture.cpp \
+	Fx.cpp \
+	GameEdit.cpp \
+	Game_local.cpp \
+	Game_network.cpp \
+	Item.cpp \
+	IK.cpp \
+	Light.cpp \
+	Misc.cpp \
+	Mover.cpp \
+	Moveable.cpp \
+	MultiplayerGame.cpp \
+	Player.cpp \
+	PlayerIcon.cpp \
+	PlayerView.cpp \
+	Projectile.cpp \
+	Pvs.cpp \
+	SecurityCamera.cpp \
+	SmokeParticles.cpp \
+	Sound.cpp \
+	Target.cpp \
+	Trigger.cpp \
+	Weapon.cpp \
+	WorldSpawn.cpp \
+	ai/AAS.cpp \
+	ai/AAS_debug.cpp \
+	ai/AAS_pathing.cpp \
+	ai/AAS_routing.cpp \
+	ai/AI.cpp \
+	ai/AI_events.cpp \
+	ai/AI_pathing.cpp \
+	ai/AI_Vagary.cpp \
+	gamesys/DebugGraph.cpp \
+	gamesys/Class.cpp \
+	gamesys/Event.cpp \
+	gamesys/SaveGame.cpp \
+	gamesys/SysCmds.cpp \
+	gamesys/SysCvar.cpp \
+	gamesys/TypeInfo.cpp \
+	anim/Anim.cpp \
+	anim/Anim_Blend.cpp \
+	anim/Anim_Import.cpp \
+	anim/Anim_Testmodel.cpp \
+	script/Script_Compiler.cpp \
+	script/Script_Interpreter.cpp \
+	script/Script_Program.cpp \
+	script/Script_Thread.cpp \
+	physics/Clip.cpp \
+	physics/Force.cpp \
+	physics/Force_Constant.cpp \
+	physics/Force_Drag.cpp \
+	physics/Force_Field.cpp \
+	physics/Force_Spring.cpp \
+	physics/Physics.cpp \
+	physics/Physics_AF.cpp \
+	physics/Physics_Actor.cpp \
+	physics/Physics_Base.cpp \
+	physics/Physics_Monster.cpp \
+	physics/Physics_Parametric.cpp \
+	physics/Physics_Player.cpp \
+	physics/Physics_RigidBody.cpp \
+	physics/Physics_Static.cpp \
+	physics/Physics_StaticMulti.cpp \
+	physics/Push.cpp'
+
+if ( local_d3xp ):
+	game_string += ' \
+	Grabber.cpp \
+	physics/Force_Grab.cpp'
+	game_list = scons_utils.BuildList( 'd3xp', game_string )
+else:
+	game_list = scons_utils.BuildList( 'game', game_string )
+
+for i in range( len( game_list ) ):
+	game_list[ i ] = '../../' + game_list[ i ]
+
+local_env = g_game_env.Clone()
+if ( local_d3xp ):
+	local_env.Append( CPPDEFINES = [ '_D3XP', 'CTF' ] )
+
+if ( local_demo == 1 ):
+	local_env.Append( CPPDEFINES = [ 'ID_DEMO_BUILD' ] )
+
+if ( local_gamedll == 1 ):
+	local_env.Append( CPPDEFINES = [ 'GAME_DLL' ] )
+	ret = local_env.SharedLibrarySafe( local_env, 'game', game_list + idlib_objects )
+	Return( 'ret' )
+else:
+	ret_list = []
+	for i in game_list:
+		ret_list += local_env.StaticObject( source = i )
+	Return( 'ret_list' )
+
+

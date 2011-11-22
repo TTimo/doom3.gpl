@@ -1,0 +1,213 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+		<meta name="Generator" content="Microsoft Word 10 (filtered)">
+		<title>Material Types</title>
+		<style>
+			<!--
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+@page Section1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+--></style>
+	</head>
+	<body bgcolor="white" lang="EN-US">
+		<div class="Section1">
+			<p class="MsoNormal" align="center" style='text-align:center'><b><span style='font-size:18.0pt'>Material Types</span></b></p>
+			<p class="MsoNormal">&nbsp;</p>
+			<p class="MsoNormal" align="right" style='text-align:right'>Version 1.00 – Friday 
+				13<sup>th</sup> June 2003 – John J Scott</p>
+			<p class="MsoNormal">&nbsp;</p>
+			<p class="MsoNormal">Materials are defined by .mtt files in the base/materials/ 
+				folder. The name of the file is the name of the material (eg. 
+				“materials/sand.mtt” is called “sand”).</p>
+			<p class="MsoNormal">&nbsp;</p>
+			<p class="MsoNormal">A .mtt file looks like this –</p>
+			<p class="MsoNormal">&nbsp;</p>
+			<p class="MsoNormal"><span style='color:blue'>materialType</span></p>
+			<p class="MsoNormal"><span style='color:blue'>{</span></p>
+			<p class="MsoNormal"><span style='color:blue'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; “A phrase that describes
+this material type”</span></p>
+			<p class="MsoNormal"><span style='color:blue'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+rgb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+r,g,b</span></p>
+			<p class="MsoNormal"><span style='color:blue'>}</span></p>
+			<p class="MsoNormal">&nbsp;</p>
+			<p class="MsoNormal">The r, g and b components are defined as 0 to 255. (eg. 
+				255,0,0 would be bright red)</p>
+			<p class="MsoNormal">&nbsp;</p>
+			<p class="MsoNormal">The material type can be defined in the material in 2 ways –</p>
+			<ol style='margin-top:0cm' start="1" type="1">
+				<li class="MsoNormal">
+					The keyword “materialType”</li>
+			</ol>
+			<p class="MsoNormal">&nbsp;</p>
+			<p class="MsoNormal">The following material would have the material type of 
+				“concrete”</p>
+			<p class="MsoNormal">&nbsp;</p>
+			<p class="MsoNormal"><span style='color:blue'>textures/wall/texture</span></p>
+			<p class="MsoNormal"><span style='color:blue'>{</span></p>
+			<p class="MsoNormal" style='text-indent:36.0pt'><span style='color:blue'>qer_editorimage            textures/wall/texture_d</span></p>
+			<p class="MsoNormal"><span style='color:blue'>&nbsp;</span></p>
+			<p class="MsoNormal"><b><span style='color:blue'>            materialType              concrete</span></b></p>
+			<p class="MsoNormal"><span style='color:blue'>&nbsp;</span></p>
+			<p class="MsoNormal" style='text-indent:36.0pt'><span style='color:blue'>bumpmap                     addnormals
+( textures/wall/texture_local, heightmap ( textures/wall/texture_h, 1 ) )</span></p>
+			<p class="MsoNormal" style='text-indent:36.0pt'><span style='color:blue'>diffusemap                    textures/wall/texture_d</span></p>
+			<p class="MsoNormal" style='text-indent:36.0pt'><span style='color:blue'>specularmap                 textures/wall/texture_s</span></p>
+			<p class="MsoNormal"><span style='color:blue'>}</span></p>
+			<p class="MsoNormal"><span style='color:blue'>&nbsp;</span></p>
+			<ol style='margin-top:0cm' start="2" type="1">
+				<li class="MsoNormal" style='color:black'>
+					The keyword “materialImage” can be used to specify an image to indirect into. 
+					The rgb values in the material image are compared with the rgb values defined 
+					in the .mtt files to define the material type. Eg. A window frame would have 
+					material type wood wherever the frame was, and material type glass wherever the 
+					glass was.
+				</li>
+			</ol>
+			<p class="MsoNormal"><span style='color:black'>&nbsp;</span></p>
+			<p class="MsoNormal"><span style='color:black'>The following material will use
+the hit image map “textures/wall/texture_hit” to work out the material type,
+but return metal should the hit image not yield a valid material.</span></p>
+			<p class="MsoNormal"><span style='color:black'>&nbsp;</span></p>
+			<p class="MsoNormal"><span style='color:blue'>textures/wall/texture</span></p>
+			<p class="MsoNormal"><span style='color:blue'>{</span></p>
+			<p class="MsoNormal" style='text-indent:36.0pt'><span style='color:blue'>qer_editorimage            textures/wall/texture_d</span></p>
+			<p class="MsoNormal"><span style='color:blue'>&nbsp;</span></p>
+			<p class="MsoNormal"><b><span style='color:blue'>            materialType              metal</span></b></p>
+			<p class="MsoNormal"><b><span style='color:blue'>            materialImage            textures/wall/texture_hit</span></b></p>
+			<p class="MsoNormal"><span style='color:blue'>&nbsp;</span></p>
+			<p class="MsoNormal" style='text-indent:36.0pt'><span style='color:blue'>bumpmap                     addnormals
+( textures/wall/texture_local, heightmap ( textures/wall/texture_h, 1 ) )</span></p>
+			<p class="MsoNormal" style='text-indent:36.0pt'><span style='color:blue'>diffusemap                    textures/wall/texture_d</span></p>
+			<p class="MsoNormal" style='text-indent:36.0pt'><span style='color:blue'>specularmap                 textures/wall/texture_s</span></p>
+			<p class="MsoNormal"><span style='color:blue'>}</span></p>
+			<p class="MsoNormal"><span style='color:black'>&nbsp;</span></p>
+			<p class="MsoNormal"><span style='color:black'>The currently defined materials
+are –</span></p>
+			<p class="MsoNormal"><span style='color:black'>&nbsp;</span></p>
+			<div align="center">
+				<table class="MsoTableGrid" border="1" cellspacing="0" cellpadding="0" style='border-collapse:collapse;border:none'>
+					<tr>
+						<td width="295" valign="top" style='width:221.4pt;border:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+							<p class="MsoNormal" align="center" style='text-align:center'><b><span style='color:black'>Material Type</span></b></p>
+						</td>
+						<td width="295" valign="top" style='width:221.4pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+							<p class="MsoNormal" align="center" style='text-align:center'><b><span style='color:black'>RGB Value</span></b></p>
+						</td>
+					</tr>
+					<tr>
+						<td width="295" valign="top" style='width:221.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+							<p class="MsoNormal"><span style='color:black'>&nbsp;</span></p>
+						</td>
+						<td width="295" valign="top" style='width:221.4pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+							<p class="MsoNormal"><span style='color:black'>&nbsp;</span></p>
+						</td>
+					</tr>
+					<tr>
+						<td width="295" valign="top" style='width:221.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+							<p class="MsoNormal"><span style='color:black'>None</span></p>
+						</td>
+						<td width="295" valign="top" style='width:221.4pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+							<p class="MsoNormal"><span style='color:black'>0,0,0</span></p>
+						</td>
+					</tr>
+					<tr>
+						<td width="295" valign="top" style='width:221.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+							<p class="MsoNormal"><span style='color:black'>Solidmetal</span></p>
+						</td>
+						<td width="295" valign="top" style='width:221.4pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+							<p class="MsoNormal"><span style='color:black'>178,178,178</span></p>
+						</td>
+					</tr>
+					<tr>
+						<td width="295" valign="top" style='width:221.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+							<p class="MsoNormal"><span style='color:black'>HollowMetal</span></p>
+						</td>
+						<td width="295" valign="top" style='width:221.4pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+							<p class="MsoNormal"><span style='color:black'>102,102,102</span></p>
+						</td>
+					</tr>
+					<tr>
+						<td width="295" valign="top" style='width:221.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+							<p class="MsoNormal"><span style='color:black'>Sand</span></p>
+						</td>
+						<td width="295" valign="top" style='width:221.4pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+							<p class="MsoNormal"><span style='color:black'>255,255,0</span></p>
+						</td>
+					</tr>
+					<tr>
+						<td width="295" valign="top" style='width:221.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+							<p class="MsoNormal"><span style='color:black'>Flesh</span></p>
+						</td>
+						<td width="295" valign="top" style='width:221.4pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+							<p class="MsoNormal"><span style='color:black'>204,102,102</span></p>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<p class="MsoNormal"><span style='color:black'>&nbsp;</span></p>
+			<p class="MsoNormal"><span style='color:black'>&nbsp;</span></p>
+			<p class="MsoNormal"><span style='color:black'>Notes -</span></p>
+			<ol style='margin-top:0cm' start="1" type="1">
+				<li class="MsoNormal" style='color:black'>
+					There are no limits to the dimensions of the material type image. However, 
+					using half the width and height would be a good balance of accuracy vs. memory. 
+					If more accuracy is required, go up to the same size. There is no gain (and 
+					hence no point) in going larger than the material the hit image will be applied 
+					to.</li>
+				<li class="MsoNormal" style='color:black'>
+					If the exact rgb values are used, loading up the hit images will be quick. It 
+					will check for the nearest match, but this takes a little longer.</li>
+				<li class="MsoNormal" style='color:black'>
+					Generally, use a realistic colour for the material type. This way, the diffuse 
+					map will work naturally as a quick and dirty starting point. For example, flesh 
+					is pink so that any pink found on a hit material image will return a material 
+					type of flesh.</li>
+				<li class="MsoNormal" style='color:black'>
+					Try to keep a good separation of material type rgb values. Having two very 
+					close together makes the hit images harder to edit.</li>
+			</ol>
+			<p class="MsoNormal"><span style='color:black'>&nbsp;</span></p>
+			<p class="MsoNormal"><span style='color:black'>&nbsp;</span></p>
+			<p class="MsoNormal"><span style='color:black'>&nbsp;</span></p>
+			<p class="MsoNormal"><span style='color:black'>&nbsp;</span></p>
+			<p class="MsoNormal"><span style='color:black'>&nbsp;</span></p>
+			<p class="MsoNormal"><span style='color:black'>&nbsp;</span></p>
+		</div>
+	</body>
+</html>

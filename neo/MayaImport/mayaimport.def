@@ -1,0 +1,4 @@
+EXPORTS
+	dllEntry
+	Maya_ConvertModel
+	Maya_Shutdown

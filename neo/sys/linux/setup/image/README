@@ -1,0 +1,53 @@
+DOOM III Linux
+==============
+
+Minimum system requirements:
+----------------------------
+
+GNU/Linux system,
+Pentium III, 1Ghz
+256Mb RAM
+Kernel 2.4, 2.6 is recommended
+glibc 2.2.4 and up
+
+3D card:
+  NV10 or R200 minimum hardware 
+  OpenGL hardware acceleration
+  64 MB VRAM
+
+sound card, OSS or Alsa, stereo sound and 5.1 are supported with both APIs
+Alsa version 1.0.6 or above is required
+
+A licensed copy of Doom III retail for Windows
+In order to play the additional Resurrection of Evil Expansion Pack, a licensed copy of the Expansion Pack for Windows
+
+Installation instructions:
+--------------------------
+
+The following files need to be copied from the win32 install CDs
+to your base/ directory ( md5 sums provided below as reference )
+by default, /usr/local/games/doom3/base
+
+71b8d37b2444d3d86a36fd61783844fe  base/pak000.pk4
+4bc4f3ba04ec2b4f4837be40e840a3c1  base/pak001.pk4
+fa84069e9642ad9aa4b49624150cc345  base/pak002.pk4
+f22d8464997924e4913e467e7d62d5fe  base/pak003.pk4
+38561a3c73f93f2e6fd31abf1d4e9102  base/pak004.pk4
+
+If you are also installing the Resurrection of Evil Expansion Pack,
+you need to copy the following file to your d3xp/ directory
+by default, /usr/local/games/doom3/d3xp
+
+a883fef0fd10aadeb73d34c462ff865d  d3xp/pak000.pk4
+
+Localization is not supported on Linux ( only english ), you should not copy over any of the zpak files.
+
+Start the game with the command: doom3
+Start the dedicated server with the command: doom3-dedicated
+
+If installed, you can start the Expansion Pack directly from the command line with the command: doom3 +set fs_game d3xp
+Or you can select it in the mods menu of the base game.
+
+For troubleshooting and help, see:
+http://zerowing.idsoftware.com/linux/
+

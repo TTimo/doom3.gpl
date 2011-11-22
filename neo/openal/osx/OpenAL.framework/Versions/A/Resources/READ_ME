@@ -1,0 +1,86 @@
+
+February 13th, 2004 - Apple Computer Inc.
+updated: March 15th, 2004 - Apple Computer Inc.
+
+----------------------------------------------------------------------------------------------------------------------
+READ ME: OPEN AL - OSX IMPLEMENTATION USING THE 3DMIXER AUDIOUNIT
+----------------------------------------------------------------------------------------------------------------------
+
+This Read Me should accompany the 3DMixer implementation of OpenAL (Open Audio Library). 
+
+CoreAUdio SDK Requirements
+-----------------------
+Building this implementation of OpenAL for Mac OSX requires the latest CoreAudio SDK (version 1.3.1), due to it use 
+of new CoreAudio Public Utility classes.
+
+CoreAudio Version requirements
+-----------------------
+There are Recommended and Minimum CoreAudio framework and component pieces for running this implementation 
+of OpenAL for Mac OSX:
+
+    Recommended:
+    ------------
+    OSX: version 10.2.6 AND
+    QuickTime: version 6.5.1
+    AudioToolbox.framework (version 1.3.2)
+    AudioUnit.framework (version 1.3.2)
+    CoreAudio.component (version 1.3.2 - this version contains the 2.0 version of the 3DMixer AudioUnit)
+    
+    Minimum:
+    ------------
+    OSX: version 10.2 (Jaguar) AND
+    QuickTime: version 6.4
+    AudioToolbox.framework (version 1.2xxxxx)
+    AudioUnit.framework (version 1.2xxxxx)
+    CoreAudio.component (version 1.2xxxxxx - this version contains the 1.3 version of the 3DMixer AudioUnit)
+
+----------------------------------------------------------------------------------------------------------------------
+OpenAL Extensions:
+----------------------------------------------------------------------------------------------------------------------
+
+This implementation has the following OpenAL extensions. These constants can be found in the included "alctypes.h" header.
+
+***** ALC_CONVERT_DATA_UPON_LOADING
+This extension allows the caller to tell OpenAL to preconvert to the native CoreAudio format, the audio data passed to the 
+library with the alBufferData() call. Preconverting the audio data, reduces CPU usage by removing an audio data conversion 
+(per source) at render timem at the expense of a larger memory footprint.
+
+This feature is toggled on/off by using the alDisable() & alEnable() APIs. This setting will be applied to all subsequent 
+calls to alBufferData().
+
+***** ALC_SPATIAL_RENDERING_QUALITY
+This extension allows the application to specify the quality of spatial rendering to better suit the resources of the CPU.
+At this time, the quality settings are only applied when rendering to stereo hw. All multichannel rendering uses the same 
+spatilaization setting on the 3DMixer. Use the alSetInteger() & alGetInteger() APIs to specify and retrieve this setting.
+This implmentation provides 2 setting constants:    ALC_SPATIAL_RENDERING_QUALITY_HIGH  (HRTF)
+                                                    ALC_SPATIAL_RENDERING_QUALITY_LOW   (EqualPowerPanning)
+                                                    
+note: This implementation applies the setting to all the OAL Sources of an OAL Context. However, spatial settings can be applied to
+each input bus of the 3DMixer, so it is possible to have this setting on a per OAL Source basis, allowing the developer to give
+quality priorities to the various sounds used in an application.
+
+note: Currently, all stereo sounds are 'passed thru' with no spatial rendering applied. This has the best output quality for rendering
+what are typically background sound tracks. However, the 3DMixer has the ability to render a stereo source to a spatial coordinate
+if this was desired and support to do so would be trivial.
+
+***** ALC_MIXER_OUTPUT_RATE
+This extension allows the developer to let the AudioGraph be efficient about sample rate conversion. If for example, all sounds
+being played have a sample rate of 44k, but the output hardware is set to 48k, then it is best for the 3DMixer to leave the
+the audio data (Mixer Outputut Rate)  at 44k, letting the output AU rate convert the streams after they have been mixed. By default, 
+this is set to 44k which is very common sample rate for sound hw.
+
+***** ALC_MIXER_MAXIMUM_BUSSES
+This extension allows the developer to optimize the 3DMixer by setting it available input bus count. This allows the 3DMixer to be as
+efficient as possible in resource allocations. By default, the 3DMixer currently defaults to 64 busses (note: the 1.3 version of the
+3DMixer does not respect this setting, so always confirm the bus count with a get call, after setting the bus count and creating a new device). 
+Use: set the bus count before making a call to alOpenDevice(). This will cause the library to set the mixer to you desired bus count.
+as it creates the AUGraph. Use the alSetInteger() & alGetInteger() APIs to specify and retrieve this setting.
+
+***** ALC_RENDER_CHANNEL_COUNT
+Because the audio system has no way to know if a user has actually connected a speaker to an output of the audio hardware, it may be desired
+to allow the user to clamp all rendering to stereo. Use the alSetInteger() & alGetInteger() APIs to specify and retrieve this setting.
+This implmentation provides 2 setting constants:    ALC_RENDER_CHANNEL_COUNT_STEREO         (clamp the 3DMixer output rendering to stereo, regardless of the hw capabilities)
+                                                    ALC_RENDER_CHANNEL_COUNT_MULTICHANNEL   (try and render to the maximum speakers possible by interrogating the device) 
+
+----------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------

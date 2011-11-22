@@ -1,0 +1,53 @@
+
+  <bookinfo> 
+    <title>
+      &OAL; Specification and Reference
+    </title>
+<!--
+    <editor>
+      <firstname>Bernd</firstname>
+      <surname>Kreimeier</surname>
+    </editor>
+  -->
+
+    <edition>Version 1.0 Draft</edition>
+
+    <pubdate>June 2000</pubdate>
+    <copyright>
+      <year>1999-2000</year>
+      <holder>Loki Software</holder>
+    </copyright>
+
+    <legalnotice>
+      <para>
+        Permission is granted to make and distribute verbatim copies of this
+        manual provided the copyright notice and this permission notice are
+        preserved on all copies.
+      </para>
+     </legalnotice>
+     <legalnotice>
+      <para>
+        Permission is granted to copy and distribute translations of this
+        manual into another language, under the above conditions for modified
+        versions, except that this permission notice may be stated in a
+        translation approved by the copyright owners.
+      </para>
+      </legalnotice>
+      <legalnotice>
+      <para> UNIX is a trademark of X/Open Group.</para>
+      <para> X Window System is a trademark of X Consortium, Inc.</para>
+      <para> Linux is a trademark of Linus Torvalds.</para>
+      <para> Windows is a trademark of Microsoft Corp.</para>
+      <para> Macintosh and Apple are  trademarks of Apple Computer, Inc.</para>
+      <para> Loki and &OAL; are trademarks of Loki Software, Inc.</para>
+      <para> All other trademarks are property of their respective owners.</para>
+    </legalnotice>
+
+    <releaseinfo> 
+      Draft document of &OAL; Specification.
+    </releaseinfo>   
+
+   
+
+  </bookinfo>
+ 

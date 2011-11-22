@@ -1,0 +1,36 @@
+
+   <appendix>
+   <title>Extension Process</title> 
+   <para>
+     There are two ways to suggest an Extension to AL or ALC.
+     The simplest way is to write an ASCII text that matches
+     the following template:
+
+     <literallayout>
+
+         RFC:         rfc-iiyymmdd-nn
+         Name:        (indicating the purpose/feature)
+         Maintainer:  (name and spam-secured e-mail)
+         Date:        (last revision)
+         Revision:    (last revision)
+
+         new enums
+         new functions
+
+         description of operation
+
+     </literallayout>
+
+    Such an RFC can be submitted on the &AL; discussion
+    list (please use RFC in the Subject line), or send to the
+    maintainer of the &AL; specification. If you are shipping
+    an actual implementation as a patch or as part of the
+    &AL; CVS a formal writeup is recommend. In this case,
+    the Extension has to be described as part of the
+    specification, which is maintained in DocBook SGML
+    (available for UNIX, Linux and Win32). The SGML source of
+    the specification is available by CVS, and the Appendix
+    on Extensions can be used as a template. Contact the
+    maintainer for details.
+   </para> 
+   </appendix>

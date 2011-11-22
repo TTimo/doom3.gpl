@@ -1,0 +1,41 @@
+# -*- mode: python -*-
+# DOOM build script
+# TTimo <ttimo@idsoftware.com>
+# http://scons.sourceforge.net
+
+import os
+
+import scons_utils
+
+Import( 'GLOBALS' )
+Import( GLOBALS )
+
+class idBuildCurl( scons_utils.idSetupBase ):
+
+	def Compile( self, target = None, source = None, env = None ):	
+		self.TrySimpleCommand( 'cd curl ; make clean' )
+		cmd = 'cd curl ; CC=\'' + env['CC'] + '\' ./configure --enable-shared=no --enable-static=yes --enable-http --enable-ftp --disable-gopher --enable-file --disable-ldap --disable-dict --disable-telnet --disable-manual --enable-libgcc --disable-ipv6 --without-ssl '
+		if ( self.debug ):
+			cmd += '--enable-debug'
+		else:
+			cmd += '--disable-debug'
+		os.system( cmd )
+		os.system( 'cd curl ; make' )
+		if ( self.debug ):
+			os.system( 'cd curl ; mv ./lib/.libs/libcurl.a ./lib/.libs/libcurl-debug.a' )
+		else:
+			os.system( 'cd curl ; mv ./lib/.libs/libcurl.a ./lib/.libs/libcurl-release.a' )
+		return 0
+
+build = idBuildCurl()
+if ( local_curl == 1 ):
+	build.debug = 1
+	target_name = '#curl/lib/.libs/libcurl-debug.a'
+else:
+	build.debug = 0
+	target_name = '#curl/lib/.libs/libcurl-release.a'
+
+g_env.Command( target_name, None, Action( build.Compile ) )
+
+curl_libs = [ target_name, '/usr/lib/libz.a' ]
+Return( 'curl_libs' )

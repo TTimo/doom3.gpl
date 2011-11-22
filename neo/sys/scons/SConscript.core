@@ -1,0 +1,359 @@
+# -*- mode: python -*-
+# DOOM build script
+# TTimo <ttimo@idsoftware.com>
+# http://scons.sourceforge.net
+
+import sys, os
+import scons_utils
+
+Import( 'GLOBALS' )
+Import( GLOBALS )
+
+jpeg_string = ' \
+	jcapimin.c \
+	jccoefct.c \
+	jccolor.c \
+	jcdctmgr.c \
+	jchuff.c \
+	jcinit.c \
+	jcmainct.c \
+	jcmarker.c \
+	jcmaster.c \
+	jcomapi.c \
+	jcparam.c \
+	jcphuff.c \
+	jcprepct.c \
+	jcsample.c \
+	jdapimin.c \
+	jdapistd.c \
+	jdatadst.c \
+	jdatasrc.c \
+	jdcoefct.c \
+	jdcolor.c \
+	jddctmgr.c \
+	jdhuff.c \
+	jdinput.c \
+	jdmainct.c \
+	jdmarker.c \
+	jdmaster.c \
+	jdmerge.c \
+	jdphuff.c \
+	jdpostct.c \
+	jdsample.c \
+	jdtrans.c \
+	jerror.c \
+	jfdctflt.c \
+	jfdctfst.c \
+	jfdctint.c \
+	jidctflt.c \
+	jidctfst.c \
+	jidctint.c \
+	jidctred.c \
+	jmemmgr.c \
+	jmemnobs.c \
+	jquant1.c \
+	jquant2.c \
+	jutils.c'
+
+jpeg_list = scons_utils.BuildList( 'renderer/jpeg-6', jpeg_string )
+
+ogg_string = ' \
+	oggsrc/bitwise.c \
+	oggsrc/framing.c \
+	vorbissrc/analysis.c \
+	vorbissrc/bitrate.c \
+	vorbissrc/block.c \
+	vorbissrc/codebook.c \
+	vorbissrc/envelope.c \
+	vorbissrc/floor0.c \
+	vorbissrc/floor1.c \
+	vorbissrc/info.c \
+	vorbissrc/lookup.c \
+	vorbissrc/lpc.c \
+	vorbissrc/lsp.c \
+	vorbissrc/mapping0.c \
+	vorbissrc/mdct.c \
+	vorbissrc/psy.c \
+	vorbissrc/registry.c \
+	vorbissrc/res0.c \
+	vorbissrc/sharedbook.c \
+	vorbissrc/smallft.c \
+	vorbissrc/synthesis.c \
+	vorbissrc/vorbisenc.c \
+	vorbissrc/vorbisfile.c \
+	vorbissrc/windowvb.c'
+
+ogg_list = scons_utils.BuildList( 'sound/OggVorbis', ogg_string )
+
+renderer_string = ' \
+	Cinematic.cpp \
+	GuiModel.cpp \
+	Image_files.cpp \
+	Image_init.cpp \
+	Image_load.cpp \
+	Image_process.cpp \
+	Image_program.cpp \
+	Interaction.cpp \
+	Material.cpp \
+	MegaTexture.cpp \
+	Model.cpp \
+	ModelDecal.cpp \
+	ModelManager.cpp \
+	ModelOverlay.cpp \
+	Model_beam.cpp \
+	Model_ase.cpp \
+	Model_liquid.cpp \
+	Model_lwo.cpp \
+	Model_ma.cpp \
+	Model_md3.cpp \
+	Model_md5.cpp \
+	Model_prt.cpp \
+	Model_sprite.cpp \
+	RenderEntity.cpp \
+	RenderSystem.cpp \
+	RenderSystem_init.cpp \
+	RenderWorld.cpp \
+	RenderWorld_demo.cpp \
+	RenderWorld_load.cpp \
+	RenderWorld_portals.cpp \
+	VertexCache.cpp \
+	cg_explicit.cpp \
+	draw_arb.cpp \
+	draw_arb2.cpp \
+	draw_common.cpp \
+	draw_exp_stub.cpp \
+	draw_nv10.cpp \
+	draw_nv20.cpp \
+	draw_r200.cpp \
+	tr_backend.cpp \
+	tr_deform.cpp \
+	tr_font.cpp \
+	tr_guisurf.cpp \
+	tr_light.cpp \
+	tr_lightrun.cpp \
+	tr_main.cpp \
+	tr_orderIndexes.cpp \
+	tr_polytope.cpp \
+	tr_render.cpp \
+	tr_rendertools.cpp \
+	tr_shadowbounds.cpp \
+	tr_stencilshadow.cpp \
+	tr_subview.cpp \
+	tr_trace.cpp \
+	tr_trisurf.cpp \
+	tr_turboshadow.cpp'
+
+renderer_list = scons_utils.BuildList( 'renderer', renderer_string )
+
+framework_string = ' \
+	CVarSystem.cpp \
+	CmdSystem.cpp \
+	Common.cpp \
+	Compressor.cpp \
+	Console.cpp \
+	DemoFile.cpp \
+	DeclAF.cpp \
+	DeclEntityDef.cpp \
+	DeclFX.cpp \
+	DeclManager.cpp \
+	DeclParticle.cpp \
+	DeclPDA.cpp \
+	DeclSkin.cpp \
+	DeclTable.cpp \
+	EditField.cpp \
+	EventLoop.cpp \
+	File.cpp \
+	FileSystem.cpp \
+	KeyInput.cpp \
+	Unzip.cpp \
+	UsercmdGen.cpp \
+	Session_menu.cpp \
+	Session.cpp \
+	async/AsyncClient.cpp \
+	async/AsyncNetwork.cpp \
+	async/AsyncServer.cpp \
+	async/MsgChannel.cpp \
+	async/NetworkSystem.cpp \
+	async/ServerScan.cpp'
+
+framework_list = scons_utils.BuildList( 'framework', framework_string )
+
+cm_string = ' \
+	CollisionModel_contacts.cpp \
+	CollisionModel_contents.cpp \
+	CollisionModel_debug.cpp \
+	CollisionModel_files.cpp \
+	CollisionModel_load.cpp \
+	CollisionModel_rotate.cpp \
+	CollisionModel_trace.cpp \
+	CollisionModel_translate.cpp'
+cm_list = scons_utils.BuildList( 'cm', cm_string )
+
+dmap_string = ' \
+	dmap.cpp \
+	facebsp.cpp \
+	gldraw.cpp \
+	glfile.cpp \
+	leakfile.cpp \
+	map.cpp \
+	optimize.cpp \
+	output.cpp \
+	portals.cpp \
+	shadowopt3.cpp \
+	tritjunction.cpp \
+	tritools.cpp \
+	ubrush.cpp \
+	usurface.cpp'
+
+dmap_list = scons_utils.BuildList( 'tools/compilers/dmap', dmap_string )
+
+aas_string = ' \
+	AASBuild.cpp \
+	AASBuild_file.cpp \
+	AASBuild_gravity.cpp \
+	AASBuild_ledge.cpp \
+	AASBuild_merge.cpp \
+	AASCluster.cpp \
+	AASFile.cpp \
+	AASFile_optimize.cpp \
+	AASFile_sample.cpp \
+	AASReach.cpp \
+	AASFileManager.cpp \
+	Brush.cpp \
+	BrushBSP.cpp'
+	
+aas_list = scons_utils.BuildList( 'tools/compilers/aas', aas_string )
+
+roq_string = ' \
+	NSBitmapImageRep.cpp \
+	codec.cpp \
+	roq.cpp \
+	roqParam.cpp'
+
+roq_list = scons_utils.BuildList( 'tools/compilers/roqvq', roq_string )
+
+renderbump_list = [ 'tools/compilers/renderbump/renderbump.cpp' ]
+
+snd_string = ' \
+	snd_cache.cpp \
+	snd_decoder.cpp \
+	snd_efxfile.cpp \
+	snd_emitter.cpp \
+	snd_shader.cpp \
+	snd_system.cpp \
+	snd_wavefile.cpp \
+	snd_world.cpp'
+
+snd_list = scons_utils.BuildList( 'sound', snd_string )
+
+ui_string = ' \
+	BindWindow.cpp \
+	ChoiceWindow.cpp \
+	DeviceContext.cpp \
+	EditWindow.cpp \
+	FieldWindow.cpp \
+	GameBearShootWindow.cpp \
+	GameBustOutWindow.cpp \
+	GameSSDWindow.cpp \
+	GuiScript.cpp \
+	ListGUI.cpp \
+	ListWindow.cpp \
+	MarkerWindow.cpp \
+	RegExp.cpp \
+	RenderWindow.cpp \
+	SimpleWindow.cpp \
+	SliderWindow.cpp \
+	UserInterface.cpp \
+	Window.cpp \
+	Winvar.cpp'
+
+ui_list = scons_utils.BuildList( 'ui', ui_string )
+
+sys_string = ' \
+	sys_local.cpp \
+	posix/posix_net.cpp \
+	posix/posix_main.cpp \
+	posix/posix_signal.cpp \
+	posix/posix_threads.cpp \
+	linux/stack.cpp \
+	linux/main.cpp \
+	stub/util_stub.cpp'
+
+if ( local_dedicated == 0 ):
+	sys_string += ' \
+		linux/glimp.cpp \
+		posix/posix_input.cpp \
+		linux/input.cpp \
+		linux/libXNVCtrl/NVCtrl.c'
+else:
+	sys_string += ' linux/dedicated.cpp'
+
+sys_list = scons_utils.BuildList( 'sys', sys_string )
+
+tools_string = ' \
+	guied/GEWindowWrapper_stub.cpp'
+
+tools_list = scons_utils.BuildList( 'tools', tools_string )
+
+core_list = framework_list + jpeg_list + renderer_list + ui_list \
+	+ cm_list + dmap_list + renderbump_list + aas_list + roq_list \
+	+ snd_list + sys_list + tools_list + [ 'TypeInfo/TypeInfoGen.cpp' ]
+
+for i in range( len( core_list ) ):
+	core_list[ i ] = '../../' + core_list[ i ]
+
+for i in range( len( ogg_list ) ):
+	ogg_list[ i ] = '../../' + ogg_list[ i ]
+
+local_env = g_env.Clone()
+
+if ( local_dedicated == 1 ):
+	local_env.Append( CPPDEFINES = [ 'ID_DEDICATED', 'ID_GL_HARDLINK' ] )
+	# don't enable alsa for a dedicated server binary
+	ALSA = '0'
+
+if ( local_gamedll == 1 ):
+	local_env.Append( CPPDEFINES = [ '__DOOM_DLL__' ] )
+
+if ( local_demo == 1 ):
+	local_env.Append( CPPDEFINES = [ 'ID_DEMO_BUILD' ] )
+
+if ( local_curl == 0 ):
+	local_env.Append( CPPDEFINES = [ 'ID_ENABLE_CURL=0' ] )
+
+ogg_env = local_env.Clone()
+ogg_env.Append( CPPPATH = '#sound/OggVorbis/vorbissrc' )
+libogg = ogg_env.StaticLibrary( 'ogg', ogg_list )
+
+sound_env = local_env.Clone()
+sound_env.Append( CPPPATH = '/usr/local/lib/oss/include' )
+# store a local copy of the include headers as well for holy build
+sound_env.Append( CPPPATH = '../linux/oss/include' )
+sound_list = [ '../linux/sound.cpp' ]
+if ( ALSA != '0' ):
+	sound_list.append( '../../sys/linux/sound_alsa.cpp' )
+else:
+	sound_env.Append( CPPDEFINES = 'NO_ALSA' )
+sound_lib = sound_env.StaticLibrary( 'sound', sound_list )
+
+local_env.Append( LIBS = [ 'pthread', 'dl' ] )
+if ( local_dedicated == 0 ):
+	local_env.Append( LIBS = [ 'X11', 'Xext', 'Xxf86vm' ] ) # 'Xxf86dga', 
+	local_env.Append( LIBPATH = [ '/usr/X11R6/lib' ] )
+#	local_env.Append( LIBS = [ 'openal' ] )
+
+source_list = core_list
+source_list += idlib_objects
+source_list += [ '../../glimp/sys/scons/libglimp.a' ]
+source_list += libogg
+source_list += curl_lib
+source_list += sound_lib
+source_list += [ '../../openal/stubs.cpp' ]
+
+source_list += g_env_noopt.StaticObject( '../../tools/compilers/dmap/optimize_gcc.cpp' )
+
+if ( local_gamedll == 0 ):
+	source_list += game_objects
+
+d3wm = local_env.Program( target = 'doom', source = source_list )
+Return( 'd3wm' )

@@ -1,0 +1,36 @@
+? install
+? to
+? image/setup.data/bin
+Index: Makefile.in
+===================================================================
+RCS file: /cvs/cvsroot/loki_setup/Makefile.in,v
+retrieving revision 1.32
+diff -u -r1.32 Makefile.in
+--- Makefile.in	4 Aug 2004 03:12:34 -0000	1.32
++++ Makefile.in	9 Aug 2004 10:16:22 -0000
+@@ -65,7 +65,8 @@
+ CARBON_LIBS = $(COMMON_LIBS) @LIBS@ @CARBON_LIBS@
+ CONSOLE_LIBS = $(LIBS) @CONSOLE_LIBS@
+ 
+-all: do-plugins @DO_DIALOG@ setup setup.gtk uninstall xsu
++#all: do-plugins @DO_DIALOG@ setup setup.gtk uninstall xsu
++all: do-plugins @DO_DIALOG@ setup
+ 
+ testxml: testxml.o
+ 	$(CC) $(LDFLAGS) -o $@ $^ $(LIBS)
+@@ -139,6 +140,7 @@
+ ifeq ($(DYN_PLUGINS),true)
+ 	$(MAKE) -C plugins install
+ endif
++	mkdir -p install to image/setup.data/bin/$(os)/$(arch)/$(libc)
+ 	@if [ -d image/setup.data/bin/$(os)/$(arch)/$(libc) ]; then \
+ 	    cp setup image/setup.data/bin/$(os)/$(arch); \
+ 	    strip image/setup.data/bin/$(os)/$(arch)/setup; \
+@@ -155,6 +157,7 @@
+ 	else \
+ 		echo No directory to copy the binary files to.; \
+ 	fi
++	echo installed to image/setup.data/bin/$(os)/$(arch)/$(libc)
+ 
+ install-image: all
+ ifeq ($(DYN_PLUGINS),true)

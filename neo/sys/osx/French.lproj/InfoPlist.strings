@@ -1,0 +1,6 @@
+/* Localized versions of Info.plist keys */
+
+CFBundleName = "Doom 3";
+CFBundleShortVersionString = "1.1 b2847";
+CFBundleGetInfoString = "Doom 3 version 1.1 b2847, Copyright 2006 Id Software";
+NSHumanReadableCopyright = "Copyright 2006 Id Software";

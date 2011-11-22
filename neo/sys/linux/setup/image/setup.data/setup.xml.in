@@ -1,0 +1,42 @@
+<?xml version="1.0" standalone="yes"?>
+<install product="M4_PRODUCT" desc="M4_DESC" version="M4_VERSION" postinstall="sh setup.data/postinstall.sh &quot;$@&quot;" nouninstall="yes" nopromptoverwrite="yes">
+  <eula>
+	License.txt
+  </eula>
+  <readme>
+    README
+  </readme>
+  M4_PRODUCT
+  <option required="true">
+	M4_DESC
+	<binary arch="any" libs="any" symlink="doom3" icon="doom3.png" play="no">
+	  doom3
+	</binary>
+	<binary arch="any" libs="any" symlink="doom3-dedicated" icon="doom3.png" play="no">
+	  doom3-dedicated
+	</binary>
+	<binary arch="any" libs="any" play="no">
+	  doom.x86
+	  doomded.x86
+	</binary>
+	<files>
+	  base
+	  d3xp
+	  pb
+	  M4_LDD
+	  version.info
+	  openurl.sh
+	  doom3.png
+	  CHANGES
+	</files>
+  </option>
+  <option install="true">
+	PunkBuster client/server files
+	<eula>
+	  pb/PB_EULA.txt
+	</eula>
+	<files>
+	  pb/
+	</files>
+  </option>
+</install>

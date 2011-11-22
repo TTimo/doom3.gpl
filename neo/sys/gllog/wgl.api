@@ -1,0 +1,22 @@
+int ;qwgl;SwapIntervalEXT; int interval 
+int   ;qwgl;ChoosePixelFormat ;HDC, CONST PIXELFORMATDESCRIPTOR *
+int   ;qwgl;DescribePixelFormat;HDC, int, UINT, LPPIXELFORMATDESCRIPTOR
+int   ;qwgl;GetPixelFormat;HDC
+BOOL  ;qwgl;SetPixelFormat;HDC, int, CONST PIXELFORMATDESCRIPTOR *
+BOOL  ;qwgl;SwapBuffers;HDC
+BOOL  ;qwgl;CopyContext;HGLRC, HGLRC, UINT
+HGLRC ;qwgl;CreateContext;HDC
+HGLRC ;qwgl;CreateLayerContext;HDC, int
+BOOL  ;qwgl;DeleteContext;HGLRC
+HGLRC ;qwgl;GetCurrentContext;VOID
+HDC   ;qwgl;GetCurrentDC;VOID
+PROC  ;qwgl;GetProcAddress;LPCSTR
+BOOL  ;qwgl;MakeCurrent;HDC, HGLRC
+BOOL  ;qwgl;ShareLists;HGLRC, HGLRC
+BOOL  ;qwgl;UseFontBitmaps;HDC, DWORD, DWORD, DWORD
+BOOL  ;qwgl;UseFontOutlines;HDC, DWORD, DWORD, DWORD, FLOAT, FLOAT, int, LPGLYPHMETRICSFLOAT
+BOOL ;qwgl;DescribeLayerPlane;HDC, int, int, UINT, LPLAYERPLANEDESCRIPTOR
+int  ;qwgl;SetLayerPaletteEntries;HDC, int, int, int, CONST COLORREF *
+int  ;qwgl;GetLayerPaletteEntries;HDC, int, int, int, COLORREF *
+BOOL ;qwgl;RealizeLayerPalette;HDC, int, BOOL
+BOOL ;qwgl;SwapLayerBuffers;HDC, UINT

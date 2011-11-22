@@ -1,0 +1,954 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug with inlines and memory log|Win32">
+      <Configuration>Debug with inlines and memory log</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug with inlines|Win32">
+      <Configuration>Debug with inlines</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Dedicated Debug with inlines|Win32">
+      <Configuration>Dedicated Debug with inlines</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Dedicated Debug|Win32">
+      <Configuration>Dedicated Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Dedicated Release|Win32">
+      <Configuration>Dedicated Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>MayaImport</ProjectName>
+    <ProjectGuid>{49BEC5C6-B964-417A-851E-808886B574F1}</ProjectGuid>
+    <RootNamespace>MayaImport</RootNamespace>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccProvider>
+    </SccProvider>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dedicated Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug with inlines|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug with inlines and memory log|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug with inlines|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Dedicated Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="_Common.props" />
+    <Import Project="_MayaImport.props" />
+    <Import Project="_Dedicated.props" />
+    <Import Project="_Release.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug with inlines|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="_Common.props" />
+    <Import Project="_MayaImport.props" />
+    <Import Project="_Dedicated.props" />
+    <Import Project="_Debug.props" />
+    <Import Project="_WithInlines.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="_Common.props" />
+    <Import Project="_MayaImport.props" />
+    <Import Project="_Dedicated.props" />
+    <Import Project="_Debug.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug with inlines and memory log|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="_Common.props" />
+    <Import Project="_MayaImport.props" />
+    <Import Project="_Debug.props" />
+    <Import Project="_WithInlines.props" />
+    <Import Project="_WithMemoryLog.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug with inlines|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="_Common.props" />
+    <Import Project="_MayaImport.props" />
+    <Import Project="_Debug.props" />
+    <Import Project="_WithInlines.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="_Common.props" />
+    <Import Project="_MayaImport.props" />
+    <Import Project="_Release.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="_Common.props" />
+    <Import Project="_MayaImport.props" />
+    <Import Project="_Debug.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug with inlines and memory log|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug with inlines and memory log|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug with inlines and memory log|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug with inlines|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug with inlines|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug with inlines|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug with inlines|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug with inlines|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug with inlines|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Dedicated Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Dedicated Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Dedicated Release|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="MayaImport\Maya4.5\maya.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\flib.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\ilib.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\M3dView.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MAngle.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MAnimControl.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MAnimCurveChange.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MAnimCurveClipboard.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MAnimCurveClipboardItem.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MAnimCurveClipboardItemArray.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MAnimMessage.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MAnimUtil.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MApiVersion.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MArgDatabase.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MArgList.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MArgParser.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MArrayDataBuilder.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MArrayDataHandle.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MAttributeIndex.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MAttributeSpec.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MAttributeSpecArray.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MBoundingBox.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MColor.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MColorArray.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MCommandResult.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MComputation.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MConditionMessage.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MCursor.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MDagMessage.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MDagModifier.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MDagPath.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MDagPathArray.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MDataBlock.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MDataHandle.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MDeviceChannel.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MDeviceState.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MDGContext.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MDGMessage.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MDGModifier.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MDistance.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MDoubleArray.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MDrawData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MDrawInfo.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MDrawRequest.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MDrawRequestQueue.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MDynSweptLine.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MDynSweptTriangle.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MEulerRotation.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MEvent.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MEventMessage.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFeedbackLine.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFileIO.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFileObject.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFloatArray.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFloatMatrix.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFloatPoint.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFloatPointArray.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFloatVector.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFloatVectorArray.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFn.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnAirField.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnAmbientLight.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnAnimCurve.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnAreaLight.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnArrayAttrsData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnAttribute.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnBase.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnBlendShapeDeformer.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnBlinnShader.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnCamera.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnCharacter.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnCircleSweepManip.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnClip.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnComponent.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnComponentListData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnCompoundAttribute.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnCurveSegmentManip.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnDagNode.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnDependencyNode.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnDirectionalLight.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnDirectionManip.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnDiscManip.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnDistanceManip.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnDoubleArrayData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnDoubleIndexedComponent.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnDragField.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnDynSweptGeometryData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnEnumAttribute.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnExpression.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnField.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnFluid.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnFreePointTriadManip.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnGenericAttribute.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnGeometryData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnGeometryFilter.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnGravityField.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnIkEffector.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnIkHandle.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnIkJoint.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnIkSolver.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnIntArrayData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnLambertShader.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnLattice.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnLatticeData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnLatticeDeformer.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnLight.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnLightDataAttribute.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnManip3D.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnMatrixAttribute.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnMatrixData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnMesh.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnMeshData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnMessageAttribute.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnMotionPath.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnNewtonField.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnNonAmbientLight.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnNonExtendedLight.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnNumericAttribute.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnNumericData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnNurbsCurve.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnNurbsCurveData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnNurbsSurface.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnNurbsSurfaceData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnPartition.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnPhongShader.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnPlugin.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnPluginData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnPointArrayData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnPointLight.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnPointOnCurveManip.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnPointOnSurfaceManip.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnRadialField.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnReflectShader.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnSet.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnSingleIndexedComponent.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnSkinCluster.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnSphereData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnSpotLight.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnStateManip.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnStringArrayData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnStringData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnSubd.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnSubdData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnSubdNames.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnToggleManip.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnTransform.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnTripleIndexedComponent.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnTurbulenceField.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnTypedAttribute.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnUInt64ArrayData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnUniformField.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnUnitAttribute.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnVectorArrayData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnVolumeAxisField.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnVortexField.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnWeightGeometryFilter.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MFnWireDeformer.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MGlobal.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MIkHandleGroup.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MIkSystem.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MImage.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MIntArray.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MItCurveCV.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MItDag.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MItDependencyGraph.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MItDependencyNodes.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MItGeometry.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MItInstancer.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MItKeyframe.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MItMeshEdge.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MItMeshFaceVertex.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MItMeshPolygon.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MItMeshVertex.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MItSelectionList.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MItSurfaceCV.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MLibrary.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MLightLinks.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MManipData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MMaterial.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MMatrix.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MMessage.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MModelMessage.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MNodeMessage.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MObject.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MObjectArray.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\mocapserial.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\mocapserver.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\mocaptcp.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPlug.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPlugArray.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPoint.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPointArray.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxCommand.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxContext.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxContextCommand.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxDeformerNode.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxDragAndDropBehavior.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxEmitterNode.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxFieldNode.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxFileTranslator.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxGeometryData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxGeometryIterator.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxGlBuffer.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxHwShaderNode.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxIkSolver.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxIkSolverNode.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxLocatorNode.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxManipContainer.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxMidiInputDevice.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxNode.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxPolyTrg.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxSelectionContext.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxSpringNode.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxSurfaceShape.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxSurfaceShapeUI.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxToolCommand.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxTransform.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MPxTransformationMatrix.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MQuaternion.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MRenderCallback.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MRenderData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MRenderShadowData.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MRenderUtil.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MRenderView.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MSceneMessage.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MSelectInfo.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MSelectionList.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MSelectionMask.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MSimple.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MStatus.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MString.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MStringArray.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MSyntax.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MTesselationParams.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MTime.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MTimeArray.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MToolsInfo.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MTransformationMatrix.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MTypeId.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MTypes.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MUiMessage.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MUint64Array.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MVector.h" />
+    <ClInclude Include="MayaImport\Maya4.5\include\maya\MVectorArray.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\flib.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\ilib.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\M3dView.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MAngle.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MAnimControl.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MAnimCurveChange.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MAnimCurveClipboard.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MAnimCurveClipboardItem.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MAnimCurveClipboardItemArray.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MAnimMessage.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MAnimUtil.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MApiVersion.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MArgDatabase.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MArgList.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MArgParser.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MArrayDataBuilder.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MArrayDataHandle.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MAttributeIndex.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MAttributeSpec.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MAttributeSpecArray.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MBoundingBox.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MColor.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MColorArray.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MCommandResult.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MComputation.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MConditionMessage.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MCursor.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MDagMessage.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MDagModifier.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MDagPath.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MDagPathArray.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MDataBlock.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MDataHandle.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MDeviceChannel.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MDeviceState.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MDGContext.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MDGMessage.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MDGModifier.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MDistance.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MDoubleArray.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MDrawData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MDrawInfo.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MDrawRequest.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MDrawRequestQueue.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MDynSweptLine.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MDynSweptTriangle.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MEulerRotation.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MEvent.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MEventMessage.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFeedbackLine.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFileIO.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFileObject.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFloatArray.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFloatMatrix.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFloatPoint.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFloatPointArray.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFloatVector.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFloatVectorArray.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFn.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnAirField.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnAmbientLight.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnAnimCurve.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnAreaLight.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnArrayAttrsData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnAttribute.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnBase.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnBlendShapeDeformer.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnBlinnShader.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnCamera.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnCharacter.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnCircleSweepManip.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnClip.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnComponent.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnComponentListData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnCompoundAttribute.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnCurveSegmentManip.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnDagNode.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnDependencyNode.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnDirectionalLight.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnDirectionManip.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnDiscManip.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnDistanceManip.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnDoubleArrayData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnDoubleIndexedComponent.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnDragField.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnDynSweptGeometryData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnEnumAttribute.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnExpression.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnField.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnFluid.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnFreePointTriadManip.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnGenericAttribute.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnGeometryData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnGeometryFilter.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnGravityField.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnIkEffector.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnIkHandle.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnIkJoint.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnIkSolver.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnIntArrayData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnLambertShader.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnLattice.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnLatticeData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnLatticeDeformer.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnLight.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnLightDataAttribute.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnManip3D.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnMatrixAttribute.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnMatrixData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnMesh.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnMeshData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnMessageAttribute.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnMotionPath.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnNewtonField.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnNonAmbientLight.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnNonExtendedLight.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnNumericAttribute.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnNumericData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnNurbsCurve.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnNurbsCurveData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnNurbsSurface.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnNurbsSurfaceData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnParticleSystem.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnPartition.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnPhongShader.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnPlugin.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnPluginData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnPointArrayData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnPointLight.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnPointOnCurveManip.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnPointOnSurfaceManip.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnRadialField.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnReflectShader.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnSet.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnSingleIndexedComponent.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnSkinCluster.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnSphereData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnSpotLight.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnStateManip.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnStringArrayData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnStringData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnSubd.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnSubdData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnSubdNames.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnToggleManip.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnTransform.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnTripleIndexedComponent.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnTurbulenceField.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnTypedAttribute.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnUInt64ArrayData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnUniformField.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnUnitAttribute.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnVectorArrayData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnVolumeAxisField.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnVolumeLight.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnVortexField.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnWeightGeometryFilter.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MFnWireDeformer.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MGlobal.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MIkHandleGroup.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MIkSystem.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MImage.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MIntArray.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MIOStream.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MItCurveCV.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MItDag.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MItDependencyGraph.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MItDependencyNodes.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MItGeometry.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MItInstancer.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MItKeyframe.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MItMeshEdge.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MItMeshFaceVertex.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MItMeshPolygon.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MItMeshVertex.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MItSelectionList.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MItSurfaceCV.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MLibrary.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MLightLinks.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MLockMessage.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MManipData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MMaterial.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MMatrix.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MMessage.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MModelMessage.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MNodeMessage.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MObject.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MObjectArray.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\mocapserial.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\mocapserver.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\mocaptcp.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPlug.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPlugArray.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPoint.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPointArray.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPx3dModelView.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxCommand.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxContext.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxContextCommand.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxDeformerNode.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxDragAndDropBehavior.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxEmitterNode.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxFieldNode.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxFileTranslator.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxGeometryData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxGeometryIterator.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxGlBuffer.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxHwShaderNode.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxIkSolver.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxIkSolverNode.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxLocatorNode.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxManipContainer.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxMidiInputDevice.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxModelEditorCommand.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxNode.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxObjectSet.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxPolyTrg.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxPolyTweakUVCommand.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxSelectionContext.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxSpringNode.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxSurfaceShape.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxSurfaceShapeUI.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxToolCommand.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxTransform.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MPxTransformationMatrix.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MQuaternion.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MRampAttribute.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MRenderCallback.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MRenderData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MRenderShadowData.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MRenderUtil.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MRenderView.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MSceneMessage.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MSelectInfo.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MSelectionList.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MSelectionMask.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MSimple.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MStatus.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MString.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MStringArray.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MSyntax.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MTesselationParams.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MTime.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MTimeArray.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MToolsInfo.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MTransformationMatrix.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MTypeId.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MTypes.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MUiMessage.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MUint64Array.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MVector.h" />
+    <ClInclude Include="MayaImport\maya5.0\maya\MVectorArray.h" />
+    <ClInclude Include="MayaImport\Maya6.0\maya.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\flib.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\ilib.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\M3dView.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MAngle.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MAnimControl.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MAnimCurveChange.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MAnimCurveClipboard.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MAnimCurveClipboardItem.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MAnimCurveClipboardItemArray.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MAnimMessage.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MAnimUtil.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MApiVersion.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MArgDatabase.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MArgList.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MArgParser.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MArrayDataBuilder.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MArrayDataHandle.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MAttributeIndex.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MAttributeSpec.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MAttributeSpecArray.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MBoundingBox.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MColor.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MColorArray.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MCommandResult.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MComputation.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MConditionMessage.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MCursor.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MDagMessage.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MDagModifier.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MDagPath.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MDagPathArray.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MDataBlock.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MDataHandle.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MDeviceChannel.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MDeviceState.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MDGContext.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MDGMessage.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MDGModifier.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MDistance.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MDoubleArray.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MDrawData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MDrawInfo.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MDrawRequest.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MDrawRequestQueue.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MDynSweptLine.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MDynSweptTriangle.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MEulerRotation.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MEvent.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MEventMessage.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFeedbackLine.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFileIO.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFileObject.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFloatArray.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFloatMatrix.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFloatPoint.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFloatPointArray.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFloatVector.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFloatVectorArray.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFn.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnAirField.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnAmbientLight.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnAnimCurve.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnAreaLight.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnArrayAttrsData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnAttribute.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnBase.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnBlendShapeDeformer.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnBlinnShader.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnCamera.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnCharacter.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnCircleSweepManip.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnClip.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnComponent.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnComponentListData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnCompoundAttribute.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnCurveSegmentManip.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnDagNode.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnDependencyNode.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnDirectionalLight.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnDirectionManip.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnDiscManip.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnDistanceManip.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnDoubleArrayData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnDoubleIndexedComponent.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnDragField.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnDynSweptGeometryData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnEnumAttribute.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnExpression.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnField.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnFluid.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnFreePointTriadManip.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnGenericAttribute.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnGeometryData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnGeometryFilter.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnGravityField.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnIkEffector.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnIkHandle.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnIkJoint.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnIkSolver.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnIntArrayData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnLambertShader.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnLattice.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnLatticeData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnLatticeDeformer.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnLight.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnLightDataAttribute.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnManip3D.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnMatrixAttribute.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnMatrixData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnMesh.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnMeshData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnMessageAttribute.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnMotionPath.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnNewtonField.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnNonAmbientLight.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnNonExtendedLight.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnNumericAttribute.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnNumericData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnNurbsCurve.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnNurbsCurveData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnNurbsSurface.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnNurbsSurfaceData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnParticleSystem.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnPartition.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnPhongShader.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnPlugin.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnPluginData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnPointArrayData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnPointLight.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnPointOnCurveManip.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnPointOnSurfaceManip.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnRadialField.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnReflectShader.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnRotateManip.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnScaleManip.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnSet.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnSingleIndexedComponent.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnSkinCluster.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnSphereData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnSpotLight.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnStateManip.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnStringArrayData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnStringData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnSubd.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnSubdData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnSubdNames.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnToggleManip.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnTransform.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnTripleIndexedComponent.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnTurbulenceField.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnTypedAttribute.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnUInt64ArrayData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnUniformField.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnUnitAttribute.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnVectorArrayData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnVolumeAxisField.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnVolumeLight.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnVortexField.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnWeightGeometryFilter.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFnWireDeformer.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MFStream.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MGlobal.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MIkHandleGroup.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MIkSystem.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MImage.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MIntArray.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MIOStream.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MItCurveCV.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MItDag.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MItDependencyGraph.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MItDependencyNodes.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MItGeometry.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MItInstancer.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MItKeyframe.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MItMeshEdge.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MItMeshFaceVertex.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MItMeshPolygon.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MItMeshVertex.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MItSelectionList.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MItSurfaceCV.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MLibrary.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MLightLinks.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MLockMessage.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MManipData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MMaterial.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MMatrix.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MMessage.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MModelMessage.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MNodeMessage.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MObject.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MObjectArray.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MObjectHandle.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MObjectSetMessage.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\mocapserial.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\mocapserver.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\mocaptcp.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPlug.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPlugArray.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPoint.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPointArray.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPolyMessage.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MProgressWindow.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPx3dModelView.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxCommand.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxContext.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxContextCommand.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxDeformerNode.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxDragAndDropBehavior.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxEmitterNode.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxFieldNode.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxFileTranslator.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxGeometryData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxGeometryIterator.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxGlBuffer.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxHwShaderNode.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxIkSolver.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxIkSolverNode.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxLocatorNode.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxManipContainer.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxMidiInputDevice.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxModelEditorCommand.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxNode.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxObjectSet.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxPolyTrg.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxPolyTweakUVCommand.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxSelectionContext.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxSpringNode.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxSurfaceShape.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxSurfaceShapeUI.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxToolCommand.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxTransform.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MPxTransformationMatrix.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MQuaternion.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MRampAttribute.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MRenderCallback.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MRenderData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MRenderShadowData.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MRenderUtil.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MRenderView.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MSceneMessage.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MSelectInfo.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MSelectionList.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MSelectionMask.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MSimple.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MStatus.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MString.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MStringArray.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MSyntax.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MTesselationParams.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MTime.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MTimeArray.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MToolsInfo.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MTransformationMatrix.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MTrimBoundaryArray.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MTypeId.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MTypes.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MUiMessage.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MUint64Array.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MUintArray.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MUserEventMessage.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MVector.h" />
+    <ClInclude Include="MayaImport\Maya6.0\include\maya\MVectorArray.h" />
+    <ClInclude Include="MayaImport\exporter.h" />
+    <ClInclude Include="MayaImport\maya_main.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MayaImport\maya_main.cpp" />
+    <ClCompile Include="idlib\precompiled.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug with inlines and memory log|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug with inlines|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug with inlines|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Dedicated Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MayaImport\mayaimport.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="idlib.vcxproj">
+      <Project>{49bec5c6-b964-417a-851e-808886b57400}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
