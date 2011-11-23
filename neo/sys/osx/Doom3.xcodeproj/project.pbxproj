@@ -1773,6 +1773,8 @@
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					OpenAL,
+					"-read_only_relocs",
+					suppress,
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "Doom 3";
@@ -1814,6 +1816,8 @@
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					OpenAL,
+					"-read_only_relocs",
+					suppress,
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "Doom 3";
