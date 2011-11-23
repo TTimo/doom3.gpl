@@ -4,6 +4,7 @@
 # http://scons.sourceforge.net
 
 import os
+import platform
 
 import scons_utils
 
@@ -14,7 +15,7 @@ class idBuildCurl( scons_utils.idSetupBase ):
 
 	def Compile( self, target = None, source = None, env = None ):	
 		self.TrySimpleCommand( 'cd curl ; make clean' )
-		cmd = 'cd curl ; CC=\'' + env['CC'] + '\' ./configure --enable-shared=no --enable-static=yes --enable-http --enable-ftp --disable-gopher --enable-file --disable-ldap --disable-dict --disable-telnet --disable-manual --enable-libgcc --disable-ipv6 --without-ssl '
+		cmd = 'cd curl ; CC=\'' + env['CC'] + '\' CFLAGS=\'-m32\' ./configure --enable-shared=no --enable-static=yes --enable-http --enable-ftp --disable-gopher --enable-file --disable-ldap --disable-dict --disable-telnet --disable-manual --enable-libgcc --disable-ipv6 --without-ssl '
 		if ( self.debug ):
 			cmd += '--enable-debug'
 		else:
@@ -37,5 +38,8 @@ else:
 
 g_env.Command( target_name, None, Action( build.Compile ) )
 
-curl_libs = [ target_name, '/usr/lib/libz.a' ]
+if platform.architecture()[0] == '64bit':
+	curl_libs = [ target_name, '/usr/lib32/libz.a' ]
+else:
+	curl_libs = [ target_name, '/usr/lib/libz.a' ]
 Return( 'curl_libs' )
