@@ -3,7 +3,7 @@
 This file contains the following sections:
 
 1. **GENERAL NOTES**
-2. **LICENSE**
+2. **LICENSES**
 
 ## 1. GENERAL NOTES
 
@@ -24,7 +24,6 @@ You will need the Microsoft DirectX SDK installed as well. If it does not reside
 
 ### Compiling on GNU/Linux x86
 
-
 The build system on GNU/Linux is based on [SCons](http://www.scons.org/). Issue the `scons` command in the `neo/` folder.
 
 ### Compiling on MacOS X
@@ -33,13 +32,13 @@ XCode 3.2 project is under `neo/sys/osx/`
 
 ### Back End Rendering of Stencil Shadows
 
-The Doom 3 GPL source code release does not include functionality enabling rendering of stencil shadows via the “depth fail” method, a functionality commonly known as "Carmack's Reverse".
+The Doom 3 GPL source code release does not include functionality enabling rendering of stencil shadows via the *depth fail* method, a functionality commonly known as "Carmack's Reverse".
 
 ### MayaImport
 
 The code for our Maya export plugin is included, if you are a Maya licensee you can obtain the SDK from Autodesk.
 
-## 2. LICENSE
+## 2. LICENSES
 
 See COPYING.txt for the GNU GENERAL PUBLIC LICENSE
 
@@ -108,7 +107,7 @@ Copyright (C) 1998-2001 Scott Ramsay
 
 <sramsay@gonavi.com>
 
-[http://www.gonavi.com](http://www.gonavi.com)
+<http://www.gonavi.com>
 
 This material is provided "as is", with absolutely no warranty expressed or implied. Any use is at your own risk.
  
@@ -129,7 +128,7 @@ This library is free software; you can redistribute it and/or modify it under th
 
 This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Library General Public License for more details.
 
-You should have received a copy of the GNU Library General Public License along with this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA. Or go to [http://www.gnu.org/copyleft/lgpl.html](http://www.gnu.org/copyleft/lgpl.html)
+You should have received a copy of the GNU Library General Public License along with this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA. Or go to <http://www.gnu.org/copyleft/lgpl.html>
 
 ### Base64 implementation
 
@@ -142,7 +141,7 @@ June 14 2003: TTimo <ttimo@idsoftware.com>
 
 modified + endian bug fixes
 
-[http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=197039](http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=197039)
+<http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=197039>
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 
@@ -204,7 +203,7 @@ Copyright (C) 1995-1998 Mark Adler
 	5920	neo/renderer/glext.h
 	613		neo/renderer/wglext.h
 
-License Applicability. Except to the extent portions of this file are made subject to an alternative license as permitted in the SGI Free Software License B, Version 1.1 (the "License"), the contents of this file are subject only to the provisions of the License. You may not use this file except in compliance with the License. You may obtain a copy of the License at Silicon Graphics, Inc., attn: Legal Services, 1600 Amphitheatre Parkway, Mountain View, CA 94043-1351, or at [http://oss.sgi.com/projects/FreeB](http://oss.sgi.com/projects/FreeB).
+License Applicability. Except to the extent portions of this file are made subject to an alternative license as permitted in the SGI Free Software License B, Version 1.1 (the "License"), the contents of this file are subject only to the provisions of the License. You may not use this file except in compliance with the License. You may obtain a copy of the License at Silicon Graphics, Inc., attn: Legal Services, 1600 Amphitheatre Parkway, Mountain View, CA 94043-1351, or at <http://oss.sgi.com/projects/FreeB>.
 
 Note that, as provided in the License, the Software is distributed on an "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
 
@@ -222,7 +221,7 @@ Copyright NVIDIA Corporation
 
 	neo/sys/linux/extutil.h
 
-$Xorg: extutil.h,v 1.4 2001/02/09 02:03:24 xorgcvs Exp $
+Xorg: `extutil.h`,v 1.4 2001/02/09 02:03:24 xorgcvs Exp
 
 Copyright 1989, 1998  The Open Group
 
@@ -251,7 +250,7 @@ Copyright by 4Front Technologies 1993-2004
 	lines	file(s)
 	225		neo/sys/linux/setup/brandelf.c
 
-Copyright (c) 1996 Søren Schmidt
+Copyright (c) 1996 S¿ren Schmidt
 
 All rights reserved.
 
@@ -263,13 +262,13 @@ Redistribution and use in source and binary forms, with or without modification,
 
 THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-$FreeBSD: src/usr.bin/brandelf/brandelf.c,v 1.16 2000/07/02 03:34:08 imp Exp $
+FreeBSD: `src/usr.bin/brandelf/brandelf.c`,v 1.16 2000/07/02 03:34:08 imp Exp
 
 ### makeself - Make self-extractable archives on Unix
 
 	neo/sys/linux/setup/makeself/*
 	neo/sys/linux/setup/makeself/README
 
-Copyright (c) Stéphane Peter
+Copyright (c) StŽphane Peter
 
 Licensing: GPL v2
