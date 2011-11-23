@@ -1,4 +1,6 @@
 build
 *.user
-*sdf
+*.sdf
+*.opensdf
 neo/ipch
+*.suo
