@@ -303,7 +303,7 @@
 		81225AC10912C42F005D34B9 /* Weapon.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = Weapon.h; path = ../../d3xp/Weapon.h; sourceTree = SOURCE_ROOT; };
 		81225AC20912C42F005D34B9 /* WorldSpawn.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = WorldSpawn.cpp; path = ../../d3xp/WorldSpawn.cpp; sourceTree = SOURCE_ROOT; };
 		81225AC30912C42F005D34B9 /* WorldSpawn.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = WorldSpawn.h; path = ../../d3xp/WorldSpawn.h; sourceTree = SOURCE_ROOT; };
-		D2AAC0630554660B00DB518D /* game-d3xp.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = "game-d3xp.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2AAC0630554660B00DB518D /* game.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = game.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -402,7 +402,7 @@
 		1AB674ADFE9D54B511CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D2AAC0630554660B00DB518D /* game-d3xp.dylib */,
+				D2AAC0630554660B00DB518D /* game.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -621,7 +621,7 @@
 			);
 			name = "game-d3xp";
 			productName = game;
-			productReference = D2AAC0630554660B00DB518D /* game-d3xp.dylib */;
+			productReference = D2AAC0630554660B00DB518D /* game.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -630,7 +630,12 @@
 		08FB7793FE84155DC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 81225A280912C3A4005D34B9 /* Build configuration list for PBXProject "d3xp" */;
+			compatibilityVersion = "Xcode 2.4";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 08FB7794FE84155DC02AAC07 /* game */;
 			projectDirPath = "";
 			projectReferences = (
@@ -639,6 +644,7 @@
 					ProjectRef = 81225A1B0912C3A4005D34B9 /* idlib.xcodeproj */;
 				},
 			);
+			projectRoot = "";
 			targets = (
 				D2AAC0620554660B00DB518D /* game-d3xp */,
 			);
@@ -843,10 +849,8 @@
 		81225A290912C3A4005D34B9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
 				GCC_ONE_BYTE_BOOL = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					_D3XP,
@@ -856,18 +860,17 @@
 					GAME_DLL,
 					__WITH_PB__,
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
 			};
 			name = Debug;
 		};
 		81225A2A0912C3A4005D34B9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
 				GCC_ONE_BYTE_BOOL = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -877,7 +880,8 @@
 					GAME_DLL,
 					__WITH_PB__,
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = (
 					"-finline",
 					"-finline-limit=1000",
@@ -888,24 +892,23 @@
 					"-fomit-frame-pointer",
 					"-fno-common",
 				);
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
 			};
 			name = Release;
 		};
 		81225A2B0912C3A4005D34B9 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
 				GCC_ONE_BYTE_BOOL = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					_D3XP,
 					CTF,
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
 			};
 			name = Default;
 		};

@@ -787,6 +787,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = game;
+				SDKROOT = macosx10.6;
 				ZERO_LINK = YES;
 			};
 			name = Debug;
@@ -794,10 +795,7 @@
 		81225A260912C3A4005D34B9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -824,6 +822,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = game;
+				SDKROOT = macosx10.6;
 				SYMROOT = build;
 				ZERO_LINK = NO;
 			};
@@ -841,8 +840,9 @@
 					MACOS_X,
 					GAME_DLL,
 				);
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx10.6;
 				VALID_ARCHS = i386;
 			};
 			name = Debug;
@@ -858,6 +858,7 @@
 					MACOS_X,
 					GAME_DLL,
 				);
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = (
 					"-finline",
@@ -869,7 +870,7 @@
 					"-fomit-frame-pointer",
 					"-fno-common",
 				);
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx10.6;
 				VALID_ARCHS = i386;
 			};
 			name = Release;

@@ -1758,6 +1758,7 @@
 					__DOOM_DLL__,
 					"ID_ENABLE_CURL=1",
 				);
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
@@ -1789,6 +1790,7 @@
 					__DOOM_DLL__,
 					"ID_ENABLE_CURL=1",
 				);
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = Info.plist;
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../curl/lib\"";
 				OTHER_CFLAGS = (
@@ -1825,13 +1827,14 @@
 					"$(MAIN_CPP_DEFINES)",
 					MACOS_X,
 				);
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				MAIN_CPP_DEFINES = _DEBUG;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-fpermissive",
 				);
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx10.6;
 				VALID_ARCHS = i386;
 			};
 			name = Debug;
@@ -1848,6 +1851,7 @@
 					"$(MAIN_CPP_DEFINES)",
 					MACOS_X,
 				);
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = (
 					"-finline",
@@ -1859,7 +1863,7 @@
 					"-fomit-frame-pointer",
 					"-fno-common",
 				);
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx10.6;
 				VALID_ARCHS = i386;
 			};
 			name = Release;
