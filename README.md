@@ -250,7 +250,7 @@ Copyright by 4Front Technologies 1993-2004
 	lines	file(s)
 	225		neo/sys/linux/setup/brandelf.c
 
-Copyright (c) 1996 Søren Schmidt
+Copyright (c) 1996 S&oslash;ren Schmidt
 
 All rights reserved.
 
@@ -269,6 +269,6 @@ FreeBSD: `src/usr.bin/brandelf/brandelf.c`,v 1.16 2000/07/02 03:34:08 imp Exp
 	neo/sys/linux/setup/makeself/*
 	neo/sys/linux/setup/makeself/README
 
-Copyright (c) Stéphane Peter
+Copyright (c) St&egrave;phane Peter
 
 Licensing: GPL v2
