@@ -1,16 +1,13 @@
-Doom 3 GPL source release
-=========================
+# Doom 3 GPL source release
 
 This file contains the following sections:
 
-GENERAL NOTES
-LICENSE
+1.- GENERAL NOTES
+2.- LICENSE
 
-GENERAL NOTES
-=============
+## GENERAL NOTES
 
-Game data and patching:
------------------------
+### Game data and patching:
 
 This source release does not contain any game data, the game data is still
 covered by the original EULA and must be obeyed as usual.
