@@ -91,10 +91,6 @@ If you have questions concerning this license or the applicable additional terms
 // then we take a big performance hit from unaligned stores.
 //#define VERTEXCACHE_ALIGNED
 
-// This turns on support for PPC intrinsics in the SIMD_AltiVec.cpp file. Right now it's only used for frsqrte. GCC 
-// supports these intrinsics but XLC does not.
-#define PPC_INTRINSICS
-
 // This assumes that the idDrawVert array that is used in DeriveUnsmoothedTangents is aligned. If its not aligned,
 // then we don't get any speedup
 //#define DERIVE_UNSMOOTH_DRAWVERT_ALIGNED
@@ -107,6 +103,10 @@ If you have questions concerning this license or the applicable additional terms
 
 class idSIMD_AltiVec : public idSIMD_Generic {
 #if defined(MACOS_X) && defined(__ppc__)
+// This turns on support for PPC intrinsics in the SIMD_AltiVec.cpp file. Right now it's only used for frsqrte. GCC 
+// supports these intrinsics but XLC does not.
+//Geenz note: We only really want this under PowerPC architectures.  Define this down here instead of up there.
+#define PPC_INTRINSICS
 public:
 
 	virtual const char * VPCALL GetName( void ) const;
