@@ -127,7 +127,7 @@ If you have questions concerning this license or the applicable additional terms
 
 #ifndef ID_ALLOW_D3XP
 #	if defined( MACOS_X )
-#		define ID_ALLOW_D3XP 0
+#		define ID_ALLOW_D3XP 1
 #	else
 #		define ID_ALLOW_D3XP 1
 #	endif
