@@ -148,7 +148,7 @@ ID_INLINE int idVectorSet<type,dimension>::FindVector( const type &v, const floa
 	}
 
 	hash.Add( hashKey, idList<type>::Num() );
-	Append( v );
+	this->Append( v );
 	return idList<type>::Num()-1;
 }
 

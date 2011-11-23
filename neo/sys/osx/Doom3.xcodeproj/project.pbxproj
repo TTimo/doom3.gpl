@@ -225,15 +225,16 @@
 		8122590C0912BC79005D34B9 /* CollisionModel_translate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8122580C0912BC79005D34B9 /* CollisionModel_translate.cpp */; };
 		812259930912BF7F005D34B9 /* libidlib_nopic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 812259820912BF1D005D34B9 /* libidlib_nopic.a */; };
 		812259940912BF87005D34B9 /* liboggVorbis_nopic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8122598F0912BF38005D34B9 /* liboggVorbis_nopic.a */; };
-		812259B00912BFDC005D34B9 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 812259A30912BFDC005D34B9 /* Carbon.framework */; };
-		812259B10912BFDC005D34B9 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 812259A40912BFDC005D34B9 /* IOKit.framework */; };
-		812259B30912BFDC005D34B9 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 812259A60912BFDC005D34B9 /* OpenGL.framework */; };
-		812259B70912C056005D34B9 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 812259B40912C056005D34B9 /* CoreAudio.framework */; };
 		812259FF0912C27D005D34B9 /* Doom 3.rsrc in Resources */ = {isa = PBXBuildFile; fileRef = 812259FD0912C27C005D34B9 /* Doom 3.rsrc */; };
 		81225A000912C27D005D34B9 /* Doom3.icns in Resources */ = {isa = PBXBuildFile; fileRef = 812259FE0912C27C005D34B9 /* Doom3.icns */; };
 		81225A0D0912C2D3005D34B9 /* ASLCore.nib in Resources */ = {isa = PBXBuildFile; fileRef = 81225A0B0912C2D3005D34B9 /* ASLCore.nib */; };
 		81225A100912C2E9005D34B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 81225A0E0912C2E9005D34B9 /* Localizable.strings */; };
 		81326DCC099C164B003C4788 /* libcurl_static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 81326DC7099C162D003C4788 /* libcurl_static.a */; };
+		81C40E11147D11FE007C2D25 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C40E0E147D11FE007C2D25 /* Carbon.framework */; };
+		81C40E12147D11FF007C2D25 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C40E0F147D11FE007C2D25 /* CoreAudio.framework */; };
+		81C40E13147D11FF007C2D25 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C40E10147D11FE007C2D25 /* OpenGL.framework */; };
+		81C40E17147D15C8007C2D25 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C40E16147D15C7007C2D25 /* IOKit.framework */; };
+		81C40E19147D167D007C2D25 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C40E18147D167D007C2D25 /* OpenAL.framework */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -659,10 +660,6 @@
 		8122580C0912BC79005D34B9 /* CollisionModel_translate.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionModel_translate.cpp; sourceTree = "<group>"; };
 		812259790912BF1D005D34B9 /* idlib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = idlib.xcodeproj; sourceTree = "<group>"; };
 		812259890912BF38005D34B9 /* oggVorbis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = oggVorbis.xcodeproj; sourceTree = "<group>"; };
-		812259A30912BFDC005D34B9 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /Developer/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
-		812259A40912BFDC005D34B9 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /Developer/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks/IOKit.framework; sourceTree = "<absolute>"; };
-		812259A60912BFDC005D34B9 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /Developer/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
-		812259B40912C056005D34B9 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = /Developer/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks/CoreAudio.framework; sourceTree = "<absolute>"; };
 		812259FD0912C27C005D34B9 /* Doom 3.rsrc */ = {isa = PBXFileReference; lastKnownFileType = archive.rsrc; path = "Doom 3.rsrc"; sourceTree = "<group>"; };
 		812259FE0912C27C005D34B9 /* Doom3.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Doom3.icns; sourceTree = "<group>"; };
 		81225A0C0912C2D3005D34B9 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/ASLCore.nib; sourceTree = "<group>"; };
@@ -673,6 +670,11 @@
 		81225A140912C323005D34B9 /* French */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = French; path = French.lproj/Localizable.strings; sourceTree = "<group>"; };
 		81225B840912C731005D34B9 /* game.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = game.xcodeproj; sourceTree = "<group>"; };
 		81326DC1099C162D003C4788 /* curl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = curl.xcodeproj; path = SubProjects/curl.xcodeproj; sourceTree = "<group>"; };
+		81C40E0E147D11FE007C2D25 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		81C40E0F147D11FE007C2D25 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		81C40E10147D11FE007C2D25 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		81C40E16147D15C7007C2D25 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		81C40E18147D167D007C2D25 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Doom 3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Doom 3.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -682,14 +684,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81C40E19147D167D007C2D25 /* OpenAL.framework in Frameworks */,
+				81C40E17147D15C8007C2D25 /* IOKit.framework in Frameworks */,
+				81C40E11147D11FE007C2D25 /* Carbon.framework in Frameworks */,
+				81C40E12147D11FF007C2D25 /* CoreAudio.framework in Frameworks */,
+				81C40E13147D11FF007C2D25 /* OpenGL.framework in Frameworks */,
 				81326DCC099C164B003C4788 /* libcurl_static.a in Frameworks */,
 				812259940912BF87005D34B9 /* liboggVorbis_nopic.a in Frameworks */,
 				812259930912BF7F005D34B9 /* libidlib_nopic.a in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				812259B00912BFDC005D34B9 /* Carbon.framework in Frameworks */,
-				812259B10912BFDC005D34B9 /* IOKit.framework in Frameworks */,
-				812259B30912BFDC005D34B9 /* OpenGL.framework in Frameworks */,
-				812259B70912C056005D34B9 /* CoreAudio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -763,10 +766,11 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				812259B40912C056005D34B9 /* CoreAudio.framework */,
-				812259A30912BFDC005D34B9 /* Carbon.framework */,
-				812259A40912BFDC005D34B9 /* IOKit.framework */,
-				812259A60912BFDC005D34B9 /* OpenGL.framework */,
+				81C40E18147D167D007C2D25 /* OpenAL.framework */,
+				81C40E16147D15C7007C2D25 /* IOKit.framework */,
+				81C40E0E147D11FE007C2D25 /* Carbon.framework */,
+				81C40E0F147D11FE007C2D25 /* CoreAudio.framework */,
+				81C40E10147D11FE007C2D25 /* OpenGL.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
@@ -1745,7 +1749,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -1780,7 +1784,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
