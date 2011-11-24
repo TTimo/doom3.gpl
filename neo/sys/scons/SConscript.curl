@@ -4,7 +4,6 @@
 # http://scons.sourceforge.net
 
 import os
-import platform
 
 import scons_utils
 
