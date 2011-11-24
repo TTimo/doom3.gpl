@@ -38,8 +38,5 @@ else:
 
 g_env.Command( target_name, None, Action( build.Compile ) )
 
-if platform.architecture()[0] == '64bit':
-	curl_libs = [ target_name, '/usr/lib32/libz.a' ]
-else:
-	curl_libs = [ target_name, '/usr/lib/libz.a' ]
+curl_libs = [ target_name ]
 Return( 'curl_libs' )
