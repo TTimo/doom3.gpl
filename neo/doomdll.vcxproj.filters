@@ -1823,6 +1823,7 @@
     <ClCompile Include="ui\Winvar.cpp">
       <Filter>Ui</Filter>
     </ClCompile>
+    <ClCompile Include="idlib\precompiled.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="openal\idal.py">

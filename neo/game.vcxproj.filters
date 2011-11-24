@@ -167,6 +167,7 @@
     <ClCompile Include="game\Trigger.cpp" />
     <ClCompile Include="game\Weapon.cpp" />
     <ClCompile Include="game\WorldSpawn.cpp" />
+    <ClCompile Include="idlib\precompiled.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game\ai\AAS.h">

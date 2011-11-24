@@ -30,6 +30,7 @@
     <ClCompile Include="framework\Unzip.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
+    <ClCompile Include="idlib\precompiled.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TypeInfo\TypeInfoGen.h">
