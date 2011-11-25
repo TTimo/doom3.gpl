@@ -43,7 +43,8 @@ If you have questions concerning this license or the applicable additional terms
 #import "macosx_sys.h"
 
 #import <fenv.h>
-#import <ucontext.h>
+//Fabien Sanglard, only used for depreacted #error
+//#import <ucontext.h>
 #import <mach/thread_status.h>
 
 #define	MAX_KEYS		256
@@ -467,12 +468,14 @@ Sys_GetProcessorId
 ===============
 */
 cpuid_t Sys_GetProcessorId( void ) {
-	cpuid_t cpuid = CPUID_GENERIC;
-#if defined(__ppc__)
-	cpuid |= CPUID_ALTIVEC;
-#elif defined(__i386__)
-	cpuid |= CPUID_INTEL | CPUID_MMX | CPUID_SSE | CPUID_SSE2 | CPUID_SSE3 | CPUID_HTT | CPUID_CMOV | CPUID_FTZ | CPUID_DAZ;
-#endif
+    cpuid_t cpuid = CPUID_GENERIC;
+    
+    #if defined(__ppc__)
+        cpuid = (cpuid_t)(cpuid | CPUID_ALTIVEC);
+    #elif defined(__i386__)
+        cpuid = (cpuid_t)(CPUID_INTEL | CPUID_MMX | CPUID_SSE | CPUID_SSE2 | CPUID_SSE3 | CPUID_HTT | CPUID_CMOV | CPUID_FTZ | CPUID_DAZ);
+    #endif
+    
 	return cpuid;
 }
 

@@ -36,7 +36,9 @@ If you have questions concerning this license or the applicable additional terms
 #include <float.h>
 
 #ifdef PPC_INTRINSICS
+   #if defined(__ppc64__) || defined(__ppc__)
 	#include <ppc_intrinsics.h>
+  #endif
 #endif
 
 // Doom3 SIMD Library version 0.5
