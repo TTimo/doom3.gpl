@@ -154,6 +154,13 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug|Win32'">gamex86</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Dedicated Release|Win32'">gamex86</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">gamex86</TargetName>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug with inlines and memory log|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug with inlines|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug with inlines|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Dedicated Release|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GenerateManifest>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PreBuildEvent>
