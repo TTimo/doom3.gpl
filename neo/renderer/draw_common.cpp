@@ -1173,12 +1173,16 @@ static void RB_T_Shadow( const drawSurf_t *surf ) {
 	// patented depth-fail stencil shadows
 	if ( !external ) {
 		if (r_useTwoSidedStencil.GetBool() && glConfig.twoSidedStencilAvailable) {
-			// LEITH: TODO
+			qglEnable( GL_STENCIL_TEST_TWO_SIDE_EXT );
+			qglActiveStencilFaceEXT( backEnd.viewDef->isMirror ? GL_FRONT : GL_BACK );
+			qglStencilOp( GL_KEEP, tr.stencilDecr, GL_KEEP );
+			qglActiveStencilFaceEXT( backEnd.viewDef->isMirror ? GL_BACK : GL_FRONT );
+			qglStencilOp( GL_KEEP, tr.stencilIncr, GL_KEEP );
+			RB_DrawShadowElementsWithCounters( tri, numIndexes );
+			qglDisable( GL_STENCIL_TEST_TWO_SIDE_EXT );
 		} else if(r_useTwoSidedStencil.GetBool() && glConfig.atiTwoSidedStencilAvailable) {
-			// LEITH: TODO handle mirrors like GL_Cull
-			// LEITH: TODO check what else uses stencil ops incase of conflict
-			qglStencilOpSeparateATI( GL_BACK, GL_KEEP, tr.stencilDecr, GL_KEEP );
-			qglStencilOpSeparateATI( GL_FRONT, GL_KEEP, tr.stencilIncr, GL_KEEP );
+			qglStencilOpSeparateATI( backEnd.viewDef->isMirror ? GL_FRONT : GL_BACK, GL_KEEP, tr.stencilDecr, GL_KEEP );
+			qglStencilOpSeparateATI( backEnd.viewDef->isMirror ? GL_BACK : GL_FRONT, GL_KEEP, tr.stencilIncr, GL_KEEP );
 			GL_Cull( CT_TWO_SIDED );
 			RB_DrawShadowElementsWithCounters( tri, numIndexes );
 		} else {
@@ -1193,12 +1197,16 @@ static void RB_T_Shadow( const drawSurf_t *surf ) {
 	} else {
 		// traditional depth-pass stencil shadows
 		if (r_useTwoSidedStencil.GetBool() && glConfig.twoSidedStencilAvailable) {
-			// LEITH: TODO need to add glEnable and then use
+			qglEnable( GL_STENCIL_TEST_TWO_SIDE_EXT );
+			qglActiveStencilFaceEXT( backEnd.viewDef->isMirror ? GL_FRONT : GL_BACK );
+			qglStencilOp( GL_KEEP, GL_KEEP, tr.stencilIncr );
+			qglActiveStencilFaceEXT( backEnd.viewDef->isMirror ? GL_BACK : GL_FRONT );
+			qglStencilOp( GL_KEEP, GL_KEEP, tr.stencilDecr );
+			RB_DrawShadowElementsWithCounters( tri, numIndexes );
+			qglDisable( GL_STENCIL_TEST_TWO_SIDE_EXT );
 		} else if(r_useTwoSidedStencil.GetBool() && glConfig.atiTwoSidedStencilAvailable) {
-			// LEITH: TODO handle mirrors like GL_Cull
-			// LEITH: TODO check what else uses stencil ops incase of conflict
-			qglStencilOpSeparateATI( GL_BACK, GL_KEEP, GL_KEEP, tr.stencilIncr );
-			qglStencilOpSeparateATI( GL_FRONT, GL_KEEP, GL_KEEP, tr.stencilDecr );
+			qglStencilOpSeparateATI( backEnd.viewDef->isMirror ? GL_FRONT : GL_BACK, GL_KEEP, GL_KEEP, tr.stencilIncr );
+			qglStencilOpSeparateATI( backEnd.viewDef->isMirror ? GL_BACK : GL_FRONT, GL_KEEP, GL_KEEP, tr.stencilDecr );
 			GL_Cull( CT_TWO_SIDED );
 			RB_DrawShadowElementsWithCounters( tri, numIndexes );
 		} else {
@@ -1256,7 +1264,7 @@ void RB_StencilShadowPass( const drawSurf_t *drawSurfs ) {
 		qglEnable( GL_POLYGON_OFFSET_FILL );
 	}
 
-	qglStencilFunc( GL_ALWAYS, 1, 255 ); // LEITH: TODO: use two sided stencil
+	qglStencilFunc( GL_ALWAYS, 1, 255 );
 
 	if ( glConfig.depthBoundsTestAvailable && r_useDepthBoundsTest.GetBool() ) {
 		qglEnable( GL_DEPTH_BOUNDS_TEST_EXT );
