@@ -468,7 +468,14 @@ Sys_GetProcessorId
 ===============
 */
 cpuid_t Sys_GetProcessorId( void ) {
-	cpuid_t cpuid = (cpuid_t)(CPUID_GENERIC | CPUID_INTEL | CPUID_MMX | CPUID_SSE | CPUID_SSE2 | CPUID_SSE3 | CPUID_HTT | CPUID_CMOV | CPUID_FTZ | CPUID_DAZ);
+    cpuid_t cpuid = CPUID_GENERIC;
+    
+    #if defined(__ppc__)
+        cpuid = (cpuid_t)(cpuid | CPUID_ALTIVEC);
+    #elif defined(__i386__)
+        cpuid = (cpuid_t)(CPUID_INTEL | CPUID_MMX | CPUID_SSE | CPUID_SSE2 | CPUID_SSE3 | CPUID_HTT | CPUID_CMOV | CPUID_FTZ | CPUID_DAZ);
+    #endif
+    
 	return cpuid;
 }
 
