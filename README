@@ -1,0 +1,12 @@
+This is a release that will compile in "one click" on Mac OS X Intel with XCode 4.
+
+After building you will need to:
+ 
+ - copy game.dylib to /usr/local/lib (or create a symbolic link). 
+ - add the base folder containing the game assets.
+
+For more informations, check http://fabiensanglard.net/doom3_macosx/index.php
+
+Happy hacking :) !
+
+Fabien
