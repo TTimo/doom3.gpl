@@ -910,6 +910,7 @@ void idBrushBSP::BuildGrid_r( idList<idBrushBSPNode *> &gridCells, idBrushBSPNod
 		return;
 	}
 
+	dist = 0.0f;
 	bounds = node->volume->GetBounds();
 	halfSize = (bounds[1] - bounds[0]) * 0.5f;
 	for ( axis = 0; axis < 3; axis++ ) {
@@ -1121,6 +1122,7 @@ void idBrushBSP::MakeNodePortal( idBrushBSPNode *node ) {
 	w = BaseWindingForNode( node );
 
 	// clip the portal by all the other portals in the node
+	side = 0;
 	for ( p = node->portals; p && w; p = p->next[side] ) {
 		if ( p->nodes[0] == node ) {
 			side = 0;
@@ -1169,7 +1171,8 @@ void idBrushBSP::SplitNodePortals( idBrushBSPNode *node ) {
 	plane = &node->plane;
 	f = node->children[0];
 	b = node->children[1];
-
+	
+	side = 0;
 	for ( p = node->portals; p; p = nextPortal ) {
 		if (p->nodes[0] == node) {
 			side = 0;
@@ -1383,6 +1386,8 @@ void idBrushBSP::LeakFile( const idStr &fileName ) {
 		return;
 	}
 
+	nextNode = NULL;
+	nextPortal = NULL;
 	count = 0;
 	node = outside;
 	while( node->occupied > 1 ) {

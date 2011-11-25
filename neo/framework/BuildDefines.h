@@ -42,7 +42,7 @@ If you have questions concerning this license or the applicable additional terms
 // if enabled, the console won't toggle upon ~, unless you start the binary with +set com_allowConsole 1
 // Ctrl+Alt+~ will always toggle the console no matter what
 #ifndef ID_CONSOLE_LOCK
-	#if 0 //defined(_WIN32) || defined(MACOS_X)
+	#if defined(_WIN32) || defined(MACOS_X)
 		#ifdef _DEBUG
 			#define ID_CONSOLE_LOCK 0
 		#else
@@ -93,7 +93,7 @@ If you have questions concerning this license or the applicable additional terms
 
 // don't define ID_ALLOW_TOOLS when we don't want tool code in the executable.
 #if defined( _WIN32 ) && !defined( ID_DEDICATED ) && !defined( ID_DEMO_BUILD )
-//	#define	ID_ALLOW_TOOLS
+	#define	ID_ALLOW_TOOLS
 #endif
 
 // don't do backtraces in release builds.

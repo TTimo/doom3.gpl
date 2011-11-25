@@ -1209,9 +1209,9 @@ void idGameBustOutWindow::UpdateBall( void ) {
 					brick->isBroken = true;
 					brick->ent->fadeOut = true;
 
-					if ( brick->powerup > POWERUP_NONE ) {
-						BOEntity *pUp = CreatePowerup( brick );
-					}
+					//if ( brick->powerup > POWERUP_NONE ) {
+					//	BOEntity *pUp = CreatePowerup( brick );
+					//}
 
 					numBricks--;
 					gameScore += 100;

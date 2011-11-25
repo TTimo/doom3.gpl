@@ -636,7 +636,6 @@ void CDialogSound::SetWaveSize( const char *p ) {
 
 void CDialogSound::OnSelchangedTreeSounds(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-	NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
 	HTREEITEM	item = treeSounds.GetSelectedItem();
 	SetWaveSize();
 	if (item) {

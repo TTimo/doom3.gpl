@@ -196,7 +196,6 @@ brush_t *g_pSplitList = NULL;
  */
 void CCamWnd::OnPaint() {
 	CPaintDC	dc(this);	// device context for painting
-	bool		bPaint = true;
 
 	if (!qwglMakeCurrent(dc.m_hDC, win32.hGLRC)) {
 		common->Printf("ERROR: wglMakeCurrent failed..\n ");
@@ -1385,7 +1384,7 @@ void Tris_ToOBJ(const char *outFile, idTriList *tris, idMatList *mats) {
 		int i, j, k;
 		int indexBase = 1;
 		idStr lastMaterial("");
-		int matCount = 0;
+		//int matCount = 0;
 		//idStr basePath = cvarSystem->GetCVarString( "fs_savepath" );
 		f->Printf( "mtllib %s.mtl\n", out );
 		for (i = 0; i < tris->Num(); i++) {
@@ -1458,6 +1457,10 @@ int Brush_TransformModel(brush_t *brush, idTriList *tris, idMatList *mats) {
 			if (a) {
 				s = sin( DEG2RAD(a) );
 				c = cos( DEG2RAD(a) );
+			}
+			else {
+				s = 0.0f;
+				c = 0.0f;
 			}
 			idMat3 mat;
 			if (GetMatrixForKey(brush->owner, "rotation", mat)) {

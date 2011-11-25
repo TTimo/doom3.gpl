@@ -809,7 +809,6 @@ entity_t *Entity_Parse(bool onlypairs, brush_t *pList) {
 	ent->brushes.onext = ent->brushes.oprev = &ent->brushes;
 	ent->origin.Zero();
 
-	int n = 0;
 	do {
 		if (!GetToken(true)) {
 			Warning("ParseEntity: EOF without closing brace");

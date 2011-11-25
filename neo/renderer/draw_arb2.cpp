@@ -401,6 +401,7 @@ void R_LoadARBProgram( int progIndex ) {
 	// vertex and fragment programs can both be present in a single file, so
 	// scan for the proper header to be the start point, and stamp a 0 in after the end
 
+	start = NULL;
 	if ( progs[progIndex].target == GL_VERTEX_PROGRAM_ARB ) {
 		if ( !glConfig.ARBVertexProgramAvailable ) {
 			common->Printf( ": GL_VERTEX_PROGRAM_ARB not available\n" );

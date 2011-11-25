@@ -186,7 +186,7 @@ void CDlgCamera::OnSelchangeComboSplines()
 
 void CDlgCamera::OnSelchangeListEvents() 
 {
-	int sel = m_wndEvents.GetCurSel();
+	//int sel = m_wndEvents.GetCurSel();
 	//g_splineList->setActiveSegment(sel >= 0 ? sel : 0);
 }
 

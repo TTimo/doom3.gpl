@@ -52,14 +52,6 @@ void		AddRegionBrushes(void);
 void		RemoveRegionBrushes(void);
 
 /*
- =======================================================================================================================
- =======================================================================================================================
- */
-void DupLists() {
-	DWORD	dw = GetTickCount();
-}
-
-/*
  * Cross map selection saving this could mess this up if you have only part of a
  * complex entity selected...
  */

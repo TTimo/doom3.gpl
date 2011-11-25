@@ -979,6 +979,7 @@ void CEntityDlg::CreateEntity() {
 	eclass_t *pecNew = Eclass_ForName (str, false);
 
 	// create it
+	petNew = NULL;
 	if ((GetAsyncKeyState(VK_CONTROL) & 0x8000)) {
 		// MAJOR hack for xian
 extern void Brush_CopyList(brush_t *pFrom, brush_t *pTo);

@@ -360,6 +360,7 @@ int i,j,k;
 	buffer = (unsigned char *)malloc(nDWidth+20);
 	if(!buffer) return;
 
+	k = 0;
 	for(i=0; i < yNum; i++,ySrc++)
 	{
 		srcPtr = dibSrc.GetLinePtr(ySrc) + xSrc;
@@ -826,6 +827,7 @@ unsigned int pSize=GetPaletteSize();
 			}
 		}
 	}
+	c = 0;
 	for(i=0; i < pSize; i++,pQuad++)
 	{
 		d = Distance(*pRgb,*pQuad);

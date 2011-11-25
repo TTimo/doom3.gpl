@@ -912,7 +912,6 @@ void CDialogColorPicker::DrawLines(CDC *pDC)
 	pt[1] = PointOnLine(Vertex,Left,(color.g*GreenLen)/255,GreenLen);
 	pt[2] = PointOnLine(Vertex,Right,(color.b*BlueLen)/255,BlueLen);
 
-	COLORREF col = RGB(255,255,255);
 	CRect cr;
 
 	for(int i = 0; i < 3; i++ ) {

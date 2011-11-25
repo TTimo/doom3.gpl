@@ -128,8 +128,8 @@ void PDAEditorInit( const idDict *spawnArgs ) {
 
 	if ( spawnArgs ) {
 		// select PDA based on spawn args
-		const char *name = spawnArgs->GetString( "pda" );
-		idDeclPDA *decl = static_cast<idDeclPDA *>( const_cast<idDecl *>( declManager->FindType( DECL_PDA, name ) ) );
+		//const char *name = spawnArgs->GetString( "pda" );
+		//idDeclPDA *decl = static_cast<idDeclPDA *>( const_cast<idDecl *>( declManager->FindType( DECL_PDA, name ) ) );
 		// FIXME: select this PDA
 	}
 }

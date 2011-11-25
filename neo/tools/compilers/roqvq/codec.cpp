@@ -836,7 +836,6 @@ void codec::FvqData( byte *bitmap, int size, int realx, int realy,  quadcel *pqu
 		return;
 	}
 
-	int sPsQ = -1;
 	for( sX=(((realx-xxMean)-searchX)+depthx); sX<=((realx-xxMean)+searchX) && !fabort; sX+=depthx ) {
 	for( sY=(((realy-yyMean)-searchY)+depthy); sY<=((realy-yyMean)+searchY) && breakHigh; sY+=depthy ) {
 	temp1 = xLen*sY+sX;

@@ -501,7 +501,6 @@ void CDialogTextures::OnClickTreeTextures(NMHDR *pNMHDR, LRESULT *pResult) {
  =======================================================================================================================
  */
 void CDialogTextures::OnSelchangedTreeTextures(NMHDR *pNMHDR, LRESULT *pResult) {
-	NM_TREEVIEW *pNMTreeView = (NM_TREEVIEW *) pNMHDR;
 	*pResult = 0;
 
 	editMaterial = NULL;

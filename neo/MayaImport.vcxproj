@@ -166,42 +166,49 @@
     <ClCompile>
       <PrecompiledHeaderFile>../idlib/precompiled.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>../idlib/precompiled.h</ForcedIncludeFiles>
+      <WarningLevel>Level4</WarningLevel>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug with inlines|Win32'">
     <ClCompile>
       <PrecompiledHeaderFile>../idlib/precompiled.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>../idlib/precompiled.h</ForcedIncludeFiles>
+      <WarningLevel>Level4</WarningLevel>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeaderFile>../idlib/precompiled.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>../idlib/precompiled.h</ForcedIncludeFiles>
+      <WarningLevel>Level4</WarningLevel>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug with inlines|Win32'">
     <ClCompile>
       <PrecompiledHeaderFile>../idlib/precompiled.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>../idlib/precompiled.h</ForcedIncludeFiles>
+      <WarningLevel>Level4</WarningLevel>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug|Win32'">
     <ClCompile>
       <PrecompiledHeaderFile>../idlib/precompiled.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>../idlib/precompiled.h</ForcedIncludeFiles>
+      <WarningLevel>Level4</WarningLevel>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dedicated Release|Win32'">
     <ClCompile>
       <PrecompiledHeaderFile>../idlib/precompiled.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>../idlib/precompiled.h</ForcedIncludeFiles>
+      <WarningLevel>Level4</WarningLevel>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <PrecompiledHeaderFile>../idlib/precompiled.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>../idlib/precompiled.h</ForcedIncludeFiles>
+      <WarningLevel>Level4</WarningLevel>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
