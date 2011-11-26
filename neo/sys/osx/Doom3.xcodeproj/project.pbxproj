@@ -1771,8 +1771,6 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../curl/lib\"";
 				OTHER_LDFLAGS = (
-					"-weak_framework",
-					OpenAL,
 					"-read_only_relocs",
 					suppress,
 				);
@@ -1814,8 +1812,6 @@
 					"-fpermissive",
 				);
 				OTHER_LDFLAGS = (
-					"-weak_framework",
-					OpenAL,
 					"-read_only_relocs",
 					suppress,
 				);
