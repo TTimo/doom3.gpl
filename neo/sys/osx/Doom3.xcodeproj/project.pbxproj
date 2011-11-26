@@ -230,6 +230,8 @@
 		81225A0D0912C2D3005D34B9 /* ASLCore.nib in Resources */ = {isa = PBXBuildFile; fileRef = 81225A0B0912C2D3005D34B9 /* ASLCore.nib */; };
 		81225A100912C2E9005D34B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 81225A0E0912C2E9005D34B9 /* Localizable.strings */; };
 		8170F46A1480ABA5009E1EC8 /* libcurl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8170F4691480ABA5009E1EC8 /* libcurl.dylib */; };
+		8170F4721480B989009E1EC8 /* libidlib_pic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 812259800912BF1D005D34B9 /* libidlib_pic.a */; };
+		8170F5211480BEE2009E1EC8 /* game.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81225B8B0912C731005D34B9 /* game.dylib */; };
 		81C40E11147D11FE007C2D25 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C40E0E147D11FE007C2D25 /* Carbon.framework */; };
 		81C40E12147D11FF007C2D25 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C40E0F147D11FE007C2D25 /* CoreAudio.framework */; };
 		81C40E13147D11FF007C2D25 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C40E10147D11FE007C2D25 /* OpenGL.framework */; };
@@ -296,6 +298,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = D2AAC0620554660B00DB518D;
 			remoteInfo = game;
+		};
+		8170F5031480BC60009E1EC8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81225B840912C731005D34B9 /* game.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8170F5011480BBC5009E1EC8;
+			remoteInfo = game_static;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -670,6 +679,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8170F5211480BEE2009E1EC8 /* game.dylib in Frameworks */,
+				8170F4721480B989009E1EC8 /* libidlib_pic.a in Frameworks */,
 				8170F46A1480ABA5009E1EC8 /* libcurl.dylib in Frameworks */,
 				81C40E19147D167D007C2D25 /* OpenAL.framework in Frameworks */,
 				81C40E17147D15C8007C2D25 /* IOKit.framework in Frameworks */,
@@ -1293,6 +1304,7 @@
 			isa = PBXGroup;
 			children = (
 				81225B8B0912C731005D34B9 /* game.dylib */,
+				8170F5041480BC60009E1EC8 /* game copy.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1401,6 +1413,14 @@
 			fileType = "compiled.mach-o.dylib";
 			path = game.dylib;
 			remoteRef = 81225B8A0912C731005D34B9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8170F5041480BC60009E1EC8 /* game copy.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = "game copy.dylib";
+			path = libgame_static.a;
+			remoteRef = 8170F5031480BC60009E1EC8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
