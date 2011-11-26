@@ -974,8 +974,8 @@
 					"$(MAIN_CPP_DEFINES)",
 					MACOS_X,
 				);
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				MACOSX_DEPLOYMENT_TARGET = "";
 				MAIN_CPP_DEFINES = _DEBUG;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
@@ -1000,8 +1000,8 @@
 					"$(MAIN_CPP_DEFINES)",
 					MACOS_X,
 				);
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				MACOSX_DEPLOYMENT_TARGET = "";
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-fpermissive",
@@ -1029,6 +1029,7 @@
 				OTHER_REZFLAGS = "";
 				PREBINDING = NO;
 				PRODUCT_NAME = idlib_nopic;
+				SDKROOT = macosx10.6;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -1060,6 +1061,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = idlib_nopic;
+				SDKROOT = macosx10.6;
 				SYMROOT = build;
 				ZERO_LINK = NO;
 			};

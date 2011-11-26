@@ -770,6 +770,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_ONE_BYTE_BOOL = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INSTALL_PATH = /usr/local/lib;
@@ -782,6 +783,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = game;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
 				VALID_ARCHS = i386;
 				ZERO_LINK = YES;
 			};
@@ -798,6 +800,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_ONE_BYTE_BOOL = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				LIBRARY_STYLE = DYNAMIC;
 				MACH_O_TYPE = mh_dylib;
 				OTHER_CFLAGS = (
@@ -812,6 +815,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "game-d3xp";
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
 				SYMROOT = build;
 				VALID_ARCHS = i386;
 				ZERO_LINK = NO;
@@ -832,6 +836,7 @@
 					GAME_DLL,
 					__WITH_PB__,
 				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INSTALL_PATH = /usr/local/lib;
@@ -843,6 +848,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = game;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
 				VALID_ARCHS = i386;
 			};
 			name = Default;
@@ -861,9 +867,10 @@
 					GAME_DLL,
 					__WITH_PB__,
 				);
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				MACOSX_DEPLOYMENT_TARGET = "";
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
+				VALID_ARCHS = i386;
 			};
 			name = Debug;
 		};
@@ -881,8 +888,8 @@
 					GAME_DLL,
 					__WITH_PB__,
 				);
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				MACOSX_DEPLOYMENT_TARGET = "";
 				OTHER_CFLAGS = (
 					"-finline",
 					"-finline-limit=1000",
@@ -894,6 +901,7 @@
 					"-fno-common",
 				);
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
+				VALID_ARCHS = i386;
 			};
 			name = Release;
 		};
@@ -907,9 +915,10 @@
 					_D3XP,
 					CTF,
 				);
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				MACOSX_DEPLOYMENT_TARGET = "";
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
+				VALID_ARCHS = i386;
 			};
 			name = Default;
 		};
