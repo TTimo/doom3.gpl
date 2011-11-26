@@ -237,6 +237,9 @@
 		81C40E13147D11FF007C2D25 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C40E10147D11FE007C2D25 /* OpenGL.framework */; };
 		81C40E17147D15C8007C2D25 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C40E16147D15C7007C2D25 /* IOKit.framework */; };
 		81C40E19147D167D007C2D25 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C40E18147D167D007C2D25 /* OpenAL.framework */; };
+		81C914201480F74200DD2086 /* game.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 25DD88370B31F5F00079B759 /* game.dylib */; };
+		81C9142C1480FA1000DD2086 /* game.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 25DD88370B31F5F00079B759 /* game.dylib */; };
+		81C9142D1480FA1E00DD2086 /* game.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 81225B8B0912C731005D34B9 /* game.dylib */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -299,14 +302,21 @@
 			remoteGlobalIDString = D2AAC0620554660B00DB518D;
 			remoteInfo = game;
 		};
-		8170F5031480BC60009E1EC8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 81225B840912C731005D34B9 /* game.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8170F5011480BBC5009E1EC8;
-			remoteInfo = game_static;
-		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		81C914211480F89600DD2086 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				81C9142C1480FA1000DD2086 /* game.dylib in CopyFiles */,
+				81C9142D1480FA1E00DD2086 /* game.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -679,6 +689,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81C914201480F74200DD2086 /* game.dylib in Frameworks */,
 				8170F5211480BEE2009E1EC8 /* game.dylib in Frameworks */,
 				8170F4721480B989009E1EC8 /* libidlib_pic.a in Frameworks */,
 				8170F46A1480ABA5009E1EC8 /* libcurl.dylib in Frameworks */,
@@ -1304,7 +1315,6 @@
 			isa = PBXGroup;
 			children = (
 				81225B8B0912C731005D34B9 /* game.dylib */,
-				8170F5041480BC60009E1EC8 /* game copy.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1319,6 +1329,7 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
+				81C914211480F89600DD2086 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1413,14 +1424,6 @@
 			fileType = "compiled.mach-o.dylib";
 			path = game.dylib;
 			remoteRef = 81225B8A0912C731005D34B9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		8170F5041480BC60009E1EC8 /* game copy.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			name = "game copy.dylib";
-			path = libgame_static.a;
-			remoteRef = 8170F5031480BC60009E1EC8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

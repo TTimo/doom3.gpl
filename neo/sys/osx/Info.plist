@@ -18,6 +18,8 @@
 	<string>DOM3</string>
 	<key>CFBundleVersion</key>
 	<string>3000</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.action-games</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
