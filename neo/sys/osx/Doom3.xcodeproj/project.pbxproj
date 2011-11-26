@@ -230,16 +230,11 @@
 		81225A0D0912C2D3005D34B9 /* ASLCore.nib in Resources */ = {isa = PBXBuildFile; fileRef = 81225A0B0912C2D3005D34B9 /* ASLCore.nib */; };
 		81225A100912C2E9005D34B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 81225A0E0912C2E9005D34B9 /* Localizable.strings */; };
 		8170F46A1480ABA5009E1EC8 /* libcurl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8170F4691480ABA5009E1EC8 /* libcurl.dylib */; };
-		8170F4721480B989009E1EC8 /* libidlib_pic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 812259800912BF1D005D34B9 /* libidlib_pic.a */; };
-		8170F5211480BEE2009E1EC8 /* game.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81225B8B0912C731005D34B9 /* game.dylib */; };
 		81C40E11147D11FE007C2D25 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C40E0E147D11FE007C2D25 /* Carbon.framework */; };
 		81C40E12147D11FF007C2D25 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C40E0F147D11FE007C2D25 /* CoreAudio.framework */; };
 		81C40E13147D11FF007C2D25 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C40E10147D11FE007C2D25 /* OpenGL.framework */; };
 		81C40E17147D15C8007C2D25 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C40E16147D15C7007C2D25 /* IOKit.framework */; };
 		81C40E19147D167D007C2D25 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C40E18147D167D007C2D25 /* OpenAL.framework */; };
-		81C914201480F74200DD2086 /* game.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 25DD88370B31F5F00079B759 /* game.dylib */; };
-		81C9142C1480FA1000DD2086 /* game.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 25DD88370B31F5F00079B759 /* game.dylib */; };
-		81C9142D1480FA1E00DD2086 /* game.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 81225B8B0912C731005D34B9 /* game.dylib */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -303,20 +298,6 @@
 			remoteInfo = game;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		81C914211480F89600DD2086 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 7;
-			files = (
-				81C9142C1480FA1000DD2086 /* game.dylib in CopyFiles */,
-				81C9142D1480FA1E00DD2086 /* game.dylib in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -689,9 +670,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81C914201480F74200DD2086 /* game.dylib in Frameworks */,
-				8170F5211480BEE2009E1EC8 /* game.dylib in Frameworks */,
-				8170F4721480B989009E1EC8 /* libidlib_pic.a in Frameworks */,
 				8170F46A1480ABA5009E1EC8 /* libcurl.dylib in Frameworks */,
 				81C40E19147D167D007C2D25 /* OpenAL.framework in Frameworks */,
 				81C40E17147D15C8007C2D25 /* IOKit.framework in Frameworks */,
@@ -1329,7 +1307,6 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				81C914211480F89600DD2086 /* CopyFiles */,
 			);
 			buildRules = (
 			);
