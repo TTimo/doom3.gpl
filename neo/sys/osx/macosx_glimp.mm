@@ -1261,12 +1261,15 @@ void GLW_InitExtensions( void ) { }
 unsigned long Sys_QueryVideoMemory() {
 	CGLError err;
 	CGLRendererInfoObj rendererInfo, rendererInfos[MAX_RENDERER_INFO_COUNT];
-	long rendererInfoIndex, rendererInfoCount = MAX_RENDERER_INFO_COUNT;
-	long rendererIndex, rendererCount;
-	long maxVRAM = 0, vram = 0;
-	long accelerated;
-	long rendererID;
-	long totalRenderers = 0;
+    long rendererInfoIndex;
+    GLint rendererInfoCount = MAX_RENDERER_INFO_COUNT;
+    long rendererIndex;
+    GLint rendererCount;
+    long maxVRAM = 0;
+    GLint vram = 0;
+    GLint accelerated;
+    GLint rendererID;
+    long totalRenderers = 0;
     
 	err = CGLQueryRendererInfo(CGDisplayIDToOpenGLDisplayMask(Sys_DisplayToUse()), rendererInfos, &rendererInfoCount);
 	if (err) {

@@ -229,7 +229,7 @@
 		81225A000912C27D005D34B9 /* Doom3.icns in Resources */ = {isa = PBXBuildFile; fileRef = 812259FE0912C27C005D34B9 /* Doom3.icns */; };
 		81225A0D0912C2D3005D34B9 /* ASLCore.nib in Resources */ = {isa = PBXBuildFile; fileRef = 81225A0B0912C2D3005D34B9 /* ASLCore.nib */; };
 		81225A100912C2E9005D34B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 81225A0E0912C2E9005D34B9 /* Localizable.strings */; };
-		81326DCC099C164B003C4788 /* libcurl_static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 81326DC7099C162D003C4788 /* libcurl_static.a */; };
+		8170F46A1480ABA5009E1EC8 /* libcurl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8170F4691480ABA5009E1EC8 /* libcurl.dylib */; };
 		81C40E11147D11FE007C2D25 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C40E0E147D11FE007C2D25 /* Carbon.framework */; };
 		81C40E12147D11FF007C2D25 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C40E0F147D11FE007C2D25 /* CoreAudio.framework */; };
 		81C40E13147D11FF007C2D25 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C40E10147D11FE007C2D25 /* OpenGL.framework */; };
@@ -296,20 +296,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = D2AAC0620554660B00DB518D;
 			remoteInfo = game;
-		};
-		81326DC6099C162D003C4788 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 81326DC1099C162D003C4788 /* curl.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D2AAC046055464E500DB518D;
-			remoteInfo = curl;
-		};
-		81326DCA099C163E003C4788 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 81326DC1099C162D003C4788 /* curl.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D2AAC045055464E500DB518D;
-			remoteInfo = curl;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -669,7 +655,7 @@
 		81225A130912C323005D34B9 /* French */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = French; path = French.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		81225A140912C323005D34B9 /* French */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = French; path = French.lproj/Localizable.strings; sourceTree = "<group>"; };
 		81225B840912C731005D34B9 /* game.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = game.xcodeproj; sourceTree = "<group>"; };
-		81326DC1099C162D003C4788 /* curl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = curl.xcodeproj; path = SubProjects/curl.xcodeproj; sourceTree = "<group>"; };
+		8170F4691480ABA5009E1EC8 /* libcurl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurl.dylib; path = usr/lib/libcurl.dylib; sourceTree = SDKROOT; };
 		81C40E0E147D11FE007C2D25 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		81C40E0F147D11FE007C2D25 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		81C40E10147D11FE007C2D25 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -684,12 +670,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8170F46A1480ABA5009E1EC8 /* libcurl.dylib in Frameworks */,
 				81C40E19147D167D007C2D25 /* OpenAL.framework in Frameworks */,
 				81C40E17147D15C8007C2D25 /* IOKit.framework in Frameworks */,
 				81C40E11147D11FE007C2D25 /* Carbon.framework in Frameworks */,
 				81C40E12147D11FF007C2D25 /* CoreAudio.framework in Frameworks */,
 				81C40E13147D11FF007C2D25 /* OpenGL.framework in Frameworks */,
-				81326DCC099C164B003C4788 /* libcurl_static.a in Frameworks */,
 				812259940912BF87005D34B9 /* liboggVorbis_nopic.a in Frameworks */,
 				812259930912BF7F005D34B9 /* libidlib_nopic.a in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
@@ -741,7 +727,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				81326DC1099C162D003C4788 /* curl.xcodeproj */,
 				812259790912BF1D005D34B9 /* idlib.xcodeproj */,
 				812259890912BF38005D34B9 /* oggVorbis.xcodeproj */,
 				81225B840912C731005D34B9 /* game.xcodeproj */,
@@ -766,6 +751,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8170F4691480ABA5009E1EC8 /* libcurl.dylib */,
 				81C40E18147D167D007C2D25 /* OpenAL.framework */,
 				81C40E16147D15C7007C2D25 /* IOKit.framework */,
 				81C40E0E147D11FE007C2D25 /* Carbon.framework */,
@@ -1311,14 +1297,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		81326DC2099C162D003C4788 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				81326DC7099C162D003C4788 /* libcurl_static.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1336,7 +1314,6 @@
 				812259840912BF2B005D34B9 /* PBXTargetDependency */,
 				812259910912BF43005D34B9 /* PBXTargetDependency */,
 				81225B8D0912C73C005D34B9 /* PBXTargetDependency */,
-				81326DCB099C163E003C4788 /* PBXTargetDependency */,
 			);
 			name = "Doom 3";
 			productInstallPath = "$(HOME)/Applications";
@@ -1366,10 +1343,6 @@
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Doom3 */;
 			projectDirPath = "";
 			projectReferences = (
-				{
-					ProductGroup = 81326DC2099C162D003C4788 /* Products */;
-					ProjectRef = 81326DC1099C162D003C4788 /* curl.xcodeproj */;
-				},
 				{
 					ProductGroup = 25DD882F0B31F5F00079B759 /* Products */;
 					ProjectRef = 25DD882E0B31F5F00079B759 /* d3xp.xcodeproj */;
@@ -1428,13 +1401,6 @@
 			fileType = "compiled.mach-o.dylib";
 			path = game.dylib;
 			remoteRef = 81225B8A0912C731005D34B9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		81326DC7099C162D003C4788 /* libcurl_static.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libcurl_static.a;
-			remoteRef = 81326DC6099C162D003C4788 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1696,11 +1662,6 @@
 			isa = PBXTargetDependency;
 			name = game;
 			targetProxy = 81225B8C0912C73C005D34B9 /* PBXContainerItemProxy */;
-		};
-		81326DCB099C163E003C4788 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = curl;
-			targetProxy = 81326DCA099C163E003C4788 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
