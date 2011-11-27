@@ -1,0 +1,11 @@
+This release is also compatible with Xcode Pre 4.2:
+
+User of Xcode 4.0 will be unable to build with the following error:
+
+"ibtool could not strip "ASLCore.nib" because it is not a valid Interface Builder document."
+
+You can fix the nibs with the following command:
+
+ls | grep nib | xargs -L1 ibtool --upgrade
+
+Fab
