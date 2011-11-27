@@ -1172,14 +1172,12 @@ static void RB_T_Shadow( const drawSurf_t *surf ) {
 
 	// patented depth-fail stencil shadows
 	if ( !external ) {
-		if (r_useTwoSidedStencil.GetBool() && glConfig.twoSidedStencilAvailable) {
-			qglEnable( GL_STENCIL_TEST_TWO_SIDE_EXT );
+		if (glConfig.twoSidedStencilAvailable && r_useTwoSidedStencil.GetBool()) {
 			qglActiveStencilFaceEXT( backEnd.viewDef->isMirror ? GL_FRONT : GL_BACK );
 			qglStencilOp( GL_KEEP, tr.stencilDecr, GL_KEEP );
 			qglActiveStencilFaceEXT( backEnd.viewDef->isMirror ? GL_BACK : GL_FRONT );
 			qglStencilOp( GL_KEEP, tr.stencilIncr, GL_KEEP );
 			RB_DrawShadowElementsWithCounters( tri, numIndexes );
-			qglDisable( GL_STENCIL_TEST_TWO_SIDE_EXT );
 		} else if(r_useTwoSidedStencil.GetBool() && glConfig.atiTwoSidedStencilAvailable) {
 			qglStencilOpSeparateATI( backEnd.viewDef->isMirror ? GL_FRONT : GL_BACK, GL_KEEP, tr.stencilDecr, GL_KEEP );
 			qglStencilOpSeparateATI( backEnd.viewDef->isMirror ? GL_BACK : GL_FRONT, GL_KEEP, tr.stencilIncr, GL_KEEP );
@@ -1196,14 +1194,12 @@ static void RB_T_Shadow( const drawSurf_t *surf ) {
 		}
 	} else {
 		// traditional depth-pass stencil shadows
-		if (r_useTwoSidedStencil.GetBool() && glConfig.twoSidedStencilAvailable) {
-			qglEnable( GL_STENCIL_TEST_TWO_SIDE_EXT );
+		if (glConfig.twoSidedStencilAvailable && r_useTwoSidedStencil.GetBool()) {
 			qglActiveStencilFaceEXT( backEnd.viewDef->isMirror ? GL_FRONT : GL_BACK );
 			qglStencilOp( GL_KEEP, GL_KEEP, tr.stencilIncr );
 			qglActiveStencilFaceEXT( backEnd.viewDef->isMirror ? GL_BACK : GL_FRONT );
 			qglStencilOp( GL_KEEP, GL_KEEP, tr.stencilDecr );
 			RB_DrawShadowElementsWithCounters( tri, numIndexes );
-			qglDisable( GL_STENCIL_TEST_TWO_SIDE_EXT );
 		} else if(r_useTwoSidedStencil.GetBool() && glConfig.atiTwoSidedStencilAvailable) {
 			qglStencilOpSeparateATI( backEnd.viewDef->isMirror ? GL_FRONT : GL_BACK, GL_KEEP, GL_KEEP, tr.stencilIncr );
 			qglStencilOpSeparateATI( backEnd.viewDef->isMirror ? GL_BACK : GL_FRONT, GL_KEEP, GL_KEEP, tr.stencilDecr );
@@ -1270,6 +1266,10 @@ void RB_StencilShadowPass( const drawSurf_t *drawSurfs ) {
 		qglEnable( GL_DEPTH_BOUNDS_TEST_EXT );
 	}
 
+	if ( glConfig.twoSidedStencilAvailable && r_useTwoSidedStencil.GetBool() ) {
+		qglEnable( GL_STENCIL_TEST_TWO_SIDE_EXT );
+	}
+
 	RB_RenderDrawSurfChainWithFunction( drawSurfs, RB_T_Shadow );
 
 	GL_Cull( CT_FRONT_SIDED );
@@ -1280,6 +1280,10 @@ void RB_StencilShadowPass( const drawSurf_t *drawSurfs ) {
 
 	if ( glConfig.depthBoundsTestAvailable && r_useDepthBoundsTest.GetBool() ) {
 		qglDisable( GL_DEPTH_BOUNDS_TEST_EXT );
+	}
+		
+	if ( glConfig.twoSidedStencilAvailable && r_useTwoSidedStencil.GetBool() ) {
+		qglDisable( GL_STENCIL_TEST_TWO_SIDE_EXT );
 	}
 
 	qglEnableClientState( GL_TEXTURE_COORD_ARRAY );
