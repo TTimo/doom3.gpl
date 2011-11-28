@@ -150,6 +150,7 @@ idCVar r_useOptimizedShadows( "r_useOptimizedShadows", "1", CVAR_RENDERER | CVAR
 idCVar r_useScissor( "r_useScissor", "1", CVAR_RENDERER | CVAR_BOOL, "scissor clip as portals and lights are processed" );
 idCVar r_useCombinerDisplayLists( "r_useCombinerDisplayLists", "1", CVAR_RENDERER | CVAR_BOOL | CVAR_NOCHEAT, "put all nvidia register combiner programming in display lists" );
 idCVar r_useDepthBoundsTest( "r_useDepthBoundsTest", "1", CVAR_RENDERER | CVAR_BOOL, "use depth bounds test to reduce shadow fill" );
+idCVar r_useDepthClamp( "r_useDepthClamp", "1", CVAR_RENDERER | CVAR_BOOL, "use depth clamp to remove near and far clip planes" );
 
 idCVar r_screenFraction( "r_screenFraction", "100", CVAR_RENDERER | CVAR_INTEGER, "for testing fill rate, the resolution of the entire screen can be changed" );
 idCVar r_demonstrateBug( "r_demonstrateBug", "0", CVAR_RENDERER | CVAR_BOOL, "used during development to show IHV's their problems" );
@@ -535,6 +536,8 @@ static void R_CheckPortableExtensions( void ) {
  		qglDepthBoundsEXT = (PFNGLDEPTHBOUNDSEXTPROC)GLimp_ExtensionPointer( "glDepthBoundsEXT" );
  	}
 
+	// LEITH: GL_NV_depth_clamp
+	glConfig.depthClampAvailable = R_CheckExtension( "NV_depth_clamp" );
 }
 
 

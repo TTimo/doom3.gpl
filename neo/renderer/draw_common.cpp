@@ -1079,8 +1079,10 @@ static void RB_T_Shadow( const drawSurf_t *surf ) {
 		numIndexes = tri->numIndexes;
 	} else if ( r_useExternalShadows.GetInteger() == 2 ) { // force to no caps for testing
 		numIndexes = tri->numShadowIndexesNoCaps;
-	} else if ( !(surf->dsFlags & DSF_VIEW_INSIDE_SHADOW) ) { 
+		external = true;
+	} else if ( ( glConfig.depthClampAvailable && r_useDepthClamp.GetBool() ) || !(surf->dsFlags & DSF_VIEW_INSIDE_SHADOW) ) {
 		// if we aren't inside the shadow projection, no caps are ever needed needed
+		// LEITH: also if depth clamp is enabled the near and far clip planes are disabled removing the need for any caps
 		numIndexes = tri->numShadowIndexesNoCaps;
 		external = true;
 	} else if ( !backEnd.vLight->viewInsideLight && !(surf->geo->shadowCapPlaneBits & SHADOW_CAP_INFINITE) ) {
@@ -1266,8 +1268,14 @@ void RB_StencilShadowPass( const drawSurf_t *drawSurfs ) {
 		qglEnable( GL_DEPTH_BOUNDS_TEST_EXT );
 	}
 
+	// LEITH: enable NVIDIA two sided stencil ops
 	if ( glConfig.twoSidedStencilAvailable && r_useTwoSidedStencil.GetBool() ) {
 		qglEnable( GL_STENCIL_TEST_TWO_SIDE_EXT );
+	}
+
+	// LEITH: enable NVIDIA depth clamp
+	if ( glConfig.depthClampAvailable && r_useDepthClamp.GetBool() ) {
+		qglEnable( GL_DEPTH_CLAMP_NV );
 	}
 
 	RB_RenderDrawSurfChainWithFunction( drawSurfs, RB_T_Shadow );
@@ -1281,9 +1289,10 @@ void RB_StencilShadowPass( const drawSurf_t *drawSurfs ) {
 	if ( glConfig.depthBoundsTestAvailable && r_useDepthBoundsTest.GetBool() ) {
 		qglDisable( GL_DEPTH_BOUNDS_TEST_EXT );
 	}
-		
-	if ( glConfig.twoSidedStencilAvailable && r_useTwoSidedStencil.GetBool() ) {
-		qglDisable( GL_STENCIL_TEST_TWO_SIDE_EXT );
+	
+	// LEITH: disable NVIDIA two sided stencil ops
+	if ( glConfig.depthClampAvailable && r_useDepthClamp.GetBool() ) {
+		qglDisable( GL_DEPTH_CLAMP_NV );
 	}
 
 	qglEnableClientState( GL_TEXTURE_COORD_ARRAY );

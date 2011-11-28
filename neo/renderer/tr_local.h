@@ -885,6 +885,7 @@ extern idCVar r_useIndexBuffers;		// if 0, don't use ARB_vertex_buffer_object fo
 extern idCVar r_useEntityCallbacks;		// if 0, issue the callback immediately at update time, rather than defering
 extern idCVar r_lightAllBackFaces;		// light all the back faces, even when they would be shadowed
 extern idCVar r_useDepthBoundsTest;     // use depth bounds test to reduce shadow fill
+extern idCVar r_useDepthClamp;			// use depth clamp to remove near and far clip planes
 
 extern idCVar r_skipPostProcess;		// skip all post-process renderings
 extern idCVar r_skipSuppress;			// ignore the per-view suppressions
