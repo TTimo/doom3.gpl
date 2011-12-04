@@ -3,7 +3,7 @@
 # TTimo <ttimo@idsoftware.com>
 # http://scons.sourceforge.net
 
-import os
+import subprocess
 
 import scons_utils
 
@@ -19,12 +19,12 @@ class idBuildCurl( scons_utils.idSetupBase ):
 			cmd += '--enable-debug'
 		else:
 			cmd += '--disable-debug'
-		os.system( cmd )
-		os.system( 'cd curl ; make' )
+                subprocess.check_call( cmd, shell = True )
+		subprocess.check_call( 'cd curl ; make', shell = True )
 		if ( self.debug ):
-			os.system( 'cd curl ; mv ./lib/.libs/libcurl.a ./lib/.libs/libcurl-debug.a' )
+			subprocess.check_call( 'cd curl ; mv ./lib/.libs/libcurl.a ./lib/.libs/libcurl-debug.a', shell = True )
 		else:
-			os.system( 'cd curl ; mv ./lib/.libs/libcurl.a ./lib/.libs/libcurl-release.a' )
+			subprocess.check_call( 'cd curl ; mv ./lib/.libs/libcurl.a ./lib/.libs/libcurl-release.a', shell = True )
 		return 0
 
 build = idBuildCurl()
