@@ -46,7 +46,7 @@ If you have questions concerning this license or the applicable additional terms
 		#ifdef _DEBUG
 			#define ID_CONSOLE_LOCK 0
 		#else
-			#define ID_CONSOLE_LOCK 1
+			#define ID_CONSOLE_LOCK 0
 		#endif
 	#else
 		#define ID_CONSOLE_LOCK 0
@@ -111,7 +111,7 @@ If you have questions concerning this license or the applicable additional terms
 
 #ifndef ID_ENFORCE_KEY
 #	if !defined( ID_DEDICATED ) && !defined( ID_DEMO_BUILD )
-#		define ID_ENFORCE_KEY 1
+#		define ID_ENFORCE_KEY 0
 #	else
 #		define ID_ENFORCE_KEY 0
 #	endif
@@ -126,10 +126,6 @@ If you have questions concerning this license or the applicable additional terms
 #endif
 
 #ifndef ID_ALLOW_D3XP
-#	if defined( MACOS_X )
-#		define ID_ALLOW_D3XP 0
-#	else
-#		define ID_ALLOW_D3XP 1
-#	endif
+#	define ID_ALLOW_D3XP 1
 #endif
 

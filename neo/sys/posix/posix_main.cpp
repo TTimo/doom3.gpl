@@ -386,7 +386,7 @@ TODO: OSX - use the native API instead? NSModule
 =================
 */
 int Sys_DLL_Load( const char *path ) {
-	void *handle = dlopen( path, RTLD_NOW );
+	void *handle = dlopen( path, RTLD_NOW ); //TODO: Investigate ways to do this under LLVM, and have it *not* crash (llvm::sys::DynamicLibrary maybe?).
 	if ( !handle ) {
 		Sys_Printf( "dlopen '%s' failed: %s\n", path, dlerror() );
 	}
