@@ -333,7 +333,7 @@ idCurve::SetConstantSpeed
 */
 template< class type >
 ID_INLINE void idCurve<type>::SetConstantSpeed( const float totalTime ) {
-	int i, j;
+	int i;
 	float *length, totalLength, scale, t;
 
 	length = (float *) _alloca16( values.Num() * sizeof( float ) );
@@ -777,7 +777,7 @@ idCurve_QuadraticBezier::BasisSecondDerivative
 */
 template< class type >
 ID_INLINE void idCurve_QuadraticBezier<type>::BasisSecondDerivative( const float t, float *bvals ) const {
-	float s1 = (float) ( t - this->times[0] ) / ( this->times[2] - this->times[0] );
+//	float s1 = (float) ( t - this->times[0] ) / ( this->times[2] - this->times[0] );
 	bvals[0] = 2.0f;
 	bvals[1] = -4.0f;
 	bvals[2] = 2.0f;

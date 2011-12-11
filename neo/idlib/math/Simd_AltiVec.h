@@ -93,7 +93,7 @@ If you have questions concerning this license or the applicable additional terms
 
 // This turns on support for PPC intrinsics in the SIMD_AltiVec.cpp file. Right now it's only used for frsqrte. GCC 
 // supports these intrinsics but XLC does not.
-#define PPC_INTRINSICS
+//#define PPC_INTRINSICS
 
 // This assumes that the idDrawVert array that is used in DeriveUnsmoothedTangents is aligned. If its not aligned,
 // then we don't get any speedup
