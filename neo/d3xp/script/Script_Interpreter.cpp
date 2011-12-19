@@ -425,7 +425,7 @@ idInterpreter::Error
 Aborts the currently executing function
 ============
 */
-void idInterpreter::Error( char *fmt, ... ) const {
+void idInterpreter::Error( const char *fmt, ... ) const {
 	va_list argptr;
 	char	text[ 1024 ];
 
