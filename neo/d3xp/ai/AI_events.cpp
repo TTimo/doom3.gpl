@@ -876,7 +876,7 @@ void idAI::Event_CanBecomeSolid( void ) {
 		}
 
 #ifdef _D3XP
-		if ( spawnClearMoveables && hit->IsType( idMoveable::Type ) || hit->IsType( idBarrel::Type ) || hit->IsType( idExplodingBarrel::Type ) ) {
+		if ( spawnClearMoveables && ( hit->IsType( idMoveable::Type ) || hit->IsType( idBarrel::Type ) || hit->IsType( idExplodingBarrel::Type ) ) ) {
 			idVec3 push;
 			push = hit->GetPhysics()->GetOrigin() - GetPhysics()->GetOrigin();
 			push.z = 30.f;
