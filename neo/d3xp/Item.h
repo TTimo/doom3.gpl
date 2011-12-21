@@ -257,7 +257,7 @@ private:
 	void					Event_FlagCapture( void );
 
 	void					PrivateReturn( void );
-	function_t *			LoadScript( char * script );
+	function_t *			LoadScript( const char * script );
 
 	void					SpawnNugget( idVec3 pos );
     void                    UpdateGuis( void );

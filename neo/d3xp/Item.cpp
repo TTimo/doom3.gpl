@@ -772,7 +772,7 @@ void idItemTeam::Spawn( void ) {
 idItemTeam::LoadScript
 ===============
 */
-function_t * idItemTeam::LoadScript( char * script ) {
+function_t * idItemTeam::LoadScript( const char * script ) {
 	function_t * function = NULL;
 	idStr funcname = spawnArgs.GetString( script, "" );
 	if ( funcname.Length() ) {
