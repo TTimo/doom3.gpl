@@ -51,7 +51,7 @@ If you have questions concerning this license or the applicable additional terms
 //
 //===============================================================
 
-#if defined(MACOS_X) && defined(__ppc__)
+#if defined(MACOS_X) && (defined(__ppc__) || defined (__PPC__))
 
 // Data struct sizes
 

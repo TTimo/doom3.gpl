@@ -30,11 +30,12 @@ If you have questions concerning this license or the applicable additional terms
 #pragma hdrstop
 
 #include "tr_local.h"
-#ifdef __ppc__
-#include <vecLib/vecLib.h>
+//#if defined (__ppc__)  
+#if defined (__APPLE__)
+	#include <vecLib/vecLib.h>
 #endif
 #if defined(MACOS_X) && defined(__i386__)
-#include <xmmintrin.h>
+	#include <xmmintrin.h>
 #endif
 
 //====================================================================

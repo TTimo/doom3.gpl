@@ -241,6 +241,8 @@ void Sys_FPE_handler( int signum, siginfo_t *info, void *context ) {
 ===============
 Sys_GetClockticks
 ===============
+NOTE that this only affects idTimer atm, which is only used for performance timing during developement
+#warning FIXME: implement Sys_GetClockTicks in ppc arch!
 */
 double Sys_GetClockTicks( void ) {
 #if defined( __i386__ )
@@ -257,7 +259,8 @@ double Sys_GetClockTicks( void ) {
 						  : "=r" (lo), "=r" (hi) );
 	return (double) lo + (double) 0xFFFFFFFF * hi;
 #else
-#error unsupported CPU
+	//#error unsupported CPU
+	return 0.0;
 #endif
 }
 

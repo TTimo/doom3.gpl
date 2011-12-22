@@ -154,7 +154,7 @@ dword PackColor( const idVec4 &color ) {
 
 #if defined(_WIN32) || defined(__linux__) || (defined(MACOS_X) && defined(__i386__))
 	return ( dx << 0 ) | ( dy << 8 ) | ( dz << 16 ) | ( dw << 24 );
-#elif (defined(MACOS_X) && defined(__ppc__))
+#elif (defined(MACOS_X) && (defined(__ppc__) || defined(__PPC__)))
 	return ( dx << 24 ) | ( dy << 16 ) | ( dz << 8 ) | ( dw << 0 );
 #else
 #error OS define is required!
@@ -172,7 +172,7 @@ void UnpackColor( const dword color, idVec4 &unpackedColor ) {
 						( ( color >> 8 ) & 255 ) * ( 1.0f / 255.0f ), 
 						( ( color >> 16 ) & 255 ) * ( 1.0f / 255.0f ),
 						( ( color >> 24 ) & 255 ) * ( 1.0f / 255.0f ) );
-#elif (defined(MACOS_X) && defined(__ppc__))
+#elif (defined(MACOS_X) && (defined(__ppc__) || defined(__PPC__)))
 	unpackedColor.Set( ( ( color >> 24 ) & 255 ) * ( 1.0f / 255.0f ),
 						( ( color >> 16 ) & 255 ) * ( 1.0f / 255.0f ), 
 						( ( color >> 8 ) & 255 ) * ( 1.0f / 255.0f ),
@@ -196,7 +196,7 @@ dword PackColor( const idVec3 &color ) {
 
 #if defined(_WIN32) || defined(__linux__) || (defined(MACOS_X) && defined(__i386__))
 	return ( dx << 0 ) | ( dy << 8 ) | ( dz << 16 );
-#elif (defined(MACOS_X) && defined(__ppc__))
+#elif (defined(MACOS_X) && (defined(__ppc__) || defined(__PPC__)))
 	return ( dy << 16 ) | ( dz << 8 ) | ( dx << 0 );
 #else
 #error OS define is required!
@@ -213,7 +213,7 @@ void UnpackColor( const dword color, idVec3 &unpackedColor ) {
 	unpackedColor.Set( ( ( color >> 0 ) & 255 ) * ( 1.0f / 255.0f ),
 						( ( color >> 8 ) & 255 ) * ( 1.0f / 255.0f ), 
 						( ( color >> 16 ) & 255 ) * ( 1.0f / 255.0f ) );
-#elif (defined(MACOS_X) && defined(__ppc__))
+#elif (defined(MACOS_X) && (defined(__ppc__) || defined(__PPC__)))
 	unpackedColor.Set( ( ( color >> 16 ) & 255 ) * ( 1.0f / 255.0f ),
 						( ( color >> 8 ) & 255 ) * ( 1.0f / 255.0f ),
 						( ( color >> 0 ) & 255 ) * ( 1.0f / 255.0f ) );
@@ -577,7 +577,7 @@ void AssertFailed( const char *file, int line, const char *expression ) {
 	idLib::sys->DebugPrintf( "\n\nASSERTION FAILED!\n%s(%d): '%s'\n", file, line, expression );
 #ifdef _WIN32
 	__asm int 0x03
-#elif defined( __linux__ )
+#elif defined( __linux__ ) && defined (__i386__)
 	__asm__ __volatile__ ("int $0x03");
 #elif defined( MACOS_X )
 	kill( getpid(), SIGINT );
