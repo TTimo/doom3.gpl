@@ -306,7 +306,7 @@ double Sys_ClockTicksPerSecond(void) {
 	close( fd );
 	pos = 0;
 	while ( pos < len ) {
-		if ( !idStr::Cmpn( buf + pos, "cpu MHz", 7 ) ) {
+		if ( !idStr::Cmpn( buf + pos, "cpu MHz", 7 ) || !idStr::Cmpn( buf + pos,"clock",5 ) ) {
 			pos = strchr( buf + pos, ':' ) - buf + 2;
 			end = strchr( buf + pos, '\n' ) - buf;
 			if ( pos < len && end < len ) {
