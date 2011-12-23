@@ -110,7 +110,7 @@ If you have questions concerning this license or the applicable additional terms
 	#define CPU_EASYARGS				1
 #endif
 #if defined(__ppc__) || defined(__PPC__)
-	#define BUILD_OS_ID				2
+	#define BUILD_OS_ID				3
 	#define	BUILD_STRING				"linux-ppc"
 	#define CPUSTRING					"ppc"
 	#define CPU_EASYARGS				0

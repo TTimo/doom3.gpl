@@ -29,7 +29,7 @@ If you have questions concerning this license or the applicable additional terms
 #include "precompiled.h"
 #pragma hdrstop
 
-#if defined( MACOS_X )
+#if (defined( MACOS_X ) || defined(__linux__))
 #include <signal.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -577,9 +577,9 @@ void AssertFailed( const char *file, int line, const char *expression ) {
 	idLib::sys->DebugPrintf( "\n\nASSERTION FAILED!\n%s(%d): '%s'\n", file, line, expression );
 #ifdef _WIN32
 	__asm int 0x03
-#elif defined( __linux__ ) && defined (__i386__)
+#elif (defined( __linux__ ) && defined (__i386__))
 	__asm__ __volatile__ ("int $0x03");
-#elif defined( MACOS_X )
+#elif (defined( MACOS_X ) || defined(__linux__))
 	kill( getpid(), SIGINT );
 #endif
 }
