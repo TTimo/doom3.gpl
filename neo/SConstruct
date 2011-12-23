@@ -147,11 +147,9 @@ exp = re.compile('.*i?86.*')
 if exp.match(cpu):
 	cpu = 'x86'
 else:
-	cpu = commands.getoutput('uname -p')
-	if ( cpu == 'powerpc' ):
+	#cpu = commands.getoutput('uname -p')
+	if ( cpu == 'powerpc' or cpu == 'ppc' ):
 		cpu = 'ppc'
-	else:
-		cpu = 'cpu'
 g_os = 'Linux'
 
 # end system detection ---------------------------
