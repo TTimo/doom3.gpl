@@ -458,7 +458,7 @@ idActor::idActor( void ) {
 
 	waitState			= "";
 	
-	blink_anim			= NULL;
+	blink_anim			= 0;
 	blink_time			= 0;
 	blink_min			= 0;
 	blink_max			= 0;
