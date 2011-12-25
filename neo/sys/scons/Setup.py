@@ -12,6 +12,7 @@ class idSetup( scons_utils.idSetupBase ):
 			demo_build = True
 			core_path = source[1].abspath
 			game_path = source[2].abspath
+			cpu = source[3].abspath
 		else:
 			print 'Building setup'
 			demo_build = False
@@ -19,6 +20,7 @@ class idSetup( scons_utils.idSetupBase ):
 			ded_path = source[2].abspath
 			game_path = source[3].abspath
 			d3xp_path = source[4].abspath
+			cpu = source[5].abspath
 		# identify dynamic dependencies that we bundle with the binary
 		ldd_deps = []
 		ldd_output = self.SimpleCommand( 'ldd -r ' + core_path )
@@ -29,22 +31,22 @@ class idSetup( scons_utils.idSetupBase ):
 		# prep the binaries and update the paths
 		temp_dir = tempfile.mkdtemp( prefix = 'doomsetup' )
 		if ( demo_build ):
-			self.SimpleCommand( 'cp %s %s/doom.x86' % ( core_path, temp_dir ) )
-			core_path = '%s/doom.x86' % temp_dir
-			self.SimpleCommand( 'cp %s %s/gamex86.so' % ( game_path, temp_dir ) )
-			game_path = '%s/gamex86.so' % temp_dir
+			self.SimpleCommand( 'cp %s %s/doom%s' % ( core_path, temp_dir, cpu ) )
+			core_path = '%s/doom.%s' % (temp_dir,cpu)
+			self.SimpleCommand( 'cp %s %s/game%s.so' % ( game_path, temp_dir,cpu ) )
+			game_path = '%s/game%s' % (temp_dir,cpu)
 			self.SimpleCommand( 'strip ' + core_path )
 			self.SimpleCommand( 'strip ' + game_path )
 			self.SimpleCommand( brandelf_path + ' -t Linux ' + core_path )
 		else:
-			self.SimpleCommand( 'cp %s %s/doom.x86' % ( core_path, temp_dir ) )
-			core_path = '%s/doom.x86' % temp_dir
-			self.SimpleCommand( 'cp %s %s/doomded.x86' % ( ded_path, temp_dir ) )
-			ded_path = '%s/doomded.x86' % temp_dir
-			self.SimpleCommand( 'cp %s %s/gamex86-base.so' % ( game_path, temp_dir ) )
-			game_path = '%s/gamex86-base.so' % temp_dir
-			self.SimpleCommand( 'cp %s %s/gamex86-d3xp.so' % ( d3xp_path, temp_dir ) )
-			d3xp_path = '%s/gamex86-d3xp.so' % temp_dir
+			self.SimpleCommand( 'cp %s %s/doom.%s' % ( core_path, temp_dir,cpu ) )
+			core_path = '%s/doom.%s' % (temp_dir,cpu)
+			self.SimpleCommand( 'cp %s %s/doomded.%s' % ( ded_path, temp_dir,cpu ) )
+			ded_path = '%s/doomded.%s' % (temp_dir,cpu)
+			self.SimpleCommand( 'cp %s %s/game%s-base.so' % ( game_path, temp_dir,cpu ) )
+			game_path = '%s/game%s-base.so' % (temp_dir,cpu)
+			self.SimpleCommand( 'cp %s %s/game%s-d3xp.so' % ( d3xp_path, temp_dir,cpu ) )
+			d3xp_path = '%s/game%s-d3xp.so' % (temp_dir,cpu)
 			self.SimpleCommand( 'strip ' + core_path )
 			self.SimpleCommand( 'strip ' + ded_path )
 			self.SimpleCommand( 'strip ' + game_path )
@@ -122,9 +124,9 @@ class idSetup( scons_utils.idSetupBase ):
 			self.SimpleCommand( 'mkdir ' + base_dirname + '/d3xp' )
 			self.SimpleCommand( 'find sys/linux/setup/media/ -name "*.pk4" | grep -v zpak | cut -b 23- | while read i ; do cp -v sys/linux/setup/media/$i ' + base_dirname + '/$i ; done' )
 		# copy
-		self.SimpleCommand( 'cp ' + core_path + ' ' + base_dirname + '/bin/Linux/x86' )
+		self.SimpleCommand( 'cp ' + core_path + ' ' + base_dirname + '/bin/Linux/%s' %s cpu )
 		if ( not demo_build ):
-			self.SimpleCommand( 'cp ' + ded_path + ' ' + base_dirname + '/bin/Linux/x86' )
+			self.SimpleCommand( 'cp ' + ded_path + ' ' + base_dirname + '/bin/Linux/%s' % cpu )
 		for i in ldd_deps:
 			self.SimpleCommand( 'cp ' + i + ' ' + base_dirname + '/' + os.path.basename( i ) )
 		# punkbuster

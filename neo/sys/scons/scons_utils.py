@@ -136,19 +136,41 @@ def NotImplementedStub( *whatever ):
 
 # --------------------------------------------------------------------
 
+
+
+
 class idGamePaks( idSetupBase ):
+
+	def StripCPUid(self,cpustring):
+		exp1 = re.compile('.*i?86*')
+		exp2 = re.compile('.*ppc*')
+		if exp1.match(cpustring):
+			cpu = 'x86'
+		else:
+			if exp2.match(cpustring):
+				cpu = 'ppc'
+			else:
+				cpu = 'unknown'
+		print "cpustring: %s, cpu: %s" % (cpustring,cpu)
+		return cpu
 
 	def BuildGamePak( self, target = None, source = None, env = None ):
 		# NOTE: ew should have done with zipfile module
+		cpu = self.StripCPUid(source[0].abspath)
 		temp_dir = tempfile.mkdtemp( prefix = 'gamepak' )
-		self.SimpleCommand( 'cp %s %s' % ( source[0].abspath, os.path.join( temp_dir, 'gamex86.so' ) ) )
-		self.SimpleCommand( 'strip %s' % os.path.join( temp_dir, 'gamex86.so' ) )
+		self.SimpleCommand( 'cp %s %s' % ( source[0].abspath, os.path.join( temp_dir, 'game%s.so' % cpu ) ) )
+		self.SimpleCommand( 'strip %s' % os.path.join( temp_dir, 'game%s.so' % cpu ) )
 		self.SimpleCommand( 'echo 2 > %s' % ( os.path.join( temp_dir, 'binary.conf' ) ) )
-		self.SimpleCommand( 'cd %s ; zip %s gamex86.so binary.conf' % ( temp_dir, os.path.join( temp_dir, target[0].abspath ) ) )
+		self.SimpleCommand( 'cd %s ; zip %s game%s.so binary.conf' % ( temp_dir, os.path.join( temp_dir, target[0].abspath),cpu ) )
 		self.SimpleCommand( 'rm -r %s' % temp_dir )
+		
+		self.debug_print(target,source)
+		
 		return None
 
 # --------------------------------------------------------------------
+
+
 
 # get a clean error output when running multiple jobs
 def SetupBufferedOutput( env, silent ):

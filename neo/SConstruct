@@ -151,7 +151,7 @@ else:
 	if ( cpu == 'powerpc' or cpu == 'ppc' ):
 		cpu = 'ppc'
 g_os = 'Linux'
-
+print cpu
 # end system detection ---------------------------
 
 # default settings -------------------------------
@@ -450,6 +450,7 @@ if ( TARGET_GAME == '1' or TARGET_D3XP == '1' ):
 		# clear the build directory to be safe
 		g_env.PreBuildSDK( [ g_build + '/game', g_build + '/d3xp' ] )
 		dupe = 1
+		g_env.cpu = cpu
 	VariantDir( g_build + '/game', '.', duplicate = dupe )
 	idlib_objects = SConscript( g_build + '/game/sys/scons/SConscript.idlib' )
 	if ( TARGET_GAME == '1' ):
@@ -458,7 +459,7 @@ if ( TARGET_GAME == '1' or TARGET_D3XP == '1' ):
 		game = SConscript( g_build + '/game/sys/scons/SConscript.game' )
 		game_base = InstallAs( '#game%s-base.so' % cpu, game )
 		if ( BUILD_GAMEPAK == '1' ):
-			Command( '#game01-base.pk4', [ game_base, game ], Action( g_env.BuildGamePak ) )
+			Command( '#game01-base.pk4', [ game_base, game ] , Action( g_env.BuildGamePak ) )
 	if ( TARGET_D3XP == '1' ):
 		# uses idlib as compiled for game/
 		local_d3xp = 1
@@ -467,7 +468,7 @@ if ( TARGET_GAME == '1' or TARGET_D3XP == '1' ):
 		d3xp = SConscript( g_build + '/d3xp/sys/scons/SConscript.game' )
 		game_d3xp = InstallAs( '#game%s-d3xp.so' % cpu, d3xp )
 		if ( BUILD_GAMEPAK == '1' ):
-			Command( '#game01-d3xp.pk4', [ game_d3xp, d3xp ], Action( g_env.BuildGamePak ) )
+			Command( '#game01-d3xp.pk4', [ game_d3xp, d3xp ] , Action( g_env.BuildGamePak ) )
 	
 if ( TARGET_MONO == '1' ):
 	# NOTE: no D3XP atm. add a TARGET_MONO_D3XP
@@ -517,11 +518,11 @@ if ( TARGET_DEMO == '1' ):
 if ( SETUP != '0' ):
 	brandelf = Program( 'brandelf', 'sys/linux/setup/brandelf.c' )
 	if ( TARGET_CORE == '1' and TARGET_GAME == '1' and TARGET_D3XP == '1' ):
-		setup = Command( 'setup', [ brandelf, doom, doomded, game, d3xp ], Action( g_env.BuildSetup ) )
+		setup = Command( 'setup', [ brandelf, doom, doomded, game, d3xp,cpu ], Action( g_env.BuildSetup ) )
 	else:
 		print 'Skipping main setup: TARGET_CORE == 0 or TARGET_GAME == 0'
 	if ( TARGET_DEMO == '1' ):
-		setup_demo = Command( 'setup-demo', [ brandelf, doom_demo, game_demo ], Action( g_env.BuildSetup ) )
+		setup_demo = Command( 'setup-demo', [ brandelf, doom_demo, game_demo,cpu ], Action( g_env.BuildSetup ) )
 		# if building two setups, make sure JOBS doesn't parallelize them
 		try:
 			g_env.Depends( setup_demo, setup )
