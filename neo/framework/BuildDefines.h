@@ -111,7 +111,7 @@ If you have questions concerning this license or the applicable additional terms
 
 #ifndef ID_ENFORCE_KEY
 #	if !defined( ID_DEDICATED ) && !defined( ID_DEMO_BUILD )
-#		define ID_ENFORCE_KEY 1
+#		define ID_ENFORCE_KEY 0
 #	else
 #		define ID_ENFORCE_KEY 0
 #	endif
@@ -128,4 +128,3 @@ If you have questions concerning this license or the applicable additional terms
 #ifndef ID_ALLOW_D3XP
 #	define ID_ALLOW_D3XP 1
 #endif
-
