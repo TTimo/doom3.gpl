@@ -34,7 +34,9 @@ Compiling on win32:
 -------------------
 
 A project file for Microsoft Visual Studio 2010 is provided in neo\doom.sln
-We expect the solution file is compatible with the Express releases
+
+Unfortunately, Microsoft Visual Studio 2010 Express Edition (e.g. the free release)
+will not be able to successfully compile the source, because 32 bit MFC is required.
 
 You will need the Microsoft DirectX SDK installed as well.
 If it does not reside in "C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)"
