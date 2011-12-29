@@ -475,7 +475,7 @@ int idDict::FindKeyIndex( const char *key ) const {
 
 	if ( key == NULL || key[0] == '\0' ) {
 		idLib::common->DWarning( "idDict::FindKeyIndex: empty key" );
-		return NULL;
+		return 0;
 	}
 
 	int hash = argHash.GenerateKey( key, false );

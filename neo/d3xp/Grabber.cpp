@@ -276,7 +276,7 @@ void idGrabber::StartDrag( idEntity *grabEnt, int id ) {
 			aiEnt->StartRagdoll();
 		}
 	} else if ( grabEnt->IsType( idMoveableItem::Type ) ) {
-		grabEnt->PostEventMS( &EV_Touch, 250, thePlayer, NULL );
+		grabEnt->PostEventMS( &EV_Touch, 250, thePlayer, 0 );
 	}
 
 	// Get the current physics object to manipulate
