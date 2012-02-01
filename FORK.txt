@@ -1,0 +1,7 @@
+The original release of the DOOM 3 source code on GitHub was done by Timothee 'TTimo' Besset on November 22, 2011.  To properly maintain the metadata between the various forks on GitHub since then and the creation of the id-Software GitHub account on January 31, 2011, I've forked TTimo's repository and then forced a hard reset to the first commit.  
+
+This leaves the current "official" release from id Software just as it was on November 22, 2011, but allows interested developers to track down interesting work being done in TTimo's branch and all over GitHub.
+
+Cheers,
+
+Travis Bradshaw
