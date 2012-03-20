@@ -1,4 +1,4 @@
-import sys, os, string, time, commands, re, pickle, StringIO, popen2, commands, pdb, zipfile, tempfile
+import sys, os, string, time, commands, re, pickle, StringIO, commands, pdb, zipfile, tempfile
 
 import scons_utils
 
