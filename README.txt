@@ -1,3 +1,5 @@
+(For information about this project on GitHub, see http://ttimo.github.com/doom3.gpl/)
+
 Doom 3 GPL source release
 =========================
 
