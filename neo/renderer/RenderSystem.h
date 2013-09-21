@@ -83,7 +83,8 @@ typedef struct glconfig_s {
 	// ati r300
 	bool				atiTwoSidedStencilAvailable;
 
-	int					vidWidth, vidHeight;	// passed to R_BeginFrame
+	int					vidWidth, vidHeight;	// back buffer width/height, passed to R_BeginFrame
+	int                 winWidth, winHeight;    // window width/height
 
 	int					displayFrequency;
 

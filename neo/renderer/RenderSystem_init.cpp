@@ -2300,7 +2300,7 @@ idRenderSystemLocal::GetScreenWidth
 ========================
 */
 int idRenderSystemLocal::GetScreenWidth( void ) const {
-	return glConfig.vidWidth;
+	return glConfig.winWidth;
 }
 
 /*
@@ -2309,7 +2309,7 @@ idRenderSystemLocal::GetScreenHeight
 ========================
 */
 int idRenderSystemLocal::GetScreenHeight( void ) const {
-	return glConfig.vidHeight;
+	return glConfig.winHeight;
 }
 
 /*
