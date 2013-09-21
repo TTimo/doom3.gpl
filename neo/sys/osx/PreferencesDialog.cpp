@@ -29,7 +29,6 @@ If you have questions concerning this license or the applicable additional terms
 #include "../../idlib/precompiled.h"
 #include <Carbon/Carbon.h>
 #include "PreferencesDialog.h"
-#include "PickMonitor.h"
 #include <list>
 #include <set>
 
@@ -648,9 +647,6 @@ static pascal OSStatus PrefHandler( EventHandlerCallRef inHandler, EventRef inEv
 
 		case kCmdChooseMonitors:
 		{
-			PickMonitor((DisplayIDType*)&prefInfo->prefDisplayID, prefInfo->window);
-			// Adjust resolutions, refresh rates for potentially new display ID
-			AdjustDisplayControls(prefInfo);
 			break;
 		}
 
@@ -763,7 +759,7 @@ OSStatus CreateGameDisplayPreferencesDialog(const GameDisplayInfo *inGDInfo,
 	
 	// Disable the "choose monitor" button if we've only got one to pick from
 	
-	prefInfo.multiMonitor = CanUserPickMonitor();
+	prefInfo.multiMonitor = false;
 	
 	if (!prefInfo.multiMonitor)
 	{

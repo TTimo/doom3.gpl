@@ -3879,7 +3879,7 @@ void idFileSystemLocal::FindDLL( const char *name, char _dllPath[ MAX_OSPATH ], 
 	if ( !serverPaks.Num() ) {
 #endif
 		// from executable directory first - this is handy for developement
-		dllPath = Sys_EXEPath( );
+		dllPath = Sys_DLLPath( );
 		dllPath.StripFilename( );
 		dllPath.AppendPath( dllName );
 		dllFile = OpenExplicitFileRead( dllPath );

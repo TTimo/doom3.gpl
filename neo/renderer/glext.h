@@ -2781,7 +2781,7 @@ typedef ptrdiff_t GLintptr;
 typedef ptrdiff_t GLsizeiptr;
 #endif
 
-#ifndef GL_ARB_vertex_buffer_object
+#if !defined(GL_ARB_vertex_buffer_object) && !defined(__gltypes_h_)
 /* GL types for handling large vertex buffer objects */
 typedef ptrdiff_t GLintptrARB;
 typedef ptrdiff_t GLsizeiptrARB;
@@ -2790,7 +2790,9 @@ typedef ptrdiff_t GLsizeiptrARB;
 #ifndef GL_ARB_shader_objects
 /* GL types for handling shader object handles and characters */
 typedef char GLcharARB;		/* native character */
+#if !defined(__gltypes_h_)
 typedef unsigned int GLhandleARB;	/* shader object handle */
+#endif //!__gltypes_h_
 #endif
 
 #ifndef GL_NV_half_float

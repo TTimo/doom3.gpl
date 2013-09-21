@@ -421,6 +421,13 @@ const char *Sys_EXEPath( void ) {
 	return exepath;
 }
 
+const char *Sys_DLLPath( void ) {
+	static char exepath[ 1024 ];
+	strncpy( exepath, [ [ [ NSBundle mainBundle ] bundlePath ] cStringUsingEncoding:NSASCIIStringEncoding  ], 1024 );
+	strcat( exepath, "/Contents/MacOS/" );
+	return exepath;
+}
+
 /*
  ==========
  Sys_DefaultSavePath
