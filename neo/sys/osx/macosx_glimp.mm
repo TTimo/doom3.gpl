@@ -283,8 +283,8 @@ static void ReleaseAllDisplays() {
 }
 - (BOOL)canBecomeKeyWindow;
 - (BOOL)canBecomeMainWindow;
-- (void)becomeKeyWinwodw;
-- (void)resignKeyWinwodw;
+- (void)becomeKeyWindow;
+- (void)resignKeyWindow;
 @end
 
 @implementation FSWindow
