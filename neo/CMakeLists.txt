@@ -9,9 +9,9 @@ set( DATA_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/Data )
 set( DATA_INSTALL_ROOT ${CMAKE_INSTALL_PREFIX}/Contents/Resources )
 set( BINARY_INSTALL_ROOT ${CMAKE_INSTALL_PREFIX}/Contents/MacOS )
 set( CMAKE_OSX_ARCHITECTURES "i386" )
-set( CMAKE_OSX_SYSROOT /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk )
+set( CMAKE_OSX_SYSROOT /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk )
 set( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../bin )
-set( CMAKE_OSX_DEPLOYMENT_TARGET 10.8 )
+set( CMAKE_OSX_DEPLOYMENT_TARGET 10.9 )
 
 # Apple projects are unique RUNTIME_OUTPUT_DIRECTORY is not actually where the executable goes, also the xcode generator creates
 # release and Debug directories not present in the makefile project
