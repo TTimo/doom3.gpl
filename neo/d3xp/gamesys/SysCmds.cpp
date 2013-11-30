@@ -1276,7 +1276,8 @@ PrintFloat
 ==================
 */
 static void PrintFloat( float f ) {
-	char buf[128], i;
+	char buf[128];
+	unsigned char i;
 
 	for ( i = sprintf( buf, "%3.2f", f ); i < 7; i++ ) {
 		buf[i] = ' ';

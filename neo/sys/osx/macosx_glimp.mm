@@ -1329,11 +1329,12 @@ unsigned long Sys_QueryVideoMemory() {
 				continue;
             
 			vram = 0;
-			err = CGLDescribeRenderer(rendererInfo, rendererIndex, kCGLRPVideoMemory, &vram);
+			err = CGLDescribeRenderer(rendererInfo, rendererIndex, kCGLRPVideoMemoryMegabytes, &vram);
 			if (err) {
 				common->Printf("CGLDescribeRenderer -> %d\n", err);
 				continue;
 			}
+			vram *= (1024*1024);
 			//common->Printf("    vram: 0x%08x\n", vram);
             
 			// presumably we'll be running on the best card, so we'll take the max of the vrams

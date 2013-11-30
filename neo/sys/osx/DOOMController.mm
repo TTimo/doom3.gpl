@@ -720,16 +720,26 @@ int Sys_GetVideoRam( void ) {
 	io_service_t dspPorts[MAXDISPLAYS];
 	CGDirectDisplayID displays[MAXDISPLAYS];
 
+	// we really should store the render index after we create the context?
 	CGGetOnlineDisplayList( MAXDISPLAYS, displays, &displayCount );
-	
 	for ( i = 0; i < displayCount; i++ ) {
 		if ( Sys_DisplayToUse() == displays[i] ) {
-			dspPorts[i] = CGDisplayIOServicePort(displays[i]);
-			typeCode = IORegistryEntryCreateCFProperty( dspPorts[i], CFSTR("IOFBMemorySize"), kCFAllocatorDefault, kNilOptions );
-			if( typeCode && CFGetTypeID( typeCode ) == CFNumberGetTypeID() ) {
-				CFNumberGetValue( ( CFNumberRef )typeCode, kCFNumberSInt32Type, &vramStorage );
-				vramStorage /= (1024*1024);
+			CGOpenGLDisplayMask glmask = CGDisplayIDToOpenGLDisplayMask( displays[i] );
+			CGLRendererInfoObj rend;
+			int numrend;
+			CGLError err = CGLQueryRendererInfo( glmask, &rend, &numrend );
+			for( int i = 0; i < numrend; ++i )
+			{
+				int accelerated = 0;
+				err = CGLDescribeRenderer( rend, i, kCGLRPAccelerated, &accelerated);
+				if( !accelerated )
+					continue;
+				int vram = 0;
+				err = CGLDescribeRenderer( rend, i, kCGLRPVideoMemoryMegabytes, &vram );
+				if( vram > vramStorage )
+					vramStorage = vram;
 			}
+			CGLDestroyRendererInfo( rend );
 		}
 	}
 
