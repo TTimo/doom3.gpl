@@ -1,3 +1,7 @@
+if( NOT SDL2_DIR )
+	Message( "SDL2_DIR not set, making platform specific build" )
+endif()
+
 MESSAGE( STATUS ${CMAKE_SHARED_MODULE_CREATE_C_FLAGS} )
 project(Doom3)
 cmake_minimum_required(VERSION 2.8)
@@ -12,6 +16,12 @@ set( CMAKE_OSX_ARCHITECTURES "i386" )
 set( CMAKE_OSX_SYSROOT /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk )
 set( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../bin )
 set( CMAKE_OSX_DEPLOYMENT_TARGET 10.9 )
+
+if( SDL2_DIR )
+	set( SDL2_INCLUDE_DIR ${SDL2_DIR}/include/SDL2 )
+	set( SDL2_LIBRARIES   ${SDL2_DIR}/lib/libSDL2.a )
+	include_directories( ${SDL2_INCLUDE_DIR} )
+endif()
 
 # Apple projects are unique RUNTIME_OUTPUT_DIRECTORY is not actually where the executable goes, also the xcode generator creates
 # release and Debug directories not present in the makefile project
@@ -291,11 +301,27 @@ SET( LINUX_SRC
 	./sys/linux/stack.cpp
 )
 
+SET( SDL2_SRC
+	./sys/sdl2/sdl2_glimp.cpp
+	./sys/sdl2/sdl2_main.cpp
+	./sys/sdl2/sdl2_input.cpp
+	./sys/sdl2/sdl2_snd.cpp
+	./sys/sdl2/sdl2_shared.cpp
+	./sys/sdl2/sdl2_cpu.cpp
+	./sys/sdl2/sdl2_net.cpp
+	./sys/sdl2/sdl2_threads.cpp
+	./sys/sdl2/sdl2_osx.mm
+)
+
 ADD_DEFINITIONS( -DID_ENFORCE_KEY=0 -D__DOOM_DLL__ -DID_ENABLE_CURL=1 )
 
 IF( APPLE )
-	SET( FRAMEWORKS "-framework Carbon -framework Cocoa -framework OpenGL -framework OpenAL -framework IOKit -framework CoreAudio -framework CoreGraphics -framework Foundation" )
-	SET( SOURCES ${COMMON_SRC} ${MACOSX_SRC} )
+	SET( FRAMEWORKS "-framework Carbon -framework Cocoa -framework OpenGL -framework OpenAL -framework IOKit -framework CoreAudio -framework CoreGraphics -framework Foundation -framework AudioUnit -framework ForceFeedback" )
+	IF( SDL2_DIR )
+		SET( SOURCES ${COMMON_SRC} ${SDL2_SRC} )
+	ELSE()
+		SET( SOURCES ${COMMON_SRC} ${MACOSX_SRC} )
+	ENDIF()
 
 	SET( MACOSX_PROJ_FILES
 		sys/osx/English.lproj/ASLCore.nib/objects.xib
@@ -319,7 +345,10 @@ IF( APPLE )
 	SET( MACOSX_RSRC_SOURCE sys/osx/Doom\ 3.rsrc )
 	SET_SOURCE_FILES_PROPERTIES( ${MACOSX_RSRC_SOURCE} PROPERTIES MACOSX_PACKAGE_LOCATION Resources )
 	ADD_EXECUTABLE( "Doom 3" MACOSX_BUNDLE ${SOURCES} ${MACOSX_PROJ_FILES} ${MACOSX_ICON_SOURCE} ${MACOSX_RSRC_SOURCE} )
-	TARGET_LINK_LIBRARIES( "Doom 3" ${FRAMEWORKS} curl idlib sound )
+	TARGET_LINK_LIBRARIES( "Doom 3" ${FRAMEWORKS} curl idlib sound iconv )
+	IF( SDL2_DIR )
+		target_link_libraries( "Doom 3" ${SDL2_LIBRARIES})
+	ENDIF()
 	set_target_properties( "Doom 3" PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/sys/osx/Info.plist)
 	#SET_TARGET_PROPERTIES( "Doom 3" PROPERTIES OUTPUT_NAME "Doom 3" )
 ELSE()
@@ -331,3 +360,46 @@ ELSE()
 	SET_TARGET_PROPERTIES( Doom3 PROPERTIES LINK_FLAGS "/LIBPATH:${CMAKE_CURRENT_SOURCE_DIR}\\openal\\lib /LIBPATH:${CMAKE_CURRENT_SOURCE_DIR}\\sys\\win32" )
 ENDIF()
 
+SOURCE_GROUP( "Renderer" FILES
+        ./renderer/Model_beam.cpp
+        ./renderer/Model_liquid.cpp
+        ./renderer/Model_lwo.cpp
+        ./renderer/Model_ma.cpp
+        ./renderer/Model_md3.cpp
+        ./renderer/Model_md5.cpp
+        ./renderer/Model_prt.cpp
+        ./renderer/Model_sprite.cpp
+        ./renderer/RenderEntity.cpp
+        ./renderer/RenderSystem.cpp
+        ./renderer/RenderSystem_init.cpp
+        ./renderer/RenderWorld.cpp
+        ./renderer/RenderWorld_demo.cpp
+        ./renderer/RenderWorld_load.cpp
+        ./renderer/RenderWorld_portals.cpp
+        ./renderer/VertexCache.cpp
+        ./renderer/cg_explicit.cpp
+        ./renderer/draw_arb.cpp
+        ./renderer/draw_arb2.cpp
+        ./renderer/draw_common.cpp
+        ./renderer/draw_exp_stub.cpp
+        ./renderer/draw_nv10.cpp
+        ./renderer/draw_nv20.cpp
+        ./renderer/draw_r200.cpp
+        ./renderer/tr_backend.cpp
+        ./renderer/tr_deform.cpp
+        ./renderer/tr_font.cpp
+        ./renderer/tr_guisurf.cpp
+        ./renderer/tr_light.cpp
+        ./renderer/tr_lightrun.cpp
+        ./renderer/tr_main.cpp
+        ./renderer/tr_orderIndexes.cpp
+        ./renderer/tr_polytope.cpp
+        ./renderer/tr_render.cpp
+        ./renderer/tr_rendertools.cpp
+        ./renderer/tr_shadowbounds.cpp
+        ./renderer/tr_stencilshadow.cpp
+        ./renderer/tr_subview.cpp
+        ./renderer/tr_trace.cpp
+        ./renderer/tr_trisurf.cpp
+        ./renderer/tr_turboshadow.cpp
+)
