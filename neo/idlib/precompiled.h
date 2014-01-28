@@ -65,6 +65,7 @@ If you have questions concerning this license or the applicable additional terms
 #include <winsock2.h>
 #include <mmsystem.h>
 #include <mmreg.h>
+#include <intrin.h>
 
 #define DIRECTINPUT_VERSION  0x0800			// was 0x0700 with the old mssdk
 #define DIRECTSOUND_VERSION  0x0800

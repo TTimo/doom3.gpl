@@ -86,6 +86,7 @@ void Sys_GetCallStack( address_t *callStack, const int callStackSize )
 const char *Sys_GetCallStackStr( const address_t *callStack, const int callStackSize )
 {
 	common->DPrintf( "TODO: __Sys_GetCallStackStr\n" );
+	return NULL;
 }
 
 /*

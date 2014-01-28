@@ -34,6 +34,7 @@ bool Sys_StringToNetAdr( const char *s, netadr_t *a, bool doDNSResolve )
  */
 bool Sys_CompareNetAdrBase( const netadr_t a, const netadr_t b )
 {
+	return false;
 }
 
 /*
@@ -80,6 +81,7 @@ void idPort::Close()
  */
 bool idPort::GetPacket( netadr_t &from, void *data, int &size, int maxSize )
 {
+	return false;
 }
 
 /*
@@ -89,6 +91,7 @@ bool idPort::GetPacket( netadr_t &from, void *data, int &size, int maxSize )
  */
 bool idPort::GetPacketBlocking( netadr_t &from, void *data, int &size, int maxSize, int timeout )
 {
+	return false;
 }
 
 /*
