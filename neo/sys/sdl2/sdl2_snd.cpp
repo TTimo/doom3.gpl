@@ -3,7 +3,7 @@
 
 #define INITGUID
 #include "../../sound/snd_local.h"
-#include "SDL.h"
+#include "SDL2/SDL.h"
 
 idCVar s_device( "s_device", "-1", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_INTEGER, "Sound device to use. -1 for default device" );
 

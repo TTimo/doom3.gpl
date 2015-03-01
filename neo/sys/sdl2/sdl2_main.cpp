@@ -7,7 +7,7 @@
 #include <dirent.h>
 
 #include "../sys_local.h"
-#include "SDL.h"
+#include "SDL2/SDL.h"
 
 void Platform_Init();
 void Platform_Quit();

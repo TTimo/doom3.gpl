@@ -1,6 +1,6 @@
 #include "../../idlib/precompiled.h"
-#include "SDL.h"
-#include "SDL_mouse.h" // for SDL_SetRelativeMouseMode
+#include "SDL2/SDL.h"
+#include "SDL2/SDL_mouse.h" // for SDL_SetRelativeMouseMode
 
 typedef struct poll_keyboard_event_s
 {

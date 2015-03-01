@@ -2,7 +2,7 @@
 #pragma hdrstop
 
 #include "../../renderer/tr_local.h"
-#include "SDL.h"
+#include "SDL2/SDL.h"
 
 SDL_Window *mainwindow = NULL;
 SDL_GLContext maincontext;

@@ -67,7 +67,7 @@ static void *hOpenGL = NULL;
 @implementation NSOpenGLContext (CGLContextAccess)
 - (CGLContextObj) cglContext;
 {
-	return _contextAuxiliary;
+	return [self CGLContextObj];
 }
 @end
 
