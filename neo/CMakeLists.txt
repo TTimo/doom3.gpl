@@ -49,6 +49,9 @@ add_subdirectory(idlib)
 add_subdirectory(game)
 add_subdirectory(d3xp)
 add_subdirectory(sound)
+IF(WIN32)
+add_subdirectory(curl)
+ENDIF()
 
 SET( COMMON_SRC 
 	./sys/sys_local.cpp
@@ -314,6 +317,10 @@ SET( SDL2_SRC
 
 ADD_DEFINITIONS( -DID_ENFORCE_KEY=0 -D__DOOM_DLL__ -DID_ENABLE_CURL=1 )
 
+IF( WIN32 )
+	ADD_DEFINITIONS( -DNO_WARN_MBCS_MFC_DEPRECATION )
+ENDIF()
+
 IF( APPLE )
 	SET( FRAMEWORKS "-framework Carbon -framework Cocoa -framework OpenGL -framework OpenAL -framework IOKit -framework CoreAudio -framework CoreGraphics -framework Foundation -framework AudioUnit -framework ForceFeedback" )
 	IF( SDL2_DIR )
@@ -360,9 +367,9 @@ ELSE()
 	ADD_EXECUTABLE(Doom3 WIN32 ${SOURCES} )
 	LINK_DIRECTORIES( ${CMAKE_CURRENT_SOURCE_DIR}/openal/lib )
 	IF( SDL2_DIR )
-		TARGET_LINK_LIBRARIES( Doom3 curl idlib sound opengl32 dsound dxguid dinput8 eaxguid dxerr user32 gdi32 comdlg32 winmm iphlpapi dbghelp ${SDL2_LIBRARIES} )
+		TARGET_LINK_LIBRARIES( Doom3 curl idlib sound opengl32 dsound dxguid dinput8 eaxguid user32 gdi32 comdlg32 winmm iphlpapi dbghelp ${SDL2_LIBRARIES} )
 	ELSE()
-		TARGET_LINK_LIBRARIES( Doom3 curl idlib sound opengl32 dsound dxguid dinput8 eaxguid dxerr user32 gdi32 comdlg32 winmm iphlpapi dbghelp )
+		TARGET_LINK_LIBRARIES( Doom3 curl idlib sound opengl32 dsound dxguid dinput8 eaxguid user32 gdi32 comdlg32 winmm iphlpapi dbghelp )
 	ENDIF()
 	SET_TARGET_PROPERTIES( Doom3 PROPERTIES LINK_FLAGS "/LIBPATH:${CMAKE_CURRENT_SOURCE_DIR}\\openal\\lib /LIBPATH:${CMAKE_CURRENT_SOURCE_DIR}\\sys\\win32" )
 ENDIF()
