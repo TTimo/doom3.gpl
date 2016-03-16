@@ -1498,7 +1498,7 @@ void TestMemcpy( void ) {
 		p_simd->Memcpy( test1, test0, 8192 );
 		for ( j = 0; j < i; j++ ) {
 			if ( test1[j] != test0[j] ) {
-				idLib::common->Printf( "   simd->Memcpy() "S_COLOR_RED"X\n" );
+				idLib::common->Printf( "   simd->Memcpy() " S_COLOR_RED "X\n" );
 				return;
 			}
 		}
@@ -1524,7 +1524,7 @@ void TestMemset( void ) {
 			p_simd->Memset( test, j, i );
 			for ( k = 0; k < i; k++ ) {
 				if ( test[k] != (byte)j ) {
-					idLib::common->Printf( "   simd->Memset() "S_COLOR_RED"X\n" );
+					idLib::common->Printf( "   simd->Memset() " S_COLOR_RED "X\n" );
 					return;
 				}
 			}
