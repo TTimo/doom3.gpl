@@ -50,5 +50,6 @@ INCLUDE_DIRECTORIES(
 	include
 )
 
+ADD_DEFINITIONS( ${CPP_WARNING_OPTIONS} )
 add_library( curl ${SOURCES} )
 set_target_properties( curl PROPERTIES PREFIX "")

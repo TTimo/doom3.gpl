@@ -35,5 +35,6 @@ INCLUDE_DIRECTORIES(
 	OggVorbis/vorbissrc
 )
 
+ADD_DEFINITIONS( ${CPP_WARNING_OPTIONS} )
 add_library( sound ${SOURCES} )
 set_target_properties( sound PROPERTIES PREFIX "")
