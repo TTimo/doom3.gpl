@@ -287,6 +287,23 @@ bool GLimp_OpenDisplay( void ) {
 }
 
 /*
+ * Convert an AA mode to an fsaa sample level
+ *  2x = 1
+ *  4x = 2
+ *  8x = 3
+ *  16x = 4
+ */
+int sampleLevel(int AAMode) {
+	int modes[] = {0, 2, 4, 8, 16};
+	for(int i=0; i<5; i++) {
+		if (modes[i] == AAMode) {
+			return i;
+		}
+	}
+	return 0;
+}
+
+/*
 ===============
 GLX_Init
 ===============
@@ -301,6 +318,11 @@ int GLX_Init(glimpParms_t a) {
 		GLX_DEPTH_SIZE, 24,		// 8, 9
 		GLX_STENCIL_SIZE, 8,	// 10, 11
 		GLX_ALPHA_SIZE, 8, // 12, 13
+		#if defined(GLX_SAMPLE_BUFFERS)
+			#define TRY_MULTISAMPLE
+			GLX_SAMPLE_BUFFERS  , 0, // 14, 15
+			GLX_SAMPLES         , 0, // 16, 17
+		#endif
 		None
 	};
 	// these match in the array
@@ -310,11 +332,15 @@ int GLX_Init(glimpParms_t a) {
 #define ATTR_DEPTH_IDX 9
 #define ATTR_STENCIL_IDX 11
 #define ATTR_ALPHA_IDX 13
+#define ATTR_SAMPLE_BUFFERS_IDX 15
+#define ATTR_SAMPLES_IDX 17
+
 	Window root;
 	XVisualInfo *visinfo;
 	XSetWindowAttributes attr;
 	XSizeHints sizehints;
 	unsigned long mask;
+	int best_multisample = 0;
 	int colorbits, depthbits, stencilbits;
 	int tcolorbits, tdepthbits, tstencilbits;
 	int actualWidth, actualHeight;
@@ -394,6 +420,10 @@ int GLX_Init(glimpParms_t a) {
 	colorbits = 24;
 	depthbits = 24;
 	stencilbits = 8;
+	
+	#if defined(TRY_MULTISAMPLE)
+		best_multisample = sampleLevel(cvarSystem->GetCVarInteger("r_multiSamples"));
+	#endif
 
 	for (i = 0; i < 16; i++) {
 		// 0 - default
@@ -458,12 +488,37 @@ int GLX_Init(glimpParms_t a) {
 		
 		attrib[ATTR_DEPTH_IDX] = tdepthbits;	// default to 24 depth
 		attrib[ATTR_STENCIL_IDX] = tstencilbits;
-
-		visinfo = qglXChooseVisual(dpy, scrnum, attrib);
-		if (!visinfo) {
-			continue;
-		}
-
+		#if defined(TRY_MULTISAMPLE)
+			visinfo = NULL;
+			// Try to create the visual with various multisample levels
+			for(int i=best_multisample; i>=0 && !visinfo; i--) {
+				attrib[ATTR_SAMPLE_BUFFERS_IDX] = (i!=0);
+				attrib[ATTR_SAMPLES_IDX] = i;
+				visinfo = qglXChooseVisual(dpy, scrnum, attrib);
+			}
+			if(!visinfo) {
+				continue;
+			}
+			best_multisample = attrib[ATTR_SAMPLES_IDX];
+			// Convert the mode we used back to an "AA" level for storage
+			if(best_multisample) {
+				int w = 2;
+				for(int i=best_multisample; i>1; i--) {
+					w *= 2;
+				}
+				best_multisample = w;
+				common->Printf("Using %dX AA\n", best_multisample);
+			}
+			
+		#else
+			visinfo = qglXChooseVisual(dpy, scrnum, attrib);
+			if (!visinfo) {
+				continue;
+			}
+		#endif
+		
+		cvarSystem->SetCVarInteger("r_multiSamples", best_multisample);
+		
 		common->Printf( "Using %d/%d/%d Color bits, %d Alpha bits, %d depth, %d stencil display.\n",
 			 attrib[ATTR_RED_IDX], attrib[ATTR_GREEN_IDX],
 			 attrib[ATTR_BLUE_IDX], attrib[ATTR_ALPHA_IDX],
