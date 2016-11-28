@@ -3,7 +3,7 @@
 # TTimo <ttimo@idsoftware.com>
 # http://scons.sourceforge.net
 
-import sys, os, time, commands, re, pickle, StringIO, popen2, commands, pdb, zipfile, string
+import sys, os, time, commands, re, pickle, StringIO, commands, pdb, zipfile, string
 import SCons
 
 sys.path.append( 'sys/scons' )
