@@ -147,6 +147,20 @@
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug with inlines and memory log|Win32'">gamex86</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug with inlines|Win32'">gamex86</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">gamex86</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug with inlines|Win32'">gamex86</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug|Win32'">gamex86</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Dedicated Release|Win32'">gamex86</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">gamex86</TargetName>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug with inlines and memory log|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug with inlines|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug with inlines|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Dedicated Release|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GenerateManifest>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PreBuildEvent>
@@ -154,6 +168,16 @@
 "build\Win32\$(Configuration)\TypeInfo.exe" d3xp
 </Command>
     </PreBuildEvent>
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile>
+      <PrecompiledHeaderFile>../idlib/precompiled.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>../idlib/precompiled.h</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug with inlines and memory log|Win32'">
     <PreBuildEvent>
@@ -161,6 +185,16 @@
 "build\Win32\$(Configuration)\TypeInfo.exe" d3xp
 </Command>
     </PreBuildEvent>
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile>
+      <PrecompiledHeaderFile>../idlib/precompiled.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>../idlib/precompiled.h</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug with inlines|Win32'">
     <PreBuildEvent>
@@ -168,6 +202,16 @@
 "build\Win32\$(Configuration)\TypeInfo.exe" d3xp
 </Command>
     </PreBuildEvent>
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile>
+      <PrecompiledHeaderFile>../idlib/precompiled.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>../idlib/precompiled.h</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug with inlines|Win32'">
     <PreBuildEvent>
@@ -175,6 +219,16 @@
 "build\Win32\$(Configuration)\TypeInfo.exe" d3xp
 </Command>
     </PreBuildEvent>
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile>
+      <PrecompiledHeaderFile>../idlib/precompiled.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>../idlib/precompiled.h</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug|Win32'">
     <PreBuildEvent>
@@ -182,6 +236,16 @@
 "build\Win32\$(Configuration)\TypeInfo.exe" d3xp
 </Command>
     </PreBuildEvent>
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile>
+      <PrecompiledHeaderFile>../idlib/precompiled.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>../idlib/precompiled.h</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dedicated Release|Win32'">
     <PreBuildEvent>
@@ -189,6 +253,16 @@
 "build\Win32\$(Configuration)\TypeInfo.exe" d3xp
 </Command>
     </PreBuildEvent>
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile>
+      <PrecompiledHeaderFile>../idlib/precompiled.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>../idlib/precompiled.h</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <PreBuildEvent>
@@ -196,6 +270,16 @@
 "build\Win32\$(Configuration)\TypeInfo.exe" d3xp
 </Command>
     </PreBuildEvent>
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile>
+      <PrecompiledHeaderFile>../idlib/precompiled.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>../idlib/precompiled.h</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="d3xp\ai\AAS.cpp" />
@@ -260,7 +344,11 @@
     <ClCompile Include="d3xp\Player.cpp" />
     <ClCompile Include="d3xp\PlayerIcon.cpp" />
     <ClCompile Include="d3xp\PlayerView.cpp" />
-    <ClCompile Include="idlib\precompiled.cpp" />
+    <ClCompile Include="idlib\precompiled.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="d3xp\Projectile.cpp" />
     <ClCompile Include="d3xp\Pvs.cpp" />
     <ClCompile Include="d3xp\SecurityCamera.cpp" />

@@ -4,7 +4,7 @@
 Doom 3 GPL Source Code
 Copyright (C) 1999-2011 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Doom 3 GPL Source Code (?Doom 3 Source Code?).  
+This file is part of the Doom 3 GPL Source Code ("Doom 3 Source Code").  
 
 Doom 3 Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -100,7 +100,7 @@ bool			com_editorActive;		//  true if an editor has focus
 #ifdef _WIN32
 HWND			com_hwndMsg = NULL;
 bool			com_outputMsg = false;
-unsigned int	com_msgID = -1;
+unsigned int	com_msgID = static_cast<unsigned int>(-1);
 #endif
 
 #ifdef __DOOM_DLL__
@@ -431,7 +431,7 @@ void idCommonLocal::VPrintf( const char *fmt, va_list args ) {
 #ifdef _WIN32
 
 	if ( com_outputMsg ) {
-		if ( com_msgID == -1 ) {
+		if ( com_msgID == static_cast<unsigned int>(-1) ) {
 			com_msgID = ::RegisterWindowMessage( DMAP_MSGID );
 			if ( !FindEditor() ) {
 				com_outputMsg = false;

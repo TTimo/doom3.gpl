@@ -1,1 +1,7 @@
 build
+*.user
+*.sdf
+*.opensdf
+neo/ipch
+*.suo
+neo/game/gamesys/GameTypeInfo.h

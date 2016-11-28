@@ -4,7 +4,7 @@
 Doom 3 GPL Source Code
 Copyright (C) 1999-2011 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Doom 3 GPL Source Code (?Doom 3 Source Code?).  
+This file is part of the Doom 3 GPL Source Code ("Doom 3 Source Code").  
 
 Doom 3 Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -1079,8 +1079,10 @@ static void RB_T_Shadow( const drawSurf_t *surf ) {
 		numIndexes = tri->numIndexes;
 	} else if ( r_useExternalShadows.GetInteger() == 2 ) { // force to no caps for testing
 		numIndexes = tri->numShadowIndexesNoCaps;
-	} else if ( !(surf->dsFlags & DSF_VIEW_INSIDE_SHADOW) ) { 
+		external = true;
+	} else if ( ( glConfig.depthClampAvailable && r_useDepthClamp.GetBool() ) || !(surf->dsFlags & DSF_VIEW_INSIDE_SHADOW) ) {
 		// if we aren't inside the shadow projection, no caps are ever needed needed
+		// LEITH: also if depth clamp is enabled the near and far clip planes are disabled removing the need for any caps
 		numIndexes = tri->numShadowIndexesNoCaps;
 		external = true;
 	} else if ( !backEnd.vLight->viewInsideLight && !(surf->geo->shadowCapPlaneBits & SHADOW_CAP_INFINITE) ) {
@@ -1143,6 +1145,9 @@ static void RB_T_Shadow( const drawSurf_t *surf ) {
 		return;
 	}
 
+#if 0 // LEITH: the original patent free "preload" code
+	// LEITH: TODO: add two sided stencil to preload code
+
 	// patent-free work around
 	if ( !external ) {
 		// "preload" the stencil buffer with the number of volumes
@@ -1150,6 +1155,7 @@ static void RB_T_Shadow( const drawSurf_t *surf ) {
 		qglStencilOp( GL_KEEP, tr.stencilDecr, tr.stencilDecr );
 		GL_Cull( CT_FRONT_SIDED );
 		RB_DrawShadowElementsWithCounters( tri, numIndexes );
+
 		qglStencilOp( GL_KEEP, tr.stencilIncr, tr.stencilIncr );
 		GL_Cull( CT_BACK_SIDED );
 		RB_DrawShadowElementsWithCounters( tri, numIndexes );
@@ -1163,6 +1169,56 @@ static void RB_T_Shadow( const drawSurf_t *surf ) {
 	qglStencilOp( GL_KEEP, GL_KEEP, tr.stencilDecr );
 	GL_Cull( CT_BACK_SIDED );
 	RB_DrawShadowElementsWithCounters( tri, numIndexes );
+
+#else // LEITH: the patented "Carmack's Reverse" code
+
+	// patented depth-fail stencil shadows
+	if ( !external ) {
+		if (glConfig.twoSidedStencilAvailable && r_useTwoSidedStencil.GetBool()) {
+			qglActiveStencilFaceEXT( backEnd.viewDef->isMirror ? GL_FRONT : GL_BACK );
+			qglStencilOp( GL_KEEP, tr.stencilDecr, GL_KEEP );
+			qglActiveStencilFaceEXT( backEnd.viewDef->isMirror ? GL_BACK : GL_FRONT );
+			qglStencilOp( GL_KEEP, tr.stencilIncr, GL_KEEP );
+			RB_DrawShadowElementsWithCounters( tri, numIndexes );
+		} else if(r_useTwoSidedStencil.GetBool() && glConfig.atiTwoSidedStencilAvailable) {
+			qglStencilOpSeparateATI( backEnd.viewDef->isMirror ? GL_FRONT : GL_BACK, GL_KEEP, tr.stencilDecr, GL_KEEP );
+			qglStencilOpSeparateATI( backEnd.viewDef->isMirror ? GL_BACK : GL_FRONT, GL_KEEP, tr.stencilIncr, GL_KEEP );
+			GL_Cull( CT_TWO_SIDED );
+			RB_DrawShadowElementsWithCounters( tri, numIndexes );
+		} else {
+			qglStencilOp( GL_KEEP, tr.stencilDecr, GL_KEEP );
+			GL_Cull( CT_FRONT_SIDED );
+			RB_DrawShadowElementsWithCounters( tri, numIndexes );
+
+			qglStencilOp( GL_KEEP, tr.stencilIncr, GL_KEEP );
+			GL_Cull( CT_BACK_SIDED );
+			RB_DrawShadowElementsWithCounters( tri, numIndexes );
+		}
+	} else {
+		// traditional depth-pass stencil shadows
+		if (glConfig.twoSidedStencilAvailable && r_useTwoSidedStencil.GetBool()) {
+			qglActiveStencilFaceEXT( backEnd.viewDef->isMirror ? GL_FRONT : GL_BACK );
+			qglStencilOp( GL_KEEP, GL_KEEP, tr.stencilIncr );
+			qglActiveStencilFaceEXT( backEnd.viewDef->isMirror ? GL_BACK : GL_FRONT );
+			qglStencilOp( GL_KEEP, GL_KEEP, tr.stencilDecr );
+			RB_DrawShadowElementsWithCounters( tri, numIndexes );
+		} else if(r_useTwoSidedStencil.GetBool() && glConfig.atiTwoSidedStencilAvailable) {
+			qglStencilOpSeparateATI( backEnd.viewDef->isMirror ? GL_FRONT : GL_BACK, GL_KEEP, GL_KEEP, tr.stencilIncr );
+			qglStencilOpSeparateATI( backEnd.viewDef->isMirror ? GL_BACK : GL_FRONT, GL_KEEP, GL_KEEP, tr.stencilDecr );
+			GL_Cull( CT_TWO_SIDED );
+			RB_DrawShadowElementsWithCounters( tri, numIndexes );
+		} else {
+			qglStencilOp( GL_KEEP, GL_KEEP, tr.stencilIncr );
+			GL_Cull( CT_FRONT_SIDED );
+			RB_DrawShadowElementsWithCounters( tri, numIndexes );
+
+			qglStencilOp( GL_KEEP, GL_KEEP, tr.stencilDecr );
+			GL_Cull( CT_BACK_SIDED );
+			RB_DrawShadowElementsWithCounters( tri, numIndexes );
+		}
+	}
+
+#endif
 }
 
 /*
@@ -1212,6 +1268,16 @@ void RB_StencilShadowPass( const drawSurf_t *drawSurfs ) {
 		qglEnable( GL_DEPTH_BOUNDS_TEST_EXT );
 	}
 
+	// LEITH: enable NVIDIA two sided stencil ops
+	if ( glConfig.twoSidedStencilAvailable && r_useTwoSidedStencil.GetBool() ) {
+		qglEnable( GL_STENCIL_TEST_TWO_SIDE_EXT );
+	}
+
+	// LEITH: enable NVIDIA depth clamp
+	if ( glConfig.depthClampAvailable && r_useDepthClamp.GetBool() ) {
+		qglEnable( GL_DEPTH_CLAMP_NV );
+	}
+
 	RB_RenderDrawSurfChainWithFunction( drawSurfs, RB_T_Shadow );
 
 	GL_Cull( CT_FRONT_SIDED );
@@ -1222,6 +1288,11 @@ void RB_StencilShadowPass( const drawSurf_t *drawSurfs ) {
 
 	if ( glConfig.depthBoundsTestAvailable && r_useDepthBoundsTest.GetBool() ) {
 		qglDisable( GL_DEPTH_BOUNDS_TEST_EXT );
+	}
+	
+	// LEITH: disable NVIDIA two sided stencil ops
+	if ( glConfig.depthClampAvailable && r_useDepthClamp.GetBool() ) {
+		qglDisable( GL_DEPTH_CLAMP_NV );
 	}
 
 	qglEnableClientState( GL_TEXTURE_COORD_ARRAY );

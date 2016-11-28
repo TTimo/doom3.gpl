@@ -147,48 +147,132 @@
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug with inlines and memory log|Win32'">gamex86</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug with inlines|Win32'">gamex86</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">gamex86</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug with inlines|Win32'">gamex86</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug|Win32'">gamex86</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Dedicated Release|Win32'">gamex86</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">gamex86</TargetName>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug with inlines and memory log|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug with inlines|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug with inlines|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Dedicated Release|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GenerateManifest>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PreBuildEvent>
       <Command>cd $(SolutionDir)\..
 "build\Win32\$(Configuration)\TypeInfo.exe"</Command>
     </PreBuildEvent>
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile>
+      <PrecompiledHeaderFile>../idlib/precompiled.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>../idlib/precompiled.h</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug with inlines|Win32'">
     <PreBuildEvent>
       <Command>cd $(SolutionDir)\..
 "build\Win32\$(Configuration)\TypeInfo.exe"</Command>
     </PreBuildEvent>
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile>
+      <PrecompiledHeaderFile>../idlib/precompiled.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>../idlib/precompiled.h</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug with inlines and memory log|Win32'">
     <PreBuildEvent>
       <Command>cd $(SolutionDir)\..
 "build\Win32\$(Configuration)\TypeInfo.exe"</Command>
     </PreBuildEvent>
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile>
+      <PrecompiledHeaderFile>../idlib/precompiled.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>../idlib/precompiled.h</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug|Win32'">
     <PreBuildEvent>
       <Command>cd $(SolutionDir)\..
 "build\Win32\$(Configuration)\TypeInfo.exe"</Command>
     </PreBuildEvent>
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile>
+      <PrecompiledHeaderFile>../idlib/precompiled.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>../idlib/precompiled.h</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug with inlines|Win32'">
     <PreBuildEvent>
       <Command>cd $(SolutionDir)\..
 "build\Win32\$(Configuration)\TypeInfo.exe"</Command>
     </PreBuildEvent>
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile>
+      <PrecompiledHeaderFile>../idlib/precompiled.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>../idlib/precompiled.h</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dedicated Release|Win32'">
     <PreBuildEvent>
       <Command>cd $(SolutionDir)\..
 "build\Win32\$(Configuration)\TypeInfo.exe"</Command>
     </PreBuildEvent>
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile>
+      <PrecompiledHeaderFile>../idlib/precompiled.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>../idlib/precompiled.h</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <PreBuildEvent>
       <Command>cd $(SolutionDir)\..
 "build\Win32\$(Configuration)\TypeInfo.exe"</Command>
     </PreBuildEvent>
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile>
+      <PrecompiledHeaderFile>../idlib/precompiled.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>../idlib/precompiled.h</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="game\ai\AAS.cpp" />
@@ -260,6 +344,29 @@
     <ClCompile Include="game\Trigger.cpp" />
     <ClCompile Include="game\Weapon.cpp" />
     <ClCompile Include="game\WorldSpawn.cpp" />
+    <ClCompile Include="idlib\precompiled.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug with inlines and memory log|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug with inlines and memory log|Win32'">
+      </PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug with inlines|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug with inlines|Win32'">
+      </PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug with inlines|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug with inlines|Win32'">
+      </PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug|Win32'">
+      </PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Dedicated Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Dedicated Release|Win32'">
+      </PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeaderFile>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game\ai\AAS.h" />

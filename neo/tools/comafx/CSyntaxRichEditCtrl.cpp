@@ -4,7 +4,7 @@
 Doom 3 GPL Source Code
 Copyright (C) 1999-2011 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Doom 3 GPL Source Code (?Doom 3 Source Code?).  
+This file is part of the Doom 3 GPL Source Code ("Doom 3 Source Code").  
 
 Doom 3 Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -1380,9 +1380,6 @@ CSyntaxRichEditCtrl::OnToolTipNotify
 ================
 */
 BOOL CSyntaxRichEditCtrl::OnToolTipNotify( UINT id, NMHDR *pNMHDR, LRESULT *pResult ) {
-	TOOLTIPTEXTA* pTTTA = (TOOLTIPTEXTA*)pNMHDR;
-	TOOLTIPTEXTW* pTTTW = (TOOLTIPTEXTW*)pNMHDR;
-
 	*pResult = 0;
 
 	idStr name;
@@ -1410,6 +1407,8 @@ BOOL CSyntaxRichEditCtrl::OnToolTipNotify( UINT id, NMHDR *pNMHDR, LRESULT *pRes
 		state->m_pToolTip->SetDelayTime( TTDT_AUTOPOP, 5000 + toolTip.GetLength() * 50 );
 
 #ifndef _UNICODE
+		TOOLTIPTEXTW* pTTTW = (TOOLTIPTEXTW*)pNMHDR;
+
 		if( pNMHDR->code == TTN_NEEDTEXTA ) {
 			delete m_pchTip;
 			m_pchTip = new TCHAR[toolTip.GetLength() + 2];
@@ -1422,6 +1421,8 @@ BOOL CSyntaxRichEditCtrl::OnToolTipNotify( UINT id, NMHDR *pNMHDR, LRESULT *pRes
 			pTTTW->lpszText = (WCHAR*)m_pwchTip;
 		}
 #else
+		TOOLTIPTEXTA* pTTTA = (TOOLTIPTEXTA*)pNMHDR;
+
 		if( pNMHDR->code == TTN_NEEDTEXTA ) {
 			delete m_pchTip;
 			m_pchTip = new TCHAR[toolTip.GetLength() + 2];

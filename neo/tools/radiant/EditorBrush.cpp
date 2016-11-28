@@ -4,7 +4,7 @@
 Doom 3 GPL Source Code
 Copyright (C) 1999-2011 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Doom 3 GPL Source Code (?Doom 3 Source Code?).  
+This file is part of the Doom 3 GPL Source Code ("Doom 3 Source Code").  
 
 Doom 3 Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -2166,6 +2166,7 @@ void Brush_MakeSided(int sides) {
 
 	Brush_Free(b);
 
+	axis = 2;
 	if (g_pParentWnd->ActiveXY()) {
 		switch (g_pParentWnd->ActiveXY()->GetViewType())
 		{
@@ -2179,9 +2180,6 @@ void Brush_MakeSided(int sides) {
 				axis = 0;
 				break;
 		}
-	}
-	else {
-		axis = 2;
 	}
 
 	// find center of brush
@@ -2540,6 +2538,9 @@ bool Brush_ModelIntersect(brush_t *b, idVec3 origin, idVec3 dir,float &scale) {
 		float a, s, c;
 		if (GetMatrixForKey(b->owner, "rotation", mat)) {
 			matrix = true;
+			a = 0;
+			s = 0;
+			c = 0;
 		} else {
 			a = FloatForKey(b->owner, "angle");
 			if (a) {
@@ -4329,7 +4330,6 @@ void Brush_DrawCombatNode( brush_t *b, bool cameraView, bool bSelected ) {
 	idVec3 cone_left = leftang.ToForward();
 	idAngles rightang( 0.0f, yaw - fov * 0.5f + 90.0f, 0.0f );
 	idVec3 cone_right = rightang.ToForward();
-	bool disabled = b->owner->epairs.GetBool( "start_off" );
 
 	idVec4 color;
 	if ( bSelected ) {
@@ -4583,7 +4583,7 @@ void Brush_DrawCurve( brush_t *b, bool bSelected, bool cam ) {
 	}
 
 	int maxage = b->owner->curve->GetNumValues();
-	int i, time = 0;
+	int i; //, time = 0;
 	qglColor3f( 0.0f, 0.0f, 1.0f );
 	for ( i = 0; i < maxage; i++) {
 

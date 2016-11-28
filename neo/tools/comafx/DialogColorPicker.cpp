@@ -4,7 +4,7 @@
 Doom 3 GPL Source Code
 Copyright (C) 1999-2011 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Doom 3 GPL Source Code (?Doom 3 Source Code?).  
+This file is part of the Doom 3 GPL Source Code ("Doom 3 Source Code").  
 
 Doom 3 Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -912,7 +912,6 @@ void CDialogColorPicker::DrawLines(CDC *pDC)
 	pt[1] = PointOnLine(Vertex,Left,(color.g*GreenLen)/255,GreenLen);
 	pt[2] = PointOnLine(Vertex,Right,(color.b*BlueLen)/255,BlueLen);
 
-	COLORREF col = RGB(255,255,255);
 	CRect cr;
 
 	for(int i = 0; i < 3; i++ ) {

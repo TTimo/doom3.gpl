@@ -4,7 +4,7 @@
 Doom 3 GPL Source Code
 Copyright (C) 1999-2011 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Doom 3 GPL Source Code (?Doom 3 Source Code?).  
+This file is part of the Doom 3 GPL Source Code ("Doom 3 Source Code").  
 
 Doom 3 Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -885,6 +885,7 @@ extern idCVar r_useIndexBuffers;		// if 0, don't use ARB_vertex_buffer_object fo
 extern idCVar r_useEntityCallbacks;		// if 0, issue the callback immediately at update time, rather than defering
 extern idCVar r_lightAllBackFaces;		// light all the back faces, even when they would be shadowed
 extern idCVar r_useDepthBoundsTest;     // use depth bounds test to reduce shadow fill
+extern idCVar r_useDepthClamp;			// use depth clamp to remove near and far clip planes
 
 extern idCVar r_skipPostProcess;		// skip all post-process renderings
 extern idCVar r_skipSuppress;			// ignore the per-view suppressions

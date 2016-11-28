@@ -4,7 +4,7 @@
 Doom 3 GPL Source Code
 Copyright (C) 1999-2011 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Doom 3 GPL Source Code (?Doom 3 Source Code?).  
+This file is part of the Doom 3 GPL Source Code ("Doom 3 Source Code").  
 
 Doom 3 Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -1007,8 +1007,10 @@ void Sys_Init( void ) {
 			win32.sys_arch.SetString( "Win2K (NT)" );
 		} else if( win32.osversion.dwMajorVersion == 5 && win32.osversion.dwMinorVersion == 1 ) {
 			win32.sys_arch.SetString( "WinXP (NT)" );
-		} else if ( win32.osversion.dwMajorVersion == 6 ) {
-			win32.sys_arch.SetString( "Vista" );
+		} else if ( win32.osversion.dwMajorVersion == 6 && win32.osversion.dwMinorVersion == 0 ) {
+			win32.sys_arch.SetString( "WinVista (NT)" );
+		} else if ( win32.osversion.dwMajorVersion == 6 && win32.osversion.dwMinorVersion == 1 ) {
+			win32.sys_arch.SetString( "Win7 (NT)" );
 		} else {
 			win32.sys_arch.SetString( "Unknown NT variant" );
 		}

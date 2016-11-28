@@ -4,7 +4,7 @@
 Doom 3 GPL Source Code
 Copyright (C) 1999-2011 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Doom 3 GPL Source Code (?Doom 3 Source Code?).  
+This file is part of the Doom 3 GPL Source Code ("Doom 3 Source Code").  
 
 Doom 3 Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -126,12 +126,12 @@ void PDAEditorInit( const idDict *spawnArgs ) {
 	g_PDAEditorDialog->ShowWindow( SW_SHOW );
 	g_PDAEditorDialog->SetFocus();
 
-	if ( spawnArgs ) {
-		// select PDA based on spawn args
-		const char *name = spawnArgs->GetString( "pda" );
-		idDeclPDA *decl = static_cast<idDeclPDA *>( const_cast<idDecl *>( declManager->FindType( DECL_PDA, name ) ) );
-		// FIXME: select this PDA
-	}
+	//if ( spawnArgs ) {
+	//	// select PDA based on spawn args
+	//	const char *name = spawnArgs->GetString( "pda" );
+	//	idDeclPDA *decl = static_cast<idDeclPDA *>( const_cast<idDecl *>( declManager->FindType( DECL_PDA, name ) ) );
+	//	// FIXME: select this PDA
+	//}
 }
 
 void PDAEditorRun( void ) {

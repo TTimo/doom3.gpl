@@ -4,7 +4,7 @@
 Doom 3 GPL Source Code
 Copyright (C) 1999-2011 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Doom 3 GPL Source Code (?Doom 3 Source Code?).  
+This file is part of the Doom 3 GPL Source Code ("Doom 3 Source Code").  
 
 Doom 3 Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -602,7 +602,6 @@ RB_NV20_DrawInteraction
 ==================
 */
 static void	RB_NV20_DrawInteraction( const drawInteraction_t *din ) {
-	const drawSurf_t *surf = din->surf;
 
 	// load all the vertex program parameters
 	qglProgramEnvParameter4fvARB( GL_VERTEX_PROGRAM_ARB, PP_LIGHT_ORIGIN, din->localLightOrigin.ToFloatPtr() );
@@ -642,7 +641,6 @@ static void	RB_NV20_DrawInteraction( const drawInteraction_t *din ) {
 	// ambient light could be done as a single pass if we want to optimize for it
 
 	// monochrome light is two passes
-	int		internalFormat = din->lightImage->internalFormat;
 	if ( ( r_useNV20MonoLights.GetInteger() == 2 ) || 
 		( din->lightImage->isMonochrome && r_useNV20MonoLights.GetInteger() ) ) {
 		// do a two-pass rendering

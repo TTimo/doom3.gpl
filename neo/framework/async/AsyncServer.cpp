@@ -4,7 +4,7 @@
 Doom 3 GPL Source Code
 Copyright (C) 1999-2011 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Doom 3 GPL Source Code (?Doom 3 Source Code?).  
+This file is part of the Doom 3 GPL Source Code ("Doom 3 Source Code").  
 
 Doom 3 Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -2702,7 +2702,8 @@ void idAsyncServer::ProcessDownloadRequestMessage( const netadr_t from, const id
 	// the first token of the pak names list passed to the game will be empty if no game pak is requested
 	dlGamePak = msg.ReadLong();
 	if ( dlGamePak ) {
-		if ( !( dlSize[ 0 ] = fileSystem->ValidateDownloadPakForChecksum( dlGamePak, pakbuf, true ) ) ) {
+		dlSize[ 0 ] = fileSystem->ValidateDownloadPakForChecksum( dlGamePak, pakbuf, true );
+		if ( !dlSize[ 0 ] ) {
 			common->Warning( "client requested unknown game pak 0x%x", dlGamePak );
 			pakbuf[ 0 ] = '\0';
 			voidSlots++;
@@ -2717,7 +2718,8 @@ void idAsyncServer::ProcessDownloadRequestMessage( const netadr_t from, const id
 	// read the checksums, build path names and pass that to the game code
 	dlPakChecksum = msg.ReadLong();
 	while ( dlPakChecksum ) {
-		if ( !( dlSize[ numPaks ] = fileSystem->ValidateDownloadPakForChecksum( dlPakChecksum, pakbuf, false ) ) ) {
+		dlSize[ numPaks ] = fileSystem->ValidateDownloadPakForChecksum( dlPakChecksum, pakbuf, false );
+		if ( !dlSize[ numPaks ] ) {
 			// we pass an empty token to the game so our list doesn't get offset
 			common->Warning( "client requested an unknown pak 0x%x", dlPakChecksum );
 			pakbuf[ 0 ] = '\0';

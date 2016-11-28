@@ -4,7 +4,7 @@
 Doom 3 GPL Source Code
 Copyright (C) 1999-2011 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Doom 3 GPL Source Code (?Doom 3 Source Code?).  
+This file is part of the Doom 3 GPL Source Code ("Doom 3 Source Code").  
 
 Doom 3 Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -558,10 +558,6 @@ DialogDeclBrowser::OnToolTipNotify
 ================
 */
 BOOL DialogDeclBrowser::OnToolTipNotify( UINT id, NMHDR *pNMHDR, LRESULT *pResult ) {
-	// need to handle both ANSI and UNICODE versions of the message
-	TOOLTIPTEXTA* pTTTA = (TOOLTIPTEXTA*)pNMHDR;
-	TOOLTIPTEXTW* pTTTW = (TOOLTIPTEXTW*)pNMHDR;
-
 	if ( pNMHDR->hwndFrom == declTree.GetSafeHwnd() ) {
 		CString toolTip;
 		const idDecl *decl = GetDeclFromTreeItem( (HTREEITEM) pNMHDR->idFrom );
@@ -572,7 +568,10 @@ BOOL DialogDeclBrowser::OnToolTipNotify( UINT id, NMHDR *pNMHDR, LRESULT *pResul
 
 		toolTip = va( "%s, line: %d", decl->GetFileName(), decl->GetLineNum() );
 
+		// need to handle both ANSI and UNICODE versions of the message
 #ifndef _UNICODE
+		TOOLTIPTEXTW* pTTTW = (TOOLTIPTEXTW*)pNMHDR;
+
 		if( pNMHDR->code == TTN_NEEDTEXTA ) {
 			delete m_pchTip;
 			m_pchTip = new TCHAR[toolTip.GetLength() + 2];
@@ -585,6 +584,8 @@ BOOL DialogDeclBrowser::OnToolTipNotify( UINT id, NMHDR *pNMHDR, LRESULT *pResul
 			pTTTW->lpszText = (WCHAR*)m_pwchTip;
 		}
 #else
+		TOOLTIPTEXTA* pTTTA = (TOOLTIPTEXTA*)pNMHDR;
+
 		if( pNMHDR->code == TTN_NEEDTEXTA ) {
 			delete m_pchTip;
 			m_pchTip = new TCHAR[toolTip.GetLength() + 2];
@@ -807,8 +808,6 @@ DialogDeclBrowser::OnTreeSelChanged
 ================
 */
 void DialogDeclBrowser::OnTreeSelChanged( NMHDR* pNMHDR, LRESULT* pResult ) {
-	LV_KEYDOWN* pLVKeyDow = (LV_KEYDOWN*)pNMHDR;
-
 	const idDecl *decl = GetSelectedDecl();
 	if ( decl ) {
 		statusBar.SetWindowText( va( "%d decls listed    -    %s, line: %d", numListedDecls, decl->GetFileName(), decl->GetLineNum() ) );
