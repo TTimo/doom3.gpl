@@ -536,6 +536,15 @@ const char *Sys_EXEPath( void ) {
 
 /*
 ==============
+Sys_DLLPath
+==============
+*/
+const char *Sys_DLLPath(void) {
+	return Sys_EXEPath();
+}
+
+/*
+==============
 Sys_ListFiles
 ==============
 */

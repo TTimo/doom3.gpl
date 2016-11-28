@@ -1,0 +1,9 @@
+This is my fork of the Doom3 code.
+
+The aim is to build a version of Doom3 for OSX 10.11, there are certainly better versions of Doom3 for you to run on OSX, this is mostly for my own benifit to learn a little about OSX/XCode.
+
+I had intended to make more modifications but I haven't had time to work on this I thought I'd just release what I have.
+
+All this work is my own, however I was pretty familiar with the Fabien Sanglard's port so I may have fixed some things in the same way.
+
+Mostly this build just removes usage of deprecated api's, one of which is a traditional fullscreen mode.  It seems Apple now favors creating a window the size of the desktop, sizing the backbuffer to the size you want and then letting it scale (perhaps I'm wrong if you know of a method to switch screen modes that isn't deprecated let me know).

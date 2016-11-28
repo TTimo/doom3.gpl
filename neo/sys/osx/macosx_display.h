@@ -2,7 +2,7 @@
 
 @class NSDictionary;
 
-extern NSDictionary *Sys_GetMatchingDisplayMode( glimpParms_t parms );
+extern CGDisplayModeRef Sys_GetMatchingDisplayMode( glimpParms_t parms );
 
 extern void Sys_StoreGammaTables();
 extern void Sys_GetGammaTable(glwgamma_t *table);
@@ -14,3 +14,5 @@ extern void Sys_UnfadeScreens();
 extern void Sys_UnfadeScreen(CGDirectDisplayID display, glwgamma_t *table);
 extern void Sys_ReleaseAllDisplays();
 
+extern void Sys_SetGameGamma();
+extern void Sys_SetOriginalGamma();

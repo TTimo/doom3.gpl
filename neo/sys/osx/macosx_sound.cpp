@@ -31,7 +31,8 @@ If you have questions concerning this license or the applicable additional terms
 
 #include <Carbon/Carbon.h>
 #include <CoreAudio/CoreAudio.h>
-
+#include <sys/sysctl.h>
+   
 idCVar s_device( "s_device", "-1", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_INTEGER, "Sound device to use. -1 for default device" );
 
 class idAudioHardwareOSX : public idAudioHardware {
@@ -57,6 +58,7 @@ public:
 private:
 	AudioDeviceID		selectedDevice;
 	bool				activeIOProc;
+	AudioDeviceIOProcID activeIOProcID;
 
 	void				Reset( void );
 	void				InitFailed( void );
@@ -126,7 +128,7 @@ void idAudioHardwareOSX::Reset() {
 		if ( status != kAudioHardwareNoError ) {
 			common->Warning( "idAudioHardwareOSX::Reset: AudioDeviceStop failed. status: %s", ExtractStatus( status ) );
 		}
-		status = AudioDeviceRemoveIOProc( selectedDevice, DeviceIOProc );
+		status = AudioDeviceDestroyIOProcID( selectedDevice, activeIOProcID );
 		if ( status != kAudioHardwareNoError ) {
 			common->Warning( "idAudioHardwareOSX::Reset: AudioDeviceRemoveIOProc failed. status %s\n", ExtractStatus( status ) );
 		}
@@ -191,9 +193,18 @@ OSStatus idAudioHardwareOSX::DeviceIOProc( AudioDeviceID			inDevice,
 idAudioHardwareOSX::ExtractStatus
 ==========
 */
+union USwapBytes
+{
+	OSStatus m_status;
+	char     m_char[sizeof(OSStatus)];
+};
+
 const char*	idAudioHardwareOSX::ExtractStatus( OSStatus status ) {
 	static char buf[ sizeof( OSStatus ) + 1 ];
-	strncpy( buf, (const char *)&status, sizeof( OSStatus ) );
+	USwapBytes sb;
+	sb.m_status = status;
+	for( int i = 0; i < sizeof(OSStatus); ++i )
+		buf[i] = sb.m_char[sizeof(OSStatus)-1-i];
 	buf[ sizeof( OSStatus ) ] = '\0';
 	return buf;
 }
@@ -204,14 +215,18 @@ idAudioHardwareOSX::Initialize
 ==========
 */
 bool idAudioHardwareOSX::Initialize( ) {
-
+	AudioObjectPropertyAddress propertyAddress = {
+        kAudioHardwarePropertyDevices,
+        kAudioObjectPropertyScopeGlobal,
+        kAudioObjectPropertyElementMaster
+    };
 	UInt32			size;
 	OSStatus		status;
 	int				i, deviceCount;
 	AudioDeviceID	*deviceList;
 	char			buf[ 1024 ];
 
-	status = AudioHardwareGetPropertyInfo( kAudioHardwarePropertyDevices, &size, NULL );
+	status = AudioObjectGetPropertyDataSize(kAudioObjectSystemObject, &propertyAddress, 0, NULL, &size);
 	if ( status != kAudioHardwareNoError ) {
 		common->Warning( "AudioHardwareGetPropertyInfo kAudioHardwarePropertyDevices failed. status: %s", ExtractStatus( status ) );
 		InitFailed();
@@ -226,7 +241,7 @@ bool idAudioHardwareOSX::Initialize( ) {
 	}
 
 	deviceList = (AudioDeviceID*)malloc( size );
-	status = AudioHardwareGetProperty( kAudioHardwarePropertyDevices, &size, deviceList );
+	status = AudioObjectGetPropertyData(kAudioObjectSystemObject, &propertyAddress, 0, NULL, &size, deviceList);
 	if ( status != kAudioHardwareNoError ) {
 		common->Warning( "AudioHardwareGetProperty kAudioHardwarePropertyDevices failed. status: %s", ExtractStatus( status ) );
 		free( deviceList );
@@ -236,8 +251,9 @@ bool idAudioHardwareOSX::Initialize( ) {
 
 	common->Printf( "%d sound device(s)\n", deviceCount );
 	for( i = 0; i < deviceCount; i++ ) {
-		size = 1024;
-		status = AudioDeviceGetProperty( deviceList[ i ], 0, false, kAudioDevicePropertyDeviceName, &size, buf );
+		size = sizeof(buf);
+        propertyAddress.mSelector = kAudioDevicePropertyDeviceName;
+        status = AudioObjectGetPropertyData(deviceList[i], &propertyAddress, 0, NULL, &size, &buf);
 		if ( status != kAudioHardwareNoError ) {
 			common->Warning( "AudioDeviceGetProperty kAudioDevicePropertyDeviceName %d failed. status: %s", i, ExtractStatus( status ) );
 			free( deviceList );
@@ -245,10 +261,11 @@ bool idAudioHardwareOSX::Initialize( ) {
 			return false;
 		}
 		common->Printf( "  %d: ID %d, %s - ", i, deviceList[ i ], buf );
-		size = 1024;
-		status = AudioDeviceGetProperty( deviceList[ i ], 0, false, kAudioDevicePropertyDeviceManufacturer, &size, buf );
+		size = sizeof(buf);
+        propertyAddress.mSelector = kAudioDevicePropertyDeviceManufacturer;
+        status = AudioObjectGetPropertyData(deviceList[i], &propertyAddress, 0, NULL, &size, &buf);
 		if ( status != kAudioHardwareNoError ) {
-			common->Warning( "AudioDeviceGetProperty kAudioDevicePropertyDeviceManufacturer %d failed. status: %s", i, ExtractStatus( status ) );
+			common->Warning( "AudioDeviceGetProperty kAudioDevicePropertyDeviceName %d failed. status: %s", i, ExtractStatus( status ) );
 			free( deviceList );
 			InitFailed();
 			return false;
@@ -261,10 +278,11 @@ bool idAudioHardwareOSX::Initialize( ) {
 		common->Printf( "s_device: device ID %d\n", selectedDevice );
 	} else {
 		size = sizeof( selectedDevice );
-		status = AudioHardwareGetProperty( kAudioHardwarePropertyDefaultOutputDevice, &size, &selectedDevice );
+		propertyAddress.mSelector = kAudioHardwarePropertyDefaultOutputDevice;
+        status = AudioObjectGetPropertyData(kAudioObjectSystemObject, &propertyAddress, 0, NULL, &size, &selectedDevice);
 		if ( status != kAudioHardwareNoError ) {
 			common->Warning( "AudioHardwareGetProperty kAudioHardwarePropertyDefaultOutputDevice failed. status: %s", ExtractStatus( status ) );
-
+			
 			free( deviceList );
 			InitFailed();
 			return false;
@@ -276,18 +294,19 @@ bool idAudioHardwareOSX::Initialize( ) {
 	deviceList = NULL;
 
 	/*
-	// setup a listener to watch for changes to properties
-	status = AudioDeviceAddPropertyListener( selectedDevice, 0, false, kAudioDeviceProcessorOverload, DeviceListener, this );
-	if ( status != kAudioHardwareNoError ) {
-		common->Warning( "AudioDeviceAddPropertyListener kAudioDeviceProcessorOverload failed. status: %s", ExtractStatus( status ) );
-		InitFailed();
-		return;
-	}
-	*/
+	 // setup a listener to watch for changes to properties
+	 status = AudioDeviceAddPropertyListener( selectedDevice, 0, false, kAudioDeviceProcessorOverload, DeviceListener, this );
+	 if ( status != kAudioHardwareNoError ) {
+	 common->Warning( "AudioDeviceAddPropertyListener kAudioDeviceProcessorOverload failed. status: %s", ExtractStatus( status ) );
+	 InitFailed();
+	 return;
+	 }
+	 */
 
 	Float64 sampleRate;
 	size = sizeof( sampleRate );
-	status = AudioDeviceGetProperty( selectedDevice, 0, false, kAudioDevicePropertyNominalSampleRate, &size, &sampleRate );
+	propertyAddress.mSelector = kAudioDevicePropertyNominalSampleRate;
+	status = AudioObjectGetPropertyData(selectedDevice, &propertyAddress, 0, NULL, &size, &sampleRate);
 	if ( status != kAudioHardwareNoError ) {
 		common->Warning( "AudioDeviceGetProperty %d kAudioDevicePropertyNominalSampleRate failed. status: %s", selectedDevice, ExtractStatus( status ) );
 		InitFailed();
@@ -296,12 +315,12 @@ bool idAudioHardwareOSX::Initialize( ) {
 	common->Printf( "current nominal rate: %g\n", sampleRate );
 
 	if ( sampleRate != PRIMARYFREQ ) {
-
 		GetAvailableNominalSampleRates();
 
 		sampleRate = PRIMARYFREQ;
-		common->Printf( "setting rate to: %g\n", sampleRate );		
-		status = AudioDeviceSetProperty( selectedDevice, NULL, 0, false, kAudioDevicePropertyNominalSampleRate, size, &sampleRate );
+		common->Printf( "setting rate to: %g\n", sampleRate );
+		propertyAddress.mSelector = kAudioDevicePropertyNominalSampleRate;
+		status = AudioObjectSetPropertyData( selectedDevice, &propertyAddress, 0, NULL, size, &sampleRate );
 		if ( status != kAudioHardwareNoError ) {
 			common->Warning( "AudioDeviceSetProperty %d kAudioDevicePropertyNominalSampleRate %g failed. status: %s", selectedDevice, sampleRate, ExtractStatus( status ) );
 			InitFailed();
@@ -311,7 +330,8 @@ bool idAudioHardwareOSX::Initialize( ) {
 
 	UInt32 frameSize;
 	size = sizeof( UInt32 );
-	status = AudioDeviceGetProperty( selectedDevice, 0, false, kAudioDevicePropertyBufferFrameSize, &size, &frameSize );
+	propertyAddress.mSelector = kAudioDevicePropertyBufferFrameSize;
+	status = AudioObjectGetPropertyData(selectedDevice, &propertyAddress, 0, NULL, &size, &frameSize);
 	if ( status != kAudioHardwareNoError ) {
 		common->Warning( "AudioDeviceGetProperty %d kAudioDevicePropertyBufferFrameSize failed.status: %s", selectedDevice, ExtractStatus( status ) );
 		InitFailed();
@@ -322,7 +342,8 @@ bool idAudioHardwareOSX::Initialize( ) {
 	// get the allowed frame size range
 	AudioValueRange frameSizeRange;
 	size = sizeof( AudioValueRange );
-	status = AudioDeviceGetProperty( selectedDevice, 0, false, kAudioDevicePropertyBufferFrameSizeRange, &size, &frameSizeRange );
+	propertyAddress.mSelector = kAudioDevicePropertyBufferFrameSizeRange;
+	status = AudioObjectGetPropertyData(selectedDevice, &propertyAddress, 0, NULL, &size, &frameSizeRange);
 	if ( status != kAudioHardwareNoError ) {
 		common->Warning( "AudioDeviceGetProperty %d kAudioDevicePropertyBufferFrameSizeRange failed. status: %s", selectedDevice, ExtractStatus( status ) );
 		InitFailed();
@@ -340,7 +361,8 @@ bool idAudioHardwareOSX::Initialize( ) {
 		frameSize = MIXBUFFER_SAMPLES;
 		common->Printf( "setting frame size to: %d\n", frameSize );
 		size = sizeof( frameSize );
-		status = AudioDeviceSetProperty( selectedDevice, NULL, 0, false, kAudioDevicePropertyBufferFrameSize, size, &frameSize );
+		propertyAddress.mSelector = kAudioDevicePropertyBufferFrameSize;
+		status = AudioObjectSetPropertyData( selectedDevice, &propertyAddress, 0, NULL, size, &frameSize );
 		if ( status != kAudioHardwareNoError ) {
 			common->Warning( "AudioDeviceSetProperty %d kAudioDevicePropertyBufferFrameSize failed. status: %s", selectedDevice, ExtractStatus( status ) );
 			InitFailed();
@@ -354,7 +376,11 @@ bool idAudioHardwareOSX::Initialize( ) {
 	}
 	UInt32 channels[ 2 ];
 	size = 2 * sizeof( UInt32 );
-	status = AudioDeviceGetProperty( selectedDevice, 0, false, 	kAudioDevicePropertyPreferredChannelsForStereo, &size, &channels );
+
+	// I set the scope to output here, be careful if reusing
+	propertyAddress.mSelector = kAudioDevicePropertyPreferredChannelsForStereo;
+	propertyAddress.mScope = kAudioDevicePropertyScopeOutput;
+	status = AudioObjectGetPropertyData(selectedDevice, &propertyAddress, 0, NULL, &size, &channels);
 	if ( status != kAudioHardwareNoError ) {
 		common->Warning( "AudioDeviceGetProperty %d kAudioDevicePropertyPreferredChannelsForStereo failed. status: %s", selectedDevice, ExtractStatus( status ) );
 		InitFailed();
@@ -362,7 +388,7 @@ bool idAudioHardwareOSX::Initialize( ) {
 	}
 	common->Printf( "using stereo channel IDs %d %d\n", channels[ 0 ], channels[ 1 ] );
 
-	status = AudioDeviceAddIOProc( selectedDevice, DeviceIOProc, NULL );
+	status = AudioDeviceCreateIOProcID( selectedDevice, DeviceIOProc, NULL, &activeIOProcID );
 	if ( status != kAudioHardwareNoError ) {
 		common->Warning( "AudioDeviceAddIOProc failed. status: %s", ExtractStatus( status ) );
 		InitFailed();
@@ -378,12 +404,12 @@ bool idAudioHardwareOSX::Initialize( ) {
 	}
 
 	/*
-	// allocate the mix buffer
-	// it has the space for ROOM_SLICES_IN_BUFFER DeviceIOProc loops
-	mixBufferSize =  dwSpeakers * dwSampleSize * dwPrimaryBitRate * ROOM_SLICES_IN_BUFFER / 8;
-	mixBuffer = malloc( mixBufferSize );
-	memset( mixBuffer, 0, mixBufferSize );
-	*/
+	 // allocate the mix buffer
+	 // it has the space for ROOM_SLICES_IN_BUFFER DeviceIOProc loops
+	 mixBufferSize =  dwSpeakers * dwSampleSize * dwPrimaryBitRate * ROOM_SLICES_IN_BUFFER / 8;
+	 mixBuffer = malloc( mixBufferSize );
+	 memset( mixBuffer, 0, mixBufferSize );
+	 */
 
 	return true;
 }
@@ -394,12 +420,18 @@ idAudioHardwareOSX::GetAvailableNominalSampleRates
 ==========
 */
 void idAudioHardwareOSX::GetAvailableNominalSampleRates( void ) {
+	AudioObjectPropertyAddress propertyAddress = {
+        kAudioHardwarePropertyDevices,
+        kAudioObjectPropertyScopeGlobal,
+        kAudioObjectPropertyElementMaster
+    };
 	UInt32				size;
 	OSStatus			status;
 	int			   		i, rangeCount;
 	AudioValueRange		*rangeArray;
 
-	status = AudioDeviceGetPropertyInfo( selectedDevice, 0, false, kAudioDevicePropertyAvailableNominalSampleRates, &size, NULL );
+	propertyAddress.mSelector = kAudioDevicePropertyAvailableNominalSampleRates;
+	status = AudioObjectGetPropertyData(selectedDevice, &propertyAddress, 0, NULL, &size, NULL);
 	if ( status != kAudioHardwareNoError ) {
 		common->Warning( "AudioDeviceGetPropertyInfo %d kAudioDevicePropertyAvailableNominalSampleRates failed. status: %s", selectedDevice, ExtractStatus( status ) );
 		return;
@@ -409,7 +441,8 @@ void idAudioHardwareOSX::GetAvailableNominalSampleRates( void ) {
 
 	common->Printf( "%d possible rate(s)\n", rangeCount );
 
-	status = AudioDeviceGetProperty( selectedDevice, 0, false, kAudioDevicePropertyAvailableNominalSampleRates, &size, rangeArray );
+	propertyAddress.mSelector = kAudioDevicePropertyAvailableNominalSampleRates;
+	status = AudioObjectGetPropertyData(selectedDevice, &propertyAddress, 0, NULL, &size, rangeArray);
 	if ( status != kAudioHardwareNoError ) {
 		common->Warning( "AudioDeviceGetProperty %d kAudioDevicePropertyAvailableNominalSampleRates failed. status: %s", selectedDevice, ExtractStatus( status ) );
 		free( rangeArray );
@@ -438,11 +471,23 @@ int	idAudioHardwareOSX::GetNumberOfSpeakers() {
  ===============
  */
 bool Sys_LoadOpenAL( void ) {
-	OSErr	err;
-	long gestaltOSVersion;
-	err = Gestalt(gestaltSystemVersion, &gestaltOSVersion);
-	if ( err || gestaltOSVersion < 0x1040 ) {
+	static const int kMountainLionVersionMajor = 12;
+    size_t len;
+	int mib[] = {CTL_KERN, KERN_OSRELEASE};
+    sysctl(mib, sizeof mib / sizeof(int), NULL, &len, NULL, 0);
+	
+    char* kernelVersion = (char *)_alloca(len);
+    sysctl(mib, sizeof mib / sizeof(int), kernelVersion, &len, NULL, 0);
+	
+	// to translate OSRELEASE into OSX version number, subtract 4 from the major
+	// version number and then prepend a 10.  So Mountain Lion which returns 12.3.0 becomes
+	// 10.8.3.0
+	int version = 0;
+	char *dot = strtok( kernelVersion, ".");
+	if( dot )
+		version = atoi( kernelVersion );
+
+	if( version < kMountainLionVersionMajor )
 		return false;
-	}
 	return true;
 }

@@ -56,8 +56,7 @@ static bool		inputActive		= false;
 static bool		mouseActive		= false;
 static bool		inputRectValid	= NO;
 static CGRect	inputRect;
-static const void *sKLuchrData	= NULL;
-static const void *sKLKCHRData	= NULL;
+static const UCKeyboardLayout *sKbLayout = NULL;
 
 int	vkeyToDoom3Key[256] = {
 	/*0x00*/	'a', 's', 'd', 'f', 'h', 'g', 'z', 'x',
@@ -139,19 +138,9 @@ void Sys_InitScanTable( void ) {
 		vkeyTable = vkeyToDoom3Key_German;
 	}
 
-	if ( KLGetCurrentKeyboardLayout( &kbLayout )  == 0 ) {
-		if ( KLGetKeyboardLayoutProperty( kbLayout, kKLuchrData, &sKLuchrData ) ) {
-			common->Warning("KLGetKeyboardLayoutProperty failed");
-		}
-		if ( !sKLuchrData ) {
-			if ( KLGetKeyboardLayoutProperty( kbLayout, kKLKCHRData, &sKLKCHRData ) ) {
-				common->Warning("KLGetKeyboardLayoutProperty failed");
-			}
-		}
-	}
-	if ( !sKLuchrData && !sKLKCHRData ) {
-		common->Warning("Keyboard input initialziation failed");
-	}
+	TISInputSourceRef currentKeyboard = TISCopyCurrentKeyboardInputSource();
+	CFDataRef uchr = (CFDataRef)TISGetInputSourceProperty(currentKeyboard, kTISPropertyUnicodeKeyLayoutData);
+	sKbLayout = (const UCKeyboardLayout*)CFDataGetBytePtr(uchr);
 }
 
 void Sys_InitInput( void ) {
@@ -181,7 +170,7 @@ void Sys_ShutdownInput( void ) {
 }
 
 void processMouseMovedEvent( NSEvent *mouseMovedEvent ) {
-    CGMouseDelta dx, dy;
+    int32_t dx, dy;
     
     if ( !mouseActive ) {
         return;
@@ -252,20 +241,11 @@ inline bool OSX_LookupCharacter(unsigned short vkey, unsigned int modifiers, boo
 	UniCharCount actualStringLength = 0;
 	static UInt32 keyTranslateState = 0;
 	
-	// Only want character if Translate() returns a single character
-	if ( sKLuchrData ) {
-		UCKeyTranslate( (UCKeyboardLayout*)sKLuchrData, vkey, keyDownFlag ? kUCKeyActionDown : kUCKeyActionUp, modifiers,
-						LMGetKbdType(), 0, &deadKeyState, 16, &actualStringLength, unicodeString );
-
+	if( sKbLayout )	{
+		UCKeyTranslate( sKbLayout, vkey, keyDownFlag ? kUCKeyActionDown : kUCKeyActionUp, modifiers,
+					   LMGetKbdType(), 0, &deadKeyState, 16, &actualStringLength, unicodeString );
 		if ( actualStringLength == 1 ) {
 			*outChar = (unsigned char)unicodeString[0];
-			return true;
-		}
-	}
-	else if ( sKLKCHRData ) {
-		translated = KeyTranslate( sKLKCHRData, vkey, &keyTranslateState );
-		if ( ( translated & 0x00ff0000 ) == 0 ) {
-			*outChar = translated & 0xff;
 			return true;
 		}
 	}

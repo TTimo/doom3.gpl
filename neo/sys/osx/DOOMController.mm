@@ -45,6 +45,7 @@ If you have questions concerning this license or the applicable additional terms
 #import <fenv.h>
 #import <sys/ucontext.h>
 #import <mach/thread_status.h>
+#import <sys/sysctl.h>
 
 #define	MAX_KEYS		256
 
@@ -105,7 +106,7 @@ static OSErr DoRegCodeDialog( char* ioRegCode1 );
 		NSAssert(sizeof(bool) == 1, @"sizeof(bool) should equal 1 byte");
         [self quakeMain];
     } NS_HANDLER {
-        Sys_Error( (const char *)[ [ localException reason ] cString ] );
+        Sys_Error( (const char *)[ [ localException reason ] cStringUsingEncoding:NSASCIIStringEncoding] );
     } NS_ENDHANDLER;
     Sys_Quit();
 }
@@ -382,7 +383,7 @@ extern void CL_Quit_f(void);
 			retval = FALSE;
 		}
 		else {
-			[userDefaults setObject:[NSString stringWithCString: regCode] forKey:kRegKey];
+			[userDefaults setObject:[NSString stringWithCString:regCode encoding:NSASCIIStringEncoding] forKey:kRegKey];
 			[userDefaults synchronize];
 		}
 	}
@@ -391,10 +392,23 @@ extern void CL_Quit_f(void);
 
 - (BOOL)checkOS
 {
-	OSErr	err;
-	long gestaltOSVersion;
-	err = Gestalt(gestaltSystemVersion, &gestaltOSVersion);
-	if ( err || gestaltOSVersion < 0x1038 ) {
+	static const int kMountainLionVersionMajor = 12;
+    size_t len;
+	int mib[] = {CTL_KERN, KERN_OSRELEASE};
+    sysctl(mib, sizeof mib / sizeof(int), NULL, &len, NULL, 0);
+	
+    char* kernelVersion = (char *)_alloca(len);
+    sysctl(mib, sizeof mib / sizeof(int), kernelVersion, &len, NULL, 0);
+	
+	// to translate OSRELEASE into OSX version number, subtract 4 from the major
+	// version number and then prepend a 10.  So Mountain Lion which returns 12.3.0 becomes
+	// 10.8.3.0
+	int version = 0;
+	char *dot = strtok( kernelVersion, ".");
+	if( dot )
+		version = atoi( kernelVersion );
+	if( version < kMountainLionVersionMajor )
+	{
 		NSBundle *thisBundle = [ NSBundle mainBundle ];
 		NSString *messsage = [ thisBundle localizedStringForKey:@"InsufficientOS" value:@"No translation" table:nil ];
 		NSRunAlertPanel(@GAME_NAME, messsage, nil, nil, nil);
@@ -417,7 +431,14 @@ Sys_EXEPath
 */
 const char *Sys_EXEPath( void ) {
 	static char exepath[ 1024 ];
-	strncpy( exepath, [ [ [ NSBundle mainBundle ] bundlePath ] cString ], 1024 );
+	strncpy( exepath, [ [ [ NSBundle mainBundle ] bundlePath ] cStringUsingEncoding:NSASCIIStringEncoding ], 1024 );
+	return exepath;
+}
+
+const char *Sys_DLLPath( void ) {
+	static char exepath[ 1024 ];
+	strncpy( exepath, [ [ [ NSBundle mainBundle ] bundlePath ] cStringUsingEncoding:NSASCIIStringEncoding  ], 1024 );
+	strcat( exepath, "/Contents/MacOS/" );
 	return exepath;
 }
 
@@ -428,21 +449,21 @@ const char *Sys_EXEPath( void ) {
  */
 const char *Sys_DefaultSavePath(void) {
 #if defined( ID_DEMO_BUILD )
-	sprintf( savepath, "%s/Library/Application Support/Doom 3 Demo", [NSHomeDirectory() cString] );
+	sprintf( savepath, "%s/Library/Application Support/Doom 3 Demo", [NSHomeDirectory() cStringUsingEncoding:NSASCIIStringEncoding ] );
 #else
-	sprintf( savepath, "%s/Library/Application Support/Doom 3", [NSHomeDirectory() cString] );
+	sprintf( savepath, "%s/Library/Application Support/Doom 3", [NSHomeDirectory() cStringUsingEncoding:NSASCIIStringEncoding ] );
 #endif
 	return savepath.c_str();
 }
 
 /*
-==========
-Sys_DefaultBasePath
-==========
-*/
+ ==========
+ Sys_DefaultBasePath
+ ==========
+ */
 const char *Sys_DefaultBasePath(void) {
 	static char basepath[ 1024 ];
-	strncpy( basepath, [ [ [ NSBundle mainBundle ] bundlePath ] cString ], 1024 );
+	strncpy( basepath, [ [ [ NSBundle mainBundle ] bundlePath ] cStringUsingEncoding:NSASCIIStringEncoding  ], 1024 );
 	char *snap = strrchr( basepath, '/' );
 	if ( snap ) {
 		*snap = '\0';
@@ -654,60 +675,16 @@ Sys_ClockTicksPerSecond
 ===============
 */
 double Sys_ClockTicksPerSecond(void) {
-	// Our strategy is to query both Gestalt & IOKit and then take the larger of the two values.
+	uint freq;
+	size_t len = sizeof(freq);
 	
-	long gestaltSpeed, ioKitSpeed = -1;
-	
-	// GESTALT
-	
-	// gestaltProcClkSpeedMHz available in 10.3 needs to be used because CPU speeds have now
-	// exceeded the signed long that Gestalt returns.
-	long osVers;
-	OSErr err;
-	Gestalt(gestaltSystemVersion, &osVers);
-	if (osVers >= 0x1030)
-		err = Gestalt(gestaltProcClkSpeedMHz, &gestaltSpeed);
-	else
-	{
-		err = Gestalt(gestaltProcClkSpeed, &gestaltSpeed);
-		if (err == noErr)
-			gestaltSpeed = gestaltSpeed / 1000000;				
-	}	
-	
-	// IO KIT
-	
-    mach_port_t masterPort;
-	CFMutableDictionaryRef matchDict = nil;
-	io_iterator_t itThis;
-	io_service_t service = nil;
-	
-    if (IOMasterPort(MACH_PORT_NULL, &masterPort))
-		goto bail;
-	
-	matchDict = IOServiceNameMatching("cpus");	
-	if (IOServiceGetMatchingServices(masterPort, matchDict, &itThis))
-		goto bail;
-    
-	service = IOIteratorNext(itThis);
-    while(service)
-    {
-		io_service_t ioCpu = NULL;
-		if (IORegistryEntryGetChildEntry(service, kIODeviceTreePlane, &ioCpu))
-			goto bail;
-		
-		if (ioCpu)
-		{
-			CFDataRef data = (CFDataRef)IORegistryEntryCreateCFProperty(ioCpu, CFSTR("clock-frequency"),kCFAllocatorDefault,0);
-			if (data)
-				ioKitSpeed = *((unsigned long*)CFDataGetBytePtr(data)) / 1000000;
-		}
-		service = IOIteratorNext(itThis);
-	}
-	
-	// Return the larger value
-	
-bail:
-	return ( ioKitSpeed > gestaltSpeed ? ioKitSpeed : gestaltSpeed ) * 1000000.f;
+	int mib[2];
+	mib[0] = CTL_HW;
+	mib[1] = HW_CPU_FREQ;
+	if( !sysctl(mib, 2, &freq, &len, NULL, 0 ) )
+		return (double)freq;
+	// FatalError
+	return 0.0;
 }
 
 /*
@@ -717,13 +694,15 @@ returns in megabytes
 ================
 */
 int Sys_GetSystemRam( void ) {
-	long ramSize;
+	uint ramSize;
+	size_t len = sizeof(ramSize);
 	
-	if ( Gestalt( gestaltPhysicalRAMSize, &ramSize ) == noErr ) {
+	int mib[2];
+	mib[0] = CTL_HW;
+	mib[1] = HW_PHYSMEM;
+	if( !sysctl(mib, 2, &ramSize, &len, NULL, 0 ) )
 		return ramSize / (1024*1024);
-	}
-	else
-		return 1024;
+	return 1024;
 }
 
 /*
@@ -741,30 +720,30 @@ int Sys_GetVideoRam( void ) {
 	io_service_t dspPorts[MAXDISPLAYS];
 	CGDirectDisplayID displays[MAXDISPLAYS];
 
+	// we really should store the render index after we create the context?
 	CGGetOnlineDisplayList( MAXDISPLAYS, displays, &displayCount );
-	
 	for ( i = 0; i < displayCount; i++ ) {
 		if ( Sys_DisplayToUse() == displays[i] ) {
-			dspPorts[i] = CGDisplayIOServicePort(displays[i]);
-			typeCode = IORegistryEntryCreateCFProperty( dspPorts[i], CFSTR("IOFBMemorySize"), kCFAllocatorDefault, kNilOptions );
-			if( typeCode && CFGetTypeID( typeCode ) == CFNumberGetTypeID() ) {
-				CFNumberGetValue( ( CFNumberRef )typeCode, kCFNumberSInt32Type, &vramStorage );
-				vramStorage /= (1024*1024);
+			CGOpenGLDisplayMask glmask = CGDisplayIDToOpenGLDisplayMask( displays[i] );
+			CGLRendererInfoObj rend;
+			int numrend;
+			CGLError err = CGLQueryRendererInfo( glmask, &rend, &numrend );
+			for( int i = 0; i < numrend; ++i )
+			{
+				int accelerated = 0;
+				err = CGLDescribeRenderer( rend, i, kCGLRPAccelerated, &accelerated);
+				if( !accelerated )
+					continue;
+				int vram = 0;
+				err = CGLDescribeRenderer( rend, i, kCGLRPVideoMemoryMegabytes, &vram );
+				if( vram > vramStorage )
+					vramStorage = vram;
 			}
+			CGLDestroyRendererInfo( rend );
 		}
 	}
 
 	return vramStorage;
-}
-
-bool OSX_GetCPUIdentification( int& cpuId, bool& oldArchitecture )
-{
-	long cpu;
-	Gestalt(gestaltNativeCPUtype, &cpu);
-	
-	cpuId = cpu;
-	oldArchitecture = cpuId < gestaltCPU970;
-	return true;
 }
 
 void OSX_GetVideoCard( int& outVendorId, int& outDeviceId )

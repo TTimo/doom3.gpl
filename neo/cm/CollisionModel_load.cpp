@@ -1885,7 +1885,7 @@ static int CM_FindSplitter( const cm_node_t *node, const idBounds &bounds, int *
 						continue;
 					}
 					// find the most centered splitter
-					t = abs((bounds[1][type] - dist) - (dist - bounds[0][type]));
+					t = fabs((bounds[1][type] - dist) - (dist - bounds[0][type]));
 					if ( t < bestt ) {
 						bestt = t;
 						*planeType = type;
@@ -1905,7 +1905,7 @@ static int CM_FindSplitter( const cm_node_t *node, const idBounds &bounds, int *
 						continue;
 					}
 					// find the most centered splitter
-					t = abs((bounds[1][type] - dist) - (dist - bounds[0][type]));
+					t = fabs((bounds[1][type] - dist) - (dist - bounds[0][type]));
 					if ( t < bestt ) {
 						bestt = t;
 						*planeType = type;

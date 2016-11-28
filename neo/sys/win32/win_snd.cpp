@@ -29,8 +29,6 @@ If you have questions concerning this license or the applicable additional terms
 #pragma hdrstop
 
 // DirectX SDK
-#include <DxErr.h>
-
 #include <ks.h>
 #include <ksmedia.h>
 #include "../../sound/snd_local.h"
@@ -41,6 +39,15 @@ If you have questions concerning this license or the applicable additional terms
 #define SAFE_DELETE(p)       { if(p) { delete (p);     (p)=NULL; } }
 #define SAFE_DELETE_ARRAY(p) { if(p) { delete[] (p);   (p)=NULL; } }
 #define SAFE_RELEASE(p)      { if(p) { (p)->Release(); (p)=NULL; } }
+#define DXTRACE_ERR(str,hr) DXTrace(__FILE__,__LINE__, str, hr)
+
+static HRESULT DXTrace(const char *file, int line, const char *str, HRESULT hr)
+{
+	char output[1024];
+	sprintf_s(output, sizeof(output), "%s,%d : 0x%08X - %s\n", file, line, hr, str);
+	OutputDebugString(output);
+	return hr;
+}
 
 class idAudioBufferWIN32 : public idAudioBuffer {
 public:

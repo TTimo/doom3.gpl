@@ -375,6 +375,7 @@ const char *	Sys_DefaultCDPath( void );
 const char *	Sys_DefaultBasePath( void );
 const char *	Sys_DefaultSavePath( void );
 const char *	Sys_EXEPath( void );
+const char *	Sys_DLLPath( void );
 
 // use fs_debug to verbose Sys_ListFiles
 // returns -1 if directory was not found (the list is cleared)

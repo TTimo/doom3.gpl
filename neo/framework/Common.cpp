@@ -1355,8 +1355,11 @@ static void Com_Crash_f( const idCmdArgs &args ) {
 		commonLocal.Printf( "crash may only be used in developer mode\n" );
 		return;
 	}
-
+#ifdef __clang__
+	__builtin_trap();
+#else
 	* ( int * ) 0 = 0x12345678;
+#endif
 }
 
 /*
@@ -1403,10 +1406,6 @@ void Com_SetMachineSpec_f( const idCmdArgs &args ) {
 Com_ExecMachineSpecs_f
 =================
 */
-#ifdef MACOS_X
-void OSX_GetVideoCard( int& outVendorId, int& outDeviceId );
-bool OSX_GetCPUIdentification( int& cpuId, bool& oldArchitecture );
-#endif
 void Com_ExecMachineSpec_f( const idCmdArgs &args ) {
 	if ( com_machineSpec.GetInteger() == 3 ) {
 		cvarSystem->SetCVarInteger( "image_anisotropy", 1, CVAR_ARCHIVE );
@@ -1531,20 +1530,6 @@ void Com_ExecMachineSpec_f( const idCmdArgs &args ) {
 	if ( nv10or20 ) {
 		cvarSystem->SetCVarInteger( "image_useNormalCompression", 1, CVAR_ARCHIVE );
 	}
-
-#if MACOS_X
-	// On low settings, G4 systems & 64MB FX5200/NV34 Systems should default shadows off
-	bool oldArch;
-	int vendorId, deviceId, cpuId;
-	OSX_GetVideoCard( vendorId, deviceId );
-	OSX_GetCPUIdentification( cpuId, oldArch );
-	bool isFX5200 = vendorId == 0x10DE && ( deviceId & 0x0FF0 ) == 0x0320;
-	if ( ( oldArch || ( isFX5200 && Sys_GetVideoRam() < 128 ) ) && com_machineSpec.GetInteger() == 0 ) {
-		cvarSystem->SetCVarBool( "r_shadows", false, CVAR_ARCHIVE );
-	} else {
-		cvarSystem->SetCVarBool( "r_shadows", true, CVAR_ARCHIVE );
-	}
-#endif
 }
 
 /*

@@ -26,7 +26,7 @@ bool Sys_Unhide();
 
 typedef struct {
     CGDirectDisplayID     display;
-    CGTableCount          tableSize;
+    uint32_t              tableSize;
     CGGammaValue	 *red;
     CGGammaValue	 *blue;
     CGGammaValue	 *green;
@@ -35,8 +35,8 @@ typedef struct {
 typedef struct
 {
     CGDirectDisplayID	display;
-    NSDictionary		*desktopMode;
-    NSDictionary		*gameMode;
+	CGDisplayModeRef    desktopMode;
+	CGDisplayModeRef    gameMode;
 
     CGDisplayCount		displayCount;
     glwgamma_t			*originalDisplayGammaTables;

@@ -129,7 +129,7 @@ void Cmd_ListSpawnArgs_f( const idCmdArgs &args ) {
 
 	for ( i = 0; i < ent->spawnArgs.GetNumKeyVals(); i++ ) {
 		const idKeyValue *kv = ent->spawnArgs.GetKeyVal( i );
-		gameLocal.Printf( "\"%s\"  "S_COLOR_WHITE"\"%s\"\n", kv->GetKey().c_str(), kv->GetValue().c_str() );
+		gameLocal.Printf( "\"%s\"  " S_COLOR_WHITE "\"%s\"\n", kv->GetKey().c_str(), kv->GetValue().c_str() );
 	}
 }
 
@@ -1276,7 +1276,8 @@ PrintFloat
 ==================
 */
 static void PrintFloat( float f ) {
-	char buf[128], i;
+	char buf[128];
+	unsigned char i;
 
 	for ( i = sprintf( buf, "%3.2f", f ); i < 7; i++ ) {
 		buf[i] = ' ';

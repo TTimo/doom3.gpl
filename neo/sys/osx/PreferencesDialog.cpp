@@ -4,7 +4,7 @@
 Doom 3 GPL Source Code
 Copyright (C) 1999-2011 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Doom 3 GPL Source Code (?Doom 3 Source Code?).  
+This file is part of the Doom 3 GPL Source Code (?Doom 3 Source Code?).
 
 Doom 3 Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -29,7 +29,6 @@ If you have questions concerning this license or the applicable additional terms
 #include "../../idlib/precompiled.h"
 #include <Carbon/Carbon.h>
 #include "PreferencesDialog.h"
-#include "PickMonitor.h"
 #include <list>
 #include <set>
 
@@ -82,6 +81,7 @@ struct PrefInfo
 #pragma mark -
 
 bool R_GetModeInfo( int *width, int *height, int mode );
+unsigned int Sys_GetBitsPerPixel( CGDisplayModeRef mode );
 
 static int GetScreenIndexForDisplayID( CGDirectDisplayID inDisplayID ) {
 	unsigned int i;
@@ -136,7 +136,7 @@ void Sys_DoPreferences( void ) {
 	Boolean prefAways, keyFound, useOpenAL;
 	prefAways = CFPreferencesGetAppBooleanValue ( kPref_PrefsDialogAlways, kCFPreferencesCurrentApplication, &keyFound );
 	bool fAlways = prefAways && keyFound;
-		
+			
 	if ( fAlways || ( km[kMacKeyCodeCommand>>3] >> ( kMacKeyCodeCommand & 7 ) ) & 1 ) {
 		GameDisplayInfo info;
 		info.mode = cvarSystem->GetCVarBool( "r_fullscreen" ) ? kFullScreen : kWindow;
@@ -305,36 +305,31 @@ static int BuildResolutionList(CGDirectDisplayID inDisplayID, Res *ioList, Valid
 	else
 	{	
 		CGDirectDisplayID displayID = inDisplayID ? inDisplayID : kCGDirectMainDisplay;
-		CFArrayRef modeArrayRef = CGDisplayAvailableModes(displayID);
+		CFArrayRef modeArrayRef = CGDisplayCopyAllDisplayModes(displayID, NULL);
 		CFIndex numModes = CFArrayGetCount(modeArrayRef);
 		
 		for (i = 0; i < numModes; i++)
 		{
-			CFDictionaryRef modeRef = (CFDictionaryRef)CFArrayGetValueAtIndex(modeArrayRef, i);
-			
+			CGDisplayModeRef modeRef = (CGDisplayModeRef)CFArrayGetValueAtIndex(modeArrayRef, i);
+
 			long value = 0;
 			CFNumberRef valueRef;
 			Boolean success;
 			
-			valueRef = (CFNumberRef)CFDictionaryGetValue(modeRef, kCGDisplayBitsPerPixel);
-			success = CFNumberGetValue(valueRef, kCFNumberLongType, &value);
-			int depth = value;
+			int depth = Sys_GetBitsPerPixel(modeRef);
 			if (depth != 32) continue;
 			
-			valueRef = (CFNumberRef)CFDictionaryGetValue(modeRef, kCGDisplayWidth);
-			success = CFNumberGetValue(valueRef, kCFNumberLongType, &value);
-			int width = value;
-			
-			valueRef = (CFNumberRef)CFDictionaryGetValue(modeRef, kCGDisplayHeight);
-			success = CFNumberGetValue(valueRef, kCFNumberLongType, &value);
-			int height = value;
+			int width = CGDisplayModeGetWidth( modeRef );
+
+			int height = CGDisplayModeGetHeight( modeRef );
 			
 			UInt32 resFlags = 0;
+#if 0
 			CFBooleanRef boolRef;
 			if (CFDictionaryGetValueIfPresent (modeRef, kCGDisplayModeIsStretched, (const void **)&boolRef))
 				if (CFBooleanGetValue (boolRef))
 					resFlags |= kRes_Stretched;
-			
+#endif
 			
 			if (inCallback)
 				success = inCallback(displayID, width, height, depth, 0);
@@ -344,6 +339,7 @@ static int BuildResolutionList(CGDirectDisplayID inDisplayID, Res *ioList, Valid
 			if (success)
 				modes.insert(MakeRes(width, height, depth, resFlags));
 		}
+		CFRelease(modeArrayRef);
 	}
 	
 	total = modes.size();
@@ -365,38 +361,38 @@ static void BuildRefreshRates(CGDirectDisplayID inDisplayID, int inWidth, int in
 {
 	CGDirectDisplayID displayID = inDisplayID ? inDisplayID : kCGDirectMainDisplay;
 	
-	CFArrayRef modeArrayRef = CGDisplayAvailableModes(displayID);
+	CFArrayRef modeArrayRef = CGDisplayCopyAllDisplayModes(displayID, NULL);
 	CFIndex numModes = CFArrayGetCount(modeArrayRef);
-
+	
 	inList->clear();
 	
 	for (int i = 0; i < numModes; i++)
 	{
-		CFDictionaryRef modeRef = (CFDictionaryRef)CFArrayGetValueAtIndex(modeArrayRef, i);
+		CGDisplayModeRef modeRef = (CGDisplayModeRef)CFArrayGetValueAtIndex(modeArrayRef, i);
 		
-		long value = 0;
-		CFNumberRef valueRef;
 		Boolean success;
 		
-		valueRef = (CFNumberRef)CFDictionaryGetValue(modeRef, kCGDisplayBitsPerPixel);
-		success = CFNumberGetValue(valueRef, kCFNumberLongType, &value);
-		int depth = value;
+		int depth = 0;
+		CFStringRef pixelEncoding = CGDisplayModeCopyPixelEncoding( modeRef );
+		if(CFStringCompare(pixelEncoding, CFSTR(IO32BitDirectPixels), kCFCompareCaseInsensitive) == kCFCompareEqualTo) {
+			depth = 32;
+		} else if(CFStringCompare(pixelEncoding, CFSTR(IO16BitDirectPixels), kCFCompareCaseInsensitive) == kCFCompareEqualTo) {
+			depth = 16;
+			
+		} else if(CFStringCompare(pixelEncoding, CFSTR(IO8BitIndexedPixels), kCFCompareCaseInsensitive) == kCFCompareEqualTo) {
+			depth = 8;
+		}
+		CFRelease( pixelEncoding );
+		
 		if (depth != 32) continue;
 		
-		valueRef = (CFNumberRef)CFDictionaryGetValue(modeRef, kCGDisplayWidth);
-		success = CFNumberGetValue(valueRef, kCFNumberLongType, &value);
-		int width = value;
-		
-		valueRef = (CFNumberRef)CFDictionaryGetValue(modeRef, kCGDisplayHeight);
-		success = CFNumberGetValue(valueRef, kCFNumberLongType, &value);
-		int height = value;
+		int width = CGDisplayModeGetWidth( modeRef );
+		int height = CGDisplayModeGetHeight( modeRef );
 		
 		if (width == inWidth && height == inHeight)
 		{
-			double freqDouble;
-			valueRef = (CFNumberRef)CFDictionaryGetValue(modeRef, kCGDisplayRefreshRate);
-			success = CFNumberGetValue(valueRef, kCFNumberDoubleType, &freqDouble);
-			Fixed	freq = FloatToFixed(freqDouble);
+			Fixed freq = CGDisplayModeGetRefreshRate( modeRef );
+			
 			if (inCallback)
 				success = inCallback(displayID, width, height, depth, freq);
 			else
@@ -405,7 +401,8 @@ static void BuildRefreshRates(CGDirectDisplayID inDisplayID, int inWidth, int in
 				inList->push_back(freq);
 		}
 	}
-
+	CFRelease(modeArrayRef);
+	
 	// Disallow 0, which we reserve to mean "automatic"
 	inList->remove(0);
 	
@@ -648,9 +645,6 @@ static pascal OSStatus PrefHandler( EventHandlerCallRef inHandler, EventRef inEv
 
 		case kCmdChooseMonitors:
 		{
-			PickMonitor((DisplayIDType*)&prefInfo->prefDisplayID, prefInfo->window);
-			// Adjust resolutions, refresh rates for potentially new display ID
-			AdjustDisplayControls(prefInfo);
 			break;
 		}
 
@@ -763,7 +757,7 @@ OSStatus CreateGameDisplayPreferencesDialog(const GameDisplayInfo *inGDInfo,
 	
 	// Disable the "choose monitor" button if we've only got one to pick from
 	
-	prefInfo.multiMonitor = CanUserPickMonitor();
+	prefInfo.multiMonitor = false;
 	
 	if (!prefInfo.multiMonitor)
 	{

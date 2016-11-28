@@ -49,7 +49,7 @@ void idSysLocal::OpenURL( const char *url, bool doexit ) {
 
 	
 	[[ NSWorkspace sharedWorkspace] openURL: [ NSURL URLWithString: 
-		[ NSString stringWithCString: url ] ] ];
+		[ NSString stringWithCString:url encoding:NSASCIIStringEncoding] ] ];
 
 	if ( doexit ) {
 		quit_spamguard = true;
@@ -73,7 +73,7 @@ OSX_GetLocalizedString
 */
 const char* OSX_GetLocalizedString( const char* key )
 {
-	NSString *string = [ [ NSBundle mainBundle ] localizedStringForKey:[ NSString stringWithCString: key ]
-													 value:@"No translation" table:nil];
-	return [string cString];
+	NSString *string = [ [ NSBundle mainBundle ] localizedStringForKey:[ NSString stringWithCString:key encoding:NSASCIIStringEncoding]
+																 value:@"No translation" table:nil];
+	return [string cStringUsingEncoding:NSASCIIStringEncoding];
 }
