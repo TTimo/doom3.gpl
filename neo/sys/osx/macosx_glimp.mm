@@ -342,7 +342,7 @@ static bool CreateGameWindow(  glimpParms_t parms ) {
 		common->Printf(  "... +[NSOpenGLContext createWithFormat:share:] failed.\n" );
 		return false;
 	}
-#ifdef __ppc__
+#if defined(__ppc__) || defined (__PPC__)
 	long system_version = 0;
 	Gestalt( gestaltSystemVersion, &system_version );
 	if ( parms.width <= 1024 && parms.height <= 768 && system_version <= 0x1045 ) {

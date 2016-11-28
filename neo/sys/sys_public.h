@@ -66,7 +66,7 @@ If you have questions concerning this license or the applicable additional terms
 
 #define BUILD_STRING				"MacOSX-universal"
 #define BUILD_OS_ID					1
-#ifdef __ppc__
+#if defined(__ppc__) || defined (__PPC__)
 	#define	CPUSTRING					"ppc"
 	#define CPU_EASYARGS				0
 #elif defined(__i386__)
@@ -101,14 +101,16 @@ If you have questions concerning this license or the applicable additional terms
 
 
 // Linux
-#ifdef __linux__
+#if defined (__linux__) || defined(__linux2__)
 
 #ifdef __i386__
 	#define	BUILD_STRING				"linux-x86"
 	#define BUILD_OS_ID					2
 	#define CPUSTRING					"x86"
 	#define CPU_EASYARGS				1
-#elif defined(__ppc__)
+#endif
+#if defined(__ppc__) || defined(__PPC__)
+	#define BUILD_OS_ID				3
 	#define	BUILD_STRING				"linux-ppc"
 	#define CPUSTRING					"ppc"
 	#define CPU_EASYARGS				0

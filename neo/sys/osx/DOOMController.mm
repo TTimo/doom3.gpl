@@ -468,7 +468,7 @@ Sys_GetProcessorId
 */
 cpuid_t Sys_GetProcessorId( void ) {
 	int cpuid = CPUID_GENERIC;
-#if defined(__ppc__)
+#if defined(__ppc__) || defined (__PPC__)
 	cpuid |= CPUID_ALTIVEC;
 #elif defined(__i386__)
 	cpuid |= CPUID_INTEL | CPUID_MMX | CPUID_SSE | CPUID_SSE2 | CPUID_SSE3 | CPUID_HTT | CPUID_CMOV | CPUID_FTZ | CPUID_DAZ;
@@ -482,7 +482,7 @@ Sys_GetProcessorString
 ===============
 */
 const char *Sys_GetProcessorString( void ) {
-#if defined(__ppc__)
+#if defined(__ppc__) || defined (__PPC__)
 	return "ppc CPU with AltiVec extensions";
 #elif defined(__i386__)
 	return "x86 CPU with MMX/SSE/SSE2/SSE3 extensions";
@@ -566,7 +566,7 @@ void Sys_FPU_EnableExceptions( int exceptions ) {
 	} else {
 		asm( "mtfsb0 28" );
 	}
-#elif defined(__ppc__)
+#elif defined(__ppc__) || defined (__PPC__)
 	hexdouble t;
 	exception_mask = 0;
 	if ( exceptions & ( FPU_EXCEPTION_INVALID_OPERATION | FPU_EXCEPTION_DENORMALIZED_OPERAND ) ) {
@@ -602,7 +602,7 @@ Sys_FPE_handler
 ===============
 */
 void Sys_FPE_handler( int signum, siginfo_t *info, void *context ) {
-#if defined(__ppc__)
+#if defined(__ppc__) || defined (__PPC__)
 	int ret;
 	ppc_float_state_t *fs;
 	ppc_thread_state_t *ss;
@@ -993,7 +993,7 @@ void Sys_AsyncThread( void ) {
 }
 
 
-#if defined(__ppc__)
+#if defined(__ppc__) || defined (__PPC__)
 
 /*
  ================
